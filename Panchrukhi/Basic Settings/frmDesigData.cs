@@ -30,7 +30,6 @@ namespace Panchrukhi
         private DataSet    DS     = new DataSet();
         private DataTable  DT     = new DataTable();
 
-
         //private SQLiteConnection sql_conn;
         private SQLiteCommand sql_cmd;
         private SQLiteDataAdapter DB;
@@ -74,7 +73,6 @@ namespace Panchrukhi
                 {
                     MessageBox.Show("Something is wrong ??? !");
                 }
-
             }
             else
             {

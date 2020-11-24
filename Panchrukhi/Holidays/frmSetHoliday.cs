@@ -14,6 +14,8 @@ namespace Panchrukhi
 {
     public partial class frmSetHoliday : Form
     {
+
+
         public frmSetHoliday()
         {
             InitializeComponent();
@@ -27,10 +29,10 @@ namespace Panchrukhi
             dtPkrFormDate.CustomFormat = dtPkrToDate.CustomFormat = "dd/MM/yyyy";
         }
 
+
         DatabaseConnection DBConn = new DatabaseConnection();
         private DataSet DS;
         private DataTable DT;
-
 
         //private SQLiteConnection sql_conn;
         private SQLiteCommand sql_cmd;
@@ -52,7 +54,6 @@ namespace Panchrukhi
 
         private void BtnSaveAndUpdate_Click(object sender, EventArgs e)
         {
-
             if (getHID == 0)
             {
                 string cmdText = "";
@@ -86,7 +87,6 @@ namespace Panchrukhi
 
                 if (DBConn.ExecutionQuery(cmdText))
                 {
-                    // MessageBox.Show("Holidays Insert Succeed !");
                     ClearData();
                     LoadData();
                 }
@@ -120,6 +120,10 @@ namespace Panchrukhi
             cmbHolidayCat.Text = dtPkrFormDate.Text = dtPkrToDate.Text = "";
             getHID = 0;
         }
+
+
+
+
 
         // Load Data From SQlite Database
         private void LoadData()
@@ -168,6 +172,7 @@ namespace Panchrukhi
             cmbHolidayCat.Text    = dataGridView.Rows[e.RowIndex].Cells[2].Value.ToString();
         }
 
+
         
         private void DataGridData_SelectionChanged(object sender, EventArgs e)
         {
@@ -176,6 +181,9 @@ namespace Panchrukhi
             dtPkrFormDate.Text = dataGridView[1, dataGridView.SelectedRows[0].Index].Value.ToString();
             cmbHolidayCat.Text = dataGridView[2, dataGridView.SelectedRows[0].Index].Value.ToString();
         }
+
+
+
 
         // To Load Class Combo in CLASS Form. calling from Load Form.
         private void LoadHolyDayCatCombo()
@@ -197,9 +205,11 @@ namespace Panchrukhi
 
 
 
+
+
+
         private void BtnDelete_Click(object sender, EventArgs e)
-        {
-            
+        {            
             if (DBConn.DeleteTableRowInt("TBL_HOLIDAY", "NHID", getHID))
             {
                 MessageBox.Show("Row Deleted !");
@@ -211,6 +221,8 @@ namespace Panchrukhi
                 MessageBox.Show("", "Unable to delete!!!! ", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+
 
         private void frmSetHolyDay_FormClosed(object sender, FormClosedEventArgs e)
         {

@@ -1,0 +1,234 @@
+﻿
+
+
+Table [TBLATTENDANCE]
+	Fields: 6
+      [NATTENDSL]: INT(10)
+      [VEMPID]: VARCHAR(10)
+      [DATTENDATE]: VARCHAR(10)
+      [VINOUTTIME]: VARCHAR
+      [REMARKS]: VARCHAR(255)
+      [NATTENTYPE]: INT
+      [NAMFLAG]: INT
+Table [TBLATTENDANCE] end
+------------------------------------------------------------
+
+
+
+Table [TBLATTENDANCE_PROCESS_DATA]
+    Fields: 6
+        [VEMPID]: VARCHAR(10)
+        [DATTENDATE]: VARCHAR(10)
+        [VINOUTTIME]: VARCHAR
+        [REMARKS]: VARCHAR(255)
+        [NATTENTYPE]: INT
+        [NAMFLAG]: INT(1)
+Table [TBLATTENDANCE_PROCESS_DATA] end
+------------------------------------------------------------
+
+
+
+Table [TBLATTENSLOT]
+    Fields: 5
+        [NSLOTID]: INTEGER
+        [VSLOTNAME]: VARCHAR(15)
+        [VINTIME]: VARCHAR
+        [VOUTTIME]: VARCHAR
+        [VMINOUTTIME]: VARCHAR
+
+
+
+Table [TBLATTENSLOT] end
+------------------------------------------------------------
+Table [TBLCATEGORY]
+    Fields: 2
+        [NCATID]: INT
+        [VCATEGORY]: VARCHAR(100)
+
+Table [TBLCATEGORY] end
+------------------------------------------------------------
+
+
+
+Table [TBLCLASS]
+    Fields: 2
+        [NCLASSID]: INT
+        [VCLASSNAME]: VARCHAR
+Table [TBLCLASS] end
+------------------------------------------------------------
+
+
+Table [TBLDESIGNATION]
+    Fields: 2
+        [NDESIGID]: INT(10)
+        [VDESIGNATIONNAME]: VARCHAR(100)
+
+
+Table [TBLDESIGNATION] end
+------------------------------------------------------------
+
+
+Table [TBLPERSON]
+    Fields: 19
+        [NEMPID]: INT(8)
+        [PERSONID]: VARCHAR(10)
+        [VNAME]: VARCHAR(120)
+        [VGENDER]: VARCHAR(6)
+        [VADDRESS]: VARCHAR(500)
+        [DDOB]: VARCHAR
+        [VMOBLE]: VARCHAR(20)
+        [VEMAIL]: VARCHAR(100)
+        [NSTATUS]: INT(1)
+        [DDOJ]: VARCHAR
+        [NCATID]: INT
+        [NDESIGID]: INT
+        [NSALARY]: DOUBLE
+        [NSLOTID]: INT(8)
+        [NCLASSID]: INT(2)
+        [NSECID]: INT(2)
+        [VFATHER_NAME]: VARCHAR
+        [VMOTHER_NAME]: VARCHAR
+        [VEMERGENCY_CONTRACT]: VARCHAR
+
+Table [TBLPERSON] end
+------------------------------------------------------------
+
+
+
+Table [TBLSECTION]
+    Fields: 2
+        [NSECID]: INT
+        [VSECTION]: VARCHAR(100)
+
+Table [TBLSECTION] end
+------------------------------------------------------------
+
+
+Table [TBLUSERS]
+    Fields: 4
+        [ID]: INT
+        [Username]: VARCHAR
+        [Password]: VARCHAR
+        [LoginType]: INT
+
+Table [TBLUSERS] end
+------------------------------------------------------------
+
+
+Table [TBL_ATTEN_DEVICE]
+    Fields: 6
+        [NID]: INT(10)
+            NOT NULL
+        [VMACHINEIP]: VARCHAR(30)
+        [VLOCATION]: VARCHAR(200)
+        [VMACHINEPORT]: VARCHAR(10)
+        [NIN_OUT_STATUS]: INT(1)
+        [MACHINE_STATUS]: INT(1)
+
+Table [TBL_ATTEN_DEVICE] end
+------------------------------------------------------------
+
+
+
+Table [TBL_COMPANY]
+    Fields: 4
+        [NCOMPANYID]: INT
+        [VCOMPANY_NAME]: VARCHAR
+        [VCOMPANY_ADDRESS]: VARCHAR
+        [VCONTACT]: VARCHAR
+
+Table [TBL_COMPANY] end
+------------------------------------------------------------
+
+
+
+Table [TBL_HOLIDAY]
+    Fields: 3
+        [NHID]: INT
+        [DDATE]: VARCHAR
+        [N_HCATID]: INT
+
+Table [TBL_HOLIDAY] end
+------------------------------------------------------------
+
+
+
+Table [TBL_HOLIDAY_CATEGORY]
+    Fields: 2
+        [N_HCATID]: INT(2)
+        [VDESCRIPTION]: VARCHAR(120)
+Table [TBL_HOLIDAY_CATEGORY] end
+------------------------------------------------------------
+
+
+
+
+
+Table [TBL_PROMOTION_LOG]
+    Fields: 8
+        [ID]: VARCHAR
+        [INDATE]: VARCHAR
+        [FCLASS]: VARCHAR(50)
+        [TCLASS]: VARCHAR(50)
+        [FSEC]: VARCHAR(50)
+        [TSEC]: VARCHAR(50)
+        [FDESIG]: VARCHAR(50)
+        [TDESIG]: VARCHAR(50)
+
+Table [TBL_PROMOTION_LOG] end
+------------------------------------------------------------
+
+
+
+Table [TBL_WEEKEND]
+    Fields: 3
+        [NWKNDID]: INT
+        [VDAYSFLAG]: VARCHAR
+        [VSPECIALID]: VARCHAR
+
+Table [TBL_WEEKEND] end
+---------------------------------------------------------------
+
+
+
+###############################################################
+########### NEW TABLE SHOULD CREATE ###########################
+###############################################################
+
+
+Table [TBL_LEAVE_ENTRY]
+    Fields: 4
+        [SL_LEAVE]: INT(10)
+        [EMP_ID]: VARCHAR(10)
+        [LEAVE_NAME]: VARCHAR(10)
+        [LEAVE_DATE]: VARCHAR(10)
+Table [TBL_LEAVE_ENTRY] end
+
+
+------------------------------------------------------------
+CREATE TABLE [TBL_LEAVE_ENTRY]
+(
+  [SL_LEAVE] INT(10),
+  [EMP_ID] VARCHAR(10), 
+  [LEAVE_NAME] VARCHAR(10),
+  [LEAVE_DATE] VARCHAR(10)
+);
+------------------------------------------------------------
+
+
+Table [TBL_LEAVE_SETTINGS]
+    Fields: 3
+        [SL]: INT(10)
+        [LEAVE_NAME]: VARCHAR(10)
+        [TOTAL_DAYS]: INT(10)
+
+Table [TBL_LEAVE_SETTINGS] end
+
+------------------------------------------------------------
+CREATE TABLE [TBL_LEAVE_SETTINGS]
+(
+  [SL] INT(10), 
+  [LEAVE_NAME] VARCHAR(10), 
+  [TOTAL_DAYS] INT(10)  
+);
+------------------------------------------------------------

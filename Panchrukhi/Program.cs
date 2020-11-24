@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Panchrukhi.Basic_Settings;
+using Panchrukhi.Holidays;
 
 namespace Panchrukhi
 {
@@ -16,8 +18,8 @@ namespace Panchrukhi
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            // Application.Run(new frmMainWindow(1));
-               Application.Run(new frmLogIn());
+            //Application.Run(new rmLo());
+               Application.Run(new frmLeaveEntry2nd());
             // Application.Run(new frmAppStarter());
             // Application.Run(new frmPData());
             // Application.Run(new frmSlotData());

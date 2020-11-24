@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SQLite;
 using Panchrukhi.DAO;
+using Panchrukhi.Basic_Settings;
+using Panchrukhi.Holidays;
 
 namespace Panchrukhi
 {
@@ -280,14 +282,16 @@ namespace Panchrukhi
 
         private void cLSLToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Holidays.frmCLSL frmCL = new Holidays.frmCLSL();
+            frmLeaveEntry frmCL = new frmLeaveEntry();
             frmCL.Owner = this;
             frmCL.Show();
         }
 
         private void leaveSettingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            frmLeaveSettings frmLvsttng = new frmLeaveSettings();
+            frmLvsttng.Owner = this;
+            frmLvsttng.Show();
         }
     }
 }
