@@ -11,6 +11,10 @@ using System.Windows.Forms;
 using Panchrukhi.DAO;
 using CrystalDecisions.CrystalReports.Engine;
 using CrystalDecisions.Shared;
+using System.IO;
+using System.Reflection;
+using iTextSharp.text.pdf;
+using iTextSharp.text;
 
 
 namespace Panchrukhi
@@ -72,18 +76,16 @@ namespace Panchrukhi
             LoadDesigCombo();
             LoadClassCombo();
             LoadSectionCombo();
-            this.Owner.Enabled = false;
+            //this.Owner.Enabled = false;
             txtMultID.Enabled  = false;
         }
+
 
         // Load Data From SQlite Database
         private void LoadData(bool isDataForPrint)
         {
-
             string CommandText = "";
-
             string AndConditions = "";
-
             string AddColumn = "";
             
             // ADD COLUMN IN DATA GRID VIEW TO SEE MORE INFO ABOUT EMPLOYEES OR STUDENTS
@@ -114,7 +116,10 @@ namespace Panchrukhi
 
             if (dtpFstDate.Text.Length > 0 && dtpLstDate.Text.Length > 0)
             {
-                AndConditions += " TA.DATTENDATE BETWEEN '" + dtpFstDate.Text + "' AND '" + dtpLstDate.Text + "' ";
+                string fstDate = dtpFstDate.Value.ToString("yyyyMMdd");
+                string lstDate = dtpLstDate.Value.ToString("yyyyMMdd");
+                AndConditions += " substr(TA.DATTENDATE,7)||substr(TA.DATTENDATE,4,2)||substr(TA.DATTENDATE,1,2) between '" + fstDate + "' AND '" + lstDate + "' ";
+                // substr(TA.DATTENDATE,7)||substr(TA.DATTENDATE,4,2)||substr(TA.DATTENDATE,1,2)
             }
 
             if (cmbCategory.Text.Length > 0)
@@ -158,9 +163,9 @@ namespace Panchrukhi
                 }
             }
 
-            // THIS IS THE QUERY TO UPDATE FOR OUT TIME
 
-            CommandText = " Select distinct P.PERSONID ID, TA.DATTENDATE DATE, IFNULL(IT.INTIME,'') INTIME, IFNULL(OT.OUTTIME,'') OUTTIME " + AddColumn+ " " +
+            // THIS IS THE QUERY TO UPDATE FOR OUT TIME
+            CommandText = " Select distinct P.PERSONID ID, TA.DATTENDATE DATE, IFNULL(IT.INTIME,'') INTIME, IFNULL(OT.OUTTIME,'') OUTTIME, 'STATUS' STATUS " + AddColumn+ " " +
                           "   FROM "+ 
                           " TBLPERSON P "+
                           "   JOIN "+
@@ -176,7 +181,6 @@ namespace Panchrukhi
             
             CommandText += " WHERE "+AndConditions+ " AND P.NSTATUS == 1  ORDER BY TA.DATTENDATE;";
             
-
             DS = new DataSet();
             DT = new DataTable();
             DBConn.ExecutionQuery(CommandText);
@@ -185,34 +189,42 @@ namespace Panchrukhi
             DA.Fill(DS);
             DT = DS.Tables[0];
             if (isDataForPrint) return;
-            dataGridView.DataSource = DT;
+            dataGridView.DataSource = DT;            
             ConditionalRowBackgroundColor();
         }
 
 
 
         public void ConditionalRowBackgroundColor()
-        {
-            
+        {            
             //List<string> getIdList = new List<string>();
             for (int i = 0; i < dataGridView.Rows.Count; i++)
             {
-                bool absentCounted = false;
+                
+                // dataGridView.Rows[i].Cells[5].Value = (i+1);
+                bool absentCounted = false;                
                 string getID = dataGridView.Rows[i].Cells[0].Value.ToString();
                 string strIntime   = dataGridView.Rows[i].Cells[2].Value.ToString(); //Intime
                 string strOuttime  = dataGridView.Rows[i].Cells[3].Value.ToString(); //OutTime
                 bool getHolidayDays = DBConn.checkDataIfItUsedOtherTableStr("TBL_HOLIDAY", "DDATE", dataGridView.Rows[i].Cells[1].Value.ToString());
 
                 
-                if (strIntime.Equals("") && strOuttime.Equals(""))
+                if (strIntime.Equals("") || strOuttime.Equals(""))
                 {
                     dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.LightPink;
+                    dataGridView.Rows[i].Cells[4].Value="Absent";
                     absents++; absentCounted = true;
                 }
-                else presents++;
+                else
+                {
+                    dataGridView.Rows[i].Cells[4].Value = "Present";
+                    presents++;
+                }
+                    
 
                 if (getHolidayDays || getWeekends(dataGridView.Rows[i].Cells[1].Value.ToString(), getID))
                 {
+                    dataGridView.Rows[i].Cells[4].Value = "Holiday";
                     dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.DarkGreen;
                     dataGridView.Rows[i].DefaultCellStyle.ForeColor = Color.WhiteSmoke;
                     if (absentCounted) absents--;
@@ -220,6 +232,8 @@ namespace Panchrukhi
                 }
             }
         }
+
+
 
         // Get Weekends for make absent disable. 
         public bool getWeekends(string attendDate, string  PersonID)
@@ -248,6 +262,10 @@ namespace Panchrukhi
             }
             return false;
         }
+
+
+
+
 
 
 
@@ -347,7 +365,7 @@ namespace Panchrukhi
 
         private void frmReportPersonalInfo_FormClosed(object sender, FormClosedEventArgs e)
         {
-            this.Owner.Enabled = true;
+             // this.Owner.Enabled = true;
         }
 
         private void btnLoadData_Click(object sender, EventArgs e)
@@ -450,6 +468,76 @@ namespace Panchrukhi
             return;
         }
 
+        private void btn_pdf_export_Click(object sender, EventArgs e)
+        {
+            if (dataGridView.Rows.Count > 0)
+            {
+                SaveFileDialog sfd = new SaveFileDialog();
+                sfd.Filter = "PDF (*.pdf)|*.pdf";
+                sfd.FileName = "Output.pdf";
+                bool fileError = false;
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    if (File.Exists(sfd.FileName))
+                    {
+                        try
+                        {
+                            File.Delete(sfd.FileName);
+                        }
+                        catch (IOException ex)
+                        {
+                            fileError = true;
+                            MessageBox.Show("It wasn't possible to write the data to the disk." + ex.Message);
+                        }
+                    }
+                    if (!fileError)
+                    {
+                        try
+                        {
+                            PdfPTable pdfTable = new PdfPTable(dataGridView.Columns.Count);
+                            pdfTable.DefaultCell.Padding = 2;
+                            pdfTable.WidthPercentage = 100;
+                            pdfTable.HorizontalAlignment = Element.ALIGN_LEFT;
+
+                            foreach (DataGridViewColumn column in dataGridView.Columns)
+                            {
+                                PdfPCell cell = new PdfPCell(new Phrase(column.HeaderText));
+                                pdfTable.AddCell(cell);
+                            }
+
+                            foreach (DataGridViewRow row in dataGridView.Rows)
+                            {
+                                foreach (DataGridViewCell cell in row.Cells)
+                                {
+                                    pdfTable.AddCell(cell.Value.ToString());
+                                }
+                            }
+
+                            using (FileStream stream = new FileStream(sfd.FileName, FileMode.Create))
+                            {
+                                Document pdfDoc = new Document(PageSize.A4, 8f, 15f, 15f, 8f);
+                                PdfWriter.GetInstance(pdfDoc, stream);
+                                pdfDoc.Open();
+                                pdfDoc.Add(pdfTable);
+                                pdfDoc.Close();
+                                stream.Close();
+                            }
+
+                            MessageBox.Show("Data Exported Successfully !!!", "Info");
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Error :" + ex.Message);
+                        }
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("No Record To Export !!!", "Info");
+            }
+
+        }
 
         private void ExtractDataToCSV(DataGridView dgv)
         {
@@ -486,6 +574,7 @@ namespace Panchrukhi
             SaveFileDialog sfd = new SaveFileDialog();
             sfd.FileName = "SaveAttendanceData";
             sfd.Filter = "CSV files (*.csv)|*.csv";
+            //sfd.Filter = "PDF files (*.pdf)|*.pdf";
             if (sfd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 // If they've selected a save location...

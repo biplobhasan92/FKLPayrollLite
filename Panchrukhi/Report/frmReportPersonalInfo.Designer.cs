@@ -42,6 +42,7 @@
             this.ckbxCategory = new System.Windows.Forms.CheckBox();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.splitParent = new System.Windows.Forms.SplitContainer();
+            this.btn_pdf_export = new System.Windows.Forms.Button();
             this.gbxSearchByID = new System.Windows.Forms.GroupBox();
             this.lblExam = new System.Windows.Forms.Label();
             this.ckbxSearchID = new System.Windows.Forms.CheckBox();
@@ -216,6 +217,7 @@
             // 
             // splitParent.Panel1
             // 
+            this.splitParent.Panel1.Controls.Add(this.btn_pdf_export);
             this.splitParent.Panel1.Controls.Add(this.gbxSearchByID);
             this.splitParent.Panel1.Controls.Add(this.lblDate);
             this.splitParent.Panel1.Controls.Add(this.dtpLstDate);
@@ -233,6 +235,16 @@
             this.splitParent.Size = new System.Drawing.Size(1008, 729);
             this.splitParent.SplitterDistance = 276;
             this.splitParent.TabIndex = 147;
+            // 
+            // btn_pdf_export
+            // 
+            this.btn_pdf_export.Location = new System.Drawing.Point(23, 507);
+            this.btn_pdf_export.Name = "btn_pdf_export";
+            this.btn_pdf_export.Size = new System.Drawing.Size(86, 23);
+            this.btn_pdf_export.TabIndex = 156;
+            this.btn_pdf_export.Text = "Export PDF";
+            this.btn_pdf_export.UseVisualStyleBackColor = true;
+            this.btn_pdf_export.Click += new System.EventHandler(this.btn_pdf_export_Click);
             // 
             // gbxSearchByID
             // 
@@ -551,5 +563,6 @@
         private System.Windows.Forms.Button btnPrint;
         private System.Windows.Forms.CheckBox cbxEmergencyNum;
         private System.Windows.Forms.Label lblExam;
+        private System.Windows.Forms.Button btn_pdf_export;
     }
 }

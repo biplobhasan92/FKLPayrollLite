@@ -282,7 +282,7 @@ namespace Panchrukhi
 
         private void cLSLToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmLeaveEntry frmCL = new frmLeaveEntry();
+            frmLeaveEntry2nd frmCL = new frmLeaveEntry2nd();
             frmCL.Owner = this;
             frmCL.Show();
         }

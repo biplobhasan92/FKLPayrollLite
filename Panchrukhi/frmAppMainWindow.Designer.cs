@@ -40,6 +40,7 @@
             this.tstripClasses = new System.Windows.Forms.ToolStripMenuItem();
             this.tstripSections = new System.Windows.Forms.ToolStripMenuItem();
             this.tstripSlots = new System.Windows.Forms.ToolStripMenuItem();
+            this.leaveSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.basicSettingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.addNewMachineToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.iPConfigureToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -57,7 +58,6 @@
             this.tstripPersonalInfo = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.flowLayoutMainWindow = new System.Windows.Forms.FlowLayoutPanel();
-            this.leaveSettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.mnuMain.SuspendLayout();
             this.SuspendLayout();
@@ -103,44 +103,51 @@
             // tstripAddEditPerson
             // 
             this.tstripAddEditPerson.Name = "tstripAddEditPerson";
-            this.tstripAddEditPerson.Size = new System.Drawing.Size(152, 22);
+            this.tstripAddEditPerson.Size = new System.Drawing.Size(149, 22);
             this.tstripAddEditPerson.Text = "Person Data";
             this.tstripAddEditPerson.Click += new System.EventHandler(this.tstripAddEditPerson_Click);
             // 
             // tstripCategories
             // 
             this.tstripCategories.Name = "tstripCategories";
-            this.tstripCategories.Size = new System.Drawing.Size(152, 22);
+            this.tstripCategories.Size = new System.Drawing.Size(149, 22);
             this.tstripCategories.Text = "Category";
             this.tstripCategories.Click += new System.EventHandler(this.tstripCategories_Click);
             // 
             // tstripDesignation
             // 
             this.tstripDesignation.Name = "tstripDesignation";
-            this.tstripDesignation.Size = new System.Drawing.Size(152, 22);
+            this.tstripDesignation.Size = new System.Drawing.Size(149, 22);
             this.tstripDesignation.Text = "Designation";
             this.tstripDesignation.Click += new System.EventHandler(this.designationToolStripMenuItem_Click);
             // 
             // tstripClasses
             // 
             this.tstripClasses.Name = "tstripClasses";
-            this.tstripClasses.Size = new System.Drawing.Size(152, 22);
+            this.tstripClasses.Size = new System.Drawing.Size(149, 22);
             this.tstripClasses.Text = "Class";
             this.tstripClasses.Click += new System.EventHandler(this.tstripClasses_Click);
             // 
             // tstripSections
             // 
             this.tstripSections.Name = "tstripSections";
-            this.tstripSections.Size = new System.Drawing.Size(152, 22);
+            this.tstripSections.Size = new System.Drawing.Size(149, 22);
             this.tstripSections.Text = "Section";
             this.tstripSections.Click += new System.EventHandler(this.tstripSections_Click);
             // 
             // tstripSlots
             // 
             this.tstripSlots.Name = "tstripSlots";
-            this.tstripSlots.Size = new System.Drawing.Size(152, 22);
+            this.tstripSlots.Size = new System.Drawing.Size(149, 22);
             this.tstripSlots.Text = "Shift";
             this.tstripSlots.Click += new System.EventHandler(this.tstripSlots_Click);
+            // 
+            // leaveSettingsToolStripMenuItem
+            // 
+            this.leaveSettingsToolStripMenuItem.Name = "leaveSettingsToolStripMenuItem";
+            this.leaveSettingsToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.leaveSettingsToolStripMenuItem.Text = "Leave Settings";
+            this.leaveSettingsToolStripMenuItem.Click += new System.EventHandler(this.leaveSettingsToolStripMenuItem_Click);
             // 
             // basicSettingToolStripMenuItem
             // 
@@ -238,7 +245,7 @@
             // promotionToolStripMenuItem
             // 
             this.promotionToolStripMenuItem.Name = "promotionToolStripMenuItem";
-            this.promotionToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.promotionToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
             this.promotionToolStripMenuItem.Text = "Promotion";
             this.promotionToolStripMenuItem.Click += new System.EventHandler(this.promotionToolStripMenuItem_Click_1);
             // 
@@ -253,7 +260,7 @@
             // tstripPersonalInfo
             // 
             this.tstripPersonalInfo.Name = "tstripPersonalInfo";
-            this.tstripPersonalInfo.Size = new System.Drawing.Size(152, 22);
+            this.tstripPersonalInfo.Size = new System.Drawing.Size(134, 22);
             this.tstripPersonalInfo.Text = "Person Info";
             this.tstripPersonalInfo.Click += new System.EventHandler(this.tstripPersonalInfo_Click);
             // 
@@ -271,13 +278,6 @@
             this.flowLayoutMainWindow.Name = "flowLayoutMainWindow";
             this.flowLayoutMainWindow.Size = new System.Drawing.Size(1110, 700);
             this.flowLayoutMainWindow.TabIndex = 2;
-            // 
-            // leaveSettingsToolStripMenuItem
-            // 
-            this.leaveSettingsToolStripMenuItem.Name = "leaveSettingsToolStripMenuItem";
-            this.leaveSettingsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.leaveSettingsToolStripMenuItem.Text = "Leave Settings";
-            this.leaveSettingsToolStripMenuItem.Click += new System.EventHandler(this.leaveSettingsToolStripMenuItem_Click);
             // 
             // frmMainWindow
             // 

@@ -180,7 +180,7 @@ namespace Panchrukhi
 
         private void FrmData_Load(object sender, EventArgs e)
         {
-            // this.Owner.Enabled = false;
+            this.Owner.Enabled = false;
             LoadHolyDayCatCombo();
             gbxSerachOption.Enabled = false;
         }

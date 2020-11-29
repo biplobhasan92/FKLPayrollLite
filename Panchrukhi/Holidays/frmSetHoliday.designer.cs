@@ -34,14 +34,15 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.lblDateForm = new System.Windows.Forms.Label();
             this.dataGridView = new System.Windows.Forms.DataGridView();
-            this.colNHID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colHDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colHCategory = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dtPkrFormDate = new System.Windows.Forms.DateTimePicker();
             this.lblDateTo = new System.Windows.Forms.Label();
             this.dtPkrToDate = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
             this.cmbHolidayCat = new System.Windows.Forms.ComboBox();
+            this.colNHID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDBSL = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colHDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colHCategory = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -100,6 +101,7 @@
             this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colNHID,
+            this.colDBSL,
             this.colHDate,
             this.colHCategory});
             this.dataGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
@@ -110,26 +112,6 @@
             this.dataGridView.TabIndex = 97;
             this.dataGridView.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DataGridData_RowHeaderMouseClick);
             this.dataGridView.SelectionChanged += new System.EventHandler(this.DataGridData_SelectionChanged);
-            // 
-            // colNHID
-            // 
-            this.colNHID.HeaderText = "ID";
-            this.colNHID.Name = "colNHID";
-            this.colNHID.ReadOnly = true;
-            this.colNHID.Width = 30;
-            // 
-            // colHDate
-            // 
-            this.colHDate.HeaderText = "Date";
-            this.colHDate.Name = "colHDate";
-            this.colHDate.ReadOnly = true;
-            this.colHDate.Width = 150;
-            // 
-            // colHCategory
-            // 
-            this.colHCategory.HeaderText = "Category";
-            this.colHCategory.Name = "colHCategory";
-            this.colHCategory.Width = 150;
             // 
             // dtPkrFormDate
             // 
@@ -172,6 +154,33 @@
             this.cmbHolidayCat.TabIndex = 102;
             this.cmbHolidayCat.Text = "--- Select Type ---";
             // 
+            // colNHID
+            // 
+            this.colNHID.HeaderText = "ID";
+            this.colNHID.Name = "colNHID";
+            this.colNHID.ReadOnly = true;
+            this.colNHID.Width = 30;
+            // 
+            // colDBSL
+            // 
+            this.colDBSL.DataPropertyName = "NHID";
+            this.colDBSL.HeaderText = "DBSL";
+            this.colDBSL.Name = "colDBSL";
+            this.colDBSL.Visible = false;
+            // 
+            // colHDate
+            // 
+            this.colHDate.HeaderText = "Date";
+            this.colHDate.Name = "colHDate";
+            this.colHDate.ReadOnly = true;
+            this.colHDate.Width = 150;
+            // 
+            // colHCategory
+            // 
+            this.colHCategory.HeaderText = "Category";
+            this.colHCategory.Name = "colHCategory";
+            this.colHCategory.Width = 150;
+            // 
             // frmSetHoliday
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -212,6 +221,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cmbHolidayCat;
         private System.Windows.Forms.DataGridViewTextBoxColumn colNHID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colDBSL;
         private System.Windows.Forms.DataGridViewTextBoxColumn colHDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn colHCategory;
     }

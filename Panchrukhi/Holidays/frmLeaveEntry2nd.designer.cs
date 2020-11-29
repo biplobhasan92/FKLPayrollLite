@@ -34,6 +34,12 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.lblDateForm = new System.Windows.Forms.Label();
             this.dataGridView = new System.Windows.Forms.DataGridView();
+            this.colNHID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colEmpID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colHDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colHCategory = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colLeaveCatID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDBSL = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dtPkrFormDate = new System.Windows.Forms.DateTimePicker();
             this.lblDateTo = new System.Windows.Forms.Label();
             this.dtPkrToDate = new System.Windows.Forms.DateTimePicker();
@@ -43,20 +49,14 @@
             this.label1 = new System.Windows.Forms.Label();
             this.ckEnableSearch = new System.Windows.Forms.CheckBox();
             this.gbxSerachOption = new System.Windows.Forms.GroupBox();
+            this.cbxSrcLvCat = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtSrcID = new System.Windows.Forms.MaskedTextBox();
             this.btnSearch = new System.Windows.Forms.Button();
             this.lblDate = new System.Windows.Forms.Label();
             this.dtpFstDate = new System.Windows.Forms.DateTimePicker();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.txtSrcID = new System.Windows.Forms.MaskedTextBox();
-            this.colNHID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colEmpID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colHDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colHCategory = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colLeaveCatID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colDBSL = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label5 = new System.Windows.Forms.Label();
-            this.cbxSrcLvCat = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.gbxSerachOption.SuspendLayout();
             this.SuspendLayout();
@@ -125,10 +125,49 @@
             this.dataGridView.Location = new System.Drawing.Point(8, 308);
             this.dataGridView.MultiSelect = false;
             this.dataGridView.Name = "dataGridView";
-            this.dataGridView.Size = new System.Drawing.Size(482, 286);
+            this.dataGridView.Size = new System.Drawing.Size(493, 310);
             this.dataGridView.TabIndex = 97;
             this.dataGridView.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DataGridData_RowHeaderMouseClick);
             this.dataGridView.SelectionChanged += new System.EventHandler(this.DataGridData_SelectionChanged);
+            // 
+            // colNHID
+            // 
+            this.colNHID.HeaderText = "ID";
+            this.colNHID.Name = "colNHID";
+            this.colNHID.ReadOnly = true;
+            this.colNHID.Width = 30;
+            // 
+            // colEmpID
+            // 
+            this.colEmpID.HeaderText = "Emp ID";
+            this.colEmpID.Name = "colEmpID";
+            // 
+            // colHDate
+            // 
+            this.colHDate.HeaderText = "Date";
+            this.colHDate.Name = "colHDate";
+            this.colHDate.ReadOnly = true;
+            this.colHDate.Width = 150;
+            // 
+            // colHCategory
+            // 
+            this.colHCategory.HeaderText = "Category";
+            this.colHCategory.Name = "colHCategory";
+            this.colHCategory.Width = 150;
+            // 
+            // colLeaveCatID
+            // 
+            this.colLeaveCatID.DataPropertyName = "LEAVE_CAT_ID";
+            this.colLeaveCatID.HeaderText = "Levae CatID";
+            this.colLeaveCatID.Name = "colLeaveCatID";
+            this.colLeaveCatID.Visible = false;
+            // 
+            // colDBSL
+            // 
+            this.colDBSL.HeaderText = "DBSL";
+            this.colDBSL.Name = "colDBSL";
+            this.colDBSL.ReadOnly = true;
+            this.colDBSL.Visible = false;
             // 
             // dtPkrFormDate
             // 
@@ -216,6 +255,32 @@
             this.gbxSerachOption.TabStop = false;
             this.gbxSerachOption.Text = "Search Option";
             // 
+            // cbxSrcLvCat
+            // 
+            this.cbxSrcLvCat.FormattingEnabled = true;
+            this.cbxSrcLvCat.Location = new System.Drawing.Point(253, 22);
+            this.cbxSrcLvCat.Name = "cbxSrcLvCat";
+            this.cbxSrcLvCat.Size = new System.Drawing.Size(139, 21);
+            this.cbxSrcLvCat.TabIndex = 2;
+            this.cbxSrcLvCat.Text = "--- Select Type ---";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(172, 25);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(59, 13);
+            this.label5.TabIndex = 159;
+            this.label5.Text = "Leave Cat:";
+            // 
+            // txtSrcID
+            // 
+            this.txtSrcID.Location = new System.Drawing.Point(81, 54);
+            this.txtSrcID.Mask = "000000";
+            this.txtSrcID.Name = "txtSrcID";
+            this.txtSrcID.Size = new System.Drawing.Size(79, 20);
+            this.txtSrcID.TabIndex = 1;
+            // 
             // btnSearch
             // 
             this.btnSearch.Location = new System.Drawing.Point(253, 56);
@@ -260,76 +325,11 @@
             this.label3.TabIndex = 101;
             this.label3.Text = "Search ID";
             // 
-            // txtSrcID
-            // 
-            this.txtSrcID.Location = new System.Drawing.Point(81, 54);
-            this.txtSrcID.Mask = "000000";
-            this.txtSrcID.Name = "txtSrcID";
-            this.txtSrcID.Size = new System.Drawing.Size(79, 20);
-            this.txtSrcID.TabIndex = 1;
-            // 
-            // colNHID
-            // 
-            this.colNHID.HeaderText = "ID";
-            this.colNHID.Name = "colNHID";
-            this.colNHID.ReadOnly = true;
-            this.colNHID.Width = 30;
-            // 
-            // colEmpID
-            // 
-            this.colEmpID.HeaderText = "Emp ID";
-            this.colEmpID.Name = "colEmpID";
-            // 
-            // colHDate
-            // 
-            this.colHDate.HeaderText = "Date";
-            this.colHDate.Name = "colHDate";
-            this.colHDate.ReadOnly = true;
-            this.colHDate.Width = 150;
-            // 
-            // colHCategory
-            // 
-            this.colHCategory.HeaderText = "Category";
-            this.colHCategory.Name = "colHCategory";
-            this.colHCategory.Width = 150;
-            // 
-            // colLeaveCatID
-            // 
-            this.colLeaveCatID.DataPropertyName = "LEAVE_CAT_ID";
-            this.colLeaveCatID.HeaderText = "Levae CatID";
-            this.colLeaveCatID.Name = "colLeaveCatID";
-            this.colLeaveCatID.Visible = false;
-            // 
-            // colDBSL
-            // 
-            this.colDBSL.HeaderText = "DBSL";
-            this.colDBSL.Name = "colDBSL";
-            this.colDBSL.ReadOnly = true;
-            this.colDBSL.Visible = false;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(172, 25);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(59, 13);
-            this.label5.TabIndex = 159;
-            this.label5.Text = "Leave Cat:";
-            // 
-            // cbxSrcLvCat
-            // 
-            this.cbxSrcLvCat.FormattingEnabled = true;
-            this.cbxSrcLvCat.Location = new System.Drawing.Point(253, 22);
-            this.cbxSrcLvCat.Name = "cbxSrcLvCat";
-            this.cbxSrcLvCat.Size = new System.Drawing.Size(139, 21);
-            this.cbxSrcLvCat.TabIndex = 2;
-            this.cbxSrcLvCat.Text = "--- Select Type ---";
-            // 
             // frmLeaveEntry2nd
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(498, 600);
+            this.ClientSize = new System.Drawing.Size(513, 626);
             this.Controls.Add(this.ckEnableSearch);
             this.Controls.Add(this.gbxSerachOption);
             this.Controls.Add(this.txtEmpID);
