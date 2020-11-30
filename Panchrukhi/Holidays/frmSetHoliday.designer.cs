@@ -48,7 +48,7 @@
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(388, 271);
+            this.btnDelete.Location = new System.Drawing.Point(393, 247);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(89, 23);
             this.btnDelete.TabIndex = 73;
@@ -58,7 +58,7 @@
             // 
             // btnReset
             // 
-            this.btnReset.Location = new System.Drawing.Point(388, 245);
+            this.btnReset.Location = new System.Drawing.Point(392, 208);
             this.btnReset.Name = "btnReset";
             this.btnReset.Size = new System.Drawing.Size(89, 23);
             this.btnReset.TabIndex = 72;
@@ -68,7 +68,7 @@
             // 
             // btnSaveAndUpdate
             // 
-            this.btnSaveAndUpdate.Location = new System.Drawing.Point(388, 219);
+            this.btnSaveAndUpdate.Location = new System.Drawing.Point(392, 170);
             this.btnSaveAndUpdate.Name = "btnSaveAndUpdate";
             this.btnSaveAndUpdate.Size = new System.Drawing.Size(89, 23);
             this.btnSaveAndUpdate.TabIndex = 71;
@@ -78,7 +78,7 @@
             // 
             // btnClose
             // 
-            this.btnClose.Location = new System.Drawing.Point(388, 297);
+            this.btnClose.Location = new System.Drawing.Point(392, 284);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(89, 23);
             this.btnClose.TabIndex = 94;
@@ -105,10 +105,10 @@
             this.colHDate,
             this.colHCategory});
             this.dataGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.dataGridView.Location = new System.Drawing.Point(7, 96);
+            this.dataGridView.Location = new System.Drawing.Point(7, 91);
             this.dataGridView.MultiSelect = false;
             this.dataGridView.Name = "dataGridView";
-            this.dataGridView.Size = new System.Drawing.Size(375, 357);
+            this.dataGridView.Size = new System.Drawing.Size(377, 362);
             this.dataGridView.TabIndex = 97;
             this.dataGridView.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DataGridData_RowHeaderMouseClick);
             this.dataGridView.SelectionChanged += new System.EventHandler(this.DataGridData_SelectionChanged);
@@ -185,7 +185,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(481, 465);
+            this.ClientSize = new System.Drawing.Size(490, 465);
             this.Controls.Add(this.cmbHolidayCat);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dtPkrToDate);

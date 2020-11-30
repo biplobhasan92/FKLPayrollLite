@@ -206,9 +206,11 @@ namespace Panchrukhi
                 string getID = dataGridView.Rows[i].Cells[0].Value.ToString();
                 string strIntime   = dataGridView.Rows[i].Cells[2].Value.ToString(); //Intime
                 string strOuttime  = dataGridView.Rows[i].Cells[3].Value.ToString(); //OutTime
-                bool getHolidayDays = DBConn.checkDataIfItUsedOtherTableStr("TBL_HOLIDAY", "DDATE", dataGridView.Rows[i].Cells[1].Value.ToString());
 
-                
+                bool getHolidayDays= DBConn.checkDataIfItUsedOtherTableStr("TBL_HOLIDAY", "DDATE", dataGridView.Rows[i].Cells[1].Value.ToString());
+                bool getWeekend = getWeekends(dataGridView.Rows[i].Cells[1].Value.ToString(), getID);
+                string getLvClSl  = getLeaveClsl(dataGridView.Rows[i].Cells[1].Value.ToString(), getID);
+
                 if (strIntime.Equals("") || strOuttime.Equals(""))
                 {
                     dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.LightPink;
@@ -220,11 +222,21 @@ namespace Panchrukhi
                     dataGridView.Rows[i].Cells[4].Value = "Present";
                     presents++;
                 }
-                    
 
-                if (getHolidayDays || getWeekends(dataGridView.Rows[i].Cells[1].Value.ToString(), getID))
+                if (getHolidayDays || getWeekend)
                 {
-                    dataGridView.Rows[i].Cells[4].Value = "Holiday";
+                    if (getHolidayDays)
+                    {
+                        dataGridView.Rows[i].Cells[4].Value = "Holiday";
+                    }
+                    else if (getWeekend && getLvClSl == "")
+                    {
+                        dataGridView.Rows[i].Cells[4].Value = "Weekend";
+                    }else if(getLvClSl!="")
+                    {
+                        dataGridView.Rows[i].Cells[4].Value = getLvClSl;
+                    }
+                    
                     dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.DarkGreen;
                     dataGridView.Rows[i].DefaultCellStyle.ForeColor = Color.WhiteSmoke;
                     if (absentCounted) absents--;
@@ -242,7 +254,6 @@ namespace Panchrukhi
             string[] dayName  = { "Friday", "Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday" };
             string getGeneralHoliday =  checkGeneralWeekend(PersonID); // Get value of General Holiday string from database.
 
-
             // if General Holiday index val not equals to '0' 
             // add holiday in getHolidayName list for that index from 'dayName' static array
             for (int i = 0; i < getGeneralHoliday.Length; i++)
@@ -255,12 +266,41 @@ namespace Panchrukhi
             
             DateTime dt = Convert.ToDateTime(attendDate);
             for (int i = 0; i < getHolidayName.Count; i++)
-            {
-                
+            {             
                 if (dt.DayOfWeek.ToString().Equals(getHolidayName[i].ToString()))
-                     {return true;}
+                {return true;}
             }
             return false;
+        }
+
+
+        public string getLeaveClsl(string attendDate, string PersonID)
+        {
+            string returnVal = "";
+            try
+            {
+                string cmdText = "select (select s.LEAVE_NAME from TBL_LEAVE_SETTINGS s where s.SL = le.LEAVE_NAME) as leave_name from TBL_LEAVE_ENTRY le" +
+                    " where  EMP_ID = '" + PersonID + "' and LEAVE_DATE = '"+attendDate+"' ";
+                DBConn.ExecutionQuery(cmdText);
+                DA = new SQLiteDataAdapter(cmdText, DBConn.sql_conn);
+                DS = new DataSet();
+                DS.Reset();
+                DA.Fill(DS);                
+                if (DS.Tables[0].Rows.Count > 0)
+                {
+                    // returnVal = true;
+
+                    foreach (DataRow dr in DS.Tables[0].Rows)
+                    {
+                        returnVal = dr["leave_name"].ToString();
+                    }
+                }
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message + " - Problem getLeaveClsl()");
+            }
+            return returnVal;
         }
 
 
@@ -536,12 +576,10 @@ namespace Panchrukhi
             {
                 MessageBox.Show("No Record To Export !!!", "Info");
             }
-
         }
 
         private void ExtractDataToCSV(DataGridView dgv)
         {
-
             // Don't save if no data is returned
             if (dgv.Rows.Count == 0)
             {

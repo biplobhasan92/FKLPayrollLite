@@ -144,8 +144,9 @@ namespace Panchrukhi
                 foreach (DataRow dr in DS.Tables[0].Rows)
                 {
                     dataGridView.Rows.Add();
-                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colNHID.Index].Value = dataGridView.Rows.Count;
-                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colHDate.Index].Value     = dr["DDATE"].ToString();
+                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colNHID.Index].Value  = dataGridView.Rows.Count;
+                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colDBSL.Index].Value = dr["NHID"].ToString();
+                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colHDate.Index].Value = dr["DDATE"].ToString();
                     dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colHCategory.Index].Value = dr["CATEGORY"].ToString();
                     // dgvfrmMachines.Rows[dgvfrmMachines.Rows.Count - 1].Cells[colLocation.Index].Value = dr["vLocation"].ToString();
                 }
@@ -167,9 +168,9 @@ namespace Panchrukhi
 
         private void DataGridData_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            getHID                = Convert.ToInt32(dataGridView.Rows[e.RowIndex].Cells[3].Value.ToString());
-            dtPkrFormDate.Text    = dataGridView.Rows[e.RowIndex].Cells[1].Value.ToString();
-            cmbHolidayCat.Text    = dataGridView.Rows[e.RowIndex].Cells[2].Value.ToString();
+            getHID                = Convert.ToInt32(dataGridView.Rows[e.RowIndex].Cells[1].Value.ToString());
+            dtPkrFormDate.Text    = dataGridView.Rows[e.RowIndex].Cells[2].Value.ToString();
+            cmbHolidayCat.Text    = dataGridView.Rows[e.RowIndex].Cells[3].Value.ToString();
         }
 
 
@@ -177,9 +178,9 @@ namespace Panchrukhi
         private void DataGridData_SelectionChanged(object sender, EventArgs e)
         {
             if (dataGridView.SelectedRows.Count == 0 || dataGridView.SelectedRows[0].Index == dataGridView.Rows.Count) return;
-            getHID             = Convert.ToInt32(dataGridView[3, dataGridView.SelectedRows[0].Index].Value.ToString());
-            dtPkrFormDate.Text = dataGridView[1, dataGridView.SelectedRows[0].Index].Value.ToString();
-            cmbHolidayCat.Text = dataGridView[2, dataGridView.SelectedRows[0].Index].Value.ToString();
+            getHID             = Convert.ToInt32(dataGridView[1, dataGridView.SelectedRows[0].Index].Value.ToString());
+            dtPkrFormDate.Text = dataGridView[2, dataGridView.SelectedRows[0].Index].Value.ToString();
+            cmbHolidayCat.Text = dataGridView[3, dataGridView.SelectedRows[0].Index].Value.ToString();
         }
 
 
@@ -212,7 +213,7 @@ namespace Panchrukhi
         {            
             if (DBConn.DeleteTableRowInt("TBL_HOLIDAY", "NHID", getHID))
             {
-                MessageBox.Show("Row Deleted !");
+                // MessageBox.Show("Row Deleted !");
                 ClearData();
                 LoadData();
             }

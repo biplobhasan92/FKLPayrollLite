@@ -38,21 +38,22 @@
             this.dtPkrFormDate = new System.Windows.Forms.DateTimePicker();
             this.lblDateForm = new System.Windows.Forms.Label();
             this.dataGridview = new System.Windows.Forms.DataGridView();
+            this.txtEmpID = new System.Windows.Forms.MaskedTextBox();
+            this.dtPkrToDate = new System.Windows.Forms.DateTimePicker();
+            this.lblDateTo = new System.Windows.Forms.Label();
             this.colSL = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colEmpID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colLEAVE_NAME = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.txtEmpID = new System.Windows.Forms.MaskedTextBox();
-            this.dtPkrToDate = new System.Windows.Forms.DateTimePicker();
-            this.lblDateTo = new System.Windows.Forms.Label();
+            this.colCombo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridview)).BeginInit();
             this.SuspendLayout();
             // 
             // btnClose
             // 
-            this.btnClose.Location = new System.Drawing.Point(334, 134);
+            this.btnClose.Location = new System.Drawing.Point(392, 134);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(89, 23);
+            this.btnClose.Size = new System.Drawing.Size(101, 23);
             this.btnClose.TabIndex = 111;
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = true;
@@ -60,9 +61,9 @@
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(334, 103);
+            this.btnDelete.Location = new System.Drawing.Point(392, 103);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(89, 23);
+            this.btnDelete.Size = new System.Drawing.Size(101, 23);
             this.btnDelete.TabIndex = 110;
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
@@ -70,9 +71,9 @@
             // 
             // btnReset
             // 
-            this.btnReset.Location = new System.Drawing.Point(334, 70);
+            this.btnReset.Location = new System.Drawing.Point(392, 70);
             this.btnReset.Name = "btnReset";
-            this.btnReset.Size = new System.Drawing.Size(89, 23);
+            this.btnReset.Size = new System.Drawing.Size(101, 23);
             this.btnReset.TabIndex = 109;
             this.btnReset.Text = "Reset";
             this.btnReset.UseVisualStyleBackColor = true;
@@ -80,9 +81,9 @@
             // 
             // btnSaveAndUpdate
             // 
-            this.btnSaveAndUpdate.Location = new System.Drawing.Point(334, 38);
+            this.btnSaveAndUpdate.Location = new System.Drawing.Point(392, 38);
             this.btnSaveAndUpdate.Name = "btnSaveAndUpdate";
-            this.btnSaveAndUpdate.Size = new System.Drawing.Size(89, 23);
+            this.btnSaveAndUpdate.Size = new System.Drawing.Size(101, 23);
             this.btnSaveAndUpdate.TabIndex = 108;
             this.btnSaveAndUpdate.Text = "Save";
             this.btnSaveAndUpdate.UseVisualStyleBackColor = true;
@@ -138,15 +139,40 @@
             this.colSL,
             this.colEmpID,
             this.colLEAVE_NAME,
-            this.colDate});
+            this.colDate,
+            this.colCombo});
             this.dataGridview.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dataGridview.Location = new System.Drawing.Point(6, 173);
             this.dataGridview.MultiSelect = false;
             this.dataGridview.Name = "dataGridview";
-            this.dataGridview.Size = new System.Drawing.Size(417, 148);
+            this.dataGridview.Size = new System.Drawing.Size(541, 261);
             this.dataGridview.TabIndex = 117;
             this.dataGridview.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridview_RowHeaderMouseClick);
             this.dataGridview.SelectionChanged += new System.EventHandler(this.dataGridview_SelectionChanged);
+            // 
+            // txtEmpID
+            // 
+            this.txtEmpID.Location = new System.Drawing.Point(70, 48);
+            this.txtEmpID.Mask = "000000";
+            this.txtEmpID.Name = "txtEmpID";
+            this.txtEmpID.Size = new System.Drawing.Size(176, 20);
+            this.txtEmpID.TabIndex = 118;
+            // 
+            // dtPkrToDate
+            // 
+            this.dtPkrToDate.Location = new System.Drawing.Point(200, 117);
+            this.dtPkrToDate.Name = "dtPkrToDate";
+            this.dtPkrToDate.Size = new System.Drawing.Size(95, 20);
+            this.dtPkrToDate.TabIndex = 119;
+            // 
+            // lblDateTo
+            // 
+            this.lblDateTo.AutoSize = true;
+            this.lblDateTo.Location = new System.Drawing.Point(173, 120);
+            this.lblDateTo.Name = "lblDateTo";
+            this.lblDateTo.Size = new System.Drawing.Size(20, 13);
+            this.lblDateTo.TabIndex = 120;
+            this.lblDateTo.Text = "To";
             // 
             // colSL
             // 
@@ -175,35 +201,16 @@
             this.colDate.HeaderText = "Date";
             this.colDate.Name = "colDate";
             // 
-            // txtEmpID
+            // colCombo
             // 
-            this.txtEmpID.Location = new System.Drawing.Point(70, 48);
-            this.txtEmpID.Mask = "000000";
-            this.txtEmpID.Name = "txtEmpID";
-            this.txtEmpID.Size = new System.Drawing.Size(176, 20);
-            this.txtEmpID.TabIndex = 118;
-            // 
-            // dtPkrToDate
-            // 
-            this.dtPkrToDate.Location = new System.Drawing.Point(200, 117);
-            this.dtPkrToDate.Name = "dtPkrToDate";
-            this.dtPkrToDate.Size = new System.Drawing.Size(95, 20);
-            this.dtPkrToDate.TabIndex = 119;
-            // 
-            // lblDateTo
-            // 
-            this.lblDateTo.AutoSize = true;
-            this.lblDateTo.Location = new System.Drawing.Point(173, 120);
-            this.lblDateTo.Name = "lblDateTo";
-            this.lblDateTo.Size = new System.Drawing.Size(20, 13);
-            this.lblDateTo.TabIndex = 120;
-            this.lblDateTo.Text = "To";
+            this.colCombo.HeaderText = "Combo";
+            this.colCombo.Name = "colCombo";
             // 
             // frmLeaveEntry
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(434, 328);
+            this.ClientSize = new System.Drawing.Size(989, 446);
             this.Controls.Add(this.lblDateTo);
             this.Controls.Add(this.dtPkrToDate);
             this.Controls.Add(this.txtEmpID);
@@ -238,11 +245,12 @@
         private System.Windows.Forms.Label lblDateForm;
         private System.Windows.Forms.DataGridView dataGridview;
         private System.Windows.Forms.MaskedTextBox txtEmpID;
+        private System.Windows.Forms.DateTimePicker dtPkrToDate;
+        private System.Windows.Forms.Label lblDateTo;
         private System.Windows.Forms.DataGridViewTextBoxColumn colSL;
         private System.Windows.Forms.DataGridViewTextBoxColumn colEmpID;
         private System.Windows.Forms.DataGridViewTextBoxColumn colLEAVE_NAME;
         private System.Windows.Forms.DataGridViewTextBoxColumn colDate;
-        private System.Windows.Forms.DateTimePicker dtPkrToDate;
-        private System.Windows.Forms.Label lblDateTo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colCombo;
     }
 }

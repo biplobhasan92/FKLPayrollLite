@@ -34,6 +34,9 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.lblSlotName = new System.Windows.Forms.Label();
             this.dataGridView = new System.Windows.Forms.DataGridView();
+            this.colID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colWEEKEND = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colFOR_EMP = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.chkFriday = new System.Windows.Forms.CheckBox();
             this.chkSaturday = new System.Windows.Forms.CheckBox();
             this.chkSunday = new System.Windows.Forms.CheckBox();
@@ -44,9 +47,6 @@
             this.rdoGeneral = new System.Windows.Forms.RadioButton();
             this.rdoID = new System.Windows.Forms.RadioButton();
             this.txtID = new System.Windows.Forms.TextBox();
-            this.colID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colWEEKEND = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colFOR_EMP = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -115,6 +115,27 @@
             this.dataGridView.TabIndex = 97;
             this.dataGridView.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DataGridData_RowHeaderMouseClick);
             this.dataGridView.SelectionChanged += new System.EventHandler(this.DataGridData_SelectionChanged);
+            // 
+            // colID
+            // 
+            this.colID.DataPropertyName = "ID";
+            this.colID.HeaderText = "ID";
+            this.colID.Name = "colID";
+            this.colID.Visible = false;
+            // 
+            // colWEEKEND
+            // 
+            this.colWEEKEND.DataPropertyName = "WEEKEND";
+            this.colWEEKEND.HeaderText = "WEEKEND";
+            this.colWEEKEND.Name = "colWEEKEND";
+            this.colWEEKEND.Width = 200;
+            // 
+            // colFOR_EMP
+            // 
+            this.colFOR_EMP.DataPropertyName = "FOR_EMP";
+            this.colFOR_EMP.HeaderText = "FOR EMPLOYEE";
+            this.colFOR_EMP.Name = "colFOR_EMP";
+            this.colFOR_EMP.Width = 200;
             // 
             // chkFriday
             // 
@@ -218,27 +239,6 @@
             this.txtID.TabIndex = 107;
             this.txtID.Enter += new System.EventHandler(this.txtID_Enter);
             this.txtID.Leave += new System.EventHandler(this.txtID_Leave);
-            // 
-            // colID
-            // 
-            this.colID.DataPropertyName = "ID";
-            this.colID.HeaderText = "ID";
-            this.colID.Name = "colID";
-            this.colID.Visible = false;
-            // 
-            // colWEEKEND
-            // 
-            this.colWEEKEND.DataPropertyName = "WEEKEND";
-            this.colWEEKEND.HeaderText = "WEEKEND";
-            this.colWEEKEND.Name = "colWEEKEND";
-            this.colWEEKEND.Width = 200;
-            // 
-            // colFOR_EMP
-            // 
-            this.colFOR_EMP.DataPropertyName = "FOR_EMP";
-            this.colFOR_EMP.HeaderText = "FOR EMPLOYEE";
-            this.colFOR_EMP.Name = "colFOR_EMP";
-            this.colFOR_EMP.Width = 200;
             // 
             // frmSetWeekend
             // 

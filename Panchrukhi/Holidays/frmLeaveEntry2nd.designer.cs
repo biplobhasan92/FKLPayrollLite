@@ -217,6 +217,7 @@
             this.txtEmpID.Name = "txtEmpID";
             this.txtEmpID.Size = new System.Drawing.Size(139, 20);
             this.txtEmpID.TabIndex = 0;
+            this.txtEmpID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtEmpID_KeyPress);
             // 
             // label1
             // 

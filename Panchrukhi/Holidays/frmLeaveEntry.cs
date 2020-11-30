@@ -46,16 +46,35 @@ namespace Panchrukhi.Holidays
             cbxLeaveCat.SelectedText = "--select--";
             foreach (DataRow dr in DT.Rows)
             {
-                cbxLeaveCat.Items.Add(new { Text = dr["LEAVE_NAME"].ToString(), Value = dr["SL"].ToString() });//NCATID
+                cbxLeaveCat.Items.Add(new { Text = dr["LEAVE_NAME"].ToString(), Value = dr["SL"].ToString() }); //NCATID               
             }
         }
 
-
+        private void LoadLeavGridCombo()
+        {
+            string CommandText = "SELECT SL, LEAVE_NAME from TBL_LEAVE_SETTINGS ";
+            DataSet dsSLOT = new DataSet();
+            DBConn.ExecutionQuery(CommandText);
+            DB = new SQLiteDataAdapter(CommandText, DBConn.sql_conn);
+            DT = new DataTable();
+            // DB.Fill(dsSLOT);
+            DB.Fill(dsSLOT);
+            DT = dsSLOT.Tables[0];
+            //colCombo.DisplayMember = "LEAVE_NAME";
+            //colCombo.ValueMember = "SL";
+            //this.colCombo.DisplayMember = "LEAVE_NAME";
+            //this.colCombo2.DisplayMember = "LEAVE_NAME";
+            //this.colCombo.ValueMember = "SL";
+            //this.colCombo2.ValueMember = "SL";
+            //this.colCombo.DataSource = DT;
+            //this.colCombo2.DataSource = DT;
+        }
 
 
         private void frmLeaveEntry_Load(object sender, EventArgs e)
         {
             LoadLeavetCombo();
+            // LoadLeavGridCombo();
         }
 
 
@@ -221,8 +240,30 @@ namespace Panchrukhi.Holidays
                 DB = new SQLiteDataAdapter(CommandText, DBConn.sql_conn);
                 DS.Reset();
                 DB.Fill(DS);
-                DT = DS.Tables[0];
-                dataGridview.DataSource = DT;
+                //DT = DS.Tables[0];
+                /*
+                DataGridViewComboBoxColumn cmb = new DataGridViewComboBoxColumn();
+                cmb.Name = "cmb";
+                cmb.MaxDropDownItems = 4;
+                cmb.Items.Add("True");
+                cmb.Items.Add("False"); 
+                dataGridview.Columns.Add(cmb);*/
+                string[] stringList = {"AB1", "AB2", "AB3"};
+                dataGridview.Rows.Clear();
+                if (DS.Tables[0].Rows.Count > 0)
+                {
+                    foreach (DataRow dr in DS.Tables[0].Rows)
+                    {
+                        dataGridview.Rows.Add();
+                        var cellSample = new DataGridViewComboBoxCell();
+                        cellSample.DataSource = stringList;
+                        dataGridview.Rows[dataGridview.Rows.Count - 1].Cells[colSL.Index].Value = dataGridview.Rows.Count;
+                        dataGridview.Rows[dataGridview.Rows.Count - 1].Cells[colEmpID.Index].Value = dr["EMP_ID"].ToString();
+                        dataGridview.Rows[dataGridview.Rows.Count - 1].Cells[colLEAVE_NAME.Index].Value = dr["LEAVE_NAME"].ToString();
+                        dataGridview.Rows[dataGridview.Rows.Count - 1].Cells[colDate.Index].Value = dr["LEAVE_DATE"].ToString();
+                        dataGridview.Rows[dataGridview.Rows.Count - 1].Cells[colCombo.Index] = cellSample;
+                    }
+                }
                 DBConn.sql_conn.Close();
             }
             catch (Exception e)

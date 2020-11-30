@@ -171,7 +171,7 @@ namespace Panchrukhi
                         dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colVEMPID.Index].Value     = dr["VEMPID"].ToString();
                         dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colTINTIME.Index].Value    = dr["VINOUTTIME"].ToString();
                         dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colDATTENDATE.Index].Value = dr["DATTENDATE"].ToString();
-                        dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colREMARKS.Index].Value    = dr["REMARKS"].ToString(); 
+                        dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colREMARKS.Index].Value    = dr["REMARKS"].ToString();
                         dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colNATTENTYPE.Index].Value = dr["ATTENTYPE"].ToString();
                         dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colNAMFLAG.Index].Value    = dr["AMFLAG"].ToString();
                     }
@@ -274,6 +274,7 @@ namespace Panchrukhi
             }
         }
 
+
         private void btnSearch_Click(object sender, EventArgs e)
         {
             try
@@ -287,15 +288,14 @@ namespace Panchrukhi
                 DS.Reset();
                 DB.Fill(DS);
                 DB.Fill(DT);
-
                 dataGridView.Rows.Clear();
                 if (DS.Tables[0].Rows.Count > 0)
                 {
                     foreach (DataRow dr in DS.Tables[0].Rows)
                     {
                         dataGridView.Rows.Add();
-                        dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colNATTENDSL.Index].Value = dr["rowid"].ToString();
-                        dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colVEMPID.Index].Value = dr["VEMPID"].ToString();
+                        dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colNATTENDSL.Index].Value  = dr["rowid"].ToString();
+                        dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colVEMPID.Index].Value  = dr["VEMPID"].ToString();
                         dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colTINTIME.Index].Value = dr["VINOUTTIME"].ToString();
                         dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colDATTENDATE.Index].Value = dr["DATTENDATE"].ToString();
                         dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colREMARKS.Index].Value = dr["REMARKS"].ToString();
@@ -309,6 +309,22 @@ namespace Panchrukhi
                 MessageBox.Show(exp.Message + " #== > problem");
             }
         }
+
+
+        private void txtEmpID_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            string txt = txtEmpID.Text;
+            if (txtEmpID.Text != "")
+            {
+                int result = Int32.Parse(txt.Substring(0, 1));
+                if (result == 0)
+                {
+                    MessageBox.Show("Invalid Input", "0 is not allowed as first digit", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txtEmpID.Clear();
+                }
+            }
+        }
+
     }
 }
  

@@ -168,7 +168,7 @@ namespace Panchrukhi
 
         private void FrmData_Load(object sender, EventArgs e)
         {
-            this.Owner.Enabled = false;
+            //this.Owner.Enabled = false;
              txtID.Enabled = false; txtID.Text = "GENERAL";
             if (txtID.Text == ""){txtID.Text = "Enter ID";txtID.ForeColor = Color.Silver;   }
         }

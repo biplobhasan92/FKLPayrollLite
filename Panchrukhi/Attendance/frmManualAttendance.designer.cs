@@ -258,6 +258,7 @@
             this.txtEmpID.Name = "txtEmpID";
             this.txtEmpID.Size = new System.Drawing.Size(191, 20);
             this.txtEmpID.TabIndex = 106;
+            this.txtEmpID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtEmpID_KeyPress);
             // 
             // txtAttendTime
             // 

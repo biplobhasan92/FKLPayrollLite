@@ -180,7 +180,7 @@ namespace Panchrukhi
 
         private void FrmData_Load(object sender, EventArgs e)
         {
-            this.Owner.Enabled = false;
+            //this.Owner.Enabled = false;
             LoadHolyDayCatCombo();
             gbxSerachOption.Enabled = false;
         }
@@ -296,6 +296,7 @@ namespace Panchrukhi
             this.Owner.Enabled = true;
         }
 
+
         private void ckEnableSearch_CheckedChanged(object sender, EventArgs e)
         {
             if (ckEnableSearch.Checked)
@@ -355,6 +356,20 @@ namespace Panchrukhi
             catch (Exception ex)
             {
                 MessageBox.Show("Message : "+ex.Message);
+            }
+        }
+
+        private void txtEmpID_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            string txt = txtEmpID.Text;
+            if (txtEmpID.Text != "")
+            {
+                int result = Int32.Parse(txt.Substring(0, 1));
+                if (result == 0)
+                {
+                    MessageBox.Show("Invalid Input", "0 is not allowed as first digit", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txtEmpID.Clear();
+                }
             }
         }
     }

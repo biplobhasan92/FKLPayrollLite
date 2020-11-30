@@ -326,7 +326,7 @@ namespace Panchrukhi
 
         private void frmPersonalPromotion_FormClosed(object sender, FormClosedEventArgs e)
         {
-            this.Owner.Enabled = true;
+           this.Owner.Enabled = true;
         }
 
         private void btnLoadData_Click(object sender, EventArgs e)

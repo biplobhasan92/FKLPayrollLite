@@ -266,6 +266,12 @@
       <DependentUpon>TestingCrystalReport.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Report\TestReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TestReport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <EmbeddedResource Include="Basic Settings\frmLeaveSettings.resx">
       <DependentUpon>frmLeaveSettings.cs</DependentUpon>
     </EmbeddedResource>
@@ -353,6 +359,10 @@
     <EmbeddedResource Include="Report\TestingCrystalReport.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>TestingCrystalReport.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\TestReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>TestReport.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="dsTemp.xsc">
       <DependentUpon>dsTemp.xsd</DependentUpon>
