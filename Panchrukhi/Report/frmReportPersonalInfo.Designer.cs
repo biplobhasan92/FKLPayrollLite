@@ -31,7 +31,6 @@
             this.components = new System.ComponentModel.Container();
             this.gbxAddColumn = new System.Windows.Forms.GroupBox();
             this.cbxEmergencyNum = new System.Windows.Forms.CheckBox();
-            this.btnPrint = new System.Windows.Forms.Button();
             this.btnExcelExporter = new System.Windows.Forms.Button();
             this.ckbxSection = new System.Windows.Forms.CheckBox();
             this.ckbxClass = new System.Windows.Forms.CheckBox();
@@ -42,6 +41,7 @@
             this.ckbxCategory = new System.Windows.Forms.CheckBox();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.splitParent = new System.Windows.Forms.SplitContainer();
+            this.btn_datagrid = new System.Windows.Forms.Button();
             this.btn_pdf_export = new System.Windows.Forms.Button();
             this.gbxSearchByID = new System.Windows.Forms.GroupBox();
             this.lblExam = new System.Windows.Forms.Label();
@@ -83,8 +83,8 @@
             // 
             // gbxAddColumn
             // 
+            this.gbxAddColumn.Controls.Add(this.btn_datagrid);
             this.gbxAddColumn.Controls.Add(this.cbxEmergencyNum);
-            this.gbxAddColumn.Controls.Add(this.btnPrint);
             this.gbxAddColumn.Controls.Add(this.btnExcelExporter);
             this.gbxAddColumn.Controls.Add(this.ckbxSection);
             this.gbxAddColumn.Controls.Add(this.ckbxClass);
@@ -109,17 +109,6 @@
             this.cbxEmergencyNum.TabIndex = 158;
             this.cbxEmergencyNum.Text = "Emergency Number";
             this.cbxEmergencyNum.UseVisualStyleBackColor = true;
-            // 
-            // btnPrint
-            // 
-            this.btnPrint.Enabled = false;
-            this.btnPrint.Location = new System.Drawing.Point(583, 16);
-            this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Size = new System.Drawing.Size(88, 29);
-            this.btnPrint.TabIndex = 157;
-            this.btnPrint.Text = "Print";
-            this.btnPrint.UseVisualStyleBackColor = true;
-            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
             // btnExcelExporter
             // 
@@ -235,6 +224,16 @@
             this.splitParent.Size = new System.Drawing.Size(1008, 729);
             this.splitParent.SplitterDistance = 276;
             this.splitParent.TabIndex = 147;
+            // 
+            // btn_datagrid
+            // 
+            this.btn_datagrid.Location = new System.Drawing.Point(588, 18);
+            this.btn_datagrid.Name = "btn_datagrid";
+            this.btn_datagrid.Size = new System.Drawing.Size(86, 26);
+            this.btn_datagrid.TabIndex = 157;
+            this.btn_datagrid.Text = "Print";
+            this.btn_datagrid.UseVisualStyleBackColor = true;
+            this.btn_datagrid.Click += new System.EventHandler(this.btn_datagrid_Click);
             // 
             // btn_pdf_export
             // 
@@ -560,9 +559,9 @@
         private System.Windows.Forms.SplitContainer splitRight;
         private System.Windows.Forms.DataGridView dataGridView;
         private System.Windows.Forms.Button btnExcelExporter;
-        private System.Windows.Forms.Button btnPrint;
         private System.Windows.Forms.CheckBox cbxEmergencyNum;
         private System.Windows.Forms.Label lblExam;
         private System.Windows.Forms.Button btn_pdf_export;
+        private System.Windows.Forms.Button btn_datagrid;
     }
 }

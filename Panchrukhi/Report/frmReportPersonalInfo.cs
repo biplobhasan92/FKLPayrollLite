@@ -15,7 +15,8 @@ using System.IO;
 using System.Reflection;
 using iTextSharp.text.pdf;
 using iTextSharp.text;
-
+using Panchrukhi.Report;
+using Microsoft.Reporting.WinForms;
 
 namespace Panchrukhi
 {
@@ -200,7 +201,6 @@ namespace Panchrukhi
             //List<string> getIdList = new List<string>();
             for (int i = 0; i < dataGridView.Rows.Count; i++)
             {
-                
                 // dataGridView.Rows[i].Cells[5].Value = (i+1);
                 bool absentCounted = false;                
                 string getID = dataGridView.Rows[i].Cells[0].Value.ToString();
@@ -208,8 +208,8 @@ namespace Panchrukhi
                 string strOuttime  = dataGridView.Rows[i].Cells[3].Value.ToString(); //OutTime
 
                 bool getHolidayDays= DBConn.checkDataIfItUsedOtherTableStr("TBL_HOLIDAY", "DDATE", dataGridView.Rows[i].Cells[1].Value.ToString());
-                bool getWeekend = getWeekends(dataGridView.Rows[i].Cells[1].Value.ToString(), getID);
-                string getLvClSl  = getLeaveClsl(dataGridView.Rows[i].Cells[1].Value.ToString(), getID);
+                bool getWeekend = DBConn.getWeekends(dataGridView.Rows[i].Cells[1].Value.ToString(), getID);
+                string getLvClSl  = DBConn.getLeaveClsl(dataGridView.Rows[i].Cells[1].Value.ToString(), getID);
 
                 if (strIntime.Equals("") || strOuttime.Equals(""))
                 {
@@ -232,75 +232,17 @@ namespace Panchrukhi
                     else if (getWeekend && getLvClSl == "")
                     {
                         dataGridView.Rows[i].Cells[4].Value = "Weekend";
-                    }else if(getLvClSl!="")
+                    }
+                    else if(getLvClSl!="")
                     {
                         dataGridView.Rows[i].Cells[4].Value = getLvClSl;
-                    }
-                    
+                    }                    
                     dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.DarkGreen;
                     dataGridView.Rows[i].DefaultCellStyle.ForeColor = Color.WhiteSmoke;
                     if (absentCounted) absents--;
                     holidays++;
                 }
             }
-        }
-
-
-
-        // Get Weekends for make absent disable. 
-        public bool getWeekends(string attendDate, string  PersonID)
-        {
-            List<string> getHolidayName = new List<string>();
-            string[] dayName  = { "Friday", "Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday" };
-            string getGeneralHoliday =  checkGeneralWeekend(PersonID); // Get value of General Holiday string from database.
-
-            // if General Holiday index val not equals to '0' 
-            // add holiday in getHolidayName list for that index from 'dayName' static array
-            for (int i = 0; i < getGeneralHoliday.Length; i++)
-            {
-                if (getGeneralHoliday[i] != '0')
-                {
-                    getHolidayName.Add(dayName[i]);
-                }
-            }
-            
-            DateTime dt = Convert.ToDateTime(attendDate);
-            for (int i = 0; i < getHolidayName.Count; i++)
-            {             
-                if (dt.DayOfWeek.ToString().Equals(getHolidayName[i].ToString()))
-                {return true;}
-            }
-            return false;
-        }
-
-
-        public string getLeaveClsl(string attendDate, string PersonID)
-        {
-            string returnVal = "";
-            try
-            {
-                string cmdText = "select (select s.LEAVE_NAME from TBL_LEAVE_SETTINGS s where s.SL = le.LEAVE_NAME) as leave_name from TBL_LEAVE_ENTRY le" +
-                    " where  EMP_ID = '" + PersonID + "' and LEAVE_DATE = '"+attendDate+"' ";
-                DBConn.ExecutionQuery(cmdText);
-                DA = new SQLiteDataAdapter(cmdText, DBConn.sql_conn);
-                DS = new DataSet();
-                DS.Reset();
-                DA.Fill(DS);                
-                if (DS.Tables[0].Rows.Count > 0)
-                {
-                    // returnVal = true;
-
-                    foreach (DataRow dr in DS.Tables[0].Rows)
-                    {
-                        returnVal = dr["leave_name"].ToString();
-                    }
-                }
-            }
-            catch (Exception exc)
-            {
-                MessageBox.Show(exc.Message + " - Problem getLeaveClsl()");
-            }
-            return returnVal;
         }
 
 
@@ -411,7 +353,7 @@ namespace Panchrukhi
         private void btnLoadData_Click(object sender, EventArgs e)
         {
             btnExcelExporter.Enabled = true;
-            btnPrint.Enabled = true;
+            // btnPrint.Enabled = true;
             presents = absents = holidays = 0;
             LoadData(false);
         }
@@ -578,6 +520,85 @@ namespace Panchrukhi
             }
         }
 
+
+        
+        private void btn_datagrid_Click(object sender, EventArgs e)
+        {
+            /*
+            
+                if (dataGridView.Rows.Count > 0)
+                {
+                    DataRow dr = DBConn.getCompanyNameAndAddress();
+                    if (dr == null) return;
+                    LoadData(true);
+                    Report.rptAttendanceData rptObj = new Report.rptAttendanceData();
+                    rptObj.SetDataSource(DS.Tables[0]);
+                    rptObj.SetParameterValue(0, presents);
+                    rptObj.SetParameterValue(1, absents);
+                    rptObj.SetParameterValue(4, holidays);
+                    rptObj.SetParameterValue(2, dr["VCOMPANY_NAME"]);
+                    rptObj.SetParameterValue(3, dr["VCOMPANY_ADDRESS"]);
+                    frmCrystalReportViewer crpt = new frmCrystalReportViewer();
+                    crpt.crptViewer.ReportSource = rptObj;
+                    crpt.Show();
+                }
+                else
+                    MessageBox.Show("", "Data Not Found !", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+
+            */
+
+            DS = new DataSet();
+            DT = new DataTable();
+            string str = "";
+            DT.Columns.Add("Emp ID", typeof(string));
+            DT.Columns.Add("Atten Date", typeof(string));
+            DT.Columns.Add("Time In", typeof(string));
+            DT.Columns.Add("Time Out", typeof(string));
+            DT.Columns.Add("Status", typeof(string));
+            DT.Columns.Add("Name", typeof(string));
+            DT.Columns.Add("Class", typeof(string));
+            DT.Columns.Add("Section", typeof(string));
+            DT.Columns.Add("Shift", typeof(string));
+            DT.Columns.Add("Category", typeof(string));
+
+            if (dataGridView.Rows.Count > 0)
+            {
+                DataRow dr = DBConn.getCompanyNameAndAddress();                
+                foreach (DataGridViewRow dgv in dataGridView.Rows)
+                {
+                    DataRow drr = DBConn.getEmpInfo(dgv.Cells[0].Value.ToString());
+                    DT.Rows.Add(
+                        dgv.Cells[0].Value,
+                        dgv.Cells[1].Value,
+                        dgv.Cells[2].Value,
+                        dgv.Cells[3].Value,
+                        dgv.Cells[4].Value,
+                        drr["VNAME"],
+                        drr["CLASS"],
+                        drr["SECTION"],
+                        drr["SHIFT"],
+                        drr["CATEGORY"]
+                    );
+                }
+                DS.Tables.Add(DT);
+                DS.WriteXmlSchema("attenReport.xml");
+                frmCrystalReportViewer frm = new frmCrystalReportViewer();
+                rptAttendanceSnd cr = new rptAttendanceSnd();
+                cr.SetDataSource(DS);
+                cr.SetParameterValue(0, presents);
+                cr.SetParameterValue(1, absents);
+                cr.SetParameterValue(4, holidays);
+                cr.SetParameterValue(2, dr["VCOMPANY_NAME"]);
+                cr.SetParameterValue(3, dr["VCOMPANY_ADDRESS"]);
+                frm.crptViewer.ReportSource = cr;
+                frm.crptViewer.Refresh();
+                frm.Show();
+            }            
+        }
+
+
+
         private void ExtractDataToCSV(DataGridView dgv)
         {
             // Don't save if no data is returned
@@ -627,12 +648,13 @@ namespace Panchrukhi
 
         private void btnPrint_Click(object sender, EventArgs e)
         {
+            /*
             if (dataGridView.Rows.Count > 0)
             {
                 DataRow dr = DBConn.getCompanyNameAndAddress();
                 if (dr == null) return;
                 LoadData(true);
-                Report.rptAttendanceData rptObj = new Report.rptAttendanceData();
+                rptAttendanceData rptObj = new rptAttendanceData();
                 rptObj.SetDataSource(DS.Tables[0]);
                 rptObj.SetParameterValue(0, presents);
                 rptObj.SetParameterValue(1, absents);
@@ -645,7 +667,7 @@ namespace Panchrukhi
             }
             else
                 MessageBox.Show("", "Data Not Found !", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            return; 
+            return; */
         }
     }
 }

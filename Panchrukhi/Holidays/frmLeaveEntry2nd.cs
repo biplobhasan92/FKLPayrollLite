@@ -341,7 +341,7 @@ namespace Panchrukhi
                 dataGridView.Rows.Clear();
                 if (DS.Tables[0].Rows.Count > 0)
                 {
-                    foreach (DataRow dr in DS.Tables[0].Rows)
+                    foreach(DataRow dr in DS.Tables[0].Rows)
                     {
                         dataGridView.Rows.Add();
                         dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colNHID.Index].Value  = dataGridView.Rows.Count;
@@ -349,7 +349,7 @@ namespace Panchrukhi
                         dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colEmpID.Index].Value = dr["EMP_ID"].ToString();
                         dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colHDate.Index].Value = dr["LEAVE_DATE"].ToString();
                         dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colHCategory.Index].Value = dr["LEAVE_NAME"].ToString();
-                        dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colLeaveCatID.Index].Value = dr["LEAVE_CAT_ID"].ToString();
+                        dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colLeaveCatID.Index].Value= dr["LEAVE_CAT_ID"].ToString();
                     }
                 }
             }
