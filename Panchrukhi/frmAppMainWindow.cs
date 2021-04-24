@@ -11,6 +11,7 @@ using System.Data.SQLite;
 using Panchrukhi.DAO;
 using Panchrukhi.Basic_Settings;
 using Panchrukhi.Holidays;
+using Panchrukhi.Report;
 
 namespace Panchrukhi
 {
@@ -53,6 +54,7 @@ namespace Panchrukhi
 
             LoadPersonGenderCombo();
             ClearPrsnForm();
+            promoteAndDemoteToolStripMenuItem.Enabled = false;
         }
 
 
@@ -292,6 +294,26 @@ namespace Panchrukhi
             frmLeaveSettings frmLvsttng = new frmLeaveSettings();
             frmLvsttng.Owner = this;
             frmLvsttng.Show();
+        }
+
+        private void salaryReportToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
+            frmSalary frmLvsttng = new frmSalary();
+            frmLvsttng.Owner = this;
+            frmLvsttng.Show();
+        }
+
+        private void mnuMain_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private void salaryDeductionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmSalaryDeduction frmSalDud = new frmSalaryDeduction();
+            frmSalDud.Owner = this;
+            frmSalDud.Show();
         }
     }
 }

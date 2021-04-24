@@ -113,8 +113,7 @@ namespace Panchrukhi
             }
 
 
-            // ADD WHERE CONDITION FOR SEARCH, USING COMBOBOX AND DATE RANGE ........... 
-
+            // ADD WHERE CONDITION FOR SEARCH, USING COMBOBOX AND DATE RANGE .....
             if (dtpFstDate.Text.Length > 0 && dtpLstDate.Text.Length > 0)
             {
                 string fstDate = dtpFstDate.Value.ToString("yyyyMMdd");
@@ -153,13 +152,12 @@ namespace Panchrukhi
                 try
                 {
                     string TmpStr = "";
-                    foreach (string id in txtMultID.Text.Split(',')) TmpStr += "'" + Convert.ToInt32(id).ToString() + "',";
+                    foreach (string id in txtMultID.Text.Split(',')) TmpStr += "'" + id.ToString() + "',";// TmpStr += "'" + Convert.ToInt32(id).ToString() + "',";
                     TmpStr = TmpStr.Remove(TmpStr.LastIndexOf(','), 1);
                     AndConditions += " AND P.PERSONID IN (" + TmpStr + ") ";
                 }
                 catch (Exception e)
                 {
-                    
                     MessageBox.Show("Invalid Input try like: Example: 100001, 100002, 100005 Or Example: 100001", e.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
@@ -564,7 +562,7 @@ namespace Panchrukhi
 
             if (dataGridView.Rows.Count > 0)
             {
-                DataRow dr = DBConn.getCompanyNameAndAddress();                
+                DataRow dr = DBConn.getCompanyNameAndAddress();         
                 foreach (DataGridViewRow dgv in dataGridView.Rows)
                 {
                     DataRow drr = DBConn.getEmpInfo(dgv.Cells[0].Value.ToString());
@@ -582,7 +580,7 @@ namespace Panchrukhi
                     );
                 }
                 DS.Tables.Add(DT);
-                DS.WriteXmlSchema("attenReport.xml");
+                DS.WriteXmlSchema("attenReport.xml");  //  rptAttendanceData.xml
                 frmCrystalReportViewer frm = new frmCrystalReportViewer();
                 rptAttendanceSnd cr = new rptAttendanceSnd();
                 cr.SetDataSource(DS);

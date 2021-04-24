@@ -13,6 +13,8 @@
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <TargetFrameworkProfile />
     <PublishUrl>C:\deploy\Panchrukhi\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -25,10 +27,8 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -153,6 +153,18 @@
     <Compile Include="frmAppMainWindow.Designer.cs">
       <DependentUpon>frmAppMainWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="Report\crptToken_Report.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>crptToken_Report.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\crtPaySlip.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>crtPaySlip.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Report\frmCrystalReportViewer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -257,6 +269,18 @@
     <Compile Include="Report\frmSalary.Designer.cs">
       <DependentUpon>frmSalary.cs</DependentUpon>
     </Compile>
+    <Compile Include="Report\frmSalaryDeduction.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Report\frmSalaryDeduction.Designer.cs">
+      <DependentUpon>frmSalaryDeduction.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Report\MonthlySummaryReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MonthlySummaryReport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Report\PersonInfo.cs" />
     <Compile Include="Report\rptAttendanceSnd.cs">
       <DependentUpon>rptAttendanceSnd.rpt</DependentUpon>
@@ -276,10 +300,31 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
     </Compile>
-    <Compile Include="Report\TestingCrystalReport.cs">
+    <Compile Include="Report\Rpt_SalaryPayslip_Executive_Bank_Unicode.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\Rpt_SalaryPayslip_Executive_Bank_Unicode1.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>TestingCrystalReport.rpt</DependentUpon>
+      <DependentUpon>Rpt_SalaryPayslip_Executive_Bank_Unicode.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\Rpt_SalarySheet_Exec_AccHolder_Bangla.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Rpt_SalarySheet_Exec_AccHolder_Bangla.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\Rpt_SalarySheet_FKLSpinning_Bangla1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Rpt_SalarySheet_FKLSpinning_Bangla.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\Rpt_salary_sheet_fkl_spinning.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Rpt_salary_sheet_fkl_spinning.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Report\TestReport.cs">
@@ -305,6 +350,14 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmAppMainWindow.resx">
       <DependentUpon>frmAppMainWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\crptToken_Report.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>crptToken_Report.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\crtPaySlip.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>crtPaySlip.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Report\frmCrystalReportViewer.resx">
       <DependentUpon>frmCrystalReportViewer.cs</DependentUpon>
@@ -367,6 +420,13 @@
     <EmbeddedResource Include="Report\frmSalary.resx">
       <DependentUpon>frmSalary.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Report\frmSalaryDeduction.resx">
+      <DependentUpon>frmSalaryDeduction.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\MonthlySummaryReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>MonthlySummaryReport.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Report\rptAttendanceSnd.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptAttendanceSnd.cs</LastGenOutput>
@@ -379,9 +439,21 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>crptPersonalInfo.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Report\TestingCrystalReport.rpt">
+    <EmbeddedResource Include="Report\Rpt_SalaryPayslip_Executive_Bank_Unicode.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>TestingCrystalReport.cs</LastGenOutput>
+      <LastGenOutput>Rpt_SalaryPayslip_Executive_Bank_Unicode1.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\Rpt_SalarySheet_Exec_AccHolder_Bangla.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Rpt_SalarySheet_Exec_AccHolder_Bangla.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\Rpt_SalarySheet_FKLSpinning_Bangla.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Rpt_SalarySheet_FKLSpinning_Bangla1.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\Rpt_salary_sheet_fkl_spinning.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Rpt_salary_sheet_fkl_spinning.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Report\TestReport.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

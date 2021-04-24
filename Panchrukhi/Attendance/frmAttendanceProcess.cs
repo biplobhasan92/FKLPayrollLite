@@ -416,7 +416,6 @@ namespace Panchrukhi
         {
             try
             {
-
                 SortedList slDate = new SortedList();
                 slData.Clear();
 
@@ -431,24 +430,21 @@ namespace Panchrukhi
                 DB.Fill(dsLoad);
                 DT = dsLoad.Tables[0];
 
-
                 SqLQry = "delete from TBLATTENDANCE_PROCESS_DATA where DATTENDATE = '" + dsLoad.Tables[0].Rows[0]["DATTENDATE"].ToString() + "';";
 
                 slData.Add(slData.Count + 1, SqLQry);
-
                 if (dsLoad.Tables[0].Rows.Count > 0)
                 {
-                    foreach (DataRow dr in dsLoad.Tables[0].Rows)
+                    foreach (DataRow dr in dsLoad.Tables[0].Rows) // ltrim('00125410025', '0')
                     {                        
                         SqLQry = "INSERT INTO TBLATTENDANCE_PROCESS_DATA(VEMPID, DATTENDATE, VINOUTTIME, NATTENTYPE, NAMFLAG) VALUES(" +
-                                // " (select CASE WHEN max(NATTENDSL) >= 0 THEN max(NATTENDSL) +1 ELSE 1 END FROM TBLATTENDANCE_PROCESS_DATA), " +
-                                 " '" + dr["VEMPID"].ToString()     + "', " +
+                                 " ltrim('" + dr["VEMPID"].ToString()+"','0'), " +
                                  " '" + dr["DATTENDATE"].ToString() + "', " +
                                  " '" + dr["VINOUTTIME"].ToString() + "', " +
                                  "  " + dr["NATTENTYPE"].ToString() + ", ";
                         SqLQry = SqLQry + "" + 0 + ")";
                         slData.Add(slData.Count + 1, SqLQry);
-                     }
+                    }
                     DBConn.ExecutionQuery(slData);
                 }
             }
@@ -541,7 +537,6 @@ namespace Panchrukhi
 
         private void btnProcess2_Click(object sender, EventArgs e)
         {
-
             if (MessageBox.Show("Do you want to process now?", "Attn. Prcoess", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                // AttnDataArrangeforSave2();
@@ -574,7 +569,6 @@ namespace Panchrukhi
 
                 slData.Add(slDate.Count + 1, SqLQry);
                 
-                
                 if (slData.Count == 0)
                     throw new ApplicationException("No Record Available to Process");
             }
@@ -595,5 +589,5 @@ namespace Panchrukhi
         {
             this.Owner.Enabled = true;
         }
-    }    
+    }
 }

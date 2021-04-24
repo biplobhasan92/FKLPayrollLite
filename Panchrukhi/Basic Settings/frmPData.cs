@@ -355,7 +355,6 @@ namespace Panchrukhi
             bool r = DBConn.DeleteTableRowInt("TBLPERSON", "NEMPID", getEMPID);
             if (r)
             {
-                MessageBox.Show("Row Deleted !");
                 ClearData();
                 LoadData();
             }
@@ -562,7 +561,7 @@ namespace Panchrukhi
 
 
         private void txtPID_KeyPress(object sender, KeyPressEventArgs e)
-        {
+        {            
             string txt = txtPID.Text;
             if (txtPID.Text!="")
             {
@@ -572,8 +571,11 @@ namespace Panchrukhi
                     MessageBox.Show("Invalid Input", "0 is not allowed as first digit", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     txtPID.Clear();
                 }
-            }
+            }            
         }
+
+
+
 
         private void btnSearch_Click(object sender, EventArgs e)
         {

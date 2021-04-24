@@ -26,7 +26,6 @@ namespace Panchrukhi.DAO
         public void SetConnection()
         {
             sql_conn = new SQLiteConnection("Data Source=panchrukhi.db; Version=3; New=False;Compress=True;");
-            
         }
 
 
@@ -334,6 +333,66 @@ namespace Panchrukhi.DAO
 
 
 
+        public Boolean isLeaveClsl(string attendDate, string PersonID)
+        {
+            bool returnVal = false;
+            try
+            {
+                string cmdText = "select * from TBL_LEAVE_ENTRY le" +
+                    " where  EMP_ID = '" + PersonID + "' and LEAVE_DATE = '" + attendDate + "' ";
+                ExecutionQuery(cmdText);
+                DA = new SQLiteDataAdapter(cmdText, sql_conn);
+                DS = new DataSet();
+                DS.Reset();
+                DA.Fill(DS);
+                if (DS.Tables[0].Rows.Count > 0)
+                {
+                    returnVal = true;
+                }
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message + " - Problem getLeaveClsl()");
+            }
+            return returnVal;
+        }
+
+
+
+
+
+
+        public Boolean isDuplicateEntry(int cat_id, string attendDate, string PersonID)
+        {
+            bool returnVal = false;
+            try
+            {
+                string cmdText = @"select 
+                                     sd.*
+                                   from 
+                                     TBL_SALARY_DEDUCTION sd
+                                   where 
+                                     sd.EMP_ID = '"+PersonID+"' and sd.YEAR_MONTH = '"+attendDate+"' and sd.CAT_ID = "+cat_id+" ";
+                ExecutionQuery(cmdText);
+                DA = new SQLiteDataAdapter(cmdText, sql_conn);
+                DS = new DataSet();
+                DS.Reset();
+                DA.Fill(DS);
+                if (DS.Tables[0].Rows.Count > 0)
+                {
+                    returnVal = true;
+                }
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message + " - Problem isDuplicateEntry()");
+            }
+            return returnVal;
+        }
+
+
+
+
         // Validate Data Before Delete. if data used in Other Table.
         public bool checkDataIfItUsedOtherTable(String tableName, String whereConditionColName, int whereConditionValue) {
             bool returnVal = false;
@@ -509,14 +568,14 @@ namespace Panchrukhi.DAO
 
             try
             {
-                string cmdText = @"SELECT 
+                string cmdText = @" SELECT 
                                        P.VNAME, 
                                        (SELECT VCLASSNAME FROM TBLCLASS TC WHERE TC.NCLASSID = P.NCLASSID) as CLASS,
                                        (SELECT VSECTION FROM TBLSECTION TS WHERE TS.NSECID = P.NSECID) as SECTION,
                                         (SELECT VSLOTNAME || '(' || VINTIME || '-' || VOUTTIME || ')'  FROM TBLATTENSLOT where(TBLATTENSLOT.NSLOTID = P.NSLOTID)) as SHIFT,
                                        (select VCATEGORY from TBLCATEGORY where P.NCATID = TBLCATEGORY.NCATID) as CATEGORY
                                 from
-                                     TBLPERSON P where p.PERSONID = "+empID;
+                                     TBLPERSON P where p.PERSONID = '"+ empID + "' ";
                 ExecutionQuery(cmdText);
                 DA = new SQLiteDataAdapter(cmdText, sql_conn);
                 DS = new DataSet();

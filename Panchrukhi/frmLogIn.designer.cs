@@ -58,9 +58,9 @@
             this.lblApplicationName.ForeColor = System.Drawing.Color.White;
             this.lblApplicationName.Location = new System.Drawing.Point(195, 12);
             this.lblApplicationName.Name = "lblApplicationName";
-            this.lblApplicationName.Size = new System.Drawing.Size(292, 55);
+            this.lblApplicationName.Size = new System.Drawing.Size(377, 55);
             this.lblApplicationName.TabIndex = 0;
-            this.lblApplicationName.Text = "Panchrukhi";
+            this.lblApplicationName.Text = "FKL Payroll lite";
             // 
             // lblAppDescription
             // 

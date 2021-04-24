@@ -35,7 +35,6 @@
             this.lblPgrsPersent = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.lblAppVersion = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
@@ -44,11 +43,11 @@
             this.lblApplicationName.AutoSize = true;
             this.lblApplicationName.Font = new System.Drawing.Font("Arial Rounded MT Bold", 39.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblApplicationName.ForeColor = System.Drawing.Color.White;
-            this.lblApplicationName.Location = new System.Drawing.Point(174, 57);
+            this.lblApplicationName.Location = new System.Drawing.Point(162, 57);
             this.lblApplicationName.Name = "lblApplicationName";
-            this.lblApplicationName.Size = new System.Drawing.Size(319, 61);
+            this.lblApplicationName.Size = new System.Drawing.Size(430, 61);
             this.lblApplicationName.TabIndex = 0;
-            this.lblApplicationName.Text = "Panchrukhi";
+            this.lblApplicationName.Text = "FKL Payroll Lite";
             // 
             // pgrsbrAppStarter
             // 
@@ -92,22 +91,11 @@
             this.lblAppVersion.AutoSize = true;
             this.lblAppVersion.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAppVersion.ForeColor = System.Drawing.Color.White;
-            this.lblAppVersion.Location = new System.Drawing.Point(484, 95);
+            this.lblAppVersion.Location = new System.Drawing.Point(472, 122);
             this.lblAppVersion.Name = "lblAppVersion";
             this.lblAppVersion.Size = new System.Drawing.Size(80, 15);
             this.lblAppVersion.TabIndex = 5;
             this.lblAppVersion.Text = "Version 1.0";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(187, 120);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(374, 16);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "School, Collage , Madrasah Attendance Management System";
             // 
             // panel1
             // 
@@ -125,7 +113,6 @@
             this.BackColor = System.Drawing.Color.DarkGray;
             this.ClientSize = new System.Drawing.Size(739, 294);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.lblAppVersion);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lblPgrsPersent);
@@ -150,7 +137,6 @@
         private System.Windows.Forms.Label lblPgrsPersent;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblAppVersion;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel panel1;
     }
 }

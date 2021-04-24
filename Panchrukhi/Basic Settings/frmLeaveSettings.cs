@@ -120,6 +120,8 @@ namespace Panchrukhi.Basic_Settings
             txtLeaveTtlDay.Text = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
         }
 
+
+
         private void dataGridView1_SelectionChanged(object sender, EventArgs e)
         {
             if (dataGridView1.SelectedRows.Count == 0 || dataGridView1.SelectedRows[0].Index == dataGridView1.Rows.Count) return;
@@ -127,6 +129,8 @@ namespace Panchrukhi.Basic_Settings
             txtLeaveName.Text = dataGridView1[1, dataGridView1.SelectedRows[0].Index].Value.ToString();
             txtLeaveTtlDay.Text=dataGridView1[2, dataGridView1.SelectedRows[0].Index].Value.ToString();
         }
+
+
 
         private void btnReset_Click(object sender, EventArgs e)
         {

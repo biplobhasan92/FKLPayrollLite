@@ -56,6 +56,8 @@
             this.promotionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reportingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tstripPersonalInfo = new System.Windows.Forms.ToolStripMenuItem();
+            this.salaryDeductionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.salaryReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.flowLayoutMainWindow = new System.Windows.Forms.FlowLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
@@ -85,6 +87,7 @@
             this.mnuMain.Size = new System.Drawing.Size(1110, 24);
             this.mnuMain.TabIndex = 1;
             this.mnuMain.Text = "menuStrip1";
+            this.mnuMain.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.mnuMain_ItemClicked);
             // 
             // personalDataToolStripMenuItem
             // 
@@ -252,7 +255,9 @@
             // reportingToolStripMenuItem
             // 
             this.reportingToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tstripPersonalInfo});
+            this.tstripPersonalInfo,
+            this.salaryDeductionToolStripMenuItem,
+            this.salaryReportToolStripMenuItem});
             this.reportingToolStripMenuItem.Name = "reportingToolStripMenuItem";
             this.reportingToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
             this.reportingToolStripMenuItem.Text = "Report";
@@ -260,9 +265,23 @@
             // tstripPersonalInfo
             // 
             this.tstripPersonalInfo.Name = "tstripPersonalInfo";
-            this.tstripPersonalInfo.Size = new System.Drawing.Size(134, 22);
+            this.tstripPersonalInfo.Size = new System.Drawing.Size(161, 22);
             this.tstripPersonalInfo.Text = "Person Info";
             this.tstripPersonalInfo.Click += new System.EventHandler(this.tstripPersonalInfo_Click);
+            // 
+            // salaryDeductionToolStripMenuItem
+            // 
+            this.salaryDeductionToolStripMenuItem.Name = "salaryDeductionToolStripMenuItem";
+            this.salaryDeductionToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.salaryDeductionToolStripMenuItem.Text = "salary deduction";
+            this.salaryDeductionToolStripMenuItem.Click += new System.EventHandler(this.salaryDeductionToolStripMenuItem_Click);
+            // 
+            // salaryReportToolStripMenuItem
+            // 
+            this.salaryReportToolStripMenuItem.Name = "salaryReportToolStripMenuItem";
+            this.salaryReportToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.salaryReportToolStripMenuItem.Text = "Salary Report";
+            this.salaryReportToolStripMenuItem.Click += new System.EventHandler(this.salaryReportToolStripMenuItem_Click);
             // 
             // contextMenuStrip2
             // 
@@ -276,21 +295,21 @@
             this.flowLayoutMainWindow.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutMainWindow.Location = new System.Drawing.Point(0, 24);
             this.flowLayoutMainWindow.Name = "flowLayoutMainWindow";
-            this.flowLayoutMainWindow.Size = new System.Drawing.Size(1110, 700);
+            this.flowLayoutMainWindow.Size = new System.Drawing.Size(1110, 497);
             this.flowLayoutMainWindow.TabIndex = 2;
             // 
             // frmMainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1110, 724);
+            this.ClientSize = new System.Drawing.Size(1110, 521);
             this.Controls.Add(this.flowLayoutMainWindow);
             this.Controls.Add(this.mnuMain);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.mnuMain;
             this.Name = "frmMainWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Panchrukhi";
+            this.Text = "FKL Payroll Lite";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmMainWindow_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
@@ -330,5 +349,7 @@
         private System.Windows.Forms.ToolStripMenuItem promotionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cLSLToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem leaveSettingsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem salaryReportToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem salaryDeductionToolStripMenuItem;
     }
 }

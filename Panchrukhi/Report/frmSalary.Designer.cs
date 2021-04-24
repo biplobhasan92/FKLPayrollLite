@@ -41,8 +41,16 @@
             this.colCat = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colDesig = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colSalary = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colTD = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colAbsent = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colTD = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colAdvCut = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colMobileBill = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colOthers = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colCutSalary = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colTotalPayable = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.btn_print = new System.Windows.Forms.Button();
+            this.btn_payslip = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.txtBasic)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
@@ -78,6 +86,11 @@
             this.txtBasic.Name = "txtBasic";
             this.txtBasic.Size = new System.Drawing.Size(116, 20);
             this.txtBasic.TabIndex = 3;
+            this.txtBasic.Value = new decimal(new int[] {
+            60,
+            0,
+            0,
+            0});
             // 
             // label3
             // 
@@ -90,11 +103,11 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(145, 82);
+            this.button1.Location = new System.Drawing.Point(53, 103);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Size = new System.Drawing.Size(188, 37);
             this.button1.TabIndex = 5;
-            this.button1.Text = "Summary";
+            this.button1.Text = "Calculate Salary";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -110,25 +123,33 @@
             this.colCat,
             this.colDesig,
             this.colSalary,
+            this.colAbsent,
             this.colTD,
-            this.colAbsent});
-            this.dataGridView.Location = new System.Drawing.Point(4, 138);
+            this.colAdvCut,
+            this.colMobileBill,
+            this.colOthers,
+            this.colCutSalary,
+            this.colTotalPayable});
+            this.dataGridView.Location = new System.Drawing.Point(8, 181);
             this.dataGridView.Name = "dataGridView";
             this.dataGridView.ReadOnly = true;
-            this.dataGridView.Size = new System.Drawing.Size(1031, 494);
+            this.dataGridView.Size = new System.Drawing.Size(1037, 448);
             this.dataGridView.TabIndex = 6;
+            this.dataGridView.DefaultValuesNeeded += new System.Windows.Forms.DataGridViewRowEventHandler(this.dataGridView_DefaultValuesNeeded);
             // 
             // colSL
             // 
             this.colSL.HeaderText = "SL";
             this.colSL.Name = "colSL";
             this.colSL.ReadOnly = true;
+            this.colSL.Width = 40;
             // 
             // colEmpID
             // 
-            this.colEmpID.HeaderText = "Emp ID";
+            this.colEmpID.HeaderText = "EmpID";
             this.colEmpID.Name = "colEmpID";
             this.colEmpID.ReadOnly = true;
+            this.colEmpID.Width = 60;
             // 
             // colEmpName
             // 
@@ -141,36 +162,108 @@
             this.colCat.HeaderText = "Category";
             this.colCat.Name = "colCat";
             this.colCat.ReadOnly = true;
+            this.colCat.Width = 60;
             // 
             // colDesig
             // 
             this.colDesig.HeaderText = "Designation";
             this.colDesig.Name = "colDesig";
             this.colDesig.ReadOnly = true;
+            this.colDesig.Width = 90;
             // 
             // colSalary
             // 
             this.colSalary.HeaderText = "Salary";
             this.colSalary.Name = "colSalary";
             this.colSalary.ReadOnly = true;
-            // 
-            // colTD
-            // 
-            this.colTD.HeaderText = "Total Days";
-            this.colTD.Name = "colTD";
-            this.colTD.ReadOnly = true;
+            this.colSalary.Width = 60;
             // 
             // colAbsent
             // 
             this.colAbsent.HeaderText = "Absent";
             this.colAbsent.Name = "colAbsent";
             this.colAbsent.ReadOnly = true;
+            this.colAbsent.Width = 50;
+            // 
+            // colTD
+            // 
+            this.colTD.HeaderText = "Working Days";
+            this.colTD.Name = "colTD";
+            this.colTD.ReadOnly = true;
+            // 
+            // colAdvCut
+            // 
+            this.colAdvCut.HeaderText = "Adv. Cut";
+            this.colAdvCut.Name = "colAdvCut";
+            this.colAdvCut.ReadOnly = true;
+            this.colAdvCut.Width = 80;
+            // 
+            // colMobileBill
+            // 
+            this.colMobileBill.HeaderText = "MobileBill";
+            this.colMobileBill.Name = "colMobileBill";
+            this.colMobileBill.ReadOnly = true;
+            this.colMobileBill.Width = 60;
+            // 
+            // colOthers
+            // 
+            this.colOthers.HeaderText = "Others";
+            this.colOthers.Name = "colOthers";
+            this.colOthers.ReadOnly = true;
+            this.colOthers.Width = 60;
+            // 
+            // colCutSalary
+            // 
+            this.colCutSalary.HeaderText = "Salary Cut";
+            this.colCutSalary.Name = "colCutSalary";
+            this.colCutSalary.ReadOnly = true;
+            this.colCutSalary.Width = 90;
+            // 
+            // colTotalPayable
+            // 
+            this.colTotalPayable.HeaderText = "Total Payable";
+            this.colTotalPayable.Name = "colTotalPayable";
+            this.colTotalPayable.ReadOnly = true;
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(313, 46);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(103, 17);
+            this.checkBox1.TabIndex = 7;
+            this.checkBox1.Text = "Make ReadOnly";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
+            // btn_print
+            // 
+            this.btn_print.Location = new System.Drawing.Point(966, 155);
+            this.btn_print.Name = "btn_print";
+            this.btn_print.Size = new System.Drawing.Size(75, 23);
+            this.btn_print.TabIndex = 8;
+            this.btn_print.Text = "Print";
+            this.btn_print.UseVisualStyleBackColor = true;
+            this.btn_print.Click += new System.EventHandler(this.btn_print_Click);
+            // 
+            // btn_payslip
+            // 
+            this.btn_payslip.Location = new System.Drawing.Point(866, 155);
+            this.btn_payslip.Name = "btn_payslip";
+            this.btn_payslip.Size = new System.Drawing.Size(75, 23);
+            this.btn_payslip.TabIndex = 9;
+            this.btn_payslip.Text = "payslip";
+            this.btn_payslip.UseVisualStyleBackColor = true;
+            this.btn_payslip.Click += new System.EventHandler(this.btn_payslip_Click);
             // 
             // frmSalary
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1040, 635);
+            this.ClientSize = new System.Drawing.Size(1053, 635);
+            this.Controls.Add(this.btn_payslip);
+            this.Controls.Add(this.btn_print);
+            this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.dataGridView);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label3);
@@ -180,6 +273,8 @@
             this.Controls.Add(this.label1);
             this.Name = "frmSalary";
             this.Text = "frmSalary";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmSalary_FormClosed);
+            this.Load += new System.EventHandler(this.frmSalary_Load);
             ((System.ComponentModel.ISupportInitialize)(this.txtBasic)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             this.ResumeLayout(false);
@@ -196,13 +291,21 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.DataGridView dataGridView;
+        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.Button btn_print;
+        private System.Windows.Forms.Button btn_payslip;
         private System.Windows.Forms.DataGridViewTextBoxColumn colSL;
         private System.Windows.Forms.DataGridViewTextBoxColumn colEmpID;
         private System.Windows.Forms.DataGridViewTextBoxColumn colEmpName;
         private System.Windows.Forms.DataGridViewTextBoxColumn colCat;
         private System.Windows.Forms.DataGridViewTextBoxColumn colDesig;
         private System.Windows.Forms.DataGridViewTextBoxColumn colSalary;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colTD;
         private System.Windows.Forms.DataGridViewTextBoxColumn colAbsent;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colTD;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colAdvCut;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colMobileBill;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colOthers;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colCutSalary;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colTotalPayable;
     }
 }

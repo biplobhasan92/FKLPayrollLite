@@ -25,7 +25,6 @@ namespace Panchrukhi
             InitializeComponent();
             this.Left = (Screen.PrimaryScreen.WorkingArea.Width / 2) - (this.Width / 2);
             this.Top = (Screen.PrimaryScreen.WorkingArea.Height / 2) - (this.Height / 2);
-
         }
 
 

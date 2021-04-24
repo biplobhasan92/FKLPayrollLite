@@ -180,10 +180,14 @@ namespace Panchrukhi
             }
         }
 
+
+
         private void frmHolyDayCat_FormClosed(object sender, FormClosedEventArgs e)
         {
             this.Owner.Enabled = true;
         }
+
+
 
         private void txtHolyDCat_TextChanged(object sender, EventArgs e)
         {
