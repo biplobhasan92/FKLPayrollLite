@@ -40,8 +40,9 @@ namespace Panchrukhi.Report
             int year  = Convert.ToInt32(dateTimePicker1.Value.Year.ToString());
             int days  = DateTime.DaysInMonth(year, month);
             int basic = Convert.ToInt32(txtBasic.Value.ToString());
-            string mmYY = dateTimePicker1.Value.ToString("yyyyMM");       
-            LoadData(days, mmYY, basic);
+            string mmYY = dateTimePicker1.Value.ToString("yyyyMM");
+            deleteBefourInsert(dateTimePicker1.Value.ToString("yyyy/MM"));
+            InsertSalPorcessData(days, mmYY, basic);
         }
 
 
@@ -60,11 +61,34 @@ namespace Panchrukhi.Report
         }
 
 
-
-
-
-        private void LoadData(int days, string yearMonth, int basic)
+        private void deleteBefourInsert(string yearMontrh)
         {
+            try
+            {
+                string cmdText = " delete from TBL_PROCESSED_SALARY where YEAR_MONTH = '"+yearMontrh+"' ";
+                DBConn.ExecutionQuery(cmdText);
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message + " - Problem in DeleteTableRowInt()");
+            }
+        }
+
+
+        private void InsertSalPorcessData(int days, string yearMonth, int basic)
+        {
+        
+            // bool getHolidayDays = DBConn.checkDataIfItUsedOtherTableStr("TBL_HOLIDAY", "DDATE", dataGridView.Rows[i].Cells[1].Value.ToString());
+            // bool getWeekend = DBConn.getWeekends(dataGridView.Rows[i].Cells[1].Value.ToString(), getID);
+            // string getLvClSl = DBConn.getLeaveClsl(dataGridView.Rows[i].Cells[1].Value.ToString(), getID);
+
+
+            int WeekendCount = 0;
+            int HolidayCount = 0;
+            int clCount = 0;
+            int slCount = 0;
+            int holidaysAnualLv = 0;
+
             DT = new DataTable();
             DS = new DataSet();
             string CommandText = @"SELECT 
@@ -83,24 +107,27 @@ namespace Panchrukhi.Report
             DBConn.ExecutionQuery(CommandText);
             DS.Reset();
             DB.Fill(DS);
-            dataGridView.Rows.Clear();
+            dataGridView.Rows.Clear();            
             if (DS.Tables[0].Rows.Count > 0)
             {
                 foreach (DataRow dr in DS.Tables[0].Rows)
                 {
-                    int abs = calculateAbsent(dr["PERSONID"].ToString(), yearMonth);
-                    int workedDays = (days - abs);
+                    // int abs = calculateAbsent(dr["PERSONID"].ToString(), yearMonth);                  
+                    int weekend = getCountOfWeekendInMonthUsing(dateTimePicker1.Value.ToString("yyyy/MM"), dr["PERSONID"].ToString());                    
+                    int leaveCL = getCountOfCLInMnthUsingID(dateTimePicker1.Value.ToString("yyyy/MM"), dr["PERSONID"].ToString());
+                    int leaveSL = getCountOfSLInMnthUsingID(dateTimePicker1.Value.ToString("yyyy/MM"), dr["PERSONID"].ToString());
+                    int workedDays = days - weekend;
                     double salaryA = Convert.ToDouble(dr["NSALARY"].ToString());
-                    // category wise advance salary cutting function
-                    
-                    int getAdvCut = getCatWiseAdvSalCut(dr["PERSONID"].ToString(), yearMonth, 1); // cat 1 for avd salary cut
-                    int getMobBill= getCatWiseAdvSalCut(dr["PERSONID"].ToString(), yearMonth, 2); // cat 2 for mobile bill salary cut
-                    int getOthers = getCatWiseAdvSalCut(dr["PERSONID"].ToString(), yearMonth, 3); // cat 3 for others salary cut
-                    int advDeduction = (getAdvCut+getMobBill+getOthers);
-                    double totalPayable = calculateSalary(salaryA, abs) - advDeduction;
-                    double salaryCutAmount = salaryA - totalPayable;
-                    dataGridView.Rows.Add();
 
+                    // category wise advance salary cutting function                    
+                    //int getAdvCut  = getCatWiseAdvSalCut(dr["PERSONID"].ToString(), yearMonth, 1); // cat 1 for avd salary cut
+                    //int getMobBill = getCatWiseAdvSalCut(dr["PERSONID"].ToString(), yearMonth, 2); // cat 2 for mobile bill salary cut
+                    //int getOthers  = getCatWiseAdvSalCut(dr["PERSONID"].ToString(), yearMonth, 3); // cat 3 for others salary cut
+                    //int advDeduction = (getAdvCut+getMobBill+getOthers);
+                    // double totalPayable = calculateSalary(salaryA, abs) - advDeduction;
+                    // double salaryCutAmount = salaryA - totalPayable;
+                    /*
+                    dataGridView.Rows.Add();
                     dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colSL.Index].Value    = dataGridView.Rows.Count;
                     dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colEmpID.Index].Value = dr["PERSONID"].ToString();
                     dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colEmpName.Index].Value = dr["VNAME"].ToString();
@@ -108,19 +135,17 @@ namespace Panchrukhi.Report
                     dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colDesig.Index].Value = dr["Designation"].ToString();
                     dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colSalary.Index].Value= salaryA;
                     dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colTD.Index].Value    = workedDays;
+                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colCasualLeave.Index].Value = leaveCL;
+                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colSickLeave.Index].Value = leaveSL;
                     dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colAbsent.Index].Value= abs;
                     dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colAdvCut.Index].Value= getAdvCut;
                     dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colMobileBill.Index].Value = getMobBill;
+                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colWeekend.Index].Value = weekend;
                     dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colOthers.Index].Value= getOthers;
                     dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colCutSalary.Index].Value = System.Math.Round(salaryCutAmount); 
                     dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colTotalPayable.Index].Value = System.Math.Round(totalPayable);
-                    dataGridView.Columns[5].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                    dataGridView.Columns[6].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                    dataGridView.Columns[7].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                    dataGridView.Columns[8].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                    dataGridView.Columns[9].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                    dataGridView.Columns[10].DefaultCellStyle.Alignment= DataGridViewContentAlignment.MiddleRight;
-                    dataGridView.Columns[11].DefaultCellStyle.Alignment= DataGridViewContentAlignment.MiddleRight;
+                    */
+                    SaveDataOfProcessedSalary(dr["PERSONID"].ToString(), dr["VNAME"].ToString(), dr["Designation"].ToString(), workedDays, weekend, leaveCL, leaveSL, dateTimePicker1.Value.ToString("yyyy/MM"), Convert.ToInt32(dr["NSALARY"].ToString()));
                 }
             }
         }
@@ -128,10 +153,182 @@ namespace Panchrukhi.Report
 
 
 
+
+        public void LoadGridData()
+        {
+            DT = new DataTable();
+            DS = new DataSet();
+            string CommandText = @" select d.* from TBL_PROCESSED_SALARY d where d.YEAR_MONTH = '"+ dateTimePicker1.Value.ToString("yyyy/MM") + "'; ";
+            DBConn.ExecutionQuery(CommandText);
+            DB = new SQLiteDataAdapter(CommandText, DBConn.sql_conn);
+            DBConn.ExecutionQuery(CommandText);
+            DS.Reset();
+            DB.Fill(DS);
+            dataGridView.Rows.Clear();
+            if (DS.Tables[0].Rows.Count > 0)
+            {
+                foreach (DataRow dr in DS.Tables[0].Rows)
+                {
+                    
+                    dataGridView.Rows.Add();
+                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colSL.Index].Value = dataGridView.Rows.Count;// dr["SL"].ToString();
+                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colEmpID.Index].Value   = dr["EMP_ID"].ToString();
+                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colEmpName.Index].Value = dr["EMP_NAME"].ToString();
+                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colDesig.Index].Value   = dr["EMP_DESIG"].ToString();
+                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colWorkingDays.Index].Value   = dr["EMP_WORKING_DAYS"].ToString();
+                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colHolidays.Index].Value = dr["EMP_HOLIDAYS"].ToString();
+                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colSalary.Index].Value = dr["EMP_TOTAL_SAL"].ToString();
+                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colPresent.Index].Value = dr["EMP_PRESENT"].ToString();
+                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colCasualLeave.Index].Value = dr["EMP_CASUAL_LEAVE"].ToString();
+                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colSickLeave.Index].Value = dr["EMP_SICK_LEAVE"].ToString();
+
+
+                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colAnualLeave.Index].Value = dr["EMP_SICK_LEAVE"].ToString();
+                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colAbsent.Index].Value = dr["EMP_SICK_LEAVE"].ToString();
+                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colBasicSal.Index].Value = dr["EMP_SICK_LEAVE"].ToString();
+                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colHouseRent.Index].Value = dr["EMP_SICK_LEAVE"].ToString();
+                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colTransport.Index].Value = dr["EMP_SICK_LEAVE"].ToString();
+                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colMedical.Index].Value = dr["EMP_SICK_LEAVE"].ToString();
+                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colAbsentCut.Index].Value = dr["EMP_SICK_LEAVE"].ToString();
+                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colAdvCut.Index].Value = dr["EMP_SICK_LEAVE"].ToString();
+                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colMobileBill.Index].Value = dr["EMP_SICK_LEAVE"].ToString();
+                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colOthers.Index].Value = dr["EMP_SICK_LEAVE"].ToString();
+                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colTax.Index].Value = dr["EMP_SICK_LEAVE"].ToString();
+                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colRevenueTikit.Index].Value = dr["EMP_SICK_LEAVE"].ToString();
+
+                    /*
+                        dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colSL.Index].Value    = dataGridView.Rows.Count;
+                        dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colEmpID.Index].Value = dr["PERSONID"].ToString();
+                        dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colEmpName.Index].Value = dr["VNAME"].ToString();
+                        dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colCat.Index].Value   = dr["CATEGORY"].ToString();
+                    */
+                }
+            }
+        }
+
+
+
+        public void SaveDataOfProcessedSalary(string empID, string empName, string designation, int workingDay, int holidays,  int cl, int sl, string YEAR_MONTH, int sal)
+        {
+            try
+            {
+                string cmdText = " insert into TBL_PROCESSED_SALARY(" +
+                        "SL," +
+                        "EMP_ID," +
+                        "EMP_NAME," + 
+                        "EMP_DESIG," +
+                        "EMP_WORKING_DAYS," +
+                        "EMP_HOLIDAYS," +
+                        "EMP_CASUAL_LEAVE," +
+                        "EMP_SICK_LEAVE, " +
+
+                        "EMP_PRESENT, " +
+                        "EMP_ANNUAL_LEAVE, " +
+                        "EMP_ABSENT, " +
+                        "EMP_BASIC_SAL, " +
+                        "EMP_HOUSE_RENT, " +
+                        "EMP_TRANSPORT_ALLOW, " +
+                        "EMP_MEDICAL_ALLOW, " +
+                        "EMP_TOTAL_SAL, " +
+                        "EMP_ABSENT_SAL_CUT, " +
+                        "EMP_ADV_CUT, " +
+                        "EMP_MOBILE_BILL, " +
+                        "EMP_OTHERS_SAL_CUT, " +
+                        "EMP_TAX, " +
+                        "EMP_REVENUE_TICKET, " +
+                        "EMP_TOTAL_CUT, " +
+                        "EMP_TOTAL_GIVEN_SALARY, " +
+                        "EMP_TOTAL_GIVEN_SALARY_AND_ALLOW, " +
+                        "YEAR_MONTH " +
+                    ") " +
+                     " values (" +
+                         "(select CASE WHEN max(SL) >= 0 THEN max(SL) +1 ELSE 1 END FROM TBL_PROCESSED_SALARY), "+
+                         "  '" + empID+ "',     " +
+                         "  '" + empName + "',   " +
+                         "  '" + designation + "',   " +
+                         "  " + workingDay + ",   " +
+                         "  " + holidays + ",   " +
+                         "  " + cl + ", " +
+                         "  " + sl + ", " +
+                         "  " + 0 + ", " +
+                         "  " + 0 + ", " +
+                         "  " + 0 + ", " +
+                         "  " + 0 + ", " +
+                         "  " + 0 + ", " +
+                         "  " + 0 + ", " +
+                         "  " + 0 + ", " +
+                         "  " + sal + ", " +
+                         "  " + 0 + ", " +
+                         "  " + 0 + ", " +
+                         "  " + 0 + ", " +
+                         "  " + 0 + ", " +
+                         "  " + 0 + ", " +
+                         "  " + 0 + ", " +
+                         "  " + 0 + ", " +
+                         "  " + 0 + ", " +
+                         "  " + 0 + ", " +
+                         "  '" + YEAR_MONTH + "' " +
+                     " ) ";
+                DBConn.ExecutionQuery(cmdText);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Exception: "+ex.Message);
+            }
+        }
+
+
+
+        public int getCountOfWeekendInMonthUsing(string dateMonth, string empID)
+        {
+            DateTime now = Convert.ToDateTime(dateMonth);
+            var startDate = new DateTime(now.Year, now.Month, 1);
+            var endDate = startDate.AddMonths(1).AddDays(-1);
+            int counter = 0;
+            for (DateTime date = Convert.ToDateTime(startDate); date.Date <= Convert.ToDateTime(endDate); date = date.AddDays(1))
+            {
+                if (DBConn.getWeekends(date.ToString("dd/MM/yyyy"), empID)) { counter++; }
+            }
+            return counter;
+        }
+
+
+
+        public int getCountOfCLInMnthUsingID(string dateMonth, string empID)
+        {
+            DateTime now = Convert.ToDateTime(dateMonth);
+            var startDate = new DateTime(now.Year, now.Month, 1);
+            var endDate = startDate.AddMonths(1).AddDays(-1);
+            int counter = 0;
+            for (DateTime date = Convert.ToDateTime(startDate); date.Date <= Convert.ToDateTime(endDate); date = date.AddDays(1))
+            {
+                if (DBConn.getLeaveClsl(date.ToString("dd/MM/yyyy"), empID).Equals("CL")) { counter++; }
+            }
+            return counter;
+        }
+
+
+
+        public int getCountOfSLInMnthUsingID(string dateMonth, string empID)
+        {
+            DateTime now = Convert.ToDateTime(dateMonth);
+            var startDate = new DateTime(now.Year, now.Month, 1);
+            var endDate = startDate.AddMonths(1).AddDays(-1);
+            int counter = 0;
+            for (DateTime date = Convert.ToDateTime(startDate); date.Date <= Convert.ToDateTime(endDate); date = date.AddDays(1))
+            {
+                if (DBConn.getLeaveClsl(date.ToString("dd/MM/yyyy"), empID).Equals("SL")) { counter++; }
+            }
+            return counter;
+        }
+
+
+
+        // DBConn.getWeekends(date.ToString("dd/MM/yyyy"), dr["PERSONID"].ToString());
+
         private void frmSalary_Load(object sender, EventArgs e)
         {
             // this.Owner.Enabled = false;
-
             //this.dataGridView.Columns["salary"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
         }
 
@@ -279,11 +476,11 @@ namespace Panchrukhi.Report
                 cr.SetDataSource(DS);
                 cr.SetParameterValue(0, dr["VCOMPANY_NAME"]);
                 cr.SetParameterValue(1, dr["VCOMPANY_ADDRESS"]);
-                cr.SetParameterValue(2, DateTime.Now.Month.ToString() +", "+ DateTime.Now.Year.ToString());
+                cr.SetParameterValue(2, DateTime.Today.ToString("MMM") + ", "+ DateTime.Now.Year.ToString());
                 frm.crptViewer.ReportSource = cr;
                 frm.crptViewer.Refresh();
                 frm.Show();
-            }
+            }// string month_name = date.ToString("MMM");
             else
             {
                 MessageBox.Show("Load Grid First");
@@ -336,8 +533,8 @@ namespace Panchrukhi.Report
                 frmCrystalReportViewer frm = new frmCrystalReportViewer();
                 crptToken_Report cr = new crptToken_Report();
                 cr.SetDataSource(DS);
-                ////cr.SetParameterValue(0, dr["VCOMPANY_NAME"]);
-                //cr.SetParameterValue(1, dr["VCOMPANY_ADDRESS"]);
+                cr.SetParameterValue(0, dr["VCOMPANY_NAME"]);
+                cr.SetParameterValue(1, dr["VCOMPANY_ADDRESS"]);
                 frm.crptViewer.ReportSource = cr;
                 frm.crptViewer.Refresh();
                 frm.Show();
@@ -356,7 +553,15 @@ namespace Panchrukhi.Report
             e.Row.Cells[colAdvCut.Index].Value = 0;
         }
 
-        
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnLoadGrid_Click(object sender, EventArgs e)
+        {
+            LoadGridData();
+        }
 
         private int calculateHolidays(string empID, string yearMonth)
         {

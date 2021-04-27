@@ -30,7 +30,6 @@
         {
             this.lblPgrsPersent = new System.Windows.Forms.Label();
             this.lblApplicationName = new System.Windows.Forms.Label();
-            this.lblAppDescription = new System.Windows.Forms.Label();
             this.lblUserName = new System.Windows.Forms.Label();
             this.lblPassword = new System.Windows.Forms.Label();
             this.txtUserName = new System.Windows.Forms.TextBox();
@@ -54,24 +53,13 @@
             // lblApplicationName
             // 
             this.lblApplicationName.AutoSize = true;
-            this.lblApplicationName.Font = new System.Drawing.Font("Arial Rounded MT Bold", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblApplicationName.Font = new System.Drawing.Font("Arial Rounded MT Bold", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblApplicationName.ForeColor = System.Drawing.Color.White;
-            this.lblApplicationName.Location = new System.Drawing.Point(195, 12);
+            this.lblApplicationName.Location = new System.Drawing.Point(301, 88);
             this.lblApplicationName.Name = "lblApplicationName";
-            this.lblApplicationName.Size = new System.Drawing.Size(377, 55);
+            this.lblApplicationName.Size = new System.Drawing.Size(165, 32);
             this.lblApplicationName.TabIndex = 0;
-            this.lblApplicationName.Text = "FKL Payroll lite";
-            // 
-            // lblAppDescription
-            // 
-            this.lblAppDescription.AutoSize = true;
-            this.lblAppDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAppDescription.ForeColor = System.Drawing.Color.White;
-            this.lblAppDescription.Location = new System.Drawing.Point(207, 66);
-            this.lblAppDescription.Name = "lblAppDescription";
-            this.lblAppDescription.Size = new System.Drawing.Size(226, 16);
-            this.lblAppDescription.TabIndex = 6;
-            this.lblAppDescription.Text = "Attendance Management System 1.0";
+            this.lblApplicationName.Text = "FKL Payroll";
             // 
             // lblUserName
             // 
@@ -146,11 +134,11 @@
             // lblCompanyName
             // 
             this.lblCompanyName.AutoSize = true;
-            this.lblCompanyName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCompanyName.ForeColor = System.Drawing.Color.White;
-            this.lblCompanyName.Location = new System.Drawing.Point(212, 84);
+            this.lblCompanyName.Font = new System.Drawing.Font("Arial Rounded MT Bold", 39.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCompanyName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.lblCompanyName.Location = new System.Drawing.Point(112, 19);
             this.lblCompanyName.Name = "lblCompanyName";
-            this.lblCompanyName.Size = new System.Drawing.Size(0, 20);
+            this.lblCompanyName.Size = new System.Drawing.Size(0, 61);
             this.lblCompanyName.TabIndex = 14;
             // 
             // panel1
@@ -177,7 +165,6 @@
             this.Controls.Add(this.txtUserName);
             this.Controls.Add(this.lblPassword);
             this.Controls.Add(this.lblUserName);
-            this.Controls.Add(this.lblAppDescription);
             this.Controls.Add(this.lblPgrsPersent);
             this.Controls.Add(this.lblApplicationName);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -193,7 +180,6 @@
         #endregion
         private System.Windows.Forms.Label lblPgrsPersent;
         private System.Windows.Forms.Label lblApplicationName;
-        private System.Windows.Forms.Label lblAppDescription;
         private System.Windows.Forms.Label lblUserName;
         private System.Windows.Forms.Label lblPassword;
         private System.Windows.Forms.TextBox txtUserName;

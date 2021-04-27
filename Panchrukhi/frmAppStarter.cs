@@ -27,10 +27,8 @@ namespace Panchrukhi
             if (pgrsbrAppStarter.Value == pgrsbrAppStarter.Maximum)
             {
                 tmrProgresBar.Stop();
-                this.Close();
-                
+                this.Close();                
             }
-
         }
 
    

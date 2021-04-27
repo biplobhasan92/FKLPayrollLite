@@ -221,7 +221,7 @@ namespace Panchrukhi
                     presents++;
                 }
 
-                if (getHolidayDays || getWeekend)
+                if (getHolidayDays || getWeekend || !string.IsNullOrEmpty(getLvClSl))
                 {
                     if (getHolidayDays)
                     {

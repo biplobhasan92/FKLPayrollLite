@@ -43,11 +43,11 @@
             this.lblApplicationName.AutoSize = true;
             this.lblApplicationName.Font = new System.Drawing.Font("Arial Rounded MT Bold", 39.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblApplicationName.ForeColor = System.Drawing.Color.White;
-            this.lblApplicationName.Location = new System.Drawing.Point(162, 57);
+            this.lblApplicationName.Location = new System.Drawing.Point(197, 57);
             this.lblApplicationName.Name = "lblApplicationName";
-            this.lblApplicationName.Size = new System.Drawing.Size(430, 61);
+            this.lblApplicationName.Size = new System.Drawing.Size(321, 61);
             this.lblApplicationName.TabIndex = 0;
-            this.lblApplicationName.Text = "FKL Payroll Lite";
+            this.lblApplicationName.Text = "FKL Payroll";
             // 
             // pgrsbrAppStarter
             // 
@@ -91,7 +91,7 @@
             this.lblAppVersion.AutoSize = true;
             this.lblAppVersion.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAppVersion.ForeColor = System.Drawing.Color.White;
-            this.lblAppVersion.Location = new System.Drawing.Point(472, 122);
+            this.lblAppVersion.Location = new System.Drawing.Point(417, 122);
             this.lblAppVersion.Name = "lblAppVersion";
             this.lblAppVersion.Size = new System.Drawing.Size(80, 15);
             this.lblAppVersion.TabIndex = 5;
