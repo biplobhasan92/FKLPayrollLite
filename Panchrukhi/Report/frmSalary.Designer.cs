@@ -33,7 +33,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.txtBasic = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnSalProcess = new System.Windows.Forms.Button();
             this.dataGridView = new System.Windows.Forms.DataGridView();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.btn_print = new System.Windows.Forms.Button();
@@ -59,8 +59,8 @@
             this.label20 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtWorkingDay = new System.Windows.Forms.TextBox();
+            this.txtHolidays = new System.Windows.Forms.TextBox();
             this.txtPresent = new System.Windows.Forms.TextBox();
             this.txtCasualLeave = new System.Windows.Forms.TextBox();
             this.txtSickLeave = new System.Windows.Forms.TextBox();
@@ -77,8 +77,8 @@
             this.txtOthersSalCut = new System.Windows.Forms.TextBox();
             this.txtTax = new System.Windows.Forms.TextBox();
             this.txtRevTicket = new System.Windows.Forms.TextBox();
-            this.textBox19 = new System.Windows.Forms.TextBox();
-            this.textBox20 = new System.Windows.Forms.TextBox();
+            this.txtTotalCut = new System.Windows.Forms.TextBox();
+            this.txtTotalGivenSal = new System.Windows.Forms.TextBox();
             this.txtGivenSalAndAllow = new System.Windows.Forms.TextBox();
             this.txtEmpID = new System.Windows.Forms.TextBox();
             this.label23 = new System.Windows.Forms.Label();
@@ -108,9 +108,9 @@
             this.colOthers = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colTax = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colRevenueTikit = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colCutSalary = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colTotalPayable = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colTotalGivenSalAndallownce = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colTotalCut = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colTotalGivenSal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colGivenSalAndallownce = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.txtBasic)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
@@ -161,15 +161,15 @@
             this.label3.TabIndex = 4;
             this.label3.Text = "%";
             // 
-            // button1
+            // btnSalProcess
             // 
-            this.button1.Location = new System.Drawing.Point(32, 156);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(188, 37);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "Salary Process";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnSalProcess.Location = new System.Drawing.Point(32, 120);
+            this.btnSalProcess.Name = "btnSalProcess";
+            this.btnSalProcess.Size = new System.Drawing.Size(188, 37);
+            this.btnSalProcess.TabIndex = 5;
+            this.btnSalProcess.Text = "Salary Process";
+            this.btnSalProcess.UseVisualStyleBackColor = true;
+            this.btnSalProcess.Click += new System.EventHandler(this.button1_Click);
             // 
             // dataGridView
             // 
@@ -200,20 +200,20 @@
             this.colOthers,
             this.colTax,
             this.colRevenueTikit,
-            this.colCutSalary,
-            this.colTotalPayable,
-            this.colTotalGivenSalAndallownce});
+            this.colTotalCut,
+            this.colTotalGivenSal,
+            this.colGivenSalAndallownce});
             this.dataGridView.Location = new System.Drawing.Point(8, 273);
             this.dataGridView.Name = "dataGridView";
             this.dataGridView.ReadOnly = true;
             this.dataGridView.Size = new System.Drawing.Size(1382, 356);
             this.dataGridView.TabIndex = 6;
-            this.dataGridView.DefaultValuesNeeded += new System.Windows.Forms.DataGridViewRowEventHandler(this.dataGridView_DefaultValuesNeeded);
+            this.dataGridView.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView_RowHeaderMouseClick);
             // 
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(83, 126);
+            this.checkBox1.Location = new System.Drawing.Point(104, 79);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(103, 17);
             this.checkBox1.TabIndex = 7;
@@ -430,19 +430,19 @@
             this.label22.TabIndex = 30;
             this.label22.Text = "Total given salary & allowance";
             // 
-            // textBox1
+            // txtWorkingDay
             // 
-            this.textBox1.Location = new System.Drawing.Point(431, 39);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(105, 20);
-            this.textBox1.TabIndex = 31;
+            this.txtWorkingDay.Location = new System.Drawing.Point(431, 39);
+            this.txtWorkingDay.Name = "txtWorkingDay";
+            this.txtWorkingDay.Size = new System.Drawing.Size(105, 20);
+            this.txtWorkingDay.TabIndex = 31;
             // 
-            // textBox2
+            // txtHolidays
             // 
-            this.textBox2.Location = new System.Drawing.Point(431, 68);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(105, 20);
-            this.textBox2.TabIndex = 32;
+            this.txtHolidays.Location = new System.Drawing.Point(431, 68);
+            this.txtHolidays.Name = "txtHolidays";
+            this.txtHolidays.Size = new System.Drawing.Size(105, 20);
+            this.txtHolidays.TabIndex = 32;
             // 
             // txtPresent
             // 
@@ -556,19 +556,19 @@
             this.txtRevTicket.Size = new System.Drawing.Size(128, 20);
             this.txtRevTicket.TabIndex = 48;
             // 
-            // textBox19
+            // txtTotalCut
             // 
-            this.textBox19.Location = new System.Drawing.Point(923, 158);
-            this.textBox19.Name = "textBox19";
-            this.textBox19.Size = new System.Drawing.Size(128, 20);
-            this.textBox19.TabIndex = 49;
+            this.txtTotalCut.Location = new System.Drawing.Point(923, 158);
+            this.txtTotalCut.Name = "txtTotalCut";
+            this.txtTotalCut.Size = new System.Drawing.Size(128, 20);
+            this.txtTotalCut.TabIndex = 49;
             // 
-            // textBox20
+            // txtTotalGivenSal
             // 
-            this.textBox20.Location = new System.Drawing.Point(923, 188);
-            this.textBox20.Name = "textBox20";
-            this.textBox20.Size = new System.Drawing.Size(128, 20);
-            this.textBox20.TabIndex = 50;
+            this.txtTotalGivenSal.Location = new System.Drawing.Point(923, 188);
+            this.txtTotalGivenSal.Name = "txtTotalGivenSal";
+            this.txtTotalGivenSal.Size = new System.Drawing.Size(128, 20);
+            this.txtTotalGivenSal.TabIndex = 50;
             // 
             // txtGivenSalAndAllow
             // 
@@ -784,26 +784,26 @@
             this.colRevenueTikit.ReadOnly = true;
             this.colRevenueTikit.Width = 30;
             // 
-            // colCutSalary
+            // colTotalCut
             // 
-            this.colCutSalary.HeaderText = "Total Cut";
-            this.colCutSalary.Name = "colCutSalary";
-            this.colCutSalary.ReadOnly = true;
-            this.colCutSalary.Width = 60;
+            this.colTotalCut.HeaderText = "Total Cut";
+            this.colTotalCut.Name = "colTotalCut";
+            this.colTotalCut.ReadOnly = true;
+            this.colTotalCut.Width = 60;
             // 
-            // colTotalPayable
+            // colTotalGivenSal
             // 
-            this.colTotalPayable.HeaderText = "Total Given Salary";
-            this.colTotalPayable.Name = "colTotalPayable";
-            this.colTotalPayable.ReadOnly = true;
-            this.colTotalPayable.Width = 80;
+            this.colTotalGivenSal.HeaderText = "Total Given Salary";
+            this.colTotalGivenSal.Name = "colTotalGivenSal";
+            this.colTotalGivenSal.ReadOnly = true;
+            this.colTotalGivenSal.Width = 80;
             // 
-            // colTotalGivenSalAndallownce
+            // colGivenSalAndallownce
             // 
-            this.colTotalGivenSalAndallownce.HeaderText = "Total Given Sal & Allow.";
-            this.colTotalGivenSalAndallownce.Name = "colTotalGivenSalAndallownce";
-            this.colTotalGivenSalAndallownce.ReadOnly = true;
-            this.colTotalGivenSalAndallownce.Width = 80;
+            this.colGivenSalAndallownce.HeaderText = "Total Given Sal & Allow.";
+            this.colGivenSalAndallownce.Name = "colGivenSalAndallownce";
+            this.colGivenSalAndallownce.ReadOnly = true;
+            this.colGivenSalAndallownce.Width = 80;
             // 
             // frmSalary
             // 
@@ -816,8 +816,8 @@
             this.Controls.Add(this.txtEmpID);
             this.Controls.Add(this.label23);
             this.Controls.Add(this.txtGivenSalAndAllow);
-            this.Controls.Add(this.textBox20);
-            this.Controls.Add(this.textBox19);
+            this.Controls.Add(this.txtTotalGivenSal);
+            this.Controls.Add(this.txtTotalCut);
             this.Controls.Add(this.txtRevTicket);
             this.Controls.Add(this.txtTax);
             this.Controls.Add(this.txtOthersSalCut);
@@ -834,8 +834,8 @@
             this.Controls.Add(this.txtSickLeave);
             this.Controls.Add(this.txtCasualLeave);
             this.Controls.Add(this.txtPresent);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtHolidays);
+            this.Controls.Add(this.txtWorkingDay);
             this.Controls.Add(this.label22);
             this.Controls.Add(this.label21);
             this.Controls.Add(this.label20);
@@ -861,7 +861,7 @@
             this.Controls.Add(this.btn_print);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.dataGridView);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnSalProcess);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.txtBasic);
             this.Controls.Add(this.label2);
@@ -885,7 +885,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.NumericUpDown txtBasic;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnSalProcess;
         private System.Windows.Forms.DataGridView dataGridView;
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.Button btn_print;
@@ -911,8 +911,8 @@
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtWorkingDay;
+        private System.Windows.Forms.TextBox txtHolidays;
         private System.Windows.Forms.TextBox txtPresent;
         private System.Windows.Forms.TextBox txtCasualLeave;
         private System.Windows.Forms.TextBox txtSickLeave;
@@ -929,8 +929,8 @@
         private System.Windows.Forms.TextBox txtOthersSalCut;
         private System.Windows.Forms.TextBox txtTax;
         private System.Windows.Forms.TextBox txtRevTicket;
-        private System.Windows.Forms.TextBox textBox19;
-        private System.Windows.Forms.TextBox textBox20;
+        private System.Windows.Forms.TextBox txtTotalCut;
+        private System.Windows.Forms.TextBox txtTotalGivenSal;
         private System.Windows.Forms.TextBox txtGivenSalAndAllow;
         private System.Windows.Forms.TextBox txtEmpID;
         private System.Windows.Forms.Label label23;
@@ -960,8 +960,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colOthers;
         private System.Windows.Forms.DataGridViewTextBoxColumn colTax;
         private System.Windows.Forms.DataGridViewTextBoxColumn colRevenueTikit;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colCutSalary;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colTotalPayable;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colTotalGivenSalAndallownce;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colTotalCut;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colTotalGivenSal;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colGivenSalAndallownce;
     }
 }

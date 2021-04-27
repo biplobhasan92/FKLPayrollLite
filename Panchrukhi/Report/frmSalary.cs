@@ -29,7 +29,7 @@ namespace Panchrukhi.Report
         private DataTable DT;
         private SQLiteCommand sql_cmd;
         private SQLiteDataAdapter DB;
-        int getHID = 0;
+        int getSelectID = 0;
         int presents, absents, holidays;
 
 
@@ -43,6 +43,7 @@ namespace Panchrukhi.Report
             string mmYY = dateTimePicker1.Value.ToString("yyyyMM");
             deleteBefourInsert(dateTimePicker1.Value.ToString("yyyy/MM"));
             InsertSalPorcessData(days, mmYY, basic);
+            MessageBox.Show("Process completed. Click Load Data.");
         }
 
 
@@ -53,10 +54,12 @@ namespace Panchrukhi.Report
             if (b){
                 txtBasic.Enabled = false;
                 dateTimePicker1.Enabled = false;
+                btnSalProcess.Enabled = false;
             }
             else{
                 txtBasic.Enabled = true;
                 dateTimePicker1.Enabled = true;
+                btnSalProcess.Enabled = true;
             }
         }
 
@@ -171,7 +174,8 @@ namespace Panchrukhi.Report
                 {
                     
                     dataGridView.Rows.Add();
-                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colSL.Index].Value = dataGridView.Rows.Count;// dr["SL"].ToString();
+                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colSL.Index].Value = Convert.ToInt32(dr["SL"].ToString());
+                    // dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colSLL.Index].Value = dr["SL"].ToString();
                     dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colEmpID.Index].Value   = dr["EMP_ID"].ToString();
                     dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colEmpName.Index].Value = dr["EMP_NAME"].ToString();
                     dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colDesig.Index].Value   = dr["EMP_DESIG"].ToString();
@@ -182,26 +186,21 @@ namespace Panchrukhi.Report
                     dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colCasualLeave.Index].Value = dr["EMP_CASUAL_LEAVE"].ToString();
                     dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colSickLeave.Index].Value = dr["EMP_SICK_LEAVE"].ToString();
 
-
-                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colAnualLeave.Index].Value = dr["EMP_SICK_LEAVE"].ToString();
-                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colAbsent.Index].Value = dr["EMP_SICK_LEAVE"].ToString();
-                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colBasicSal.Index].Value = dr["EMP_SICK_LEAVE"].ToString();
-                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colHouseRent.Index].Value = dr["EMP_SICK_LEAVE"].ToString();
-                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colTransport.Index].Value = dr["EMP_SICK_LEAVE"].ToString();
-                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colMedical.Index].Value = dr["EMP_SICK_LEAVE"].ToString();
-                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colAbsentCut.Index].Value = dr["EMP_SICK_LEAVE"].ToString();
-                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colAdvCut.Index].Value = dr["EMP_SICK_LEAVE"].ToString();
-                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colMobileBill.Index].Value = dr["EMP_SICK_LEAVE"].ToString();
-                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colOthers.Index].Value = dr["EMP_SICK_LEAVE"].ToString();
-                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colTax.Index].Value = dr["EMP_SICK_LEAVE"].ToString();
-                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colRevenueTikit.Index].Value = dr["EMP_SICK_LEAVE"].ToString();
-
-                    /*
-                        dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colSL.Index].Value    = dataGridView.Rows.Count;
-                        dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colEmpID.Index].Value = dr["PERSONID"].ToString();
-                        dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colEmpName.Index].Value = dr["VNAME"].ToString();
-                        dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colCat.Index].Value   = dr["CATEGORY"].ToString();
-                    */
+                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colAnualLeave.Index].Value= dr["EMP_ANNUAL_LEAVE"].ToString();
+                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colAbsent.Index].Value    = dr["EMP_ABSENT"].ToString();
+                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colBasicSal.Index].Value  = dr["EMP_BASIC_SAL"].ToString();
+                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colHouseRent.Index].Value = dr["EMP_HOUSE_RENT"].ToString();
+                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colTransport.Index].Value = dr["EMP_TRANSPORT_ALLOW"].ToString();
+                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colMedical.Index].Value   = dr["EMP_MEDICAL_ALLOW"].ToString();
+                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colAbsentCut.Index].Value = dr["EMP_ABSENT_SAL_CUT"].ToString();
+                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colAdvCut.Index].Value = dr["EMP_ADV_CUT"].ToString();
+                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colMobileBill.Index].Value= dr["EMP_MOBILE_BILL"].ToString();
+                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colOthers.Index].Value = dr["EMP_OTHERS_SAL_CUT"].ToString();
+                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colTax.Index].Value = dr["EMP_TAX"].ToString();
+                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colRevenueTikit.Index].Value = dr["EMP_REVENUE_TICKET"].ToString();
+                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colTotalCut.Index].Value = dr["EMP_TOTAL_CUT"].ToString();
+                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colTotalGivenSal.Index].Value = dr["EMP_TOTAL_GIVEN_SALARY"].ToString();
+                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colGivenSalAndallownce.Index].Value = dr["EMP_TOTAL_GIVEN_SALARY_AND_ALLOW"].ToString();
                 }
             }
         }
@@ -221,7 +220,6 @@ namespace Panchrukhi.Report
                         "EMP_HOLIDAYS," +
                         "EMP_CASUAL_LEAVE," +
                         "EMP_SICK_LEAVE, " +
-
                         "EMP_PRESENT, " +
                         "EMP_ANNUAL_LEAVE, " +
                         "EMP_ABSENT, " +
@@ -263,7 +261,7 @@ namespace Panchrukhi.Report
                          "  " + 0 + ", " +
                          "  " + 0 + ", " +
                          "  " + 0 + ", " +
-                         "  " + 0 + ", " +
+                         "  " + 10 + ", " +
                          "  " + 0 + ", " +
                          "  " + 0 + ", " +
                          "  " + 0 + ", " +
@@ -438,14 +436,27 @@ namespace Panchrukhi.Report
             DT.Columns.Add("Emp Name", typeof(string));
             DT.Columns.Add("Category", typeof(string));
             DT.Columns.Add("Designation", typeof(string));
-            DT.Columns.Add("Salary", typeof(string));
-            DT.Columns.Add("absent", typeof(string));
             DT.Columns.Add("Working Day", typeof(string));
+            DT.Columns.Add("Holidays", typeof(string));
+            DT.Columns.Add("Present", typeof(string));
+            DT.Columns.Add("CL", typeof(string));
+            DT.Columns.Add("SL", typeof(string));
+            DT.Columns.Add("AL", typeof(string));
+            DT.Columns.Add("absent", typeof(string));
+            DT.Columns.Add("Basic", typeof(string));
+            DT.Columns.Add("House Rent", typeof(string));
+            DT.Columns.Add("Transport", typeof(string));
+            DT.Columns.Add("Medical", typeof(string));
+            DT.Columns.Add("Salary", typeof(string));
+            DT.Columns.Add("Absent Cut", typeof(string));
             DT.Columns.Add("Advance Cut", typeof(string));
             DT.Columns.Add("Mobile Bill", typeof(string));
-            DT.Columns.Add("Others", typeof(string));
-            DT.Columns.Add("Salary Cut", typeof(string));
-            DT.Columns.Add("Total Payable", typeof(string));
+            DT.Columns.Add("Others Cut", typeof(string));
+            DT.Columns.Add("Tax", typeof(string));
+            DT.Columns.Add("Rev Ticket", typeof(string));
+            DT.Columns.Add("Total Cut", typeof(string));
+            DT.Columns.Add("Total Givent Sal", typeof(string));
+            DT.Columns.Add("Total Givent Sal and Allow", typeof(string));
             if (dataGridView.Rows.Count > 0)
             {
                 DataRow dr = DBConn.getCompanyNameAndAddress();
@@ -465,7 +476,20 @@ namespace Panchrukhi.Report
                         dgv.Cells[9].Value,
                         dgv.Cells[10].Value,
                         dgv.Cells[11].Value,
-                        dgv.Cells[12].Value
+                        dgv.Cells[12].Value,
+                        dgv.Cells[13].Value,
+                        dgv.Cells[14].Value,
+                        dgv.Cells[15].Value,
+                        dgv.Cells[16].Value,
+                        dgv.Cells[17].Value,
+                        dgv.Cells[18].Value,
+                        dgv.Cells[19].Value,
+                        dgv.Cells[20].Value,
+                        dgv.Cells[21].Value,
+                        dgv.Cells[22].Value,
+                        dgv.Cells[23].Value,
+                        dgv.Cells[24].Value,
+                        dgv.Cells[25].Value
                     );
                 }
                 DS.Tables.Add(DT);
@@ -498,14 +522,27 @@ namespace Panchrukhi.Report
             DT.Columns.Add("Emp Name", typeof(string));
             DT.Columns.Add("Category", typeof(string));
             DT.Columns.Add("Designation", typeof(string));
-            DT.Columns.Add("Salary", typeof(string));
-            DT.Columns.Add("absent", typeof(string));
             DT.Columns.Add("Working Day", typeof(string));
+            DT.Columns.Add("Holidays", typeof(string));
+            DT.Columns.Add("Present", typeof(string));
+            DT.Columns.Add("CL", typeof(string));
+            DT.Columns.Add("SL", typeof(string));
+            DT.Columns.Add("AL", typeof(string));
+            DT.Columns.Add("absent", typeof(string));
+            DT.Columns.Add("Basic", typeof(string));
+            DT.Columns.Add("House Rent", typeof(int));
+            DT.Columns.Add("Transport", typeof(int));
+            DT.Columns.Add("Medical", typeof(int));
+            DT.Columns.Add("Salary", typeof(int));
+            DT.Columns.Add("Absent Cut", typeof(string));
             DT.Columns.Add("Advance Cut", typeof(string));
             DT.Columns.Add("Mobile Bill", typeof(string));
-            DT.Columns.Add("Others", typeof(string));
-            DT.Columns.Add("Salary Cut", typeof(string));
-            DT.Columns.Add("Total Payable", typeof(string));
+            DT.Columns.Add("Others Cut", typeof(string));
+            DT.Columns.Add("Tax", typeof(string));
+            DT.Columns.Add("Rev Ticket", typeof(string));
+            DT.Columns.Add("Total Cut", typeof(int));
+            DT.Columns.Add("Total Givent Sal", typeof(int));
+            DT.Columns.Add("Total Givent Sal and Allow", typeof(string));
             if (dataGridView.Rows.Count > 0)
             {
                 DataRow dr = DBConn.getCompanyNameAndAddress();
@@ -525,7 +562,20 @@ namespace Panchrukhi.Report
                         dgv.Cells[9].Value,
                         dgv.Cells[10].Value,
                         dgv.Cells[11].Value,
-                        dgv.Cells[12].Value
+                        dgv.Cells[12].Value,
+                        dgv.Cells[13].Value,
+                        dgv.Cells[14].Value,
+                        dgv.Cells[15].Value,
+                        dgv.Cells[16].Value,
+                        dgv.Cells[17].Value,
+                        dgv.Cells[18].Value,
+                        dgv.Cells[19].Value,
+                        dgv.Cells[20].Value,
+                        dgv.Cells[21].Value,
+                        dgv.Cells[22].Value,
+                        dgv.Cells[23].Value,
+                        dgv.Cells[24].Value,
+                        dgv.Cells[25].Value
                     );
                 }
                 DS.Tables.Add(DT);
@@ -555,12 +605,82 @@ namespace Panchrukhi.Report
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            bool isExecute = false;
+            try
+            {
+                string cmdText =
+                "UPDATE " +
+                        " TBL_PROCESSED_SALARY " +
+                " set " +
+                        " EMP_WORKING_DAYS = " + txtWorkingDay.Text.Trim() + ",     " +
+                        " EMP_HOLIDAYS    = " + txtHolidays.Text.Trim() + ",   " +
+                        " EMP_PRESENT  = IFNULL(" + txtPresent.Text.Trim() + ", 0), " +
+                        " EMP_CASUAL_LEAVE = " + txtCasualLeave.Text.Trim() + ", " +
+                        " EMP_SICK_LEAVE     = " + txtSickLeave.Text.Trim() + ",     " +
+                        " EMP_ANNUAL_LEAVE   = " + txtAnnualLeave.Text.Trim() + ",  " +
+                        " EMP_ABSENT   = " + txtAbsent.Text.Trim() + ",   " +
+                        " EMP_BASIC_SAL  = IFNULL(" + txtBasickSal.Text.Trim() + ", 0), " +
+                        " EMP_HOUSE_RENT     = " + txtHouseRent.Text.Trim() + ",   " +
+                        " EMP_TRANSPORT_ALLOW   = IFNULL(" + txtTransportAlwnc.Text.Trim() + ", 0),  " +
+                        " EMP_MEDICAL_ALLOW = IFNULL(" + txtMedicalAllow.Text.Trim() + ", 0),  " +
+                        " EMP_TOTAL_SAL  = " + txtTotalSal.Text.Trim() + ",    " +
+                        " EMP_ABSENT_SAL_CUT  = IFNULL(" + txtAbsentSalCut.Text.Trim() + ",   0),  " +
+                        " EMP_ADV_CUT = IFNULL(" + txtAvdSalCut.Text.Trim() + ", 0),  " +
+                        " EMP_MOBILE_BILL   = IFNULL(" + txtMobileBill.Text.Trim() + ", 0),  " +
+                        " EMP_OTHERS_SAL_CUT        = " + txtOthersSalCut.Text.Trim() + ",   " +
+                        " EMP_TAX        = " + txtTax.Text.Trim() + ",   " +
+                        " EMP_REVENUE_TICKET        = " + txtRevTicket.Text.Trim() + ",   " +
+                        " EMP_TOTAL_CUT        = " + txtTotalCut.Text.Trim() + ",   " +
+                        " EMP_TOTAL_GIVEN_SALARY        = " + txtTotalGivenSal.Text.Trim() + ", "+
+                        " EMP_TOTAL_GIVEN_SALARY_AND_ALLOW = " + txtGivenSalAndAllow.Text.Trim() + " "+
+                " where  " +
+                        " EMP_ID = '"+ txtEmpID.Text +"' ";
 
+                isExecute = DBConn.ExecutionQuery(cmdText);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Exception to Update", ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            if (isExecute)
+            {
+                LoadGridData();
+                ClearData();                
+            }
         }
 
         private void btnLoadGrid_Click(object sender, EventArgs e)
         {
             LoadGridData();
+        }
+
+        private void dataGridView_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (dataGridView.SelectedRows.Count == 0 || dataGridView.SelectedRows[0].Index == dataGridView.Rows.Count) return;
+            getSelectID = Convert.ToInt32(dataGridView.Rows[e.RowIndex].Cells[0].Value.ToString());
+            txtEmpID.Text = dataGridView.Rows[e.RowIndex].Cells[1].Value.ToString();
+            txtWorkingDay.Text = dataGridView.Rows[e.RowIndex].Cells[5].Value.ToString();
+            txtHolidays.Text = dataGridView.Rows[e.RowIndex].Cells[6].Value.ToString();
+            txtPresent.Text  = dataGridView.Rows[e.RowIndex].Cells[7].Value.ToString();
+            txtCasualLeave.Text = dataGridView.Rows[e.RowIndex].Cells[8].Value.ToString();
+            txtSickLeave.Text = dataGridView.Rows[e.RowIndex].Cells[9].Value.ToString();
+            txtAnnualLeave.Text = dataGridView.Rows[e.RowIndex].Cells[10].Value.ToString();
+            txtAbsent.Text = dataGridView.Rows[e.RowIndex].Cells[11].Value.ToString();
+            txtBasickSal.Text = dataGridView.Rows[e.RowIndex].Cells[12].Value.ToString();
+            txtHouseRent.Text = dataGridView.Rows[e.RowIndex].Cells[13].Value.ToString();
+            txtTransportAlwnc.Text = dataGridView.Rows[e.RowIndex].Cells[14].Value.ToString();
+            txtMedicalAllow.Text = dataGridView.Rows[e.RowIndex].Cells[15].Value.ToString();
+            txtTotalSal.Text = dataGridView.Rows[e.RowIndex].Cells[16].Value.ToString();
+            txtAbsentSalCut.Text = dataGridView.Rows[e.RowIndex].Cells[17].Value.ToString();
+            txtAvdSalCut.Text    = dataGridView.Rows[e.RowIndex].Cells[18].Value.ToString();
+            txtMobileBill.Text   = dataGridView.Rows[e.RowIndex].Cells[19].Value.ToString();
+            txtOthersSalCut.Text = dataGridView.Rows[e.RowIndex].Cells[20].Value.ToString();
+            txtTax.Text = dataGridView.Rows[e.RowIndex].Cells[21].Value.ToString();
+            txtRevTicket.Text = dataGridView.Rows[e.RowIndex].Cells[22].Value.ToString();
+            txtTotalCut.Text = dataGridView.Rows[e.RowIndex].Cells[23].Value.ToString();
+            txtTotalGivenSal.Text = dataGridView.Rows[e.RowIndex].Cells[24].Value.ToString();
+            txtGivenSalAndAllow.Text = dataGridView.Rows[e.RowIndex].Cells[25].Value.ToString();
         }
 
         private int calculateHolidays(string empID, string yearMonth)
@@ -594,7 +714,31 @@ namespace Panchrukhi.Report
 
 
 
-
+        private void ClearData()
+        {
+            txtEmpID.Text =
+            txtWorkingDay.Text = 
+            txtHolidays.Text = 
+            txtPresent.Text = 
+            txtCasualLeave.Text = 
+            txtSickLeave.Text = 
+            txtAnnualLeave.Text = 
+            txtAbsent.Text = 
+            txtBasickSal.Text = 
+            txtHouseRent.Text = 
+            txtTransportAlwnc.Text = 
+            txtMedicalAllow.Text =
+            txtTotalSal.Text = 
+            txtAbsentSalCut.Text = 
+            txtAvdSalCut.Text = 
+            txtMobileBill.Text = 
+            txtOthersSalCut.Text = 
+            txtTax.Text = 
+            txtRevTicket.Text = 
+            txtTotalCut.Text = 
+            txtTotalGivenSal.Text =
+            txtGivenSalAndAllow.Text = "";
+        }
 
         private double calculateSalary(double salary, int absent){
 
