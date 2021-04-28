@@ -185,7 +185,6 @@ namespace Panchrukhi.Report
                     dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colPresent.Index].Value = dr["EMP_PRESENT"].ToString();
                     dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colCasualLeave.Index].Value = dr["EMP_CASUAL_LEAVE"].ToString();
                     dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colSickLeave.Index].Value = dr["EMP_SICK_LEAVE"].ToString();
-
                     dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colAnualLeave.Index].Value= dr["EMP_ANNUAL_LEAVE"].ToString();
                     dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colAbsent.Index].Value    = dr["EMP_ABSENT"].ToString();
                     dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colBasicSal.Index].Value  = dr["EMP_BASIC_SAL"].ToString();
@@ -199,7 +198,8 @@ namespace Panchrukhi.Report
                     dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colTax.Index].Value = dr["EMP_TAX"].ToString();
                     dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colRevenueTikit.Index].Value = dr["EMP_REVENUE_TICKET"].ToString();
                     dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colTotalCut.Index].Value = dr["EMP_TOTAL_CUT"].ToString();
-                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colTotalGivenSal.Index].Value = dr["EMP_TOTAL_GIVEN_SALARY"].ToString();
+                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colTotalGivenSal.Index].Value  = dr["EMP_TOTAL_GIVEN_SALARY"].ToString();
+                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colOthersAllownce.Index].Value = dr["EMP_OTHERS_ALLOW"].ToString();
                     dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colGivenSalAndallownce.Index].Value = dr["EMP_TOTAL_GIVEN_SALARY_AND_ALLOW"].ToString();
                 }
             }
@@ -236,18 +236,19 @@ namespace Panchrukhi.Report
                         "EMP_REVENUE_TICKET, " +
                         "EMP_TOTAL_CUT, " +
                         "EMP_TOTAL_GIVEN_SALARY, " +
+                        "EMP_OTHERS_ALLOW, " +
                         "EMP_TOTAL_GIVEN_SALARY_AND_ALLOW, " +
                         "YEAR_MONTH " +
                     ") " +
                      " values (" +
                          "(select CASE WHEN max(SL) >= 0 THEN max(SL) +1 ELSE 1 END FROM TBL_PROCESSED_SALARY), "+
-                         "  '" + empID+ "',     " +
-                         "  '" + empName + "',   " +
-                         "  '" + designation + "',   " +
-                         "  " + workingDay + ",   " +
-                         "  " + holidays + ",   " +
-                         "  " + cl + ", " +
-                         "  " + sl + ", " +
+                         "  '" + empID+ "',     "+
+                         "  '" + empName + "',  "+
+                         "  '" + designation + "', "+
+                         "  " + workingDay + ",   "+
+                         "  " + holidays + ",   "+
+                         "  " + cl + ", "+
+                         "  " + sl + ", "+
                          "  " + 0 + ", " +
                          "  " + 0 + ", " +
                          "  " + 0 + ", " +
@@ -255,13 +256,14 @@ namespace Panchrukhi.Report
                          "  " + 0 + ", " +
                          "  " + 0 + ", " +
                          "  " + 0 + ", " +
-                         "  " + sal + ", " +
+                         "  " + sal +"," +
                          "  " + 0 + ", " +
                          "  " + 0 + ", " +
                          "  " + 0 + ", " +
                          "  " + 0 + ", " +
                          "  " + 0 + ", " +
-                         "  " + 10 + ", " +
+                         "  " + 10 + "," +
+                         "  " + 0 + ", " +
                          "  " + 0 + ", " +
                          "  " + 0 + ", " +
                          "  " + 0 + ", " +
@@ -436,27 +438,28 @@ namespace Panchrukhi.Report
             DT.Columns.Add("Emp Name", typeof(string));
             DT.Columns.Add("Category", typeof(string));
             DT.Columns.Add("Designation", typeof(string));
-            DT.Columns.Add("Working Day", typeof(string));
-            DT.Columns.Add("Holidays", typeof(string));
-            DT.Columns.Add("Present", typeof(string));
-            DT.Columns.Add("CL", typeof(string));
-            DT.Columns.Add("SL", typeof(string));
-            DT.Columns.Add("AL", typeof(string));
-            DT.Columns.Add("absent", typeof(string));
-            DT.Columns.Add("Basic", typeof(string));
-            DT.Columns.Add("House Rent", typeof(string));
-            DT.Columns.Add("Transport", typeof(string));
-            DT.Columns.Add("Medical", typeof(string));
-            DT.Columns.Add("Salary", typeof(string));
-            DT.Columns.Add("Absent Cut", typeof(string));
-            DT.Columns.Add("Advance Cut", typeof(string));
-            DT.Columns.Add("Mobile Bill", typeof(string));
-            DT.Columns.Add("Others Cut", typeof(string));
-            DT.Columns.Add("Tax", typeof(string));
-            DT.Columns.Add("Rev Ticket", typeof(string));
-            DT.Columns.Add("Total Cut", typeof(string));
-            DT.Columns.Add("Total Givent Sal", typeof(string));
-            DT.Columns.Add("Total Givent Sal and Allow", typeof(string));
+            DT.Columns.Add("Working Day", typeof(int));
+            DT.Columns.Add("Holidays", typeof(int));
+            DT.Columns.Add("Present", typeof(int));
+            DT.Columns.Add("CL", typeof(int));
+            DT.Columns.Add("SL", typeof(int));
+            DT.Columns.Add("AL", typeof(int));
+            DT.Columns.Add("absent", typeof(int));
+            DT.Columns.Add("Basic", typeof(int));
+            DT.Columns.Add("House Rent", typeof(int));
+            DT.Columns.Add("Transport", typeof(int));
+            DT.Columns.Add("Medical", typeof(int));
+            DT.Columns.Add("Salary", typeof(int));
+            DT.Columns.Add("Absent Cut", typeof(int));
+            DT.Columns.Add("Advance Cut", typeof(int));
+            DT.Columns.Add("Mobile Bill", typeof(int));
+            DT.Columns.Add("Others Cut", typeof(int));
+            DT.Columns.Add("Tax", typeof(int));
+            DT.Columns.Add("Rev Ticket", typeof(int));
+            DT.Columns.Add("Total Cut", typeof(int));
+            DT.Columns.Add("Total Givent Sal", typeof(int));
+            DT.Columns.Add("Others Allowanc", typeof(int));
+            DT.Columns.Add("Total Givent Sal and Allow", typeof(int));
             if (dataGridView.Rows.Count > 0)
             {
                 DataRow dr = DBConn.getCompanyNameAndAddress();
@@ -489,7 +492,8 @@ namespace Panchrukhi.Report
                         dgv.Cells[22].Value,
                         dgv.Cells[23].Value,
                         dgv.Cells[24].Value,
-                        dgv.Cells[25].Value
+                        dgv.Cells[25].Value,
+                        dgv.Cells[26].Value
                     );
                 }
                 DS.Tables.Add(DT);
@@ -500,7 +504,7 @@ namespace Panchrukhi.Report
                 cr.SetDataSource(DS);
                 cr.SetParameterValue(0, dr["VCOMPANY_NAME"]);
                 cr.SetParameterValue(1, dr["VCOMPANY_ADDRESS"]);
-                cr.SetParameterValue(2, DateTime.Today.ToString("MMM") + ", "+ DateTime.Now.Year.ToString());
+                cr.SetParameterValue(2, DateTime.Today.ToString("MMMM") + ", "+ DateTime.Now.Year.ToString());
                 frm.crptViewer.ReportSource = cr;
                 frm.crptViewer.Refresh();
                 frm.Show();
@@ -542,6 +546,7 @@ namespace Panchrukhi.Report
             DT.Columns.Add("Rev Ticket", typeof(string));
             DT.Columns.Add("Total Cut", typeof(int));
             DT.Columns.Add("Total Givent Sal", typeof(int));
+            DT.Columns.Add("Others Allowanc", typeof(int));
             DT.Columns.Add("Total Givent Sal and Allow", typeof(string));
             if (dataGridView.Rows.Count > 0)
             {
@@ -575,16 +580,20 @@ namespace Panchrukhi.Report
                         dgv.Cells[22].Value,
                         dgv.Cells[23].Value,
                         dgv.Cells[24].Value,
-                        dgv.Cells[25].Value
+                        dgv.Cells[25].Value,
+                        dgv.Cells[26].Value
                     );
                 }
                 DS.Tables.Add(DT);
                 DS.WriteXmlSchema("crptToken_Report.xml");
                 frmCrystalReportViewer frm = new frmCrystalReportViewer();
-                crptToken_Report cr = new crptToken_Report();
+                // crptToken_Report cr = new crptToken_Report();
+                Rpt_SalaryPayslip_Executive_Bank_Unicode cr =
+                    new Rpt_SalaryPayslip_Executive_Bank_Unicode();
                 cr.SetDataSource(DS);
                 cr.SetParameterValue(0, dr["VCOMPANY_NAME"]);
                 cr.SetParameterValue(1, dr["VCOMPANY_ADDRESS"]);
+                cr.SetParameterValue(2, DateTime.Today.ToString("MMMM") + ", " + DateTime.Now.Year.ToString());
                 frm.crptViewer.ReportSource = cr;
                 frm.crptViewer.Refresh();
                 frm.Show();
@@ -611,29 +620,30 @@ namespace Panchrukhi.Report
                 string cmdText =
                 "UPDATE " +
                         " TBL_PROCESSED_SALARY " +
-                " set " +
-                        " EMP_WORKING_DAYS = " + txtWorkingDay.Text.Trim() + ",     " +
-                        " EMP_HOLIDAYS    = " + txtHolidays.Text.Trim() + ",   " +
+                " SET " +
+                        " EMP_WORKING_DAYS  = " + txtWorkingDay.Text.Trim() + ",     " +
+                        " EMP_HOLIDAYS      = " + txtHolidays.Text.Trim() + ",   " +
                         " EMP_PRESENT  = IFNULL(" + txtPresent.Text.Trim() + ", 0), " +
-                        " EMP_CASUAL_LEAVE = " + txtCasualLeave.Text.Trim() + ", " +
-                        " EMP_SICK_LEAVE     = " + txtSickLeave.Text.Trim() + ",     " +
-                        " EMP_ANNUAL_LEAVE   = " + txtAnnualLeave.Text.Trim() + ",  " +
+                        " EMP_CASUAL_LEAVE  = " + txtCasualLeave.Text.Trim() + ", " +
+                        " EMP_SICK_LEAVE    = " + txtSickLeave.Text.Trim() + ",     " +
+                        " EMP_ANNUAL_LEAVE  = " + txtAnnualLeave.Text.Trim() + ",  " +
                         " EMP_ABSENT   = " + txtAbsent.Text.Trim() + ",   " +
                         " EMP_BASIC_SAL  = IFNULL(" + txtBasickSal.Text.Trim() + ", 0), " +
-                        " EMP_HOUSE_RENT     = " + txtHouseRent.Text.Trim() + ",   " +
+                        " EMP_HOUSE_RENT    = " + txtHouseRent.Text.Trim() + ",   " +
                         " EMP_TRANSPORT_ALLOW   = IFNULL(" + txtTransportAlwnc.Text.Trim() + ", 0),  " +
                         " EMP_MEDICAL_ALLOW = IFNULL(" + txtMedicalAllow.Text.Trim() + ", 0),  " +
-                        " EMP_TOTAL_SAL  = " + txtTotalSal.Text.Trim() + ",    " +
-                        " EMP_ABSENT_SAL_CUT  = IFNULL(" + txtAbsentSalCut.Text.Trim() + ",   0),  " +
+                        " EMP_TOTAL_SAL     = " + txtTotalSal.Text.Trim() + ",    " +
+                        " EMP_ABSENT_SAL_CUT= IFNULL(" + txtAbsentSalCut.Text.Trim() + ",   0),  " +
                         " EMP_ADV_CUT = IFNULL(" + txtAvdSalCut.Text.Trim() + ", 0),  " +
                         " EMP_MOBILE_BILL   = IFNULL(" + txtMobileBill.Text.Trim() + ", 0),  " +
-                        " EMP_OTHERS_SAL_CUT        = " + txtOthersSalCut.Text.Trim() + ",   " +
+                        " EMP_OTHERS_SAL_CUT= " + txtOthersSalCut.Text.Trim() + ", " +
                         " EMP_TAX        = " + txtTax.Text.Trim() + ",   " +
-                        " EMP_REVENUE_TICKET        = " + txtRevTicket.Text.Trim() + ",   " +
-                        " EMP_TOTAL_CUT        = " + txtTotalCut.Text.Trim() + ",   " +
-                        " EMP_TOTAL_GIVEN_SALARY        = " + txtTotalGivenSal.Text.Trim() + ", "+
-                        " EMP_TOTAL_GIVEN_SALARY_AND_ALLOW = " + txtGivenSalAndAllow.Text.Trim() + " "+
-                " where  " +
+                        " EMP_REVENUE_TICKET= " + txtRevTicket.Text.Trim() + ",  "+
+                        " EMP_TOTAL_CUT     = " + txtTotalCut.Text.Trim() + ",   "+
+                        " EMP_TOTAL_GIVEN_SALARY = " + txtTotalGivenSal.Text.Trim() + ", "+
+                        " EMP_OTHERS_ALLOW  = " + txtOthersAlnc.Text.Trim()+", " +
+                        " EMP_TOTAL_GIVEN_SALARY_AND_ALLOW = "+txtGivenSalAndAllow.Text.Trim()+" "+
+                " WHERE " +
                         " EMP_ID = '"+ txtEmpID.Text +"' ";
 
                 isExecute = DBConn.ExecutionQuery(cmdText);
@@ -680,7 +690,8 @@ namespace Panchrukhi.Report
             txtRevTicket.Text = dataGridView.Rows[e.RowIndex].Cells[22].Value.ToString();
             txtTotalCut.Text = dataGridView.Rows[e.RowIndex].Cells[23].Value.ToString();
             txtTotalGivenSal.Text = dataGridView.Rows[e.RowIndex].Cells[24].Value.ToString();
-            txtGivenSalAndAllow.Text = dataGridView.Rows[e.RowIndex].Cells[25].Value.ToString();
+            txtOthersAlnc.Text = dataGridView.Rows[e.RowIndex].Cells[25].Value.ToString();
+            txtGivenSalAndAllow.Text = dataGridView.Rows[e.RowIndex].Cells[26].Value.ToString();
         }
 
         private int calculateHolidays(string empID, string yearMonth)
@@ -711,8 +722,10 @@ namespace Panchrukhi.Report
             return (holidays + weekend + getclsl);
         }
 
+        private void btnReset_Click(object sender, EventArgs e)
+        {
 
-
+        }
 
         private void ClearData()
         {
@@ -737,6 +750,7 @@ namespace Panchrukhi.Report
             txtRevTicket.Text = 
             txtTotalCut.Text = 
             txtTotalGivenSal.Text =
+            txtOthersAlnc.Text=
             txtGivenSalAndAllow.Text = "";
         }
 

@@ -117,11 +117,6 @@
     <Compile Include="dsTemp.cs">
       <DependentUpon>dsTemp.xsd</DependentUpon>
     </Compile>
-    <Compile Include="dsTemp.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>dsTemp.xsd</DependentUpon>
-    </Compile>
     <Compile Include="Holidays\frmLeaveEntry.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -465,7 +460,6 @@
     <None Include="dsTemp.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>dsTemp.Designer.cs</LastGenOutput>
     </None>
     <None Include="dsTemp.xss">
       <DependentUpon>dsTemp.xsd</DependentUpon>

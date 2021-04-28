@@ -85,6 +85,8 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.btnReset = new System.Windows.Forms.Button();
             this.btnLoadGrid = new System.Windows.Forms.Button();
+            this.txtOthersAlnc = new System.Windows.Forms.TextBox();
+            this.label24 = new System.Windows.Forms.Label();
             this.colSL = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colEmpID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colEmpName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -110,6 +112,7 @@
             this.colRevenueTikit = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colTotalCut = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colTotalGivenSal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colOthersAllownce = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colGivenSalAndallownce = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.txtBasic)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
@@ -202,6 +205,7 @@
             this.colRevenueTikit,
             this.colTotalCut,
             this.colTotalGivenSal,
+            this.colOthersAllownce,
             this.colGivenSalAndallownce});
             this.dataGridView.Location = new System.Drawing.Point(8, 273);
             this.dataGridView.Name = "dataGridView";
@@ -370,7 +374,7 @@
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(866, 45);
+            this.label16.Location = new System.Drawing.Point(866, 23);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(54, 13);
             this.label16.TabIndex = 24;
@@ -379,7 +383,7 @@
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(846, 73);
+            this.label17.Location = new System.Drawing.Point(846, 51);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(75, 13);
             this.label17.TabIndex = 25;
@@ -388,7 +392,7 @@
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(891, 103);
+            this.label18.Location = new System.Drawing.Point(891, 81);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(28, 13);
             this.label18.TabIndex = 26;
@@ -397,7 +401,7 @@
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(870, 162);
+            this.label19.Location = new System.Drawing.Point(870, 140);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(50, 13);
             this.label19.TabIndex = 27;
@@ -406,7 +410,7 @@
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(838, 133);
+            this.label20.Location = new System.Drawing.Point(838, 111);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(84, 13);
             this.label20.TabIndex = 28;
@@ -415,7 +419,7 @@
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(828, 192);
+            this.label21.Location = new System.Drawing.Point(828, 167);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(94, 13);
             this.label21.TabIndex = 29;
@@ -530,42 +534,42 @@
             // 
             // txtMobileBill
             // 
-            this.txtMobileBill.Location = new System.Drawing.Point(923, 41);
+            this.txtMobileBill.Location = new System.Drawing.Point(923, 19);
             this.txtMobileBill.Name = "txtMobileBill";
             this.txtMobileBill.Size = new System.Drawing.Size(128, 20);
             this.txtMobileBill.TabIndex = 45;
             // 
             // txtOthersSalCut
             // 
-            this.txtOthersSalCut.Location = new System.Drawing.Point(923, 70);
+            this.txtOthersSalCut.Location = new System.Drawing.Point(923, 48);
             this.txtOthersSalCut.Name = "txtOthersSalCut";
             this.txtOthersSalCut.Size = new System.Drawing.Size(128, 20);
             this.txtOthersSalCut.TabIndex = 46;
             // 
             // txtTax
             // 
-            this.txtTax.Location = new System.Drawing.Point(923, 100);
+            this.txtTax.Location = new System.Drawing.Point(923, 78);
             this.txtTax.Name = "txtTax";
             this.txtTax.Size = new System.Drawing.Size(130, 20);
             this.txtTax.TabIndex = 47;
             // 
             // txtRevTicket
             // 
-            this.txtRevTicket.Location = new System.Drawing.Point(923, 129);
+            this.txtRevTicket.Location = new System.Drawing.Point(923, 107);
             this.txtRevTicket.Name = "txtRevTicket";
             this.txtRevTicket.Size = new System.Drawing.Size(128, 20);
             this.txtRevTicket.TabIndex = 48;
             // 
             // txtTotalCut
             // 
-            this.txtTotalCut.Location = new System.Drawing.Point(923, 158);
+            this.txtTotalCut.Location = new System.Drawing.Point(923, 136);
             this.txtTotalCut.Name = "txtTotalCut";
             this.txtTotalCut.Size = new System.Drawing.Size(128, 20);
             this.txtTotalCut.TabIndex = 49;
             // 
             // txtTotalGivenSal
             // 
-            this.txtTotalGivenSal.Location = new System.Drawing.Point(923, 188);
+            this.txtTotalGivenSal.Location = new System.Drawing.Point(923, 163);
             this.txtTotalGivenSal.Name = "txtTotalGivenSal";
             this.txtTotalGivenSal.Size = new System.Drawing.Size(128, 20);
             this.txtTotalGivenSal.TabIndex = 50;
@@ -612,6 +616,7 @@
             this.btnReset.TabIndex = 55;
             this.btnReset.Text = "Reset";
             this.btnReset.UseVisualStyleBackColor = true;
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
             // btnLoadGrid
             // 
@@ -622,6 +627,22 @@
             this.btnLoadGrid.Text = "Load Data";
             this.btnLoadGrid.UseVisualStyleBackColor = true;
             this.btnLoadGrid.Click += new System.EventHandler(this.btnLoadGrid_Click);
+            // 
+            // txtOthersAlnc
+            // 
+            this.txtOthersAlnc.Location = new System.Drawing.Point(923, 190);
+            this.txtOthersAlnc.Name = "txtOthersAlnc";
+            this.txtOthersAlnc.Size = new System.Drawing.Size(128, 20);
+            this.txtOthersAlnc.TabIndex = 58;
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(828, 194);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(90, 13);
+            this.label24.TabIndex = 57;
+            this.label24.Text = "Others Allowance";
             // 
             // colSL
             // 
@@ -663,7 +684,7 @@
             this.colWorkingDays.HeaderText = "Working Days";
             this.colWorkingDays.Name = "colWorkingDays";
             this.colWorkingDays.ReadOnly = true;
-            this.colWorkingDays.Width = 30;
+            this.colWorkingDays.Width = 40;
             // 
             // colHolidays
             // 
@@ -677,35 +698,35 @@
             this.colPresent.HeaderText = "Present";
             this.colPresent.Name = "colPresent";
             this.colPresent.ReadOnly = true;
-            this.colPresent.Width = 30;
+            this.colPresent.Width = 40;
             // 
             // colCasualLeave
             // 
-            this.colCasualLeave.HeaderText = "Casual Leave";
+            this.colCasualLeave.HeaderText = "CL";
             this.colCasualLeave.Name = "colCasualLeave";
             this.colCasualLeave.ReadOnly = true;
-            this.colCasualLeave.Width = 40;
+            this.colCasualLeave.Width = 30;
             // 
             // colSickLeave
             // 
-            this.colSickLeave.HeaderText = "Sick Leave";
+            this.colSickLeave.HeaderText = "SL";
             this.colSickLeave.Name = "colSickLeave";
             this.colSickLeave.ReadOnly = true;
-            this.colSickLeave.Width = 40;
+            this.colSickLeave.Width = 30;
             // 
             // colAnualLeave
             // 
-            this.colAnualLeave.HeaderText = "Annual Leave";
+            this.colAnualLeave.HeaderText = "AL";
             this.colAnualLeave.Name = "colAnualLeave";
             this.colAnualLeave.ReadOnly = true;
-            this.colAnualLeave.Width = 40;
+            this.colAnualLeave.Width = 30;
             // 
             // colAbsent
             // 
             this.colAbsent.HeaderText = "Absent";
             this.colAbsent.Name = "colAbsent";
             this.colAbsent.ReadOnly = true;
-            this.colAbsent.Width = 40;
+            this.colAbsent.Width = 30;
             // 
             // colBasicSal
             // 
@@ -798,6 +819,13 @@
             this.colTotalGivenSal.ReadOnly = true;
             this.colTotalGivenSal.Width = 80;
             // 
+            // colOthersAllownce
+            // 
+            this.colOthersAllownce.HeaderText = "Others Alnc";
+            this.colOthersAllownce.Name = "colOthersAllownce";
+            this.colOthersAllownce.ReadOnly = true;
+            this.colOthersAllownce.Width = 45;
+            // 
             // colGivenSalAndallownce
             // 
             this.colGivenSalAndallownce.HeaderText = "Total Given Sal & Allow.";
@@ -810,6 +838,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1402, 635);
+            this.Controls.Add(this.txtOthersAlnc);
+            this.Controls.Add(this.label24);
             this.Controls.Add(this.btnLoadGrid);
             this.Controls.Add(this.btnReset);
             this.Controls.Add(this.btnSave);
@@ -937,6 +967,8 @@
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnReset;
         private System.Windows.Forms.Button btnLoadGrid;
+        private System.Windows.Forms.TextBox txtOthersAlnc;
+        private System.Windows.Forms.Label label24;
         private System.Windows.Forms.DataGridViewTextBoxColumn colSL;
         private System.Windows.Forms.DataGridViewTextBoxColumn colEmpID;
         private System.Windows.Forms.DataGridViewTextBoxColumn colEmpName;
@@ -962,6 +994,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colRevenueTikit;
         private System.Windows.Forms.DataGridViewTextBoxColumn colTotalCut;
         private System.Windows.Forms.DataGridViewTextBoxColumn colTotalGivenSal;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colOthersAllownce;
         private System.Windows.Forms.DataGridViewTextBoxColumn colGivenSalAndallownce;
     }
 }
