@@ -656,7 +656,7 @@
             this.colEmpID.HeaderText = "ID No.";
             this.colEmpID.Name = "colEmpID";
             this.colEmpID.ReadOnly = true;
-            this.colEmpID.Width = 40;
+            this.colEmpID.Width = 50;
             // 
             // colEmpName
             // 

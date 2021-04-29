@@ -209,6 +209,8 @@ namespace Panchrukhi.Report
 
         public void SaveDataOfProcessedSalary(string empID, string empName, string designation, int workingDay, int holidays,  int cl, int sl, string YEAR_MONTH, int sal)
         {
+
+            // int getAdvCut = getCatWiseAdvSalCut(empID, YEAR_MONTH, 1);
             try
             {
                 string cmdText = " insert into TBL_PROCESSED_SALARY(" +
@@ -258,8 +260,8 @@ namespace Panchrukhi.Report
                          "  " + 0 + ", " +
                          "  " + sal +"," +
                          "  " + 0 + ", " +
-                         "  " + 0 + ", " +
-                         "  " + 0 + ", " +
+                         "  " + 0+ ", " +
+                         "  " + 0+ ", " +
                          "  " + 0 + ", " +
                          "  " + 0 + ", " +
                          "  " + 10 + "," +
@@ -349,7 +351,7 @@ namespace Panchrukhi.Report
             try
             {
                 string CommandText =
-                            @"select IFNULL(d.DEDUCTED_SALARY, 0) as mobileBill from TBL_SALARY_DEDUCTION d where d.EMP_ID = '"+empID+"' and substr(YEAR_MONTH,4,4)|| substr(YEAR_MONTH, 1, 2) = '"+yearMonth+"' and d.CAT_ID = "+catID+" ";                
+                            @"select IFNULL(d.DEDUCTED_SALARY, 0) as mobileBill from TBL_SALARY_DEDUCTION d where d.EMP_ID = '"+empID+ "' and YEAR_MONTH = '" + yearMonth+"' and d.CAT_ID = "+catID+" ";                
                 DB = new SQLiteDataAdapter(CommandText, DBConn.sql_conn);
                 DBConn.ExecutionQuery(CommandText);
                 DS.Reset();
@@ -504,7 +506,7 @@ namespace Panchrukhi.Report
                 cr.SetDataSource(DS);
                 cr.SetParameterValue(0, dr["VCOMPANY_NAME"]);
                 cr.SetParameterValue(1, dr["VCOMPANY_ADDRESS"]);
-                cr.SetParameterValue(2, DateTime.Today.ToString("MMMM") + ", "+ DateTime.Now.Year.ToString());
+                cr.SetParameterValue(2, dateTimePicker1.Value.ToString("MMMM") + ", "+ dateTimePicker1.Value.ToString("yyyy"));
                 frm.crptViewer.ReportSource = cr;
                 frm.crptViewer.Refresh();
                 frm.Show();
@@ -593,7 +595,7 @@ namespace Panchrukhi.Report
                 cr.SetDataSource(DS);
                 cr.SetParameterValue(0, dr["VCOMPANY_NAME"]);
                 cr.SetParameterValue(1, dr["VCOMPANY_ADDRESS"]);
-                cr.SetParameterValue(2, DateTime.Today.ToString("MMMM") + ", " + DateTime.Now.Year.ToString());
+                cr.SetParameterValue(2, dateTimePicker1.Value.ToString("MMMM") + ", " + dateTimePicker1.Value.ToString("yyyy"));
                 frm.crptViewer.ReportSource = cr;
                 frm.crptViewer.Refresh();
                 frm.Show();
@@ -614,6 +616,7 @@ namespace Panchrukhi.Report
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(txtEmpID.Text)) { MessageBox.Show("Please select records"); return; }
             bool isExecute = false;
             try
             {
@@ -644,7 +647,8 @@ namespace Panchrukhi.Report
                         " EMP_OTHERS_ALLOW  = " + txtOthersAlnc.Text.Trim()+", " +
                         " EMP_TOTAL_GIVEN_SALARY_AND_ALLOW = "+txtGivenSalAndAllow.Text.Trim()+" "+
                 " WHERE " +
-                        " EMP_ID = '"+ txtEmpID.Text +"' ";
+                        " EMP_ID = '"+ txtEmpID.Text + "' AND "+
+                        " YEAR_MONTH = '"+dateTimePicker1.Value.ToString("yyyy/MM")+"' ";
 
                 isExecute = DBConn.ExecutionQuery(cmdText);
             }
@@ -724,7 +728,7 @@ namespace Panchrukhi.Report
 
         private void btnReset_Click(object sender, EventArgs e)
         {
-
+            ClearData();
         }
 
         private void ClearData()

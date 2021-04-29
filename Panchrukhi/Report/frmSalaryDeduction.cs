@@ -48,7 +48,7 @@ namespace Panchrukhi.Report
                             "(select CASE WHEN max(SL) >= 0 THEN max(SL) +1 ELSE 1 END FROM TBL_SALARY_DEDUCTION), " +
                             " " + (comboBox1.SelectedItem as dynamic).Value + ", " +
                             " '" + txtEmpID.Text.Trim() + "', "+
-                            " '" + dateTimePicker1.Text.Trim() + "', "+
+                            " '" + dateTimePicker1.Value.ToString("yyyy/MM") + "', "+
                             "  " + Convert.ToInt16(txtDeductAmount.Text.ToString().Trim()) + " ) ";
 
                 if (txtEmpID.Text.Trim() != ""){
@@ -66,7 +66,7 @@ namespace Panchrukhi.Report
                 string cmdText = " UPDATE TBL_SALARY_DEDUCTION " +
                                    " set CAT_ID = " + (comboBox1.SelectedItem as dynamic).Value + ", " +
                                    "     EMP_ID = '" + txtEmpID.Text.Trim() + "', " +
-                                   "     YEAR_MONTH = '" + dateTimePicker1.Text.Trim() + "', " +
+                                   "     YEAR_MONTH = '" + dateTimePicker1.Value.ToString("yyyy/MM") + "', " +
                                    "     DEDUCTED_SALARY =  " + Convert.ToInt16(txtDeductAmount.Text.ToString().Trim()) + "  " +
                                  " where SL =    " + getSecID;
 
