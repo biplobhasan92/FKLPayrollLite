@@ -449,7 +449,7 @@ namespace Panchrukhi.DAO
 
 
 
-        public bool checkIfTableIsReturnNull(string table_name) {
+        public bool checkIfTableIsReturnNull(string table_name){
 
             bool returnVal = false;
             try

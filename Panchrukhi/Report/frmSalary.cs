@@ -33,6 +33,15 @@ namespace Panchrukhi.Report
         int presents, absents, holidays;
 
 
+        /*  ====== Remarks ======
+            Salary Process button. 
+            Basic work: to insert data of employee with dummy data inside salary processed table with date month.
+            1. checked salary processed table is empty or not using date month.
+                1.1. if have data display confirmation message that data will be deleted. user will click YesNo.
+                1.2. if user click Yes: previous data will be deleted and insert raw data.
+                1.3. if user click No : Process will Tarminated. 
+            2. if salary processed table is empty then only insert will be happend. 
+        */
         private void button1_Click(object sender, EventArgs e)
         {
 
@@ -40,12 +49,33 @@ namespace Panchrukhi.Report
             int year  = Convert.ToInt32(dateTimePicker1.Value.Year.ToString());
             int days  = DateTime.DaysInMonth(year, month);
             int basic = Convert.ToInt32(txtBasic.Value.ToString());
-            string mmYY = dateTimePicker1.Value.ToString("yyyyMM");
-            deleteBefourInsert(dateTimePicker1.Value.ToString("yyyy/MM"));
-            InsertSalPorcessData(days, mmYY, basic);
-            MessageBox.Show("Process completed. Click Load Data.");
+            string mmYY = dateTimePicker1.Value.ToString("yyyy/MM");
+            // (1)
+            if (DBConn.checkDataIfItUsedOtherTableStr("TBL_PROCESSED_SALARY", "YEAR_MONTH", dateTimePicker1.Value.ToString("yyyy/MM")))
+            {
+                // (1.1)
+                if (MessageBox.Show("Do you want to Process ? ", " Your All Data of selected month will be deleted ", MessageBoxButtons.YesNo)==DialogResult.Yes)
+                {
+                    // (1.2)
+                    deleteBefourInsert(mmYY);
+                    InsertSalPorcessData(days, mmYY, basic);
+                    MessageBox.Show("Process completed. Click Load Data.");
+                }
+                else
+                {
+                    // (1.3)
+                    return;
+                }
+            }
+            else
+            {
+                // (2)
+                InsertSalPorcessData(days, mmYY, basic);
+                MessageBox.Show("Process completed. Click Load Data.");
+            }
         }
 
+        
 
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
@@ -68,7 +98,7 @@ namespace Panchrukhi.Report
         {
             try
             {
-                string cmdText = " delete from TBL_PROCESSED_SALARY where YEAR_MONTH = '"+yearMontrh+"' ";
+                string cmdText = " delete from TBL_PROCESSED_SALARY where YEAR_MONTH = '" + yearMontrh + "' ";
                 DBConn.ExecutionQuery(cmdText);
             }
             catch (Exception exc)
@@ -78,6 +108,9 @@ namespace Panchrukhi.Report
         }
 
 
+        /*
+             
+        */
         private void InsertSalPorcessData(int days, string yearMonth, int basic)
         {
         
@@ -130,25 +163,25 @@ namespace Panchrukhi.Report
                     // double totalPayable = calculateSalary(salaryA, abs) - advDeduction;
                     // double salaryCutAmount = salaryA - totalPayable;
                     /*
-                    dataGridView.Rows.Add();
-                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colSL.Index].Value    = dataGridView.Rows.Count;
-                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colEmpID.Index].Value = dr["PERSONID"].ToString();
-                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colEmpName.Index].Value = dr["VNAME"].ToString();
-                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colCat.Index].Value   = dr["CATEGORY"].ToString();
-                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colDesig.Index].Value = dr["Designation"].ToString();
-                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colSalary.Index].Value= salaryA;
-                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colTD.Index].Value    = workedDays;
-                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colCasualLeave.Index].Value = leaveCL;
-                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colSickLeave.Index].Value = leaveSL;
-                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colAbsent.Index].Value= abs;
-                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colAdvCut.Index].Value= getAdvCut;
-                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colMobileBill.Index].Value = getMobBill;
-                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colWeekend.Index].Value = weekend;
-                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colOthers.Index].Value= getOthers;
-                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colCutSalary.Index].Value = System.Math.Round(salaryCutAmount); 
-                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colTotalPayable.Index].Value = System.Math.Round(totalPayable);
+                        dataGridView.Rows.Add();
+                        dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colSL.Index].Value    = dataGridView.Rows.Count;
+                        dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colEmpID.Index].Value = dr["PERSONID"].ToString();
+                        dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colEmpName.Index].Value = dr["VNAME"].ToString();
+                        dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colCat.Index].Value   = dr["CATEGORY"].ToString();
+                        dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colDesig.Index].Value = dr["Designation"].ToString();
+                        dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colSalary.Index].Value= salaryA;
+                        dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colTD.Index].Value    = workedDays;
+                        dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colCasualLeave.Index].Value = leaveCL;
+                        dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colSickLeave.Index].Value = leaveSL;
+                        dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colAbsent.Index].Value= abs;
+                        dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colAdvCut.Index].Value= getAdvCut;
+                        dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colMobileBill.Index].Value = getMobBill;
+                        dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colWeekend.Index].Value = weekend;
+                        dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colOthers.Index].Value= getOthers;
+                        dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colCutSalary.Index].Value = System.Math.Round(salaryCutAmount); 
+                        dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colTotalPayable.Index].Value = System.Math.Round(totalPayable);
                     */
-                    SaveDataOfProcessedSalary(dr["PERSONID"].ToString(), dr["VNAME"].ToString(), dr["Designation"].ToString(), workedDays, weekend, leaveCL, leaveSL, dateTimePicker1.Value.ToString("yyyy/MM"), Convert.ToInt32(dr["NSALARY"].ToString()));
+                   SaveDataOfProcessedSalary(dr["PERSONID"].ToString(), dr["VNAME"].ToString(), dr["Designation"].ToString(), workedDays, weekend, leaveCL, leaveSL, dateTimePicker1.Value.ToString("yyyy/MM"), Convert.ToInt32(dr["NSALARY"].ToString()));
                 }
             }
         }
@@ -589,7 +622,6 @@ namespace Panchrukhi.Report
                 DS.Tables.Add(DT);
                 DS.WriteXmlSchema("crptToken_Report.xml");
                 frmCrystalReportViewer frm = new frmCrystalReportViewer();
-                // crptToken_Report cr = new crptToken_Report();
                 Rpt_SalaryPayslip_Executive_Bank_Unicode cr =
                     new Rpt_SalaryPayslip_Executive_Bank_Unicode();
                 cr.SetDataSource(DS);
@@ -608,11 +640,14 @@ namespace Panchrukhi.Report
 
 
 
+
         private void dataGridView_DefaultValuesNeeded(object sender, DataGridViewRowEventArgs e)
         {
             // e.Row.Cells[10].Value = 0;
             e.Row.Cells[colAdvCut.Index].Value = 0;
         }
+
+
 
         private void btnSave_Click(object sender, EventArgs e)
         {
