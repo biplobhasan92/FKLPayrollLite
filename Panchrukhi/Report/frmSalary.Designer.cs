@@ -35,6 +35,33 @@
             this.label3 = new System.Windows.Forms.Label();
             this.btnSalProcess = new System.Windows.Forms.Button();
             this.dataGridView = new System.Windows.Forms.DataGridView();
+            this.colSL = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colEmpID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colEmpName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colCat = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDesig = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colWorkingDays = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colHolidays = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colPresent = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colCasualLeave = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colSickLeave = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colAnualLeave = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colAbsent = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colBasicSal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colHouseRent = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colTransport = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colMedical = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colSalary = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colAbsentCut = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colAdvCut = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colMobileBill = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colOthers = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colTax = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colRevenueTikit = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colTotalCut = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colTotalGivenSal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colOthersAllownce = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colGivenSalAndallownce = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.btn_print = new System.Windows.Forms.Button();
             this.btn_payslip = new System.Windows.Forms.Button();
@@ -87,33 +114,6 @@
             this.btnLoadGrid = new System.Windows.Forms.Button();
             this.txtOthersAlnc = new System.Windows.Forms.TextBox();
             this.label24 = new System.Windows.Forms.Label();
-            this.colSL = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colEmpID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colEmpName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colCat = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colDesig = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colWorkingDays = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colHolidays = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colPresent = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colCasualLeave = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colSickLeave = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colAnualLeave = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colAbsent = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colBasicSal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colHouseRent = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colTransport = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colMedical = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colSalary = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colAbsentCut = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colAdvCut = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colMobileBill = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colOthers = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colTax = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colRevenueTikit = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colTotalCut = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colTotalGivenSal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colOthersAllownce = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colGivenSalAndallownce = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.txtBasic)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
@@ -213,6 +213,195 @@
             this.dataGridView.Size = new System.Drawing.Size(1382, 356);
             this.dataGridView.TabIndex = 6;
             this.dataGridView.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView_RowHeaderMouseClick);
+            // 
+            // colSL
+            // 
+            this.colSL.HeaderText = "SL";
+            this.colSL.Name = "colSL";
+            this.colSL.ReadOnly = true;
+            this.colSL.Width = 25;
+            // 
+            // colEmpID
+            // 
+            this.colEmpID.HeaderText = "ID No.";
+            this.colEmpID.Name = "colEmpID";
+            this.colEmpID.ReadOnly = true;
+            this.colEmpID.Width = 50;
+            // 
+            // colEmpName
+            // 
+            this.colEmpName.HeaderText = "Name";
+            this.colEmpName.Name = "colEmpName";
+            this.colEmpName.ReadOnly = true;
+            // 
+            // colCat
+            // 
+            this.colCat.HeaderText = "Category";
+            this.colCat.Name = "colCat";
+            this.colCat.ReadOnly = true;
+            this.colCat.Visible = false;
+            this.colCat.Width = 60;
+            // 
+            // colDesig
+            // 
+            this.colDesig.HeaderText = "Designation";
+            this.colDesig.Name = "colDesig";
+            this.colDesig.ReadOnly = true;
+            this.colDesig.Width = 90;
+            // 
+            // colWorkingDays
+            // 
+            this.colWorkingDays.HeaderText = "Working Days";
+            this.colWorkingDays.Name = "colWorkingDays";
+            this.colWorkingDays.ReadOnly = true;
+            this.colWorkingDays.Width = 40;
+            // 
+            // colHolidays
+            // 
+            this.colHolidays.HeaderText = "Holidays";
+            this.colHolidays.Name = "colHolidays";
+            this.colHolidays.ReadOnly = true;
+            this.colHolidays.Width = 30;
+            // 
+            // colPresent
+            // 
+            this.colPresent.HeaderText = "Present";
+            this.colPresent.Name = "colPresent";
+            this.colPresent.ReadOnly = true;
+            this.colPresent.Width = 40;
+            // 
+            // colCasualLeave
+            // 
+            this.colCasualLeave.HeaderText = "CL";
+            this.colCasualLeave.Name = "colCasualLeave";
+            this.colCasualLeave.ReadOnly = true;
+            this.colCasualLeave.Width = 30;
+            // 
+            // colSickLeave
+            // 
+            this.colSickLeave.HeaderText = "SL";
+            this.colSickLeave.Name = "colSickLeave";
+            this.colSickLeave.ReadOnly = true;
+            this.colSickLeave.Width = 30;
+            // 
+            // colAnualLeave
+            // 
+            this.colAnualLeave.HeaderText = "AL";
+            this.colAnualLeave.Name = "colAnualLeave";
+            this.colAnualLeave.ReadOnly = true;
+            this.colAnualLeave.Width = 30;
+            // 
+            // colAbsent
+            // 
+            this.colAbsent.HeaderText = "Absent";
+            this.colAbsent.Name = "colAbsent";
+            this.colAbsent.ReadOnly = true;
+            this.colAbsent.Width = 30;
+            // 
+            // colBasicSal
+            // 
+            this.colBasicSal.HeaderText = "Basic";
+            this.colBasicSal.Name = "colBasicSal";
+            this.colBasicSal.ReadOnly = true;
+            this.colBasicSal.Width = 60;
+            // 
+            // colHouseRent
+            // 
+            this.colHouseRent.HeaderText = "House Rent";
+            this.colHouseRent.Name = "colHouseRent";
+            this.colHouseRent.ReadOnly = true;
+            this.colHouseRent.Width = 60;
+            // 
+            // colTransport
+            // 
+            this.colTransport.HeaderText = "Transport";
+            this.colTransport.Name = "colTransport";
+            this.colTransport.ReadOnly = true;
+            this.colTransport.Width = 50;
+            // 
+            // colMedical
+            // 
+            this.colMedical.HeaderText = "Medical";
+            this.colMedical.Name = "colMedical";
+            this.colMedical.ReadOnly = true;
+            this.colMedical.Width = 50;
+            // 
+            // colSalary
+            // 
+            this.colSalary.HeaderText = "Total Salary";
+            this.colSalary.Name = "colSalary";
+            this.colSalary.ReadOnly = true;
+            this.colSalary.Width = 60;
+            // 
+            // colAbsentCut
+            // 
+            this.colAbsentCut.HeaderText = "Absent Cut";
+            this.colAbsentCut.Name = "colAbsentCut";
+            this.colAbsentCut.ReadOnly = true;
+            this.colAbsentCut.Width = 60;
+            // 
+            // colAdvCut
+            // 
+            this.colAdvCut.HeaderText = "Adv.Cut";
+            this.colAdvCut.Name = "colAdvCut";
+            this.colAdvCut.ReadOnly = true;
+            this.colAdvCut.Width = 60;
+            // 
+            // colMobileBill
+            // 
+            this.colMobileBill.HeaderText = "Mobile Bill";
+            this.colMobileBill.Name = "colMobileBill";
+            this.colMobileBill.ReadOnly = true;
+            this.colMobileBill.Width = 50;
+            // 
+            // colOthers
+            // 
+            this.colOthers.HeaderText = "Others Cut";
+            this.colOthers.Name = "colOthers";
+            this.colOthers.ReadOnly = true;
+            this.colOthers.Width = 50;
+            // 
+            // colTax
+            // 
+            this.colTax.HeaderText = "Tax";
+            this.colTax.Name = "colTax";
+            this.colTax.ReadOnly = true;
+            this.colTax.Width = 30;
+            // 
+            // colRevenueTikit
+            // 
+            this.colRevenueTikit.HeaderText = "Revenue Ticket";
+            this.colRevenueTikit.Name = "colRevenueTikit";
+            this.colRevenueTikit.ReadOnly = true;
+            this.colRevenueTikit.Width = 30;
+            // 
+            // colTotalCut
+            // 
+            this.colTotalCut.HeaderText = "Total Cut";
+            this.colTotalCut.Name = "colTotalCut";
+            this.colTotalCut.ReadOnly = true;
+            this.colTotalCut.Width = 60;
+            // 
+            // colTotalGivenSal
+            // 
+            this.colTotalGivenSal.HeaderText = "Total Given Salary";
+            this.colTotalGivenSal.Name = "colTotalGivenSal";
+            this.colTotalGivenSal.ReadOnly = true;
+            this.colTotalGivenSal.Width = 80;
+            // 
+            // colOthersAllownce
+            // 
+            this.colOthersAllownce.HeaderText = "Others Alnc";
+            this.colOthersAllownce.Name = "colOthersAllownce";
+            this.colOthersAllownce.ReadOnly = true;
+            this.colOthersAllownce.Width = 45;
+            // 
+            // colGivenSalAndallownce
+            // 
+            this.colGivenSalAndallownce.HeaderText = "Total Given Sal & Allow.";
+            this.colGivenSalAndallownce.Name = "colGivenSalAndallownce";
+            this.colGivenSalAndallownce.ReadOnly = true;
+            this.colGivenSalAndallownce.Width = 80;
             // 
             // checkBox1
             // 
@@ -487,6 +676,7 @@
             // 
             this.txtBasickSal.Location = new System.Drawing.Point(643, 39);
             this.txtBasickSal.Name = "txtBasickSal";
+            this.txtBasickSal.ReadOnly = true;
             this.txtBasickSal.Size = new System.Drawing.Size(117, 20);
             this.txtBasickSal.TabIndex = 38;
             // 
@@ -494,6 +684,7 @@
             // 
             this.txtHouseRent.Location = new System.Drawing.Point(643, 69);
             this.txtHouseRent.Name = "txtHouseRent";
+            this.txtHouseRent.ReadOnly = true;
             this.txtHouseRent.Size = new System.Drawing.Size(117, 20);
             this.txtHouseRent.TabIndex = 39;
             // 
@@ -501,6 +692,7 @@
             // 
             this.txtTransportAlwnc.Location = new System.Drawing.Point(644, 100);
             this.txtTransportAlwnc.Name = "txtTransportAlwnc";
+            this.txtTransportAlwnc.ReadOnly = true;
             this.txtTransportAlwnc.Size = new System.Drawing.Size(116, 20);
             this.txtTransportAlwnc.TabIndex = 40;
             // 
@@ -508,6 +700,7 @@
             // 
             this.txtMedicalAllow.Location = new System.Drawing.Point(643, 130);
             this.txtMedicalAllow.Name = "txtMedicalAllow";
+            this.txtMedicalAllow.ReadOnly = true;
             this.txtMedicalAllow.Size = new System.Drawing.Size(117, 20);
             this.txtMedicalAllow.TabIndex = 41;
             // 
@@ -515,6 +708,7 @@
             // 
             this.txtTotalSal.Location = new System.Drawing.Point(644, 161);
             this.txtTotalSal.Name = "txtTotalSal";
+            this.txtTotalSal.ReadOnly = true;
             this.txtTotalSal.Size = new System.Drawing.Size(116, 20);
             this.txtTotalSal.TabIndex = 42;
             // 
@@ -564,6 +758,7 @@
             // 
             this.txtTotalCut.Location = new System.Drawing.Point(923, 136);
             this.txtTotalCut.Name = "txtTotalCut";
+            this.txtTotalCut.ReadOnly = true;
             this.txtTotalCut.Size = new System.Drawing.Size(128, 20);
             this.txtTotalCut.TabIndex = 49;
             // 
@@ -571,13 +766,15 @@
             // 
             this.txtTotalGivenSal.Location = new System.Drawing.Point(923, 163);
             this.txtTotalGivenSal.Name = "txtTotalGivenSal";
+            this.txtTotalGivenSal.ReadOnly = true;
             this.txtTotalGivenSal.Size = new System.Drawing.Size(128, 20);
             this.txtTotalGivenSal.TabIndex = 50;
             // 
             // txtGivenSalAndAllow
             // 
-            this.txtGivenSalAndAllow.Location = new System.Drawing.Point(925, 216);
+            this.txtGivenSalAndAllow.Location = new System.Drawing.Point(924, 216);
             this.txtGivenSalAndAllow.Name = "txtGivenSalAndAllow";
+            this.txtGivenSalAndAllow.ReadOnly = true;
             this.txtGivenSalAndAllow.Size = new System.Drawing.Size(128, 20);
             this.txtGivenSalAndAllow.TabIndex = 51;
             // 
@@ -643,195 +840,6 @@
             this.label24.Size = new System.Drawing.Size(90, 13);
             this.label24.TabIndex = 57;
             this.label24.Text = "Others Allowance";
-            // 
-            // colSL
-            // 
-            this.colSL.HeaderText = "SL";
-            this.colSL.Name = "colSL";
-            this.colSL.ReadOnly = true;
-            this.colSL.Width = 25;
-            // 
-            // colEmpID
-            // 
-            this.colEmpID.HeaderText = "ID No.";
-            this.colEmpID.Name = "colEmpID";
-            this.colEmpID.ReadOnly = true;
-            this.colEmpID.Width = 50;
-            // 
-            // colEmpName
-            // 
-            this.colEmpName.HeaderText = "Name";
-            this.colEmpName.Name = "colEmpName";
-            this.colEmpName.ReadOnly = true;
-            // 
-            // colCat
-            // 
-            this.colCat.HeaderText = "Category";
-            this.colCat.Name = "colCat";
-            this.colCat.ReadOnly = true;
-            this.colCat.Visible = false;
-            this.colCat.Width = 60;
-            // 
-            // colDesig
-            // 
-            this.colDesig.HeaderText = "Designation";
-            this.colDesig.Name = "colDesig";
-            this.colDesig.ReadOnly = true;
-            this.colDesig.Width = 90;
-            // 
-            // colWorkingDays
-            // 
-            this.colWorkingDays.HeaderText = "Working Days";
-            this.colWorkingDays.Name = "colWorkingDays";
-            this.colWorkingDays.ReadOnly = true;
-            this.colWorkingDays.Width = 40;
-            // 
-            // colHolidays
-            // 
-            this.colHolidays.HeaderText = "Holidays";
-            this.colHolidays.Name = "colHolidays";
-            this.colHolidays.ReadOnly = true;
-            this.colHolidays.Width = 30;
-            // 
-            // colPresent
-            // 
-            this.colPresent.HeaderText = "Present";
-            this.colPresent.Name = "colPresent";
-            this.colPresent.ReadOnly = true;
-            this.colPresent.Width = 40;
-            // 
-            // colCasualLeave
-            // 
-            this.colCasualLeave.HeaderText = "CL";
-            this.colCasualLeave.Name = "colCasualLeave";
-            this.colCasualLeave.ReadOnly = true;
-            this.colCasualLeave.Width = 30;
-            // 
-            // colSickLeave
-            // 
-            this.colSickLeave.HeaderText = "SL";
-            this.colSickLeave.Name = "colSickLeave";
-            this.colSickLeave.ReadOnly = true;
-            this.colSickLeave.Width = 30;
-            // 
-            // colAnualLeave
-            // 
-            this.colAnualLeave.HeaderText = "AL";
-            this.colAnualLeave.Name = "colAnualLeave";
-            this.colAnualLeave.ReadOnly = true;
-            this.colAnualLeave.Width = 30;
-            // 
-            // colAbsent
-            // 
-            this.colAbsent.HeaderText = "Absent";
-            this.colAbsent.Name = "colAbsent";
-            this.colAbsent.ReadOnly = true;
-            this.colAbsent.Width = 30;
-            // 
-            // colBasicSal
-            // 
-            this.colBasicSal.HeaderText = "Basic";
-            this.colBasicSal.Name = "colBasicSal";
-            this.colBasicSal.ReadOnly = true;
-            this.colBasicSal.Width = 60;
-            // 
-            // colHouseRent
-            // 
-            this.colHouseRent.HeaderText = "House Rent";
-            this.colHouseRent.Name = "colHouseRent";
-            this.colHouseRent.ReadOnly = true;
-            this.colHouseRent.Width = 60;
-            // 
-            // colTransport
-            // 
-            this.colTransport.HeaderText = "Transport";
-            this.colTransport.Name = "colTransport";
-            this.colTransport.ReadOnly = true;
-            this.colTransport.Width = 50;
-            // 
-            // colMedical
-            // 
-            this.colMedical.HeaderText = "Medical";
-            this.colMedical.Name = "colMedical";
-            this.colMedical.ReadOnly = true;
-            this.colMedical.Width = 50;
-            // 
-            // colSalary
-            // 
-            this.colSalary.HeaderText = "Total Salary";
-            this.colSalary.Name = "colSalary";
-            this.colSalary.ReadOnly = true;
-            this.colSalary.Width = 60;
-            // 
-            // colAbsentCut
-            // 
-            this.colAbsentCut.HeaderText = "Absent Cut";
-            this.colAbsentCut.Name = "colAbsentCut";
-            this.colAbsentCut.ReadOnly = true;
-            this.colAbsentCut.Width = 60;
-            // 
-            // colAdvCut
-            // 
-            this.colAdvCut.HeaderText = "Adv.Cut";
-            this.colAdvCut.Name = "colAdvCut";
-            this.colAdvCut.ReadOnly = true;
-            this.colAdvCut.Width = 60;
-            // 
-            // colMobileBill
-            // 
-            this.colMobileBill.HeaderText = "Mobile Bill";
-            this.colMobileBill.Name = "colMobileBill";
-            this.colMobileBill.ReadOnly = true;
-            this.colMobileBill.Width = 50;
-            // 
-            // colOthers
-            // 
-            this.colOthers.HeaderText = "Others Cut";
-            this.colOthers.Name = "colOthers";
-            this.colOthers.ReadOnly = true;
-            this.colOthers.Width = 50;
-            // 
-            // colTax
-            // 
-            this.colTax.HeaderText = "Tax";
-            this.colTax.Name = "colTax";
-            this.colTax.ReadOnly = true;
-            this.colTax.Width = 30;
-            // 
-            // colRevenueTikit
-            // 
-            this.colRevenueTikit.HeaderText = "Revenue Ticket";
-            this.colRevenueTikit.Name = "colRevenueTikit";
-            this.colRevenueTikit.ReadOnly = true;
-            this.colRevenueTikit.Width = 30;
-            // 
-            // colTotalCut
-            // 
-            this.colTotalCut.HeaderText = "Total Cut";
-            this.colTotalCut.Name = "colTotalCut";
-            this.colTotalCut.ReadOnly = true;
-            this.colTotalCut.Width = 60;
-            // 
-            // colTotalGivenSal
-            // 
-            this.colTotalGivenSal.HeaderText = "Total Given Salary";
-            this.colTotalGivenSal.Name = "colTotalGivenSal";
-            this.colTotalGivenSal.ReadOnly = true;
-            this.colTotalGivenSal.Width = 80;
-            // 
-            // colOthersAllownce
-            // 
-            this.colOthersAllownce.HeaderText = "Others Alnc";
-            this.colOthersAllownce.Name = "colOthersAllownce";
-            this.colOthersAllownce.ReadOnly = true;
-            this.colOthersAllownce.Width = 45;
-            // 
-            // colGivenSalAndallownce
-            // 
-            this.colGivenSalAndallownce.HeaderText = "Total Given Sal & Allow.";
-            this.colGivenSalAndallownce.Name = "colGivenSalAndallownce";
-            this.colGivenSalAndallownce.ReadOnly = true;
-            this.colGivenSalAndallownce.Width = 80;
             // 
             // frmSalary
             // 

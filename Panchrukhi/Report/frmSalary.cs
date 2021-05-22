@@ -134,10 +134,14 @@ namespace Panchrukhi.Report
                                          (select VDESIGNATIONNAME from TBLDESIGNATION d where d.NDESIGID = P.NDESIGID ) as Designation, 
                                          (SELECT VCLASSNAME FROM TBLCLASS TC WHERE TC.NCLASSID = P.NCLASSID) as CLASS,
                                          (SELECT VSECTION   FROM TBLSECTION TS WHERE TS.NSECID = P.NSECID) as SECTION,
-                                         (SELECT VSLOTNAME ||  '(' || VINTIME || '-' ||  VOUTTIME || ')'  FROM TBLATTENSLOT where (TBLATTENSLOT.NSLOTID = P.NSLOTID)) as                  SHIFT,
-                                         P.NSALARY       
+                                         (SELECT VSLOTNAME ||  '(' || VINTIME || '-' ||  VOUTTIME || ')'  FROM TBLATTENSLOT where (TBLATTENSLOT.NSLOTID = P.NSLOTID)) as SHIFT,
+                                         P.NSALARY,
+                                         P.NBASIC,
+                                         P.NHRENT,
+                                         P.NMEDICAL,
+                                         P.NTRANSPORT
                                     FROM 
-                                         TBLPERSON P where p.NCATID != '3';";
+                                         TBLPERSON P ;";
             DBConn.ExecutionQuery(CommandText);
             DB = new SQLiteDataAdapter(CommandText, DBConn.sql_conn);
             DBConn.ExecutionQuery(CommandText);
@@ -153,7 +157,11 @@ namespace Panchrukhi.Report
                     int leaveCL = getCountOfCLInMnthUsingID(dateTimePicker1.Value.ToString("yyyy/MM"), dr["PERSONID"].ToString());
                     int leaveSL = getCountOfSLInMnthUsingID(dateTimePicker1.Value.ToString("yyyy/MM"), dr["PERSONID"].ToString());
                     int workedDays = days - weekend;
-                    double salaryA = Convert.ToDouble(dr["NSALARY"].ToString());
+                    int salaryA   = Convert.ToInt32(dr["NSALARY"].ToString());
+                    int basicSal  = Convert.ToInt32(dr["NBASIC"].ToString());
+                    int hRnt = Convert.ToInt32(dr["NHRENT"].ToString());
+                    int medical   = Convert.ToInt32(dr["NMEDICAL"].ToString());
+                    int transport = Convert.ToInt32(dr["NTRANSPORT"].ToString());
 
                     // category wise advance salary cutting function                    
                     //int getAdvCut  = getCatWiseAdvSalCut(dr["PERSONID"].ToString(), yearMonth, 1); // cat 1 for avd salary cut
@@ -181,12 +189,84 @@ namespace Panchrukhi.Report
                         dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colCutSalary.Index].Value = System.Math.Round(salaryCutAmount); 
                         dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colTotalPayable.Index].Value = System.Math.Round(totalPayable);
                     */
-                   SaveDataOfProcessedSalary(dr["PERSONID"].ToString(), dr["VNAME"].ToString(), dr["Designation"].ToString(), workedDays, weekend, leaveCL, leaveSL, dateTimePicker1.Value.ToString("yyyy/MM"), Convert.ToInt32(dr["NSALARY"].ToString()));
+                    SaveDataOfProcessedSalary( dr["PERSONID"].ToString(), workedDays, weekend, leaveCL, leaveSL, dateTimePicker1.Value.ToString("yyyy/MM"), salaryA, basicSal, hRnt, transport, medical);
                 }
             }
         }
 
 
+
+        public void SaveDataOfProcessedSalary(string empID, int workingDay, int holidays, int cl, int sl, string YEAR_MONTH, int sal, int basic, int hrnt, int trnsprt, int mdcl)
+        {
+
+            // int getAdvCut = getCatWiseAdvSalCut(empID, YEAR_MONTH, 1);
+            try
+            {
+                string cmdText = " insert into TBL_PROCESSED_SALARY(" +
+                        "SL," +
+                        "EMP_ID," +
+                        "EMP_NAME," +
+                        "EMP_DESIG,"+
+                        "EMP_WORKING_DAYS,"+
+                        "EMP_HOLIDAYS," +
+                        "EMP_CASUAL_LEAVE," +
+                        "EMP_SICK_LEAVE, " +
+                        "EMP_PRESENT, " +
+                        "EMP_ANNUAL_LEAVE, " +
+                        "EMP_ABSENT, " +
+                        "EMP_BASIC_SAL, " +
+                        "EMP_HOUSE_RENT, " +
+                        "EMP_TRANSPORT_ALLOW, " +
+                        "EMP_MEDICAL_ALLOW, " +
+                        "EMP_TOTAL_SAL, " +
+                        "EMP_ABSENT_SAL_CUT, " +
+                        "EMP_ADV_CUT, " +
+                        "EMP_MOBILE_BILL, " +
+                        "EMP_OTHERS_SAL_CUT, " +
+                        "EMP_TAX, " +
+                        "EMP_REVENUE_TICKET, " +
+                        "EMP_TOTAL_CUT, " +
+                        "EMP_TOTAL_GIVEN_SALARY, " +
+                        "EMP_OTHERS_ALLOW, " +
+                        "EMP_TOTAL_GIVEN_SALARY_AND_ALLOW, " +
+                        "YEAR_MONTH " +
+                    " ) " +
+                     " values (" +
+                         "(select CASE WHEN max(SL) >= 0 THEN max(SL) +1 ELSE 1 END FROM TBL_PROCESSED_SALARY), " +
+                         "  '" + empID + "',     " +
+                         "  (select p.VNAME from TBLPERSON p where p.PERSONID='"+empID+"'),  " +
+                         "  (select d.VDESIGNATIONNAME from TBLDESIGNATION d where d.NDESIGID = (select p.NDESIGID from TBLPERSON p where p.PERSONID ='"+empID+"')), " +
+                         "  " + workingDay + ", " +
+                         "  " + holidays + ", " +
+                         "  " + cl + ", "+
+                         "  " + sl + ", "+
+                         "  " + 0 + ", " +
+                         "  " + 0 + ", " +
+                         "  " + 0 + ", " +
+                         "  " + basic + ", " +
+                         "  " + hrnt + ", " +  
+                         "  " + trnsprt + ", "+
+                         "  " + mdcl + ", " +
+                         "  " + sal + ","+
+                         "  " + 0 + ", " +
+                         "  " + 0 + ", " +
+                         "  " + 0 + ", " +
+                         "  " + 0 + ", " +
+                         "  " + 0 + ", " +
+                         "  " + 10 + "," +
+                         "  " + 0 + ", " +
+                         "  " + 0 + ", " +
+                         "  " + 0 + ", " +
+                         "  " + 0 + ", " +
+                         "  '" + YEAR_MONTH + "' " +
+                     " ) ";
+                DBConn.ExecutionQuery(cmdText);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Exception: " + ex.Message);
+            }
+        }
 
 
 
@@ -240,77 +320,7 @@ namespace Panchrukhi.Report
 
 
 
-        public void SaveDataOfProcessedSalary(string empID, string empName, string designation, int workingDay, int holidays,  int cl, int sl, string YEAR_MONTH, int sal)
-        {
-
-            // int getAdvCut = getCatWiseAdvSalCut(empID, YEAR_MONTH, 1);
-            try
-            {
-                string cmdText = " insert into TBL_PROCESSED_SALARY(" +
-                        "SL," +
-                        "EMP_ID," +
-                        "EMP_NAME," + 
-                        "EMP_DESIG," +
-                        "EMP_WORKING_DAYS," +
-                        "EMP_HOLIDAYS," +
-                        "EMP_CASUAL_LEAVE," +
-                        "EMP_SICK_LEAVE, " +
-                        "EMP_PRESENT, " +
-                        "EMP_ANNUAL_LEAVE, " +
-                        "EMP_ABSENT, " +
-                        "EMP_BASIC_SAL, " +
-                        "EMP_HOUSE_RENT, " +
-                        "EMP_TRANSPORT_ALLOW, " +
-                        "EMP_MEDICAL_ALLOW, " +
-                        "EMP_TOTAL_SAL, " +
-                        "EMP_ABSENT_SAL_CUT, " +
-                        "EMP_ADV_CUT, " +
-                        "EMP_MOBILE_BILL, " +
-                        "EMP_OTHERS_SAL_CUT, " +
-                        "EMP_TAX, " +
-                        "EMP_REVENUE_TICKET, " +
-                        "EMP_TOTAL_CUT, " +
-                        "EMP_TOTAL_GIVEN_SALARY, " +
-                        "EMP_OTHERS_ALLOW, " +
-                        "EMP_TOTAL_GIVEN_SALARY_AND_ALLOW, " +
-                        "YEAR_MONTH " +
-                    ") " +
-                     " values (" +
-                         "(select CASE WHEN max(SL) >= 0 THEN max(SL) +1 ELSE 1 END FROM TBL_PROCESSED_SALARY), "+
-                         "  '" + empID+ "',     "+
-                         "  '" + empName + "',  "+
-                         "  '" + designation + "', "+
-                         "  " + workingDay + ",   "+
-                         "  " + holidays + ",   "+
-                         "  " + cl + ", "+
-                         "  " + sl + ", "+
-                         "  " + 0 + ", " +
-                         "  " + 0 + ", " +
-                         "  " + 0 + ", " +
-                         "  " + 0 + ", " +
-                         "  " + 0 + ", " +
-                         "  " + 0 + ", " +
-                         "  " + 0 + ", " +
-                         "  " + sal +"," +
-                         "  " + 0 + ", " +
-                         "  " + 0+ ", " +
-                         "  " + 0+ ", " +
-                         "  " + 0 + ", " +
-                         "  " + 0 + ", " +
-                         "  " + 10 + "," +
-                         "  " + 0 + ", " +
-                         "  " + 0 + ", " +
-                         "  " + 0 + ", " +
-                         "  " + 0 + ", " +
-                         "  '" + YEAR_MONTH + "' " +
-                     " ) ";
-                DBConn.ExecutionQuery(cmdText);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Exception: "+ex.Message);
-            }
-        }
+        
 
 
 
@@ -652,7 +662,18 @@ namespace Panchrukhi.Report
         private void btnSave_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(txtEmpID.Text)) { MessageBox.Show("Please select records"); return; }
+
             bool isExecute = false;
+            int totalCut = (Convert.ToInt32(txtAbsent.Text.Trim()) + Convert.ToInt32(txtAbsentSalCut.Text.Trim())+ Convert.ToInt32(txtMobileBill.Text.Trim()) + Convert.ToInt32(txtOthersSalCut.Text.Trim()) + Convert.ToInt32(txtTax.Text.Trim()) + Convert.ToInt32(txtRevTicket.Text.Trim()));
+            int totalGivnSal = 0;
+            if(Convert.ToInt32(txtTotalSal.Text.Trim()) > totalCut){totalGivnSal = (Convert.ToInt32(txtTotalSal.Text.Trim()) - totalCut);}
+            else
+            {
+                MessageBox.Show(" Total cut must be less than Salary ");
+                return;
+            }
+            int totalGvnSalAndAllownc = (totalGivnSal+Convert.ToInt32(txtOthersAlnc.Text.Trim()));
+
             try
             {
                 string cmdText =
@@ -675,12 +696,12 @@ namespace Panchrukhi.Report
                         " EMP_ADV_CUT = IFNULL(" + txtAvdSalCut.Text.Trim() + ", 0),  " +
                         " EMP_MOBILE_BILL   = IFNULL(" + txtMobileBill.Text.Trim() + ", 0),  " +
                         " EMP_OTHERS_SAL_CUT= " + txtOthersSalCut.Text.Trim() + ", " +
-                        " EMP_TAX        = " + txtTax.Text.Trim() + ",   " +
-                        " EMP_REVENUE_TICKET= " + txtRevTicket.Text.Trim() + ",  "+
-                        " EMP_TOTAL_CUT     = " + txtTotalCut.Text.Trim() + ",   "+
-                        " EMP_TOTAL_GIVEN_SALARY = " + txtTotalGivenSal.Text.Trim() + ", "+
+                        " EMP_TAX        = " + txtTax.Text.Trim() + ", " +
+                        " EMP_REVENUE_TICKET= " + txtRevTicket.Text.Trim() + ", "+
+                        " EMP_TOTAL_CUT     = " + totalCut + ",   "+
+                        " EMP_TOTAL_GIVEN_SALARY = " + totalGivnSal + ", "+
                         " EMP_OTHERS_ALLOW  = " + txtOthersAlnc.Text.Trim()+", " +
-                        " EMP_TOTAL_GIVEN_SALARY_AND_ALLOW = "+txtGivenSalAndAllow.Text.Trim()+" "+
+                        " EMP_TOTAL_GIVEN_SALARY_AND_ALLOW = "+ totalGvnSalAndAllownc + " "+
                 " WHERE " +
                         " EMP_ID = '"+ txtEmpID.Text + "' AND "+
                         " YEAR_MONTH = '"+dateTimePicker1.Value.ToString("yyyy/MM")+"' ";

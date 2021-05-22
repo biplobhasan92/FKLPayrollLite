@@ -20,10 +20,10 @@ namespace Panchrukhi
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-             //Application.Run(new frmLogIn());
-            //  Application.Run(new frmSalary());
+            // Application.Run(new frmLogIn());
+            Application.Run(new frmSalary());
             // Application.Run(new frmSalaryDeduction());
-             Application.Run(new frmPData());
+            // Application.Run(new frmPData());
             // Application.Run(new frmSlotData());
             // Application.Run(new frmCategory());
             // Application.Run(new frmDesigData());
@@ -35,7 +35,7 @@ namespace Panchrukhi
             // Application.Run(new SecondSystem());
             // Application.Run(new frmAttendanceProcess());
             // Application.Run(new frmReportPersonalInfo());
-            //  Application.Run(new frmPersonalPromotion());
+            // Application.Run(new frmPersonalPromotion());
         }
     }
 }
