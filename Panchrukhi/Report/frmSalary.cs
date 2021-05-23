@@ -229,6 +229,7 @@ namespace Panchrukhi.Report
                         "EMP_TOTAL_GIVEN_SALARY, " +
                         "EMP_OTHERS_ALLOW, " +
                         "EMP_TOTAL_GIVEN_SALARY_AND_ALLOW, " +
+                        "EMP_HOLIDAY_WORK, " +
                         "YEAR_MONTH " +
                     " ) " +
                      " values (" +
@@ -254,6 +255,7 @@ namespace Panchrukhi.Report
                          "  " + 0 + ", " +
                          "  " + 0 + ", " +
                          "  " + 10 + "," +
+                         "  " + 0 + ", " +
                          "  " + 0 + ", " +
                          "  " + 0 + ", " +
                          "  " + 0 + ", " +
@@ -288,26 +290,26 @@ namespace Panchrukhi.Report
                     
                     dataGridView.Rows.Add();
                     dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colSL.Index].Value = Convert.ToInt32(dr["SL"].ToString());
-                    // dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colSLL.Index].Value = dr["SL"].ToString();
                     dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colEmpID.Index].Value   = dr["EMP_ID"].ToString();
                     dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colEmpName.Index].Value = dr["EMP_NAME"].ToString();
                     dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colDesig.Index].Value   = dr["EMP_DESIG"].ToString();
                     dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colWorkingDays.Index].Value   = dr["EMP_WORKING_DAYS"].ToString();
-                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colHolidays.Index].Value = dr["EMP_HOLIDAYS"].ToString();
-                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colSalary.Index].Value = dr["EMP_TOTAL_SAL"].ToString();
+                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colHolidays.Index].Value= dr["EMP_HOLIDAYS"].ToString();
+                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colHolidayWork.Index].Value = dr["EMP_HOLIDAY_WORK"].ToString();
+                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colSalary.Index].Value  = dr["EMP_TOTAL_SAL"].ToString();
                     dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colPresent.Index].Value = dr["EMP_PRESENT"].ToString();
                     dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colCasualLeave.Index].Value = dr["EMP_CASUAL_LEAVE"].ToString();
                     dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colSickLeave.Index].Value = dr["EMP_SICK_LEAVE"].ToString();
                     dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colAnualLeave.Index].Value= dr["EMP_ANNUAL_LEAVE"].ToString();
-                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colAbsent.Index].Value    = dr["EMP_ABSENT"].ToString();
-                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colBasicSal.Index].Value  = dr["EMP_BASIC_SAL"].ToString();
+                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colAbsent.Index].Value  = dr["EMP_ABSENT"].ToString();
+                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colBasicSal.Index].Value= dr["EMP_BASIC_SAL"].ToString();
                     dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colHouseRent.Index].Value = dr["EMP_HOUSE_RENT"].ToString();
                     dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colTransport.Index].Value = dr["EMP_TRANSPORT_ALLOW"].ToString();
-                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colMedical.Index].Value   = dr["EMP_MEDICAL_ALLOW"].ToString();
+                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colMedical.Index].Value = dr["EMP_MEDICAL_ALLOW"].ToString();
                     dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colAbsentCut.Index].Value = dr["EMP_ABSENT_SAL_CUT"].ToString();
-                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colAdvCut.Index].Value = dr["EMP_ADV_CUT"].ToString();
+                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colAdvCut.Index].Value  = dr["EMP_ADV_CUT"].ToString();
                     dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colMobileBill.Index].Value= dr["EMP_MOBILE_BILL"].ToString();
-                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colOthers.Index].Value = dr["EMP_OTHERS_SAL_CUT"].ToString();
+                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colOthers.Index].Value  = dr["EMP_OTHERS_SAL_CUT"].ToString();
                     dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colTax.Index].Value = dr["EMP_TAX"].ToString();
                     dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colRevenueTikit.Index].Value = dr["EMP_REVENUE_TICKET"].ToString();
                     dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colTotalCut.Index].Value = dr["EMP_TOTAL_CUT"].ToString();
@@ -485,6 +487,7 @@ namespace Panchrukhi.Report
             DT.Columns.Add("Designation", typeof(string));
             DT.Columns.Add("Working Day", typeof(int));
             DT.Columns.Add("Holidays", typeof(int));
+            DT.Columns.Add("Holiday work", typeof(string));
             DT.Columns.Add("Present", typeof(int));
             DT.Columns.Add("CL", typeof(int));
             DT.Columns.Add("SL", typeof(int));
@@ -538,11 +541,12 @@ namespace Panchrukhi.Report
                         dgv.Cells[23].Value,
                         dgv.Cells[24].Value,
                         dgv.Cells[25].Value,
-                        dgv.Cells[26].Value
+                        dgv.Cells[26].Value,
+                        dgv.Cells[27].Value
                     );
                 }
                 DS.Tables.Add(DT);
-                DS.WriteXmlSchema("MonthlySummaryReport.xml"); 
+                DS.WriteXmlSchema("MonthlySummaryReport.xml");
                 frmCrystalReportViewer frm = new frmCrystalReportViewer();
                 // MonthlySummaryReport cr = new MonthlySummaryReport();
                 Rpt_SalarySheet_FKLSpinning_Bangla cr = new Rpt_SalarySheet_FKLSpinning_Bangla();
@@ -573,6 +577,7 @@ namespace Panchrukhi.Report
             DT.Columns.Add("Designation", typeof(string));
             DT.Columns.Add("Working Day", typeof(string));
             DT.Columns.Add("Holidays", typeof(string));
+            DT.Columns.Add("Holiday work", typeof(string));
             DT.Columns.Add("Present", typeof(string));
             DT.Columns.Add("CL", typeof(string));
             DT.Columns.Add("SL", typeof(string));
@@ -700,8 +705,9 @@ namespace Panchrukhi.Report
                         " EMP_REVENUE_TICKET= " + txtRevTicket.Text.Trim() + ", "+
                         " EMP_TOTAL_CUT     = " + totalCut + ",   "+
                         " EMP_TOTAL_GIVEN_SALARY = " + totalGivnSal + ", "+
-                        " EMP_OTHERS_ALLOW  = " + txtOthersAlnc.Text.Trim()+", " +
-                        " EMP_TOTAL_GIVEN_SALARY_AND_ALLOW = "+ totalGvnSalAndAllownc + " "+
+                        " EMP_HOLIDAY_WORK  = " + txtHolidayWork.Text.Trim()+", "+
+                        " EMP_OTHERS_ALLOW  = " + txtOthersAlnc.Text.Trim() + ", "+ 
+                        " EMP_TOTAL_GIVEN_SALARY_AND_ALLOW = " + totalGvnSalAndAllownc + " "+
                 " WHERE " +
                         " EMP_ID = '"+ txtEmpID.Text + "' AND "+
                         " YEAR_MONTH = '"+dateTimePicker1.Value.ToString("yyyy/MM")+"' ";
@@ -725,34 +731,41 @@ namespace Panchrukhi.Report
             LoadGridData();
         }
 
+
+
+
         private void dataGridView_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             if (dataGridView.SelectedRows.Count == 0 || dataGridView.SelectedRows[0].Index == dataGridView.Rows.Count) return;
             getSelectID = Convert.ToInt32(dataGridView.Rows[e.RowIndex].Cells[0].Value.ToString());
-            txtEmpID.Text = dataGridView.Rows[e.RowIndex].Cells[1].Value.ToString();
+            txtEmpID.Text      = dataGridView.Rows[e.RowIndex].Cells[1].Value.ToString();
             txtWorkingDay.Text = dataGridView.Rows[e.RowIndex].Cells[5].Value.ToString();
-            txtHolidays.Text = dataGridView.Rows[e.RowIndex].Cells[6].Value.ToString();
-            txtPresent.Text  = dataGridView.Rows[e.RowIndex].Cells[7].Value.ToString();
-            txtCasualLeave.Text = dataGridView.Rows[e.RowIndex].Cells[8].Value.ToString();
-            txtSickLeave.Text = dataGridView.Rows[e.RowIndex].Cells[9].Value.ToString();
-            txtAnnualLeave.Text = dataGridView.Rows[e.RowIndex].Cells[10].Value.ToString();
-            txtAbsent.Text = dataGridView.Rows[e.RowIndex].Cells[11].Value.ToString();
-            txtBasickSal.Text = dataGridView.Rows[e.RowIndex].Cells[12].Value.ToString();
-            txtHouseRent.Text = dataGridView.Rows[e.RowIndex].Cells[13].Value.ToString();
-            txtTransportAlwnc.Text = dataGridView.Rows[e.RowIndex].Cells[14].Value.ToString();
-            txtMedicalAllow.Text = dataGridView.Rows[e.RowIndex].Cells[15].Value.ToString();
-            txtTotalSal.Text = dataGridView.Rows[e.RowIndex].Cells[16].Value.ToString();
-            txtAbsentSalCut.Text = dataGridView.Rows[e.RowIndex].Cells[17].Value.ToString();
-            txtAvdSalCut.Text    = dataGridView.Rows[e.RowIndex].Cells[18].Value.ToString();
-            txtMobileBill.Text   = dataGridView.Rows[e.RowIndex].Cells[19].Value.ToString();
-            txtOthersSalCut.Text = dataGridView.Rows[e.RowIndex].Cells[20].Value.ToString();
-            txtTax.Text = dataGridView.Rows[e.RowIndex].Cells[21].Value.ToString();
-            txtRevTicket.Text = dataGridView.Rows[e.RowIndex].Cells[22].Value.ToString();
-            txtTotalCut.Text = dataGridView.Rows[e.RowIndex].Cells[23].Value.ToString();
-            txtTotalGivenSal.Text = dataGridView.Rows[e.RowIndex].Cells[24].Value.ToString();
-            txtOthersAlnc.Text = dataGridView.Rows[e.RowIndex].Cells[25].Value.ToString();
-            txtGivenSalAndAllow.Text = dataGridView.Rows[e.RowIndex].Cells[26].Value.ToString();
+            txtHolidays.Text   = dataGridView.Rows[e.RowIndex].Cells[6].Value.ToString();
+            txtHolidayWork.Text= dataGridView.Rows[e.RowIndex].Cells[7].Value.ToString();            
+            txtPresent.Text    = dataGridView.Rows[e.RowIndex].Cells[8].Value.ToString();
+            txtCasualLeave.Text= dataGridView.Rows[e.RowIndex].Cells[9].Value.ToString();
+            txtSickLeave.Text  = dataGridView.Rows[e.RowIndex].Cells[10].Value.ToString();
+            txtAnnualLeave.Text= dataGridView.Rows[e.RowIndex].Cells[11].Value.ToString();
+            txtAbsent.Text     = dataGridView.Rows[e.RowIndex].Cells[12].Value.ToString();
+            txtBasickSal.Text  = dataGridView.Rows[e.RowIndex].Cells[13].Value.ToString();
+            txtHouseRent.Text  = dataGridView.Rows[e.RowIndex].Cells[14].Value.ToString();
+            txtTransportAlwnc.Text = dataGridView.Rows[e.RowIndex].Cells[15].Value.ToString();
+            txtMedicalAllow.Text = dataGridView.Rows[e.RowIndex].Cells[16].Value.ToString();
+            txtTotalSal.Text   = dataGridView.Rows[e.RowIndex].Cells[17].Value.ToString();
+            txtAbsentSalCut.Text = dataGridView.Rows[e.RowIndex].Cells[18].Value.ToString();
+            txtAvdSalCut.Text  = dataGridView.Rows[e.RowIndex].Cells[19].Value.ToString();
+            txtMobileBill.Text = dataGridView.Rows[e.RowIndex].Cells[20].Value.ToString();
+            txtOthersSalCut.Text = dataGridView.Rows[e.RowIndex].Cells[21].Value.ToString();
+            txtTax.Text        = dataGridView.Rows[e.RowIndex].Cells[22].Value.ToString();
+            txtRevTicket.Text  = dataGridView.Rows[e.RowIndex].Cells[23].Value.ToString();
+            txtTotalCut.Text   = dataGridView.Rows[e.RowIndex].Cells[24].Value.ToString();
+            txtTotalGivenSal.Text = dataGridView.Rows[e.RowIndex].Cells[25].Value.ToString();
+            txtOthersAlnc.Text = dataGridView.Rows[e.RowIndex].Cells[26].Value.ToString();
+            txtGivenSalAndAllow.Text = dataGridView.Rows[e.RowIndex].Cells[27].Value.ToString(); 
         }
+
+
+
 
         private int calculateHolidays(string empID, string yearMonth)
         {
@@ -782,15 +795,23 @@ namespace Panchrukhi.Report
             return (holidays + weekend + getclsl);
         }
 
+
+
+
         private void btnReset_Click(object sender, EventArgs e)
         {
             ClearData();
         }
 
+
+
+
+
         private void ClearData()
         {
             txtEmpID.Text =
             txtWorkingDay.Text = 
+            txtHolidayWork.Text=
             txtHolidays.Text = 
             txtPresent.Text = 
             txtCasualLeave.Text = 

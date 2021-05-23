@@ -58,6 +58,9 @@
             this.tstripPersonalInfo = new System.Windows.Forms.ToolStripMenuItem();
             this.salaryDeductionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.salaryReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.superAdminToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.flowLayoutMainWindow = new System.Windows.Forms.FlowLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
@@ -81,7 +84,9 @@
             this.setHolyDayToolStripMenuItem,
             this.attendanceSettingsToolStripMenuItem,
             this.promoteAndDemoteToolStripMenuItem,
-            this.reportingToolStripMenuItem});
+            this.reportingToolStripMenuItem,
+            this.toolStripMenuItem1,
+            this.superAdminToolStripMenuItem});
             this.mnuMain.Location = new System.Drawing.Point(0, 0);
             this.mnuMain.Name = "mnuMain";
             this.mnuMain.Size = new System.Drawing.Size(1110, 24);
@@ -283,6 +288,26 @@
             this.salaryReportToolStripMenuItem.Text = "Salary Report";
             this.salaryReportToolStripMenuItem.Click += new System.EventHandler(this.salaryReportToolStripMenuItem_Click);
             // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(12, 20);
+            // 
+            // superAdminToolStripMenuItem
+            // 
+            this.superAdminToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.settingsToolStripMenuItem});
+            this.superAdminToolStripMenuItem.Name = "superAdminToolStripMenuItem";
+            this.superAdminToolStripMenuItem.Size = new System.Drawing.Size(88, 20);
+            this.superAdminToolStripMenuItem.Text = "Super Admin";
+            // 
+            // settingsToolStripMenuItem
+            // 
+            this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.settingsToolStripMenuItem.Text = "Settings";
+            this.settingsToolStripMenuItem.Click += new System.EventHandler(this.settingsToolStripMenuItem_Click);
+            // 
             // contextMenuStrip2
             // 
             this.contextMenuStrip2.Name = "contextMenuStrip2";
@@ -351,5 +376,8 @@
         private System.Windows.Forms.ToolStripMenuItem leaveSettingsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem salaryReportToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem salaryDeductionToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem superAdminToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;
     }
 }

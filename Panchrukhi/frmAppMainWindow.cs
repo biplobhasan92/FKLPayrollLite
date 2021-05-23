@@ -30,8 +30,16 @@ namespace Panchrukhi
                 attendanceSettingsToolStripMenuItem.Visible = false;
                 promoteAndDemoteToolStripMenuItem.Visible   = false;
             }
+            if (UserType == 3)
+            {
+                superAdminToolStripMenuItem.Visible = true;
+            }
+            else
+            {
+                superAdminToolStripMenuItem.Visible = false;
+            }
             // dataToolStripMenuItem = this.personalDataToolStripMenuItem;
-            
+
         }
 
 
@@ -314,6 +322,13 @@ namespace Panchrukhi
             frmSalaryDeduction frmSalDud = new frmSalaryDeduction();
             frmSalDud.Owner = this;
             frmSalDud.Show();
+        }
+
+        private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ApplicationInfo appInfo = new ApplicationInfo();
+            appInfo.Owner = this;
+            appInfo.Show();
         }
     }
 }
