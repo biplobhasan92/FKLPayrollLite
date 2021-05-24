@@ -20,7 +20,7 @@ namespace Panchrukhi
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            //   Application.Run(new frmLogIn());
+            // Application.Run(new frmLogIn());
              Application.Run(new frmSalary());
             // Application.Run(new frmSalaryDeduction());
             // Application.Run(new frmPData());

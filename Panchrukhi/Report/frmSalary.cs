@@ -669,7 +669,7 @@ namespace Panchrukhi.Report
             if (string.IsNullOrEmpty(txtEmpID.Text)) { MessageBox.Show("Please select records"); return; }
 
             bool isExecute = false;
-            int totalCut = (Convert.ToInt32(txtAbsent.Text.Trim()) + Convert.ToInt32(txtAbsentSalCut.Text.Trim())+ Convert.ToInt32(txtMobileBill.Text.Trim()) + Convert.ToInt32(txtOthersSalCut.Text.Trim()) + Convert.ToInt32(txtTax.Text.Trim()) + Convert.ToInt32(txtRevTicket.Text.Trim()));
+            int totalCut = (Convert.ToInt32(txtAbsentSalCut.Text.Trim()) + Convert.ToInt32(txtAbsentSalCut.Text.Trim())+ Convert.ToInt32(txtMobileBill.Text.Trim()) + Convert.ToInt32(txtOthersSalCut.Text.Trim()) + Convert.ToInt32(txtTax.Text.Trim()) + Convert.ToInt32(txtRevTicket.Text.Trim()));
             int totalGivnSal = 0;
             if(Convert.ToInt32(txtTotalSal.Text.Trim()) > totalCut){totalGivnSal = (Convert.ToInt32(txtTotalSal.Text.Trim()) - totalCut);}
             else
