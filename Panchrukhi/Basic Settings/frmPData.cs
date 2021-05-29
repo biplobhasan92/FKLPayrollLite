@@ -56,7 +56,12 @@ namespace Panchrukhi
             if (string.IsNullOrEmpty(txtPID.Text))     { errorProviderPData.SetError(txtPID, errorProviderPData.Icon.ToString()); return; } else { errorProviderPData.Clear();  }
             if (string.IsNullOrEmpty(txtPName.Text))   { errorProviderPData.SetError(txtPName, errorProviderPData.Icon.ToString()); return; } else { errorProviderPData.Clear();}
             if (!string.IsNullOrEmpty(txtPEmail.Text)) { if (!regex.IsMatch(txtPEmail.Text.Trim())) { errorProviderPData.SetError(txtPEmail, errorProviderPData.Icon.ToString()); return;}}
-            
+
+            if (string.IsNullOrEmpty(txtPBasic.Text.Trim())) { errorProviderPData.SetError(txtPBasic, errorProviderPData.Icon.ToString()); return; } else { errorProviderPData.Clear(); }
+            if (string.IsNullOrEmpty(txtPHouseRent.Text.Trim())) { errorProviderPData.SetError(txtPHouseRent, errorProviderPData.Icon.ToString()); return; } else { errorProviderPData.Clear(); }
+            if (string.IsNullOrEmpty(txtPMedical.Text.Trim())) { errorProviderPData.SetError(txtPMedical, errorProviderPData.Icon.ToString()); return; } else { errorProviderPData.Clear(); }
+            if (string.IsNullOrEmpty(txtPTransport.Text.Trim())) { errorProviderPData.SetError(txtPTransport, errorProviderPData.Icon.ToString()); return; } else { errorProviderPData.Clear(); }
+            if (string.IsNullOrEmpty(txtPSalary.Text.Trim())) { errorProviderPData.SetError(txtPSalary, errorProviderPData.Icon.ToString()); return; } else { errorProviderPData.Clear(); }
 
             if (getEMPID == 0) // NEMPID
             {
@@ -164,11 +169,11 @@ namespace Panchrukhi
                             " DDOJ     = '" + txtPDOJ.Text + "',   " +
                             " NCATID   = IFNULL(" + (cmbCat.SelectedItem as dynamic).Value + ", 1),  " +
                             " NDESIGID = IFNULL(" + (cmbDesig.SelectedItem as dynamic).Value + ", 1)," +
-                            " NBASIC  = " + txtPBasic.Text + ", " +
-                            " NHRENT  = " + txtPHouseRent.Text + ", "+
-                            " NTRANSPORT = " + txtPTransport.Text + ", " +
-                            " NMEDICAL = " + txtPMedical.Text + ",    " +
-                            " NSALARY  = " + txtPSalary.Text + ",    " +
+                            " NBASIC   = " + txtPBasic.Text.Trim() + ", " +
+                            " NHRENT  = " + txtPHouseRent.Text.Trim() + ", "+
+                            " NTRANSPORT = " + txtPTransport.Text.Trim()+ ", " +
+                            " NMEDICAL = " + txtPMedical.Text.Trim() + ", " +
+                            " NSALARY  = " + txtPSalary.Text.Trim() + ",  " +
                             " NSLOTID  = IFNULL(" + (cmbSlot.SelectedItem as dynamic).Value + ",  1),  " +
                             " NCLASSID = IFNULL(" + (cmbClass.SelectedItem as dynamic).Value + ", 1),  " +
                             " NSECID   = IFNULL(" + (cmbSection.SelectedItem as dynamic).Value + ",1),  " +
@@ -212,9 +217,9 @@ namespace Panchrukhi
         void ClearData()
         {
             txtFather.Text= txtMother.Text = txtEmergencyContact.Text  = txtPID.Text = txtPName.Text = cmbGender.Text = txtPAddress.Text = txtPDOB.Text = txtPMobile.Text = 
-            txtPBasic.Text = txtPTransport.Text = txtPMedical.Text = txtPHouseRent.Text = 
             txtPEmail.Text = cmbStatus.Text = txtPDOJ.Text = cmbCat.Text = cmbDesig.Text = txtPSalary.Text = cmbSection.Text = cmbClass.Text = cmbSlot.Text = "";
             getEMPID = 0; btnSaveAndUpdate.Text = "Save";
+            txtPBasic.Text = txtPTransport.Text = txtPMedical.Text = txtPHouseRent.Text = txtPSalary.Text = "0";
             LoadDefaultComboValue();
         }
 

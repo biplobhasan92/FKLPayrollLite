@@ -85,8 +85,7 @@ namespace Panchrukhi.Report
                 txtBasic.Enabled = false;
                 dateTimePicker1.Enabled = false;
                 btnSalProcess.Enabled = false;
-            }
-            else{
+            }else{
                 txtBasic.Enabled = true;
                 dateTimePicker1.Enabled = true;
                 btnSalProcess.Enabled = true;
@@ -242,11 +241,11 @@ namespace Panchrukhi.Report
                          "  " + cl + ", "+
                          "  " + sl + ", "+
                          "  " + 0 + ", " +
+                         "  " + getCountOfALInMnthUsingID(YEAR_MONTH, empID) + ", " +
                          "  " + 0 + ", " +
-                         "  " + 0 + ", " +
-                         "  " + basic + ", " +
-                         "  " + hrnt + ", " +  
-                         "  " + trnsprt + ", "+
+                         "  " + basic + ", "+
+                         "  " + hrnt + ", " +
+                         "  " + trnsprt + ","+
                          "  " + mdcl + ", " +
                          "  " + sal + ","+
                          "  " + 0 + ", " +
@@ -365,6 +364,21 @@ namespace Panchrukhi.Report
             for (DateTime date = Convert.ToDateTime(startDate); date.Date <= Convert.ToDateTime(endDate); date = date.AddDays(1))
             {
                 if (DBConn.getLeaveClsl(date.ToString("dd/MM/yyyy"), empID).Equals("SL")) { counter++; }
+            }
+            return counter;
+        }
+
+
+
+        public int getCountOfALInMnthUsingID(string dateMonth, string empID)
+        {
+            DateTime now = Convert.ToDateTime(dateMonth);
+            var startDate = new DateTime(now.Year, now.Month, 1);
+            var endDate = startDate.AddMonths(1).AddDays(-1);
+            int counter = 0;
+            for (DateTime date = Convert.ToDateTime(startDate); date.Date <= Convert.ToDateTime(endDate); date = date.AddDays(1))
+            {
+                if (DBConn.getLeaveClsl(date.ToString("dd/MM/yyyy"), empID).Equals("AL")) { counter++; }
             }
             return counter;
         }
@@ -669,7 +683,8 @@ namespace Panchrukhi.Report
             if (string.IsNullOrEmpty(txtEmpID.Text)) { MessageBox.Show("Please select records"); return; }
 
             bool isExecute = false;
-            int totalCut = (Convert.ToInt32(txtAbsentSalCut.Text.Trim()) + Convert.ToInt32(txtAbsentSalCut.Text.Trim())+ Convert.ToInt32(txtMobileBill.Text.Trim()) + Convert.ToInt32(txtOthersSalCut.Text.Trim()) + Convert.ToInt32(txtTax.Text.Trim()) + Convert.ToInt32(txtRevTicket.Text.Trim()));
+            int absentCut = (Convert.ToInt32(txtBasickSal.Text.Trim()) / 30) * Convert.ToInt32(txtAbsent.Text.Trim());
+            int totalCut =  (absentCut + Convert.ToInt32(txtAvdSalCut.Text.Trim())+ Convert.ToInt32(txtMobileBill.Text.Trim()) + Convert.ToInt32(txtOthersSalCut.Text.Trim()) + Convert.ToInt32(txtTax.Text.Trim()) + Convert.ToInt32(txtRevTicket.Text.Trim()));
             int totalGivnSal = 0;
             if(Convert.ToInt32(txtTotalSal.Text.Trim()) > totalCut){totalGivnSal = (Convert.ToInt32(txtTotalSal.Text.Trim()) - totalCut);}
             else
@@ -697,7 +712,7 @@ namespace Panchrukhi.Report
                         " EMP_TRANSPORT_ALLOW   = IFNULL(" + txtTransportAlwnc.Text.Trim() + ", 0),  " +
                         " EMP_MEDICAL_ALLOW = IFNULL(" + txtMedicalAllow.Text.Trim() + ", 0),  " +
                         " EMP_TOTAL_SAL     = " + txtTotalSal.Text.Trim() + ",    " +
-                        " EMP_ABSENT_SAL_CUT= IFNULL(" + txtAbsentSalCut.Text.Trim() + ",   0),  " +
+                        " EMP_ABSENT_SAL_CUT= IFNULL(" + absentCut + ",   0),  " +
                         " EMP_ADV_CUT = IFNULL(" + txtAvdSalCut.Text.Trim() + ", 0),  " +
                         " EMP_MOBILE_BILL   = IFNULL(" + txtMobileBill.Text.Trim() + ", 0),  " +
                         " EMP_OTHERS_SAL_CUT= " + txtOthersSalCut.Text.Trim() + ", " +

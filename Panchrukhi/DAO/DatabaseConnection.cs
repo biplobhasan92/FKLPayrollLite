@@ -81,7 +81,7 @@ namespace Panchrukhi.DAO
                     s = true;
                 }
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
                 ex.GetBaseException();
                 MessageBox.Show(ex.Message);
@@ -168,7 +168,8 @@ namespace Panchrukhi.DAO
 
         // Delete Function For All Form String Val
         public bool DeleteTableRowStr(String tableName, String whereConditionColName, String whereConditionValue)
-        {               //                   "TBLCATEGORY"     "NCATID"                      "1"
+        {               
+            // "TBLCATEGORY" "NCATID" "1"
             bool returnVal = false;
             try {
                 DialogResult result = MessageBox.Show("Do You Want to delete?", "Delete", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);

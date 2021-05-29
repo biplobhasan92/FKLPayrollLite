@@ -54,9 +54,15 @@ namespace Panchrukhi
 
         private void BtnSaveAndUpdate_Click(object sender, EventArgs e)
         {
-            string txtEmpId = txtEmpID.Text.ToString().Trim();
+            string txtEmpId = txtEmpID.Text.Trim();
 
-            if (txtEmpId== "" || (cbxLeaveCat.SelectedItem == null)) {
+            if(!DBConn.checkDataIfItUsedOtherTableStr("TBLPERSON", "PERSONID", txtEmpId))
+            {
+                MessageBox.Show(txtEmpId+" ID is not found ");
+                return;
+            }
+
+            if (string.IsNullOrEmpty(txtEmpId) || (cbxLeaveCat.SelectedItem == null)){
                 MessageBox.Show(" Insert data properly ", " Emp ID Or Leave Cat Missing ", MessageBoxButtons.OK, MessageBoxIcon.Error);  return;
             }
 
@@ -67,10 +73,8 @@ namespace Panchrukhi
                 return;
             }
             
-
             if (getHID == 0)
             {
-                
                 string cmdText = "";
                 for (DateTime date = Convert.ToDateTime(dtPkrFormDate.Text); date.Date <= Convert.ToDateTime(dtPkrToDate.Text); date = date.AddDays(1))
                 {
