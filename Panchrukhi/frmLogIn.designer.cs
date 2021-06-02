@@ -55,11 +55,11 @@
             this.lblApplicationName.AutoSize = true;
             this.lblApplicationName.Font = new System.Drawing.Font("Arial Rounded MT Bold", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblApplicationName.ForeColor = System.Drawing.Color.White;
-            this.lblApplicationName.Location = new System.Drawing.Point(301, 88);
+            this.lblApplicationName.Location = new System.Drawing.Point(341, 88);
             this.lblApplicationName.Name = "lblApplicationName";
-            this.lblApplicationName.Size = new System.Drawing.Size(165, 32);
+            this.lblApplicationName.Size = new System.Drawing.Size(106, 32);
             this.lblApplicationName.TabIndex = 0;
-            this.lblApplicationName.Text = "FKL Payroll";
+            this.lblApplicationName.Text = "Payroll";
             // 
             // lblUserName
             // 
@@ -136,7 +136,7 @@
             this.lblCompanyName.AutoSize = true;
             this.lblCompanyName.Font = new System.Drawing.Font("Arial Rounded MT Bold", 39.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCompanyName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
-            this.lblCompanyName.Location = new System.Drawing.Point(112, 19);
+            this.lblCompanyName.Location = new System.Drawing.Point(100, 20);
             this.lblCompanyName.Name = "lblCompanyName";
             this.lblCompanyName.Size = new System.Drawing.Size(0, 61);
             this.lblCompanyName.TabIndex = 14;

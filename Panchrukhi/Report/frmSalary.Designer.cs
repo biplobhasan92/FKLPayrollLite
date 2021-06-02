@@ -117,6 +117,7 @@
             this.label24 = new System.Windows.Forms.Label();
             this.txtHolidayWork = new System.Windows.Forms.TextBox();
             this.label25 = new System.Windows.Forms.Label();
+            this.btnPrintLogo = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.txtBasic)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
@@ -858,7 +859,7 @@
             // 
             // txtHolidayWork
             // 
-            this.txtHolidayWork.Location = new System.Drawing.Point(431, 96);
+            this.txtHolidayWork.Location = new System.Drawing.Point(431, 94);
             this.txtHolidayWork.Name = "txtHolidayWork";
             this.txtHolidayWork.Size = new System.Drawing.Size(105, 20);
             this.txtHolidayWork.TabIndex = 59;
@@ -872,11 +873,22 @@
             this.label25.TabIndex = 60;
             this.label25.Text = "Holiday Work";
             // 
+            // btnPrintLogo
+            // 
+            this.btnPrintLogo.Location = new System.Drawing.Point(1115, 185);
+            this.btnPrintLogo.Name = "btnPrintLogo";
+            this.btnPrintLogo.Size = new System.Drawing.Size(75, 23);
+            this.btnPrintLogo.TabIndex = 61;
+            this.btnPrintLogo.Text = "Logo";
+            this.btnPrintLogo.UseVisualStyleBackColor = true;
+            this.btnPrintLogo.Click += new System.EventHandler(this.btnPrintLogo_Click);
+            // 
             // frmSalary
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1425, 635);
+            this.Controls.Add(this.btnPrintLogo);
             this.Controls.Add(this.label25);
             this.Controls.Add(this.txtHolidayWork);
             this.Controls.Add(this.txtOthersAlnc);
@@ -1040,5 +1052,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colTotalGivenSal;
         private System.Windows.Forms.DataGridViewTextBoxColumn colOthersAllownce;
         private System.Windows.Forms.DataGridViewTextBoxColumn colGivenSalAndallownce;
+        private System.Windows.Forms.Button btnPrintLogo;
     }
 }

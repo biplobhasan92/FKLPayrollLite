@@ -16,14 +16,14 @@ namespace Panchrukhi.Report {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class crtPaySlip : ReportClass {
+    public class Rpt_Leave_Summary : ReportClass {
         
-        public crtPaySlip() {
+        public Rpt_Leave_Summary() {
         }
         
         public override string ResourceName {
             get {
-                return "crtPaySlip.rpt";
+                return "Rpt_Leave_Summary.rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,7 @@ namespace Panchrukhi.Report {
         
         public override string FullResourceName {
             get {
-                return "Panchrukhi.Report.crtPaySlip.rpt";
+                return "Panchrukhi.Report.Rpt_Leave_Summary.rpt";
             }
             set {
                 // Do nothing
@@ -87,12 +87,36 @@ namespace Panchrukhi.Report {
                 return this.ReportDefinition.Sections[4];
             }
         }
+        
+        [Browsable(false)]
+        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public CrystalDecisions.Shared.IParameterField Parameter_companyAddress {
+            get {
+                return this.DataDefinition.ParameterFields[0];
+            }
+        }
+        
+        [Browsable(false)]
+        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public CrystalDecisions.Shared.IParameterField Parameter_companyName {
+            get {
+                return this.DataDefinition.ParameterFields[1];
+            }
+        }
+        
+        [Browsable(false)]
+        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public CrystalDecisions.Shared.IParameterField Parameter_monthYear {
+            get {
+                return this.DataDefinition.ParameterFields[2];
+            }
+        }
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class CachedcrtPaySlip : Component, ICachedReport {
+    public class CachedRpt_Leave_Summary : Component, ICachedReport {
         
-        public CachedcrtPaySlip() {
+        public CachedRpt_Leave_Summary() {
         }
         
         [Browsable(false)]
@@ -129,7 +153,7 @@ namespace Panchrukhi.Report {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            crtPaySlip rpt = new crtPaySlip();
+            Rpt_Leave_Summary rpt = new Rpt_Leave_Summary();
             rpt.Site = this.Site;
             return rpt;
         }

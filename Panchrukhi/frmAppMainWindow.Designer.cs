@@ -62,9 +62,11 @@
             this.superAdminToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.flowLayoutMainWindow = new System.Windows.Forms.FlowLayoutPanel();
+            this.lblCompanyName = new System.Windows.Forms.Label();
+            this.pbxLogo = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.mnuMain.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbxLogo)).BeginInit();
             this.SuspendLayout();
             // 
             // errorProvider1
@@ -304,7 +306,7 @@
             // settingsToolStripMenuItem
             // 
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
             this.settingsToolStripMenuItem.Text = "Settings";
             this.settingsToolStripMenuItem.Click += new System.EventHandler(this.settingsToolStripMenuItem_Click);
             // 
@@ -313,33 +315,43 @@
             this.contextMenuStrip2.Name = "contextMenuStrip2";
             this.contextMenuStrip2.Size = new System.Drawing.Size(61, 4);
             // 
-            // flowLayoutMainWindow
+            // lblCompanyName
             // 
-            this.flowLayoutMainWindow.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("flowLayoutMainWindow.BackgroundImage")));
-            this.flowLayoutMainWindow.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.flowLayoutMainWindow.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutMainWindow.Location = new System.Drawing.Point(0, 24);
-            this.flowLayoutMainWindow.Name = "flowLayoutMainWindow";
-            this.flowLayoutMainWindow.Size = new System.Drawing.Size(1110, 497);
-            this.flowLayoutMainWindow.TabIndex = 2;
+            this.lblCompanyName.AutoSize = true;
+            this.lblCompanyName.Font = new System.Drawing.Font("Arial Rounded MT Bold", 84.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCompanyName.ForeColor = System.Drawing.Color.DarkGray;
+            this.lblCompanyName.Location = new System.Drawing.Point(293, 199);
+            this.lblCompanyName.Name = "lblCompanyName";
+            this.lblCompanyName.Size = new System.Drawing.Size(0, 131);
+            this.lblCompanyName.TabIndex = 17;
+            // 
+            // pbxLogo
+            // 
+            this.pbxLogo.Location = new System.Drawing.Point(130, 199);
+            this.pbxLogo.Name = "pbxLogo";
+            this.pbxLogo.Size = new System.Drawing.Size(112, 117);
+            this.pbxLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbxLogo.TabIndex = 18;
+            this.pbxLogo.TabStop = false;
             // 
             // frmMainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1110, 521);
-            this.Controls.Add(this.flowLayoutMainWindow);
+            this.Controls.Add(this.pbxLogo);
+            this.Controls.Add(this.lblCompanyName);
             this.Controls.Add(this.mnuMain);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.mnuMain;
             this.Name = "frmMainWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FKL Payroll Lite";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmMainWindow_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.mnuMain.ResumeLayout(false);
             this.mnuMain.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbxLogo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -363,7 +375,6 @@
         private System.Windows.Forms.ToolStripMenuItem addHolyCategoryToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem addToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem addWeekendToolStripMenuItem;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutMainWindow;
         private System.Windows.Forms.ToolStripMenuItem basicSettingToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem addNewMachineToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem iPConfigureToolStripMenuItem;
@@ -379,5 +390,7 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem superAdminToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;
+        private System.Windows.Forms.Label lblCompanyName;
+        private System.Windows.Forms.PictureBox pbxLogo;
     }
 }

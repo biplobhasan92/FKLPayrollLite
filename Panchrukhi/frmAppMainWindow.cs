@@ -12,6 +12,7 @@ using Panchrukhi.DAO;
 using Panchrukhi.Basic_Settings;
 using Panchrukhi.Holidays;
 using Panchrukhi.Report;
+using System.IO;
 
 namespace Panchrukhi
 {
@@ -59,10 +60,15 @@ namespace Panchrukhi
         // Form main window Load all this below function ...
         private void frmMainWindow_Load(object sender, EventArgs e)
         {
-
             LoadPersonGenderCombo();
             ClearPrsnForm();
             promoteAndDemoteToolStripMenuItem.Enabled = false;
+            DataRow dr = DBConn.getCompanyNameAndAddress();            
+            this.Text = dr["VCOMPANY_NAME"].ToString();
+            lblCompanyName.Text = dr["VCOMPANY_NAME"].ToString();
+            byte[] picObj = (byte[])dr["BLOGO"];
+            MemoryStream ms = new MemoryStream(picObj);
+            pbxLogo.Image = Image.FromStream(ms);
         }
 
 
@@ -82,7 +88,6 @@ namespace Panchrukhi
 
         void ClearPrsnForm()
         {
-
             //btnPrsnSaveAndUpdate.Enabled = false;
         }
 
@@ -104,9 +109,7 @@ namespace Panchrukhi
         // Category Tab Pannel Save And Update Button ..
         private void btnCtgrySaveAndUpdate_Click(object sender, EventArgs e)
         {
-
-
-
+            
         }
 
 
@@ -127,8 +130,6 @@ namespace Panchrukhi
             DateTime time = DateTime.Now;             // Use current time.
             string format = "MMM ddd d HH:mm yyyy";   // Use this format.
             time.ToString(format); // Write to console.
-
-
             //MessageBox.Show(txtSlotID.Text+" "+ dtTimePcrSlotInTime.For + ""+dtTimePcrSlotOutTime.Text);
         }
 
@@ -305,8 +306,7 @@ namespace Panchrukhi
         }
 
         private void salaryReportToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            
+        {            
             frmSalary frmLvsttng = new frmSalary();
             frmLvsttng.Owner = this;
             frmLvsttng.Show();

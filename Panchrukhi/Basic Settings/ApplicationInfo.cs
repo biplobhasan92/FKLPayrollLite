@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Panchrukhi.DAO;
 using System.Data.SQLite;
+using System.IO;
+using System.Drawing;
 
 namespace Panchrukhi.Basic_Settings
 {
@@ -21,10 +23,13 @@ namespace Panchrukhi.Basic_Settings
 
         DatabaseConnection db = new DatabaseConnection();
         SQLiteCommand cmd;
+        SQLiteConnection conn;
         DataTable dt;
         SQLiteDataAdapter da;
         DataSet ds;
         int selectID = 0;
+        string imageLocation = "";
+
 
         private void ApplicationInfo_Load(object sender, EventArgs e)
         {
@@ -34,6 +39,9 @@ namespace Panchrukhi.Basic_Settings
 
         void LoadData()
         {
+
+            
+
             try
             {
                 db.SetConnection();
@@ -46,10 +54,14 @@ namespace Panchrukhi.Basic_Settings
                 dt = ds.Tables[0];
                 foreach (DataRow dr in dt.Rows)
                 {
+                    
+                    byte [] byteBLOBData = (byte[])dr["BLOGO"];
+                    MemoryStream stmBLOBData = new MemoryStream(byteBLOBData);
                     selectID = Convert.ToInt32(dr["NCOMPANYID"].ToString());
                     txtCompanyName.Text = dr["VCOMPANY_NAME"].ToString();
                     txtAddress.Text = dr["VCOMPANY_ADDRESS"].ToString();
                     txtContact.Text = dr["VCONTACT"].ToString();
+                    pbxLogo.Image = Image.FromStream(stmBLOBData);
                 }
                 db.sql_conn.Close();
             }
@@ -66,23 +78,57 @@ namespace Panchrukhi.Basic_Settings
                 MessageBox.Show("close form and load again");
                 return;
             }
+            string contentType = "";
             string name    = txtCompanyName.Text.Trim();
             string address = txtAddress.Text.Trim();
             string contact = txtContact.Text.Trim();
+            string fileName = imageLocation;
+
+            MemoryStream strm = new MemoryStream();
+            pbxLogo.Image.Save(strm, System.Drawing.Imaging.ImageFormat.Jpeg);
+            byte[] pic = strm.ToArray();
+            
+
+            switch (Path.GetExtension(fileName))
+            {
+                case ".jpg":
+                    contentType = "image/jpeg";
+                    break;
+                case ".JPG":
+                    contentType = "image/jpeg";
+                    break;
+                case ".png":
+                    contentType = "image/png";
+                    break;
+                case ".gif":
+                    contentType = "image/gif";
+                    break;
+                case ".bmp":
+                    contentType = "image/bmp";
+                    break;
+            }
 
             try
             {
                 string s = @" update TBL_COMPANY SET
-                                    VCOMPANY_NAME = '"+name+"', VCOMPANY_ADDRESS='"+address+"', VCONTACT = '"+contact+"' " +
-                            " where NCOMPANYID = "+selectID+" ";                
-                db.ExecutionQuery(s);
-                Clear();
+                                    VCOMPANY_NAME = '"+name+"', VCOMPANY_ADDRESS='"+address+"', VCONTACT = '"+contact+"', " +
+                                   " VCONTENT_TYPE = '"+ contentType + "', VFILE_NAME = '"+ fileName + "', BLOGO = @Pic " +
+                            " where NCOMPANYID = " +selectID+" ";
+                conn = new SQLiteConnection(db.connectionString);
+                cmd = new SQLiteCommand(s, conn);
+                conn.Open();
+                cmd.Parameters.AddWithValue("@Pic", pic);
+                cmd.ExecuteNonQuery();
+                conn.Close();
+                LoadData();
             }
             catch(Exception ex)
             {
                 MessageBox.Show(" Exception : "+ex.Message.ToString());
             }
         }
+
+
 
         private void btnReset_Click(object sender, EventArgs e)
         {
@@ -95,6 +141,7 @@ namespace Panchrukhi.Basic_Settings
             txtCompanyName.Text =
             txtAddress.Text =
             txtContact.Text = "";
+            pbxLogo.ImageLocation = "";
         }
 
         private void btnResetDatabse_Click(object sender, EventArgs e)
@@ -128,6 +175,27 @@ namespace Panchrukhi.Basic_Settings
             catch (Exception ex)
             {
                 MessageBox.Show(" Exception "+ex.Message.ToString());
+            }
+        }
+
+
+        private void btnUpload_Click(object sender, EventArgs e)
+        {
+            
+            try
+            {
+                OpenFileDialog dialog = new OpenFileDialog();
+                dialog.Filter = "Image Files(*.jpg; *.jpeg; *.gif; *.bmp)|*.jpg; *.jpeg; *.gif; *.bmp";
+
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    imageLocation = dialog.FileName;
+                    pbxLogo.ImageLocation = imageLocation;
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("An Error Occured", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
+using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SQLite;
@@ -488,94 +488,96 @@ namespace Panchrukhi.Report
 
         private void btn_print_Click(object sender, EventArgs e) // MonthlySummaryReport.xml
         {
-            string year = DateTime.Now.Year.ToString();
-            String Month = DateTime.Now.Month.ToString();
             
-            DS = new DataSet();
-            DT = new DataTable();
-            string str = "";
-            DT.Columns.Add("ID", typeof(string));
-            DT.Columns.Add("Emp ID", typeof(string));
-            DT.Columns.Add("Emp Name", typeof(string));
-            DT.Columns.Add("Category", typeof(string));
-            DT.Columns.Add("Designation", typeof(string));
-            DT.Columns.Add("Working Day", typeof(int));
-            DT.Columns.Add("Holidays", typeof(int));
-            DT.Columns.Add("Holiday work", typeof(string));
-            DT.Columns.Add("Present", typeof(int));
-            DT.Columns.Add("CL", typeof(int));
-            DT.Columns.Add("SL", typeof(int));
-            DT.Columns.Add("AL", typeof(int));
-            DT.Columns.Add("absent", typeof(int));
-            DT.Columns.Add("Basic", typeof(int));
-            DT.Columns.Add("House Rent", typeof(int));
-            DT.Columns.Add("Transport", typeof(int));
-            DT.Columns.Add("Medical", typeof(int));
-            DT.Columns.Add("Salary", typeof(int));
-            DT.Columns.Add("Absent Cut", typeof(int));
-            DT.Columns.Add("Advance Cut", typeof(int));
-            DT.Columns.Add("Mobile Bill", typeof(int));
-            DT.Columns.Add("Others Cut", typeof(int));
-            DT.Columns.Add("Tax", typeof(int));
-            DT.Columns.Add("Rev Ticket", typeof(int));
-            DT.Columns.Add("Total Cut", typeof(int));
-            DT.Columns.Add("Total Givent Sal", typeof(int));
-            DT.Columns.Add("Others Allowanc", typeof(int));
-            DT.Columns.Add("Total Givent Sal and Allow", typeof(int));
-            if (dataGridView.Rows.Count > 0)
-            {
-                DataRow dr = DBConn.getCompanyNameAndAddress();
-                foreach (DataGridViewRow dgv in dataGridView.Rows)
-                {
-                    // DataRow drr = DBConn.getEmpInfo(dgv.Cells[0].Value.ToString());
-                    DT.Rows.Add(
-                        dgv.Cells[0].Value,
-                        dgv.Cells[1].Value,
-                        dgv.Cells[2].Value,
-                        dgv.Cells[3].Value,
-                        dgv.Cells[4].Value,
-                        dgv.Cells[5].Value,
-                        dgv.Cells[6].Value,
-                        dgv.Cells[7].Value,
-                        dgv.Cells[8].Value,
-                        dgv.Cells[9].Value,
-                        dgv.Cells[10].Value,
-                        dgv.Cells[11].Value,
-                        dgv.Cells[12].Value,
-                        dgv.Cells[13].Value,
-                        dgv.Cells[14].Value,
-                        dgv.Cells[15].Value,
-                        dgv.Cells[16].Value,
-                        dgv.Cells[17].Value,
-                        dgv.Cells[18].Value,
-                        dgv.Cells[19].Value,
-                        dgv.Cells[20].Value,
-                        dgv.Cells[21].Value,
-                        dgv.Cells[22].Value,
-                        dgv.Cells[23].Value,
-                        dgv.Cells[24].Value,
-                        dgv.Cells[25].Value,
-                        dgv.Cells[26].Value,
-                        dgv.Cells[27].Value
-                    );
-                }
-                DS.Tables.Add(DT);
-                DS.WriteXmlSchema("MonthlySummaryReport.xml");
+                string year = DateTime.Now.Year.ToString();
+                String Month = DateTime.Now.Month.ToString();            
+                DS = new DataSet();
+                DT = new DataTable();
+                string str = "";
+                DT.Columns.Add("ID", typeof(string));
+                DT.Columns.Add("Emp ID", typeof(string));
+                DT.Columns.Add("Emp Name", typeof(string));
+                DT.Columns.Add("Category", typeof(string));
+                DT.Columns.Add("Designation", typeof(string));
+                DT.Columns.Add("Working Day", typeof(int));
+                DT.Columns.Add("Holidays", typeof(int));
+                DT.Columns.Add("Holiday work", typeof(string));
+                DT.Columns.Add("Present", typeof(int));
+                DT.Columns.Add("CL", typeof(int));
+                DT.Columns.Add("SL", typeof(int));
+                DT.Columns.Add("AL", typeof(int));
+                DT.Columns.Add("absent", typeof(int));
+                DT.Columns.Add("Basic", typeof(int));
+                DT.Columns.Add("House Rent", typeof(int));
+                DT.Columns.Add("Transport", typeof(int));
+                DT.Columns.Add("Medical", typeof(int));
+                DT.Columns.Add("Salary", typeof(int));
+                DT.Columns.Add("Absent Cut", typeof(int));
+                DT.Columns.Add("Advance Cut", typeof(int));
+                DT.Columns.Add("Mobile Bill", typeof(int));
+                DT.Columns.Add("Others Cut", typeof(int));
+                DT.Columns.Add("Tax", typeof(int));
+                DT.Columns.Add("Rev Ticket", typeof(int));
+                DT.Columns.Add("Total Cut", typeof(int));
+                DT.Columns.Add("Total Givent Sal", typeof(int));
+                DT.Columns.Add("Others Allowanc", typeof(int));
+                DT.Columns.Add("Total Givent Sal and Allow", typeof(int));
+            
+
+            
+                if (dataGridView.Rows.Count > 0)
+                {                
+                    foreach (DataGridViewRow dgv in dataGridView.Rows)
+                    {
+                            // DataRow drr = DBConn.getEmpInfo(dgv.Cells[0].Value.ToString());
+                            DT.Rows.Add(
+                                dgv.Cells[0].Value,
+                                dgv.Cells[1].Value,
+                                dgv.Cells[2].Value,
+                                dgv.Cells[3].Value,
+                                dgv.Cells[4].Value,
+                                dgv.Cells[5].Value,
+                                dgv.Cells[6].Value,
+                                dgv.Cells[7].Value,
+                                dgv.Cells[8].Value,
+                                dgv.Cells[9].Value,
+                                dgv.Cells[10].Value,
+                                dgv.Cells[11].Value,
+                                dgv.Cells[12].Value,
+                                dgv.Cells[13].Value,
+                                dgv.Cells[14].Value,
+                                dgv.Cells[15].Value,
+                                dgv.Cells[16].Value,
+                                dgv.Cells[17].Value,
+                                dgv.Cells[18].Value,
+                                dgv.Cells[19].Value,
+                                dgv.Cells[20].Value,
+                                dgv.Cells[21].Value,
+                                dgv.Cells[22].Value,
+                                dgv.Cells[23].Value,
+                                dgv.Cells[24].Value,
+                                dgv.Cells[25].Value,
+                                dgv.Cells[26].Value,
+                                dgv.Cells[27].Value
+                            );
+                         }
+                    DS.Tables.Add(DT);
+                    DS.WriteXmlSchema("MonthlySummaryReport.xml");                
                 frmCrystalReportViewer frm = new frmCrystalReportViewer();
-                // MonthlySummaryReport cr = new MonthlySummaryReport();
                 Rpt_SalarySheet_FKLSpinning_Bangla cr = new Rpt_SalarySheet_FKLSpinning_Bangla();
+                DataRow dr = DBConn.getCompanyNameAndAddress();
                 cr.SetDataSource(DS);
                 cr.SetParameterValue(0, dr["VCOMPANY_NAME"]);
                 cr.SetParameterValue(1, dr["VCOMPANY_ADDRESS"]);
-                cr.SetParameterValue(2, dateTimePicker1.Value.ToString("MMMM") + ", "+ dateTimePicker1.Value.ToString("yyyy"));
+                cr.SetParameterValue(2, dateTimePicker1.Value.ToString("MMMM") + ", " + dateTimePicker1.Value.ToString("yyyy"));
                 frm.crptViewer.ReportSource = cr;
                 frm.crptViewer.Refresh();
-                frm.Show();
-            }// string month_name = date.ToString("MMM");
-            else
-            {
+                frm.Show();                
+            }else{
                 MessageBox.Show("Load Grid First");
             }
+
+           
         }
 
 
@@ -818,7 +820,16 @@ namespace Panchrukhi.Report
             ClearData();
         }
 
-
+        private void btnPrintLogo_Click(object sender, EventArgs e)
+        {
+            frmCrystalReportViewer frm = new frmCrystalReportViewer();
+            TestReport cr = new TestReport();
+            DataSet ds = DBConn.getCompanyNameWithLogo();
+            cr.SetDataSource(ds.Tables[0]);
+            frm.crptViewer.ReportSource = cr;
+            frm.crptViewer.Refresh();
+            frm.Show();
+        }
 
 
 

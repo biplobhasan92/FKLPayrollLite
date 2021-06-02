@@ -30,7 +30,7 @@ namespace Panchrukhi.DAO
 
 
 
-
+        public string connectionString = "Data Source=panchrukhi.db; Version=3; New=False;Compress=True;";
 
         // Execution Query
         public bool ExecutionQuery(string txtQuery)
@@ -550,6 +550,33 @@ namespace Panchrukhi.DAO
                 DA.Fill(DS);
                 if (DS.Tables[0].Rows.Count > 0)
                     return DS.Tables[0].Rows[0];
+                else
+                {
+                    MessageBox.Show("Company Name was not set properly. Please contact your system administrator.");
+                }
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show("Company Name was not set properly. Please contact your system administrator.");
+            }
+            return null;
+        }
+
+
+
+        // GET Company name 
+        public DataSet getCompanyNameWithLogo()
+        {
+            try
+            {
+                string cmdText = "select * from TBL_COMPANY";
+                ExecutionQuery(cmdText);
+                DA = new SQLiteDataAdapter(cmdText, sql_conn);
+                DS = new DataSet();
+                DS.Reset();
+                DA.Fill(DS);
+                if (DS.Tables[0].Rows.Count > 0)
+                    return DS;
                 else
                 {
                     MessageBox.Show("Company Name was not set properly. Please contact your system administrator.");

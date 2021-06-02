@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Panchrukhi.DAO;
 using System.Data.SQLite;
+using Panchrukhi.Report;
 
 namespace Panchrukhi
 {
@@ -37,6 +38,7 @@ namespace Panchrukhi
         private DataTable DT;
         private SQLiteCommand sql_cmd;
         private SQLiteDataAdapter DB;
+        private SQLiteConnection conn;
         int getHID=0;
 
 
@@ -155,7 +157,8 @@ namespace Panchrukhi
                                      le.EMP_ID as EMP_ID,
                                      le.LEAVE_NAME as LEAVE_CAT_ID,
                                      (select s.LEAVE_NAME from TBL_LEAVE_SETTINGS s where s.SL = le.LEAVE_NAME) as LEAVE_NAME,
-                                     le.LEAVE_DATE as LEAVE_DATE 
+                                     le.LEAVE_DATE as LEAVE_DATE,
+                                     (select p.VNAME from TBLPERSON p where p.PERSONID=le.EMP_ID) as EMP_NAME
                                    from TBL_LEAVE_ENTRY le;";
             DBConn.ExecutionQuery(CommandText);
             DB = new SQLiteDataAdapter(CommandText, DBConn.sql_conn);
@@ -174,6 +177,7 @@ namespace Panchrukhi
                     dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colHDate.Index].Value = dr["LEAVE_DATE"].ToString();
                     dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colHCategory.Index].Value  = dr["LEAVE_NAME"].ToString();
                     dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colLeaveCatID.Index].Value = dr["LEAVE_CAT_ID"].ToString();
+                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colEmpName.Index].Value = dr["EMP_NAME"].ToString();
                 }
             }
         }
@@ -186,6 +190,7 @@ namespace Panchrukhi
         {
             this.Owner.Enabled = false;
             LoadHolyDayCatCombo();
+            LoadData();
             gbxSerachOption.Enabled = false;
         }
 
@@ -223,10 +228,10 @@ namespace Panchrukhi
             DB = new SQLiteDataAdapter(CommandText, DBConn.sql_conn);
             DB.Fill(dsSLOT);
             DT = dsSLOT.Tables[0];
-            cbxLeaveCat.DisplayMember = "Text";
-            cbxLeaveCat.ValueMember   = "Value";
-            cbxSrcLvCat.DisplayMember = "Text";
-            cbxSrcLvCat.ValueMember = "Value";
+            cbxLeaveCat.DisplayMember= "Text";
+            cbxLeaveCat.ValueMember  = "Value";
+            cbxSrcLvCat.DisplayMember= "Text";
+            cbxSrcLvCat.ValueMember  = "Value";
             foreach (DataRow dr in DT.Rows)
             {
                 cbxLeaveCat.Items.Add(new { Text = dr["LEAVE_NAME"].ToString(), Value = dr["SL"].ToString() });//NCATID
@@ -363,6 +368,7 @@ namespace Panchrukhi
             }
         }
 
+
         private void txtEmpID_KeyPress(object sender, KeyPressEventArgs e)
         {
             string txt = txtEmpID.Text;
@@ -374,6 +380,46 @@ namespace Panchrukhi
                     MessageBox.Show("Invalid Input", "0 is not allowed as first digit", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     txtEmpID.Clear();
                 }
+            }
+        }
+
+
+
+        private void btnLeaveReport_Click(object sender, EventArgs e)
+        {
+            string txtYear = dtpFstDate.Value.Year.ToString();
+            try
+            {
+                string query =@" SELECT "+
+                                    " P.PERSONID AS ID, "+
+                                    " P.VNAME AS NAME, "+
+                                    " (select count(s.LEAVE_NAME) from TBL_LEAVE_ENTRY s where s.EMP_ID = p.PERSONID and s.LEAVE_NAME = 1 and substr(s.LEAVE_DATE,7,9) = '"+txtYear+"') as CL, "+
+                                    " (select count(s.LEAVE_NAME) from TBL_LEAVE_ENTRY s where s.EMP_ID = p.PERSONID and s.LEAVE_NAME = 2 and substr(s.LEAVE_DATE,7,9) = '" + txtYear + "') as SL, " +
+                                    " (select count(s.LEAVE_NAME) from TBL_LEAVE_ENTRY s where s.EMP_ID = p.PERSONID and s.LEAVE_NAME = 3 and substr(s.LEAVE_DATE,7,9) = '" + txtYear + "') as AL, " +
+                                    " (select count(s.LEAVE_NAME) from TBL_LEAVE_ENTRY s where s.EMP_ID = p.PERSONID and substr(s.LEAVE_DATE,7,9) = '" + txtYear + "') as TOTAL " +
+                               " FROM " +
+                                   " TBLPERSON P; ";
+
+                conn = new SQLiteConnection(DBConn.connectionString);
+                sql_cmd = new SQLiteCommand(query, conn);
+                DB = new SQLiteDataAdapter(sql_cmd);
+                DS = new DataSet();
+                DT = new DataTable();
+                DB.Fill(DS);
+                Rpt_Leave_Summary cr = new Rpt_Leave_Summary();
+                frmCrystalReportViewer crpt = new frmCrystalReportViewer();
+                crpt.crptViewer.ReportSource = null;
+                crpt.crptViewer.ReportSource = cr;
+                DataRow dr = DBConn.getCompanyNameAndAddress();
+                cr.SetDataSource(DS.Tables[0]);
+                cr.SetParameterValue(0, dr["VCOMPANY_ADDRESS"]);
+                cr.SetParameterValue(1, dr["VCOMPANY_NAME"]);
+                cr.SetParameterValue(2, txtYear);
+                crpt.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(" Exception "+ex.Message);
             }
         }
     }
