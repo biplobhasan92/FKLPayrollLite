@@ -82,9 +82,9 @@
             // 
             // txtClassName
             // 
-            this.txtClassName.Location = new System.Drawing.Point(86, 12);
+            this.txtClassName.Location = new System.Drawing.Point(110, 12);
             this.txtClassName.Name = "txtClassName";
-            this.txtClassName.Size = new System.Drawing.Size(248, 20);
+            this.txtClassName.Size = new System.Drawing.Size(224, 20);
             this.txtClassName.TabIndex = 96;
             this.txtClassName.TextChanged += new System.EventHandler(this.txtClassName_TextChanged);
             // 
@@ -93,9 +93,9 @@
             this.lblSlotName.AutoSize = true;
             this.lblSlotName.Location = new System.Drawing.Point(16, 15);
             this.lblSlotName.Name = "lblSlotName";
-            this.lblSlotName.Size = new System.Drawing.Size(63, 13);
+            this.lblSlotName.Size = new System.Drawing.Size(93, 13);
             this.lblSlotName.TabIndex = 95;
-            this.lblSlotName.Text = "Class Name";
+            this.lblSlotName.Text = "Department Name";
             // 
             // dataGridData
             // 
@@ -124,7 +124,7 @@
             // colVSLOTNAME
             // 
             this.colVSLOTNAME.DataPropertyName = "VCLASSNAME";
-            this.colVSLOTNAME.HeaderText = "Class Name";
+            this.colVSLOTNAME.HeaderText = "Department Name";
             this.colVSLOTNAME.Name = "colVSLOTNAME";
             this.colVSLOTNAME.ReadOnly = true;
             this.colVSLOTNAME.Width = 200;
@@ -143,7 +143,7 @@
             this.Controls.Add(this.btnSaveAndUpdate);
             this.Name = "frmClassData";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Add Class";
+            this.Text = "Add Department";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmClassData_FormClosed);
             this.Load += new System.EventHandler(this.FrmData_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridData)).EndInit();

@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Panchrukhi.DAO;
 using System.Data.SQLite;
+using Panchrukhi.Report;
 
 namespace Panchrukhi
 {
@@ -68,13 +69,8 @@ namespace Panchrukhi
                 if (txtPID.Text != "")
                 {
                     if (DBConn.checkDataIfItUsedOtherTableStr("TBLPERSON", "PERSONID", txtPID.Text)) { MessageBox.Show("", "Duplicate ID Not Allowed !", MessageBoxButtons.OK, MessageBoxIcon.Error); return; }
-
                     try
-                    {
-                        
-                        
-                        
-                        
+                    {                           
                         string cmdText =
                             "INSERT INTO TBLPERSON " +
                             "  (          " +
@@ -459,7 +455,7 @@ namespace Panchrukhi
         {
             //this.Owner.Enabled = true;
         }
-
+        string pat = Application.StartupPath;
 
         private void btnSaveAndUpdate_Validating(object sender, CancelEventArgs e)
         {
@@ -472,10 +468,11 @@ namespace Panchrukhi
             {
                 DataRow dr = DBConn.getCompanyNameAndAddress();
                 if (dr == null) return;
-                Report.crptPersonalInfo rptObj = new Report.crptPersonalInfo();
+                crptPersonalInfo rptObj = new crptPersonalInfo();
                 rptObj.SetDataSource(DS.Tables[0]);
                 rptObj.SetParameterValue(0, dr["VCOMPANY_NAME"]);
                 rptObj.SetParameterValue(1, dr["VCOMPANY_ADDRESS"]);
+                rptObj.SetParameterValue(2, pat + "\\" + dr["VFILE_NAME"]);
                 frmCrystalReportViewer crpt = new frmCrystalReportViewer();
                 crpt.crptViewer.ReportSource = null;
                 crpt.crptViewer.ReportSource = rptObj;

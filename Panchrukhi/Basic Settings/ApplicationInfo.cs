@@ -33,14 +33,43 @@ namespace Panchrukhi.Basic_Settings
 
         private void ApplicationInfo_Load(object sender, EventArgs e)
         {
-            LoadData();
+           LoadData();
+           // LoadGrid();
+        }
+
+        void LoadGrid()
+        {
+            try
+            {
+                db.SetConnection();
+                string s = " select * from TBL_COMPANY ";
+                da = new SQLiteDataAdapter(s, db.sql_conn);
+                ds = new DataSet();
+                dt = new DataTable();
+                db.sql_conn.Open();
+                da.Fill(ds);
+                dt = ds.Tables[0];
+                foreach (DataRow dr in dt.Rows)
+                {
+                    byte[] byteBLOBData = (byte[])dr["BLOGO"];
+                    MemoryStream stmBLOBData = new MemoryStream(byteBLOBData);
+                    selectID = Convert.ToInt32(dr["NCOMPANYID"].ToString());
+                    txtCompanyName.Text = dr["VCOMPANY_NAME"].ToString();
+                    txtAddress.Text = dr["VCOMPANY_ADDRESS"].ToString();
+                    txtContact.Text = dr["VCONTACT"].ToString();
+                    pbxLogo.Image = Image.FromStream(stmBLOBData);
+                }
+                db.sql_conn.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Exception: " + ex.Message.ToString());
+            }
         }
 
 
         void LoadData()
         {
-
-            
 
             try
             {
@@ -54,7 +83,6 @@ namespace Panchrukhi.Basic_Settings
                 dt = ds.Tables[0];
                 foreach (DataRow dr in dt.Rows)
                 {
-                    
                     byte [] byteBLOBData = (byte[])dr["BLOGO"];
                     MemoryStream stmBLOBData = new MemoryStream(byteBLOBData);
                     selectID = Convert.ToInt32(dr["NCOMPANYID"].ToString());
@@ -78,24 +106,33 @@ namespace Panchrukhi.Basic_Settings
                 MessageBox.Show("close form and load again");
                 return;
             }
+
+            DataRow dr = db.getCompanyNameAndAddress();
+            string prevImgName = dr["VFILE_NAME"].ToString();            
+            string basePath = Application.StartupPath;
+            string prevImgPath = basePath +"\\"+ prevImgName;
             string contentType = "";
             string name    = txtCompanyName.Text.Trim();
             string address = txtAddress.Text.Trim();
             string contact = txtContact.Text.Trim();
-            string fileName = imageLocation;
-
+            string fileName = "";
+            var time = DateTime.Now.TimeOfDay.ToString();
+            fileName = Path.GetFileName(imageLocation);
             MemoryStream strm = new MemoryStream();
             pbxLogo.Image.Save(strm, System.Drawing.Imaging.ImageFormat.Jpeg);
             byte[] pic = strm.ToArray();
-            
+            if (File.Exists(prevImgPath))
+            {
+                File.Delete(prevImgPath);
+            }
 
             switch (Path.GetExtension(fileName))
             {
                 case ".jpg":
-                    contentType = "image/jpeg";
+                    contentType = "image/jpg";
                     break;
                 case ".JPG":
-                    contentType = "image/jpeg";
+                    contentType = "image/jpg";
                     break;
                 case ".png":
                     contentType = "image/png";
@@ -119,6 +156,7 @@ namespace Panchrukhi.Basic_Settings
                 conn.Open();
                 cmd.Parameters.AddWithValue("@Pic", pic);
                 cmd.ExecuteNonQuery();
+                File.Copy(imageLocation, Path.Combine(basePath + "\\", Path.GetFileName(imageLocation)), true);
                 conn.Close();
                 LoadData();
             }
@@ -197,6 +235,17 @@ namespace Panchrukhi.Basic_Settings
             {
                 MessageBox.Show("An Error Occured", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void dataGridView1_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            selectID = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[0].Value);
+            txtCompanyName.Text = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
+            txtAddress.Text = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
+            txtContact.Text = dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString();
+            byte[] byteBLOBData = (byte[])dataGridView1.Rows[e.RowIndex].Cells[4].Value;
+            MemoryStream stmBLOBData = new MemoryStream(byteBLOBData);
+            pbxLogo.Image = Image.FromStream(stmBLOBData);
         }
     }
 }

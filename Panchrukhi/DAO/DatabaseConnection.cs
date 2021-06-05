@@ -574,7 +574,7 @@ namespace Panchrukhi.DAO
                 DA = new SQLiteDataAdapter(cmdText, sql_conn);
                 DS = new DataSet();
                 DS.Reset();
-                DA.Fill(DS);
+                DA.Fill(DS, "TBL_COMPANY");
                 if (DS.Tables[0].Rows.Count > 0)
                     return DS;
                 else

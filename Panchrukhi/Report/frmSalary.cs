@@ -570,6 +570,7 @@ namespace Panchrukhi.Report
                 cr.SetParameterValue(0, dr["VCOMPANY_NAME"]);
                 cr.SetParameterValue(1, dr["VCOMPANY_ADDRESS"]);
                 cr.SetParameterValue(2, dateTimePicker1.Value.ToString("MMMM") + ", " + dateTimePicker1.Value.ToString("yyyy"));
+                cr.SetParameterValue(3, pat+"\\"+dr["VFILE_NAME"]);
                 frm.crptViewer.ReportSource = cr;
                 frm.crptViewer.Refresh();
                 frm.Show();                
@@ -659,6 +660,7 @@ namespace Panchrukhi.Report
                 cr.SetParameterValue(0, dr["VCOMPANY_NAME"]);
                 cr.SetParameterValue(1, dr["VCOMPANY_ADDRESS"]);
                 cr.SetParameterValue(2, dateTimePicker1.Value.ToString("MMMM") + ", " + dateTimePicker1.Value.ToString("yyyy"));
+                cr.SetParameterValue(3, dr["VFILE_NAME"]);
                 frm.crptViewer.ReportSource = cr;
                 frm.crptViewer.Refresh();
                 frm.Show();
@@ -820,12 +822,22 @@ namespace Panchrukhi.Report
             ClearData();
         }
 
+
+        string pat = Application.StartupPath;
         private void btnPrintLogo_Click(object sender, EventArgs e)
         {
-            frmCrystalReportViewer frm = new frmCrystalReportViewer();
+            var uAppDataPath = Application.UserAppDataPath;
+            var basDir = AppDomain.CurrentDomain.BaseDirectory;
+            string path = new DirectoryInfo(Environment.CurrentDirectory).Parent.Parent.FullName;
+
+            frmCrystalReportViewer frm = new frmCrystalReportViewer();            
             TestReport cr = new TestReport();
-            DataSet ds = DBConn.getCompanyNameWithLogo();
-            cr.SetDataSource(ds.Tables[0]);
+            DS = new DataSet();
+            DT = new DataTable();
+            DS = DBConn.getCompanyNameWithLogo();
+            DT = DS.Tables[0];
+            cr.SetDataSource(DT);
+            cr.SetParameterValue(0, pat);
             frm.crptViewer.ReportSource = cr;
             frm.crptViewer.Refresh();
             frm.Show();

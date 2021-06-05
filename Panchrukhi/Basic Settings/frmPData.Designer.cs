@@ -660,9 +660,9 @@
             this.lblClass.AutoSize = true;
             this.lblClass.Location = new System.Drawing.Point(11, 436);
             this.lblClass.Name = "lblClass";
-            this.lblClass.Size = new System.Drawing.Size(32, 13);
+            this.lblClass.Size = new System.Drawing.Size(62, 13);
             this.lblClass.TabIndex = 130;
-            this.lblClass.Text = "Class";
+            this.lblClass.Text = "Department";
             // 
             // txtPDOB
             // 

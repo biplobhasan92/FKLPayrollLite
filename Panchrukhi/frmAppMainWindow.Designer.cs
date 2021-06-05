@@ -113,49 +113,49 @@
             // tstripAddEditPerson
             // 
             this.tstripAddEditPerson.Name = "tstripAddEditPerson";
-            this.tstripAddEditPerson.Size = new System.Drawing.Size(149, 22);
+            this.tstripAddEditPerson.Size = new System.Drawing.Size(152, 22);
             this.tstripAddEditPerson.Text = "Person Data";
             this.tstripAddEditPerson.Click += new System.EventHandler(this.tstripAddEditPerson_Click);
             // 
             // tstripCategories
             // 
             this.tstripCategories.Name = "tstripCategories";
-            this.tstripCategories.Size = new System.Drawing.Size(149, 22);
+            this.tstripCategories.Size = new System.Drawing.Size(152, 22);
             this.tstripCategories.Text = "Category";
             this.tstripCategories.Click += new System.EventHandler(this.tstripCategories_Click);
             // 
             // tstripDesignation
             // 
             this.tstripDesignation.Name = "tstripDesignation";
-            this.tstripDesignation.Size = new System.Drawing.Size(149, 22);
+            this.tstripDesignation.Size = new System.Drawing.Size(152, 22);
             this.tstripDesignation.Text = "Designation";
             this.tstripDesignation.Click += new System.EventHandler(this.designationToolStripMenuItem_Click);
             // 
             // tstripClasses
             // 
             this.tstripClasses.Name = "tstripClasses";
-            this.tstripClasses.Size = new System.Drawing.Size(149, 22);
-            this.tstripClasses.Text = "Class";
+            this.tstripClasses.Size = new System.Drawing.Size(152, 22);
+            this.tstripClasses.Text = "Department";
             this.tstripClasses.Click += new System.EventHandler(this.tstripClasses_Click);
             // 
             // tstripSections
             // 
             this.tstripSections.Name = "tstripSections";
-            this.tstripSections.Size = new System.Drawing.Size(149, 22);
+            this.tstripSections.Size = new System.Drawing.Size(152, 22);
             this.tstripSections.Text = "Section";
             this.tstripSections.Click += new System.EventHandler(this.tstripSections_Click);
             // 
             // tstripSlots
             // 
             this.tstripSlots.Name = "tstripSlots";
-            this.tstripSlots.Size = new System.Drawing.Size(149, 22);
+            this.tstripSlots.Size = new System.Drawing.Size(152, 22);
             this.tstripSlots.Text = "Shift";
             this.tstripSlots.Click += new System.EventHandler(this.tstripSlots_Click);
             // 
             // leaveSettingsToolStripMenuItem
             // 
             this.leaveSettingsToolStripMenuItem.Name = "leaveSettingsToolStripMenuItem";
-            this.leaveSettingsToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.leaveSettingsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.leaveSettingsToolStripMenuItem.Text = "Leave Settings";
             this.leaveSettingsToolStripMenuItem.Click += new System.EventHandler(this.leaveSettingsToolStripMenuItem_Click);
             // 

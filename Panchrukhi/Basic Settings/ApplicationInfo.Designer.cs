@@ -41,7 +41,15 @@
             this.label5 = new System.Windows.Forms.Label();
             this.pbxLogo = new System.Windows.Forms.PictureBox();
             this.btnUpload = new System.Windows.Forms.Button();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.colSL = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colCompanyName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Address = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colContact = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.VCONTENT_TYPE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.VFILE_NAME = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.pbxLogo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -104,7 +112,7 @@
             // 
             // btnUpdate
             // 
-            this.btnUpdate.Location = new System.Drawing.Point(487, 82);
+            this.btnUpdate.Location = new System.Drawing.Point(452, 82);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(75, 23);
             this.btnUpdate.TabIndex = 8;
@@ -114,7 +122,7 @@
             // 
             // btnReset
             // 
-            this.btnReset.Location = new System.Drawing.Point(487, 122);
+            this.btnReset.Location = new System.Drawing.Point(452, 121);
             this.btnReset.Name = "btnReset";
             this.btnReset.Size = new System.Drawing.Size(75, 23);
             this.btnReset.TabIndex = 9;
@@ -124,7 +132,7 @@
             // 
             // btnResetDatabse
             // 
-            this.btnResetDatabse.Location = new System.Drawing.Point(537, 296);
+            this.btnResetDatabse.Location = new System.Drawing.Point(452, 331);
             this.btnResetDatabse.Name = "btnResetDatabse";
             this.btnResetDatabse.Size = new System.Drawing.Size(252, 46);
             this.btnResetDatabse.TabIndex = 10;
@@ -152,7 +160,7 @@
             // 
             // btnUpload
             // 
-            this.btnUpload.Location = new System.Drawing.Point(365, 409);
+            this.btnUpload.Location = new System.Drawing.Point(452, 160);
             this.btnUpload.Name = "btnUpload";
             this.btnUpload.Size = new System.Drawing.Size(75, 23);
             this.btnUpload.TabIndex = 13;
@@ -160,11 +168,79 @@
             this.btnUpload.UseVisualStyleBackColor = true;
             this.btnUpload.Click += new System.EventHandler(this.btnUpload_Click);
             // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.colSL,
+            this.colCompanyName,
+            this.Address,
+            this.colContact,
+            this.VCONTENT_TYPE,
+            this.VFILE_NAME});
+            this.dataGridView1.Location = new System.Drawing.Point(21, 414);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.Size = new System.Drawing.Size(746, 131);
+            this.dataGridView1.TabIndex = 14;
+            this.dataGridView1.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_RowHeaderMouseClick);
+            // 
+            // colSL
+            // 
+            this.colSL.DataPropertyName = "NCOMPANYID";
+            this.colSL.HeaderText = "SL";
+            this.colSL.Name = "colSL";
+            this.colSL.ReadOnly = true;
+            this.colSL.Width = 40;
+            // 
+            // colCompanyName
+            // 
+            this.colCompanyName.DataPropertyName = "VCOMPANY_NAME";
+            this.colCompanyName.HeaderText = "Company Name";
+            this.colCompanyName.Name = "colCompanyName";
+            this.colCompanyName.ReadOnly = true;
+            this.colCompanyName.Width = 150;
+            // 
+            // Address
+            // 
+            this.Address.DataPropertyName = "VCOMPANY_ADDRESS";
+            this.Address.HeaderText = "Address";
+            this.Address.Name = "Address";
+            this.Address.ReadOnly = true;
+            this.Address.Width = 150;
+            // 
+            // colContact
+            // 
+            this.colContact.DataPropertyName = "VCONTACT";
+            this.colContact.HeaderText = "Contact";
+            this.colContact.Name = "colContact";
+            this.colContact.ReadOnly = true;
+            this.colContact.Width = 250;
+            // 
+            // VCONTENT_TYPE
+            // 
+            this.VCONTENT_TYPE.DataPropertyName = "VCONTENT_TYPE";
+            this.VCONTENT_TYPE.HeaderText = "VCONTENT_TYPE";
+            this.VCONTENT_TYPE.Name = "VCONTENT_TYPE";
+            this.VCONTENT_TYPE.ReadOnly = true;
+            this.VCONTENT_TYPE.Visible = false;
+            // 
+            // VFILE_NAME
+            // 
+            this.VFILE_NAME.DataPropertyName = "VFILE_NAME";
+            this.VFILE_NAME.HeaderText = "VFILE_NAME";
+            this.VFILE_NAME.Name = "VFILE_NAME";
+            this.VFILE_NAME.ReadOnly = true;
+            this.VFILE_NAME.Visible = false;
+            // 
             // ApplicationInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(833, 475);
+            this.ClientSize = new System.Drawing.Size(782, 557);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.btnUpload);
             this.Controls.Add(this.pbxLogo);
             this.Controls.Add(this.label5);
@@ -182,6 +258,7 @@
             this.Text = "ApplicationInfo";
             this.Load += new System.EventHandler(this.ApplicationInfo_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pbxLogo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -202,5 +279,12 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.PictureBox pbxLogo;
         private System.Windows.Forms.Button btnUpload;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colSL;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colCompanyName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Address;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colContact;
+        private System.Windows.Forms.DataGridViewTextBoxColumn VCONTENT_TYPE;
+        private System.Windows.Forms.DataGridViewTextBoxColumn VFILE_NAME;
     }
 }
