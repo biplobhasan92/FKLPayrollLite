@@ -40,7 +40,7 @@ namespace Panchrukhi
         private SQLiteDataAdapter DB;
         private SQLiteConnection conn;
         int getHID=0;
-
+        string pat = Application.StartupPath;
 
 
 
@@ -415,6 +415,7 @@ namespace Panchrukhi
                 cr.SetParameterValue(0, dr["VCOMPANY_ADDRESS"]);
                 cr.SetParameterValue(1, dr["VCOMPANY_NAME"]);
                 cr.SetParameterValue(2, txtYear);
+                cr.SetParameterValue(3, pat + "\\" + dr["VFILE_NAME"]);
                 crpt.Show();
             }
             catch (Exception ex)

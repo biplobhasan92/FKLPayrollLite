@@ -30,9 +30,6 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtBasic = new System.Windows.Forms.NumericUpDown();
-            this.label3 = new System.Windows.Forms.Label();
             this.btnSalProcess = new System.Windows.Forms.Button();
             this.dataGridView = new System.Windows.Forms.DataGridView();
             this.colSL = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -117,7 +114,7 @@
             this.label24 = new System.Windows.Forms.Label();
             this.txtHolidayWork = new System.Windows.Forms.TextBox();
             this.label25 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.txtBasic)).BeginInit();
+            this.cbxManual = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -127,7 +124,7 @@
             this.label1.Location = new System.Drawing.Point(18, 14);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(76, 13);
-            this.label1.TabIndex = 0;
+            this.label1.TabIndex = 7;
             this.label1.Text = "Select Month: ";
             // 
             // dateTimePicker1
@@ -135,41 +132,11 @@
             this.dateTimePicker1.Location = new System.Drawing.Point(104, 12);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(116, 20);
-            this.dateTimePicker1.TabIndex = 1;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(50, 52);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(33, 13);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Basic";
-            // 
-            // txtBasic
-            // 
-            this.txtBasic.Location = new System.Drawing.Point(104, 45);
-            this.txtBasic.Name = "txtBasic";
-            this.txtBasic.Size = new System.Drawing.Size(116, 20);
-            this.txtBasic.TabIndex = 3;
-            this.txtBasic.Value = new decimal(new int[] {
-            60,
-            0,
-            0,
-            0});
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(226, 47);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(15, 13);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "%";
+            this.dateTimePicker1.TabIndex = 0;
             // 
             // btnSalProcess
             // 
-            this.btnSalProcess.Location = new System.Drawing.Point(32, 120);
+            this.btnSalProcess.Location = new System.Drawing.Point(32, 103);
             this.btnSalProcess.Name = "btnSalProcess";
             this.btnSalProcess.Size = new System.Drawing.Size(188, 37);
             this.btnSalProcess.TabIndex = 5;
@@ -417,7 +384,7 @@
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(104, 79);
+            this.checkBox1.Location = new System.Drawing.Point(104, 43);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(103, 17);
             this.checkBox1.TabIndex = 7;
@@ -430,7 +397,7 @@
             this.btn_print.Location = new System.Drawing.Point(1234, 244);
             this.btn_print.Name = "btn_print";
             this.btn_print.Size = new System.Drawing.Size(75, 23);
-            this.btn_print.TabIndex = 8;
+            this.btn_print.TabIndex = 27;
             this.btn_print.Text = "Print";
             this.btn_print.UseVisualStyleBackColor = true;
             this.btn_print.Click += new System.EventHandler(this.btn_print_Click);
@@ -440,7 +407,7 @@
             this.btn_payslip.Location = new System.Drawing.Point(1315, 244);
             this.btn_payslip.Name = "btn_payslip";
             this.btn_payslip.Size = new System.Drawing.Size(75, 23);
-            this.btn_payslip.TabIndex = 9;
+            this.btn_payslip.TabIndex = 28;
             this.btn_payslip.Text = "payslip";
             this.btn_payslip.UseVisualStyleBackColor = true;
             this.btn_payslip.Click += new System.EventHandler(this.btn_payslip_Click);
@@ -639,21 +606,21 @@
             this.txtWorkingDay.Location = new System.Drawing.Point(431, 39);
             this.txtWorkingDay.Name = "txtWorkingDay";
             this.txtWorkingDay.Size = new System.Drawing.Size(105, 20);
-            this.txtWorkingDay.TabIndex = 31;
+            this.txtWorkingDay.TabIndex = 2;
             // 
             // txtHolidays
             // 
             this.txtHolidays.Location = new System.Drawing.Point(431, 68);
             this.txtHolidays.Name = "txtHolidays";
             this.txtHolidays.Size = new System.Drawing.Size(105, 20);
-            this.txtHolidays.TabIndex = 32;
+            this.txtHolidays.TabIndex = 3;
             // 
             // txtPresent
             // 
             this.txtPresent.Location = new System.Drawing.Point(431, 128);
             this.txtPresent.Name = "txtPresent";
             this.txtPresent.Size = new System.Drawing.Size(105, 20);
-            this.txtPresent.TabIndex = 33;
+            this.txtPresent.TabIndex = 5;
             // 
             // txtCasualLeave
             // 
@@ -661,7 +628,7 @@
             this.txtCasualLeave.Name = "txtCasualLeave";
             this.txtCasualLeave.ReadOnly = true;
             this.txtCasualLeave.Size = new System.Drawing.Size(105, 20);
-            this.txtCasualLeave.TabIndex = 34;
+            this.txtCasualLeave.TabIndex = 6;
             // 
             // txtSickLeave
             // 
@@ -669,7 +636,7 @@
             this.txtSickLeave.Name = "txtSickLeave";
             this.txtSickLeave.ReadOnly = true;
             this.txtSickLeave.Size = new System.Drawing.Size(105, 20);
-            this.txtSickLeave.TabIndex = 35;
+            this.txtSickLeave.TabIndex = 7;
             // 
             // txtAnnualLeave
             // 
@@ -677,14 +644,14 @@
             this.txtAnnualLeave.Name = "txtAnnualLeave";
             this.txtAnnualLeave.ReadOnly = true;
             this.txtAnnualLeave.Size = new System.Drawing.Size(105, 20);
-            this.txtAnnualLeave.TabIndex = 36;
+            this.txtAnnualLeave.TabIndex = 8;
             // 
             // txtAbsent
             // 
             this.txtAbsent.Location = new System.Drawing.Point(643, 11);
             this.txtAbsent.Name = "txtAbsent";
             this.txtAbsent.Size = new System.Drawing.Size(117, 20);
-            this.txtAbsent.TabIndex = 37;
+            this.txtAbsent.TabIndex = 9;
             // 
             // txtBasickSal
             // 
@@ -692,7 +659,7 @@
             this.txtBasickSal.Name = "txtBasickSal";
             this.txtBasickSal.ReadOnly = true;
             this.txtBasickSal.Size = new System.Drawing.Size(117, 20);
-            this.txtBasickSal.TabIndex = 38;
+            this.txtBasickSal.TabIndex = 10;
             // 
             // txtHouseRent
             // 
@@ -700,7 +667,7 @@
             this.txtHouseRent.Name = "txtHouseRent";
             this.txtHouseRent.ReadOnly = true;
             this.txtHouseRent.Size = new System.Drawing.Size(117, 20);
-            this.txtHouseRent.TabIndex = 39;
+            this.txtHouseRent.TabIndex = 11;
             // 
             // txtTransportAlwnc
             // 
@@ -708,7 +675,7 @@
             this.txtTransportAlwnc.Name = "txtTransportAlwnc";
             this.txtTransportAlwnc.ReadOnly = true;
             this.txtTransportAlwnc.Size = new System.Drawing.Size(116, 20);
-            this.txtTransportAlwnc.TabIndex = 40;
+            this.txtTransportAlwnc.TabIndex = 12;
             // 
             // txtMedicalAllow
             // 
@@ -716,7 +683,7 @@
             this.txtMedicalAllow.Name = "txtMedicalAllow";
             this.txtMedicalAllow.ReadOnly = true;
             this.txtMedicalAllow.Size = new System.Drawing.Size(117, 20);
-            this.txtMedicalAllow.TabIndex = 41;
+            this.txtMedicalAllow.TabIndex = 13;
             // 
             // txtTotalSal
             // 
@@ -724,7 +691,7 @@
             this.txtTotalSal.Name = "txtTotalSal";
             this.txtTotalSal.ReadOnly = true;
             this.txtTotalSal.Size = new System.Drawing.Size(116, 20);
-            this.txtTotalSal.TabIndex = 42;
+            this.txtTotalSal.TabIndex = 14;
             // 
             // txtAbsentSalCut
             // 
@@ -732,42 +699,42 @@
             this.txtAbsentSalCut.Name = "txtAbsentSalCut";
             this.txtAbsentSalCut.ReadOnly = true;
             this.txtAbsentSalCut.Size = new System.Drawing.Size(117, 20);
-            this.txtAbsentSalCut.TabIndex = 43;
+            this.txtAbsentSalCut.TabIndex = 15;
             // 
             // txtAvdSalCut
             // 
             this.txtAvdSalCut.Location = new System.Drawing.Point(644, 218);
             this.txtAvdSalCut.Name = "txtAvdSalCut";
             this.txtAvdSalCut.Size = new System.Drawing.Size(116, 20);
-            this.txtAvdSalCut.TabIndex = 44;
+            this.txtAvdSalCut.TabIndex = 16;
             // 
             // txtMobileBill
             // 
             this.txtMobileBill.Location = new System.Drawing.Point(923, 19);
             this.txtMobileBill.Name = "txtMobileBill";
             this.txtMobileBill.Size = new System.Drawing.Size(128, 20);
-            this.txtMobileBill.TabIndex = 45;
+            this.txtMobileBill.TabIndex = 17;
             // 
             // txtOthersSalCut
             // 
             this.txtOthersSalCut.Location = new System.Drawing.Point(923, 48);
             this.txtOthersSalCut.Name = "txtOthersSalCut";
             this.txtOthersSalCut.Size = new System.Drawing.Size(128, 20);
-            this.txtOthersSalCut.TabIndex = 46;
+            this.txtOthersSalCut.TabIndex = 18;
             // 
             // txtTax
             // 
             this.txtTax.Location = new System.Drawing.Point(923, 78);
             this.txtTax.Name = "txtTax";
             this.txtTax.Size = new System.Drawing.Size(130, 20);
-            this.txtTax.TabIndex = 47;
+            this.txtTax.TabIndex = 19;
             // 
             // txtRevTicket
             // 
             this.txtRevTicket.Location = new System.Drawing.Point(923, 107);
             this.txtRevTicket.Name = "txtRevTicket";
             this.txtRevTicket.Size = new System.Drawing.Size(128, 20);
-            this.txtRevTicket.TabIndex = 48;
+            this.txtRevTicket.TabIndex = 20;
             // 
             // txtTotalCut
             // 
@@ -775,7 +742,7 @@
             this.txtTotalCut.Name = "txtTotalCut";
             this.txtTotalCut.ReadOnly = true;
             this.txtTotalCut.Size = new System.Drawing.Size(128, 20);
-            this.txtTotalCut.TabIndex = 49;
+            this.txtTotalCut.TabIndex = 21;
             // 
             // txtTotalGivenSal
             // 
@@ -783,7 +750,7 @@
             this.txtTotalGivenSal.Name = "txtTotalGivenSal";
             this.txtTotalGivenSal.ReadOnly = true;
             this.txtTotalGivenSal.Size = new System.Drawing.Size(128, 20);
-            this.txtTotalGivenSal.TabIndex = 50;
+            this.txtTotalGivenSal.TabIndex = 22;
             // 
             // txtGivenSalAndAllow
             // 
@@ -791,7 +758,7 @@
             this.txtGivenSalAndAllow.Name = "txtGivenSalAndAllow";
             this.txtGivenSalAndAllow.ReadOnly = true;
             this.txtGivenSalAndAllow.Size = new System.Drawing.Size(128, 20);
-            this.txtGivenSalAndAllow.TabIndex = 51;
+            this.txtGivenSalAndAllow.TabIndex = 24;
             // 
             // txtEmpID
             // 
@@ -799,7 +766,7 @@
             this.txtEmpID.Name = "txtEmpID";
             this.txtEmpID.ReadOnly = true;
             this.txtEmpID.Size = new System.Drawing.Size(105, 20);
-            this.txtEmpID.TabIndex = 53;
+            this.txtEmpID.TabIndex = 1;
             // 
             // label23
             // 
@@ -815,7 +782,7 @@
             this.btnSave.Location = new System.Drawing.Point(1115, 73);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
-            this.btnSave.TabIndex = 54;
+            this.btnSave.TabIndex = 25;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
@@ -825,7 +792,7 @@
             this.btnReset.Location = new System.Drawing.Point(1115, 122);
             this.btnReset.Name = "btnReset";
             this.btnReset.Size = new System.Drawing.Size(75, 23);
-            this.btnReset.TabIndex = 55;
+            this.btnReset.TabIndex = 26;
             this.btnReset.Text = "Reset";
             this.btnReset.UseVisualStyleBackColor = true;
             this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
@@ -845,7 +812,7 @@
             this.txtOthersAlnc.Location = new System.Drawing.Point(923, 190);
             this.txtOthersAlnc.Name = "txtOthersAlnc";
             this.txtOthersAlnc.Size = new System.Drawing.Size(128, 20);
-            this.txtOthersAlnc.TabIndex = 58;
+            this.txtOthersAlnc.TabIndex = 23;
             // 
             // label24
             // 
@@ -861,7 +828,7 @@
             this.txtHolidayWork.Location = new System.Drawing.Point(431, 94);
             this.txtHolidayWork.Name = "txtHolidayWork";
             this.txtHolidayWork.Size = new System.Drawing.Size(105, 20);
-            this.txtHolidayWork.TabIndex = 59;
+            this.txtHolidayWork.TabIndex = 4;
             // 
             // label25
             // 
@@ -872,11 +839,23 @@
             this.label25.TabIndex = 60;
             this.label25.Text = "Holiday Work";
             // 
+            // cbxManual
+            // 
+            this.cbxManual.AutoSize = true;
+            this.cbxManual.Location = new System.Drawing.Point(105, 67);
+            this.cbxManual.Name = "cbxManual";
+            this.cbxManual.Size = new System.Drawing.Size(88, 17);
+            this.cbxManual.TabIndex = 61;
+            this.cbxManual.Text = "Manual Entry";
+            this.cbxManual.UseVisualStyleBackColor = true;
+            this.cbxManual.CheckedChanged += new System.EventHandler(this.cbxManual_CheckedChanged);
+            // 
             // frmSalary
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1425, 635);
+            this.Controls.Add(this.cbxManual);
             this.Controls.Add(this.label25);
             this.Controls.Add(this.txtHolidayWork);
             this.Controls.Add(this.txtOthersAlnc);
@@ -933,16 +912,12 @@
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.dataGridView);
             this.Controls.Add(this.btnSalProcess);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.txtBasic);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.label1);
             this.Name = "frmSalary";
-            this.Text = "frmSalary";
+            this.Text = "Salary";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmSalary_FormClosed);
             this.Load += new System.EventHandler(this.frmSalary_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.txtBasic)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -953,9 +928,6 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.NumericUpDown txtBasic;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnSalProcess;
         private System.Windows.Forms.DataGridView dataGridView;
         private System.Windows.Forms.CheckBox checkBox1;
@@ -1040,5 +1012,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colTotalGivenSal;
         private System.Windows.Forms.DataGridViewTextBoxColumn colOthersAllownce;
         private System.Windows.Forms.DataGridViewTextBoxColumn colGivenSalAndallownce;
+        private System.Windows.Forms.CheckBox cbxManual;
     }
 }

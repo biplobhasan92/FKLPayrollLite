@@ -15,7 +15,7 @@ namespace Panchrukhi.Report
     public partial class frmSalary : Form
     {
         public frmSalary()
-        {
+         {
             InitializeComponent();
             dateTimePicker1.Format = DateTimePickerFormat.Custom;
             dateTimePicker1.CustomFormat = "MM/yyyy";
@@ -40,15 +40,15 @@ namespace Panchrukhi.Report
                 1.1. if have data display confirmation message that data will be deleted. user will click YesNo.
                 1.2. if user click Yes: previous data will be deleted and insert raw data.
                 1.3. if user click No : Process will Tarminated. 
-            2. if salary processed table is empty then only insert will be happend. 
+            2. if salary processed table is empty then only insert will be happend.
         */
+
         private void button1_Click(object sender, EventArgs e)
         {
-
             int month = Convert.ToInt32(dateTimePicker1.Value.Month.ToString());
             int year  = Convert.ToInt32(dateTimePicker1.Value.Year.ToString());
             int days  = DateTime.DaysInMonth(year, month);
-            int basic = Convert.ToInt32(txtBasic.Value.ToString());
+            // int basic = Convert.ToInt32(txtBasic.Value.ToString());
             string mmYY = dateTimePicker1.Value.ToString("yyyy/MM");
             // (1)
             if (DBConn.checkDataIfItUsedOtherTableStr("TBL_PROCESSED_SALARY", "YEAR_MONTH", dateTimePicker1.Value.ToString("yyyy/MM")))
@@ -58,7 +58,7 @@ namespace Panchrukhi.Report
                 {
                     // (1.2)
                     deleteBefourInsert(mmYY);
-                    InsertSalPorcessData(days, mmYY, basic);
+                    InsertSalPorcessData(days, mmYY);
                     MessageBox.Show("Process completed. Click Load Data.");
                 }
                 else
@@ -70,7 +70,7 @@ namespace Panchrukhi.Report
             else
             {
                 // (2)
-                InsertSalPorcessData(days, mmYY, basic);
+                InsertSalPorcessData(days, mmYY);
                 MessageBox.Show("Process completed. Click Load Data.");
             }
         }
@@ -81,12 +81,10 @@ namespace Panchrukhi.Report
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
             bool b = checkBox1.Checked;
-            if (b){
-                txtBasic.Enabled = false;
+            if (b){                
                 dateTimePicker1.Enabled = false;
                 btnSalProcess.Enabled = false;
             }else{
-                txtBasic.Enabled = true;
                 dateTimePicker1.Enabled = true;
                 btnSalProcess.Enabled = true;
             }
@@ -110,7 +108,7 @@ namespace Panchrukhi.Report
         /*
              
         */
-        private void InsertSalPorcessData(int days, string yearMonth, int basic)
+        private void InsertSalPorcessData(int days, string yearMonth)
         {
         
             // bool getHolidayDays = DBConn.checkDataIfItUsedOtherTableStr("TBL_HOLIDAY", "DDATE", dataGridView.Rows[i].Cells[1].Value.ToString());
@@ -150,8 +148,7 @@ namespace Panchrukhi.Report
             if (DS.Tables[0].Rows.Count > 0)
             {
                 foreach (DataRow dr in DS.Tables[0].Rows)
-                {
-                    // int abs = calculateAbsent(dr["PERSONID"].ToString(), yearMonth);                  
+                {                 
                     int weekend = getCountOfWeekendInMonthUsing(dateTimePicker1.Value.ToString("yyyy/MM"), dr["PERSONID"].ToString());                    
                     int leaveCL = getCountOfCLInMnthUsingID(dateTimePicker1.Value.ToString("yyyy/MM"), dr["PERSONID"].ToString());
                     int leaveSL = getCountOfSLInMnthUsingID(dateTimePicker1.Value.ToString("yyyy/MM"), dr["PERSONID"].ToString());
@@ -160,34 +157,7 @@ namespace Panchrukhi.Report
                     int basicSal  = Convert.ToInt32(dr["NBASIC"].ToString());
                     int hRnt = Convert.ToInt32(dr["NHRENT"].ToString());
                     int medical   = Convert.ToInt32(dr["NMEDICAL"].ToString());
-                    int transport = Convert.ToInt32(dr["NTRANSPORT"].ToString());
-
-                    // category wise advance salary cutting function                    
-                    //int getAdvCut  = getCatWiseAdvSalCut(dr["PERSONID"].ToString(), yearMonth, 1); // cat 1 for avd salary cut
-                    //int getMobBill = getCatWiseAdvSalCut(dr["PERSONID"].ToString(), yearMonth, 2); // cat 2 for mobile bill salary cut
-                    //int getOthers  = getCatWiseAdvSalCut(dr["PERSONID"].ToString(), yearMonth, 3); // cat 3 for others salary cut
-                    //int advDeduction = (getAdvCut+getMobBill+getOthers);
-                    // double totalPayable = calculateSalary(salaryA, abs) - advDeduction;
-                    // double salaryCutAmount = salaryA - totalPayable;
-                    /*
-                        dataGridView.Rows.Add();
-                        dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colSL.Index].Value    = dataGridView.Rows.Count;
-                        dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colEmpID.Index].Value = dr["PERSONID"].ToString();
-                        dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colEmpName.Index].Value = dr["VNAME"].ToString();
-                        dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colCat.Index].Value   = dr["CATEGORY"].ToString();
-                        dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colDesig.Index].Value = dr["Designation"].ToString();
-                        dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colSalary.Index].Value= salaryA;
-                        dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colTD.Index].Value    = workedDays;
-                        dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colCasualLeave.Index].Value = leaveCL;
-                        dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colSickLeave.Index].Value = leaveSL;
-                        dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colAbsent.Index].Value= abs;
-                        dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colAdvCut.Index].Value= getAdvCut;
-                        dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colMobileBill.Index].Value = getMobBill;
-                        dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colWeekend.Index].Value = weekend;
-                        dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colOthers.Index].Value= getOthers;
-                        dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colCutSalary.Index].Value = System.Math.Round(salaryCutAmount); 
-                        dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colTotalPayable.Index].Value = System.Math.Round(totalPayable);
-                    */
+                    int transport = Convert.ToInt32(dr["NTRANSPORT"].ToString());                    
                     SaveDataOfProcessedSalary( dr["PERSONID"].ToString(), workedDays, weekend, leaveCL, leaveSL, dateTimePicker1.Value.ToString("yyyy/MM"), salaryA, basicSal, hRnt, transport, medical);
                 }
             }
@@ -390,14 +360,14 @@ namespace Panchrukhi.Report
         private void frmSalary_Load(object sender, EventArgs e)
         {
             // this.Owner.Enabled = false;
-            //this.dataGridView.Columns["salary"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            // this.dataGridView.Columns["salary"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
         }
 
 
 
         private void frmSalary_FormClosed(object sender, FormClosedEventArgs e)
         {
-            //this.Owner.Enabled = true;
+            // this.Owner.Enabled = true;
         }
 
 
@@ -454,6 +424,7 @@ namespace Panchrukhi.Report
                                   (SELECT VEMPID, VINOUTTIME OUTTIME, DATTENDATE from TBLATTENDANCE_PROCESS_DATA WHERE NATTENTYPE = 5) OT ON (OT.VEMPID = P.PERSONID AND OT.DATTENDATE = TA.DATTENDATE) 
                              WHERE  
                                   substr(TA.DATTENDATE,7)||substr(TA.DATTENDATE,4,2) between '" + yearMonth + "' AND '" + yearMonth + "'  AND P.PERSONID IN ('" + empID + "')  AND P.NSTATUS == 1  ORDER BY TA.DATTENDATE;";
+                
                 // DBConn.ExecutionQuery(CommandText);
                 DB = new SQLiteDataAdapter(CommandText, DBConn.sql_conn);
                 DBConn.ExecutionQuery(CommandText);
@@ -676,7 +647,6 @@ namespace Panchrukhi.Report
 
         private void dataGridView_DefaultValuesNeeded(object sender, DataGridViewRowEventArgs e)
         {
-            // e.Row.Cells[10].Value = 0;
             e.Row.Cells[colAdvCut.Index].Value = 0;
         }
 
@@ -708,11 +678,11 @@ namespace Panchrukhi.Report
                         " EMP_HOLIDAYS      = " + txtHolidays.Text.Trim() + ",   " +
                         " EMP_PRESENT  = IFNULL(" + txtPresent.Text.Trim() + ", 0), " +
                         " EMP_CASUAL_LEAVE  = " + txtCasualLeave.Text.Trim() + ", " +
-                        " EMP_SICK_LEAVE    = " + txtSickLeave.Text.Trim() + ",     " +
-                        " EMP_ANNUAL_LEAVE  = " + txtAnnualLeave.Text.Trim() + ",  " +
+                        " EMP_SICK_LEAVE    = " + txtSickLeave.Text.Trim() + ",   " +
+                        " EMP_ANNUAL_LEAVE  = " + txtAnnualLeave.Text.Trim() + ", " +
                         " EMP_ABSENT   = " + txtAbsent.Text.Trim() + ",   " +
                         " EMP_BASIC_SAL  = IFNULL(" + txtBasickSal.Text.Trim() + ", 0), " +
-                        " EMP_HOUSE_RENT    = " + txtHouseRent.Text.Trim() + ",   " +
+                        " EMP_HOUSE_RENT    = " + txtHouseRent.Text.Trim() + ", " +
                         " EMP_TRANSPORT_ALLOW   = IFNULL(" + txtTransportAlwnc.Text.Trim() + ", 0),  " +
                         " EMP_MEDICAL_ALLOW = IFNULL(" + txtMedicalAllow.Text.Trim() + ", 0),  " +
                         " EMP_TOTAL_SAL     = " + txtTotalSal.Text.Trim() + ",    " +
@@ -731,7 +701,46 @@ namespace Panchrukhi.Report
                         " EMP_ID = '"+ txtEmpID.Text + "' AND "+
                         " YEAR_MONTH = '"+dateTimePicker1.Value.ToString("yyyy/MM")+"' ";
 
-                isExecute = DBConn.ExecutionQuery(cmdText);
+
+                string updateManual =
+                    "UPDATE " +
+                            " TBL_PROCESSED_SALARY " +
+                    " SET " +
+                            " EMP_WORKING_DAYS  = " + txtWorkingDay.Text.Trim() + ",     " +
+                            " EMP_HOLIDAYS      = " + txtHolidays.Text.Trim() + ",   " +
+                            " EMP_PRESENT  = IFNULL(" + txtPresent.Text.Trim() + ", 0), " +
+                            " EMP_CASUAL_LEAVE  = " + txtCasualLeave.Text.Trim() + ", " +
+                            " EMP_SICK_LEAVE    = " + txtSickLeave.Text.Trim() + ",   " +
+                            " EMP_ANNUAL_LEAVE  = " + txtAnnualLeave.Text.Trim() + ", " +
+                            " EMP_ABSENT   = " + txtAbsent.Text.Trim() + ",   " +
+                            " EMP_BASIC_SAL  = IFNULL(" + txtBasickSal.Text.Trim() + ", 0), " +
+                            " EMP_HOUSE_RENT    = " + txtHouseRent.Text.Trim() + ", " +
+                            " EMP_TRANSPORT_ALLOW   = IFNULL(" + txtTransportAlwnc.Text.Trim() + ", 0),  " +
+                            " EMP_MEDICAL_ALLOW = IFNULL(" + txtMedicalAllow.Text.Trim() + ", 0),  " +
+                            " EMP_TOTAL_SAL     = " + txtTotalSal.Text.Trim() + ",    " +
+                            " EMP_ABSENT_SAL_CUT= IFNULL(" + txtAbsentSalCut.Text.Trim() + ",   0),  " +
+                            " EMP_ADV_CUT = IFNULL(" + txtAvdSalCut.Text.Trim() + ", 0),  " +
+                            " EMP_MOBILE_BILL   = IFNULL(" + txtMobileBill.Text.Trim() + ", 0),  " +
+                            " EMP_OTHERS_SAL_CUT= " + txtOthersSalCut.Text.Trim() + ", " +
+                            " EMP_TAX        = " + txtTax.Text.Trim() + ", " +
+                            " EMP_REVENUE_TICKET= " + txtRevTicket.Text.Trim() + ", " +
+                            " EMP_TOTAL_CUT     = " + txtTotalCut.Text.Trim() + ",   " +
+                            " EMP_TOTAL_GIVEN_SALARY = " + txtTotalGivenSal.Text.Trim() + ", " +
+                            " EMP_HOLIDAY_WORK  = " + txtHolidayWork.Text.Trim() + ", " +
+                            " EMP_OTHERS_ALLOW  = " + txtOthersAlnc.Text.Trim() + ", " +
+                            " EMP_TOTAL_GIVEN_SALARY_AND_ALLOW = " + txtGivenSalAndAllow.Text.Trim() + " " +
+                    " WHERE " +
+                            " EMP_ID = '" + txtEmpID.Text + "' AND " +
+                            " YEAR_MONTH = '" + dateTimePicker1.Value.ToString("yyyy/MM") + "' ";
+
+                if (cbxManual.Checked)
+                {
+                    isExecute = DBConn.ExecutionQuery(updateManual);
+                }
+                else
+                {
+                    isExecute = DBConn.ExecutionQuery(cmdText);
+                }
             }
             catch (Exception ex)
             {
@@ -744,6 +753,8 @@ namespace Panchrukhi.Report
                 ClearData();                
             }
         }
+
+
 
         private void btnLoadGrid_Click(object sender, EventArgs e)
         {
@@ -796,15 +807,14 @@ namespace Panchrukhi.Report
             int getclsl = 0;
             try
             {
-                for (var date = new DateTime(year, month, 1); date.Month == month; date = date.AddDays(1))
+                for(var date = new DateTime(year, month, 1); date.Month == month; date = date.AddDays(1))
                 {
-                    // Console.WriteLine("Date : "+date.ToShortDateString());
                     bool getHolidayDays = DBConn.checkDataIfItUsedOtherTableStr("TBL_HOLIDAY", "DDATE", date.ToShortDateString());
                     bool getWeekend = DBConn.getWeekends(date.ToShortDateString(), empID);
                     bool getLvClSl = DBConn.isLeaveClsl(date.ToShortDateString(), empID);
-                    if (getHolidayDays) { holidays++;}
-                    if (getWeekend) { weekend++;}
-                    if (getLvClSl) { getclsl++;}
+                    if (getHolidayDays) {holidays++;}
+                    if (getWeekend) {weekend++;}
+                    if (getLvClSl) {getclsl++;}
                 }
             }
             catch (Exception e)
@@ -829,8 +839,7 @@ namespace Panchrukhi.Report
             var uAppDataPath = Application.UserAppDataPath;
             var basDir = AppDomain.CurrentDomain.BaseDirectory;
             string path = new DirectoryInfo(Environment.CurrentDirectory).Parent.Parent.FullName;
-
-            frmCrystalReportViewer frm = new frmCrystalReportViewer();            
+            frmCrystalReportViewer frm = new frmCrystalReportViewer(); 
             TestReport cr = new TestReport();
             DS = new DataSet();
             DT = new DataTable();
@@ -842,6 +851,25 @@ namespace Panchrukhi.Report
             frm.crptViewer.Refresh();
             frm.Show();
         }
+
+
+
+
+        private void cbxManual_CheckedChanged(object sender, EventArgs e)
+        {
+            bool b = cbxManual.Checked;
+            if(b)
+            {
+                txtCasualLeave.ReadOnly = txtSickLeave.ReadOnly = txtAnnualLeave.ReadOnly =  txtAbsentSalCut.ReadOnly = txtAvdSalCut.ReadOnly = txtTotalCut.ReadOnly = txtTotalGivenSal.ReadOnly =
+                txtGivenSalAndAllow.ReadOnly
+                = false;
+            }else{
+                txtCasualLeave.ReadOnly = txtSickLeave.ReadOnly = txtAnnualLeave.ReadOnly = txtAbsentSalCut.ReadOnly = txtAvdSalCut.ReadOnly = txtTotalCut.ReadOnly = txtTotalGivenSal.ReadOnly =
+                txtGivenSalAndAllow.ReadOnly
+                = true;
+            }
+        }
+
 
 
 
@@ -873,6 +901,8 @@ namespace Panchrukhi.Report
             txtGivenSalAndAllow.Text = "";
         }
 
+
+
         private double calculateSalary(double salary, int absent){
 
             double totalPayableSalary = 0.0d;
@@ -880,14 +910,7 @@ namespace Panchrukhi.Report
             {
                 int month = Convert.ToInt32(dateTimePicker1.Value.Month.ToString());
                 int year  = Convert.ToInt32(dateTimePicker1.Value.Year.ToString());
-                int basic = Convert.ToInt32(txtBasic.Value.ToString());
-                int TDOM  = DateTime.DaysInMonth(year, month); // total days of month
-                //salary = 14500;
-                
-                double da  = (salary / 100) * basic; // Deductable amount
-                double pdb = (da / TDOM); // per day basic = ( Deductable amount / Total day of month)
-                // total payable for employee = ( per day basic * absent );
-                totalPayableSalary = salary - (pdb * absent); 
+                int TDOM  = DateTime.DaysInMonth(year, month);
             }
             catch (Exception e)
             {
