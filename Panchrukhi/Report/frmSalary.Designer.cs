@@ -115,6 +115,8 @@
             this.txtHolidayWork = new System.Windows.Forms.TextBox();
             this.label25 = new System.Windows.Forms.Label();
             this.cbxManual = new System.Windows.Forms.CheckBox();
+            this.btnUp = new System.Windows.Forms.Button();
+            this.btnDown = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -178,7 +180,7 @@
             this.colTotalGivenSal,
             this.colOthersAllownce,
             this.colGivenSalAndallownce});
-            this.dataGridView.Location = new System.Drawing.Point(8, 273);
+            this.dataGridView.Location = new System.Drawing.Point(45, 273);
             this.dataGridView.Name = "dataGridView";
             this.dataGridView.ReadOnly = true;
             this.dataGridView.Size = new System.Drawing.Size(1412, 356);
@@ -850,11 +852,34 @@
             this.cbxManual.UseVisualStyleBackColor = true;
             this.cbxManual.CheckedChanged += new System.EventHandler(this.cbxManual_CheckedChanged);
             // 
+            // btnUp
+            // 
+            this.btnUp.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.btnUp.Location = new System.Drawing.Point(7, 273);
+            this.btnUp.Name = "btnUp";
+            this.btnUp.Size = new System.Drawing.Size(32, 37);
+            this.btnUp.TabIndex = 62;
+            this.btnUp.Text = "▲";
+            this.btnUp.UseVisualStyleBackColor = true;
+            this.btnUp.Click += new System.EventHandler(this.btnUp_Click);
+            // 
+            // btnDown
+            // 
+            this.btnDown.Location = new System.Drawing.Point(7, 317);
+            this.btnDown.Name = "btnDown";
+            this.btnDown.Size = new System.Drawing.Size(32, 37);
+            this.btnDown.TabIndex = 63;
+            this.btnDown.Text = "▼";
+            this.btnDown.UseVisualStyleBackColor = true;
+            this.btnDown.Click += new System.EventHandler(this.btnDown_Click);
+            // 
             // frmSalary
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1425, 635);
+            this.ClientSize = new System.Drawing.Size(1467, 635);
+            this.Controls.Add(this.btnDown);
+            this.Controls.Add(this.btnUp);
             this.Controls.Add(this.cbxManual);
             this.Controls.Add(this.label25);
             this.Controls.Add(this.txtHolidayWork);
@@ -1013,5 +1038,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colOthersAllownce;
         private System.Windows.Forms.DataGridViewTextBoxColumn colGivenSalAndallownce;
         private System.Windows.Forms.CheckBox cbxManual;
+        private System.Windows.Forms.Button btnUp;
+        private System.Windows.Forms.Button btnDown;
     }
 }

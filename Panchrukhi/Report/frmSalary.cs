@@ -27,10 +27,11 @@ namespace Panchrukhi.Report
         DatabaseConnection DBConn = new DatabaseConnection();
         private DataSet DS;
         private DataTable DT;
+        DataTable table = new DataTable();
         private SQLiteCommand sql_cmd;
         private SQLiteDataAdapter DB;
         int getSelectID = 0;
-        int presents, absents, holidays;
+        int presents, absents, holidays, rowIndex;
 
 
         /*  ====== Remarks ======
@@ -243,6 +244,7 @@ namespace Panchrukhi.Report
 
         public void LoadGridData()
         {
+            bool b = false;
             DT = new DataTable();
             DS = new DataSet();
             string CommandText = @" select d.* from TBL_PROCESSED_SALARY d where d.YEAR_MONTH = '"+ dateTimePicker1.Value.ToString("yyyy/MM") + "'; ";
@@ -251,9 +253,10 @@ namespace Panchrukhi.Report
             DBConn.ExecutionQuery(CommandText);
             DS.Reset();
             DB.Fill(DS);
+            DT = DS.Tables[0];
             dataGridView.Rows.Clear();
             if (DS.Tables[0].Rows.Count > 0)
-            {
+            {                
                 foreach (DataRow dr in DS.Tables[0].Rows)
                 {
                     
@@ -759,6 +762,7 @@ namespace Panchrukhi.Report
         private void btnLoadGrid_Click(object sender, EventArgs e)
         {
             LoadGridData();
+            // LoadTable();
         }
 
 
@@ -870,8 +874,47 @@ namespace Panchrukhi.Report
             }
         }
 
+        private void btnDown_Click(object sender, EventArgs e)
+        {
+            DataGridView dgv = dataGridView;
+            try
+            {
+                int totalRows = dgv.Rows.Count;
+                // get index of the row for the selected cell
+                int rowIndex = dgv.SelectedCells[0].OwningRow.Index;
+                if (rowIndex == totalRows - 1)
+                    return;
+                // get index of the column for the selected cell
+                int colIndex = dgv.SelectedCells[0].OwningColumn.Index;
+                DataGridViewRow selectedRow = dgv.Rows[rowIndex];
+                dgv.Rows.Remove(selectedRow);
+                dgv.Rows.Insert(rowIndex + 1, selectedRow);
+                dgv.ClearSelection();
+                dgv.Rows[rowIndex + 1].Cells[colIndex].Selected = true;
+            }
+            catch { }
+        }
 
-
+        private void btnUp_Click(object sender, EventArgs e)
+        {
+            DataGridView dgv = dataGridView;
+            try
+            {
+                int totalRows = dgv.Rows.Count;
+                // get index of the row for the selected cell
+                int rowIndex = dgv.SelectedCells[0].OwningRow.Index;
+                if (rowIndex == 0)
+                    return;
+                // get index of the column for the selected cell
+                int colIndex = dgv.SelectedCells[0].OwningColumn.Index;
+                DataGridViewRow selectedRow = dgv.Rows[rowIndex];
+                dgv.Rows.Remove(selectedRow);
+                dgv.Rows.Insert(rowIndex - 1, selectedRow);
+                dgv.ClearSelection();
+                dgv.Rows[rowIndex - 1].Cells[colIndex].Selected = true;
+            }
+            catch { }
+        }
 
         private void ClearData()
         {
@@ -899,6 +942,81 @@ namespace Panchrukhi.Report
             txtTotalGivenSal.Text =
             txtOthersAlnc.Text=
             txtGivenSalAndAllow.Text = "";
+        }
+
+
+        void LoadTable()
+        {
+
+            table.Columns.Add("ID", typeof(string));
+            table.Columns.Add("Emp ID", typeof(string));
+            table.Columns.Add("Emp Name", typeof(string));
+            table.Columns.Add("Category", typeof(string));
+            table.Columns.Add("Designation", typeof(string));
+            table.Columns.Add("Working Day", typeof(int));
+            table.Columns.Add("Holidays", typeof(int));
+            table.Columns.Add("Holiday work", typeof(string));
+            table.Columns.Add("Present", typeof(int));
+            table.Columns.Add("CL", typeof(int));
+            table.Columns.Add("SL", typeof(int));
+            table.Columns.Add("AL", typeof(int));
+            table.Columns.Add("absent", typeof(int));
+            table.Columns.Add("Basic", typeof(int));
+            table.Columns.Add("House Rent", typeof(int));
+            table.Columns.Add("Transport", typeof(int));
+            table.Columns.Add("Medical", typeof(int));
+            table.Columns.Add("Salary", typeof(int));
+            table.Columns.Add("Absent Cut", typeof(int));
+            table.Columns.Add("Advance Cut", typeof(int));
+            table.Columns.Add("Mobile Bill", typeof(int));
+            table.Columns.Add("Others Cut", typeof(int));
+            table.Columns.Add("Tax", typeof(int));
+            table.Columns.Add("Rev Ticket", typeof(int));
+            table.Columns.Add("Total Cut", typeof(int));
+            table.Columns.Add("Total Givent Sal", typeof(int));
+            table.Columns.Add("Others Allowanc", typeof(int));
+            table.Columns.Add("Total Givent Sal and Allow", typeof(int));
+
+            if (dataGridView.Rows.Count > 0)
+            {
+                foreach (DataGridViewRow dgv in dataGridView.Rows)
+                {
+                    table.Rows.Add(
+                        dgv.Cells[0].Value,
+                        dgv.Cells[1].Value,
+                        dgv.Cells[2].Value,
+                        dgv.Cells[3].Value,
+                        dgv.Cells[4].Value,
+                        dgv.Cells[5].Value,
+                        dgv.Cells[6].Value,
+                        dgv.Cells[7].Value,
+                        dgv.Cells[8].Value,
+                        dgv.Cells[9].Value,
+                        dgv.Cells[10].Value,
+                        dgv.Cells[11].Value,
+                        dgv.Cells[12].Value,
+                        dgv.Cells[13].Value,
+                        dgv.Cells[14].Value,
+                        dgv.Cells[15].Value,
+                        dgv.Cells[16].Value,
+                        dgv.Cells[17].Value,
+                        dgv.Cells[18].Value,
+                        dgv.Cells[19].Value,
+                        dgv.Cells[20].Value,
+                        dgv.Cells[21].Value,
+                        dgv.Cells[22].Value,
+                        dgv.Cells[23].Value,
+                        dgv.Cells[24].Value,
+                        dgv.Cells[25].Value,
+                        dgv.Cells[26].Value,
+                        dgv.Cells[27].Value
+                    );
+                }                
+            }
+            else
+            {
+                MessageBox.Show("Load Grid First");
+            }
         }
 
 
