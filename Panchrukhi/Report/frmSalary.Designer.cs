@@ -180,7 +180,7 @@
             this.colTotalGivenSal,
             this.colOthersAllownce,
             this.colGivenSalAndallownce});
-            this.dataGridView.Location = new System.Drawing.Point(45, 273);
+            this.dataGridView.Location = new System.Drawing.Point(12, 273);
             this.dataGridView.Name = "dataGridView";
             this.dataGridView.ReadOnly = true;
             this.dataGridView.Size = new System.Drawing.Size(1412, 356);
@@ -396,7 +396,7 @@
             // 
             // btn_print
             // 
-            this.btn_print.Location = new System.Drawing.Point(1234, 244);
+            this.btn_print.Location = new System.Drawing.Point(1253, 234);
             this.btn_print.Name = "btn_print";
             this.btn_print.Size = new System.Drawing.Size(75, 23);
             this.btn_print.TabIndex = 27;
@@ -406,11 +406,11 @@
             // 
             // btn_payslip
             // 
-            this.btn_payslip.Location = new System.Drawing.Point(1315, 244);
+            this.btn_payslip.Location = new System.Drawing.Point(1345, 234);
             this.btn_payslip.Name = "btn_payslip";
             this.btn_payslip.Size = new System.Drawing.Size(75, 23);
             this.btn_payslip.TabIndex = 28;
-            this.btn_payslip.Text = "payslip";
+            this.btn_payslip.Text = "Payslip";
             this.btn_payslip.UseVisualStyleBackColor = true;
             this.btn_payslip.Click += new System.EventHandler(this.btn_payslip_Click);
             // 
@@ -855,7 +855,7 @@
             // btnUp
             // 
             this.btnUp.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.btnUp.Location = new System.Drawing.Point(7, 273);
+            this.btnUp.Location = new System.Drawing.Point(1430, 273);
             this.btnUp.Name = "btnUp";
             this.btnUp.Size = new System.Drawing.Size(32, 37);
             this.btnUp.TabIndex = 62;
@@ -865,7 +865,7 @@
             // 
             // btnDown
             // 
-            this.btnDown.Location = new System.Drawing.Point(7, 317);
+            this.btnDown.Location = new System.Drawing.Point(1430, 317);
             this.btnDown.Name = "btnDown";
             this.btnDown.Size = new System.Drawing.Size(32, 37);
             this.btnDown.TabIndex = 63;

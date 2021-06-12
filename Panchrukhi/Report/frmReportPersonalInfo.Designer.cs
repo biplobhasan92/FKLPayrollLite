@@ -30,6 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.gbxAddColumn = new System.Windows.Forms.GroupBox();
+            this.btn_datagrid = new System.Windows.Forms.Button();
             this.cbxEmergencyNum = new System.Windows.Forms.CheckBox();
             this.btnExcelExporter = new System.Windows.Forms.Button();
             this.ckbxSection = new System.Windows.Forms.CheckBox();
@@ -41,7 +42,6 @@
             this.ckbxCategory = new System.Windows.Forms.CheckBox();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.splitParent = new System.Windows.Forms.SplitContainer();
-            this.btn_datagrid = new System.Windows.Forms.Button();
             this.btn_pdf_export = new System.Windows.Forms.Button();
             this.gbxSearchByID = new System.Windows.Forms.GroupBox();
             this.lblExam = new System.Windows.Forms.Label();
@@ -67,6 +67,9 @@
             this.lbl_emp_name = new System.Windows.Forms.Label();
             this.splitRight = new System.Windows.Forms.SplitContainer();
             this.dataGridView = new System.Windows.Forms.DataGridView();
+            this.gbxAttendSummary = new System.Windows.Forms.GroupBox();
+            this.dtpAttendSummary = new System.Windows.Forms.DateTimePicker();
+            this.btnAttedSummary = new System.Windows.Forms.Button();
             this.gbxAddColumn.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitParent)).BeginInit();
             this.splitParent.Panel1.SuspendLayout();
@@ -79,6 +82,7 @@
             this.splitRight.Panel2.SuspendLayout();
             this.splitRight.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
+            this.gbxAttendSummary.SuspendLayout();
             this.SuspendLayout();
             // 
             // gbxAddColumn
@@ -99,6 +103,16 @@
             this.gbxAddColumn.TabIndex = 97;
             this.gbxAddColumn.TabStop = false;
             this.gbxAddColumn.Text = "Check to add column(s) ";
+            // 
+            // btn_datagrid
+            // 
+            this.btn_datagrid.Location = new System.Drawing.Point(588, 18);
+            this.btn_datagrid.Name = "btn_datagrid";
+            this.btn_datagrid.Size = new System.Drawing.Size(86, 26);
+            this.btn_datagrid.TabIndex = 157;
+            this.btn_datagrid.Text = "Print";
+            this.btn_datagrid.UseVisualStyleBackColor = true;
+            this.btn_datagrid.Click += new System.EventHandler(this.btn_datagrid_Click);
             // 
             // cbxEmergencyNum
             // 
@@ -206,6 +220,7 @@
             // 
             // splitParent.Panel1
             // 
+            this.splitParent.Panel1.Controls.Add(this.gbxAttendSummary);
             this.splitParent.Panel1.Controls.Add(this.btn_pdf_export);
             this.splitParent.Panel1.Controls.Add(this.gbxSearchByID);
             this.splitParent.Panel1.Controls.Add(this.lblDate);
@@ -224,16 +239,6 @@
             this.splitParent.Size = new System.Drawing.Size(1008, 729);
             this.splitParent.SplitterDistance = 276;
             this.splitParent.TabIndex = 147;
-            // 
-            // btn_datagrid
-            // 
-            this.btn_datagrid.Location = new System.Drawing.Point(588, 18);
-            this.btn_datagrid.Name = "btn_datagrid";
-            this.btn_datagrid.Size = new System.Drawing.Size(86, 26);
-            this.btn_datagrid.TabIndex = 157;
-            this.btn_datagrid.Text = "Print";
-            this.btn_datagrid.UseVisualStyleBackColor = true;
-            this.btn_datagrid.Click += new System.EventHandler(this.btn_datagrid_Click);
             // 
             // btn_pdf_export
             // 
@@ -492,6 +497,34 @@
             this.dataGridView.Size = new System.Drawing.Size(728, 632);
             this.dataGridView.TabIndex = 95;
             // 
+            // gbxAttendSummary
+            // 
+            this.gbxAttendSummary.Controls.Add(this.btnAttedSummary);
+            this.gbxAttendSummary.Controls.Add(this.dtpAttendSummary);
+            this.gbxAttendSummary.Location = new System.Drawing.Point(15, 561);
+            this.gbxAttendSummary.Name = "gbxAttendSummary";
+            this.gbxAttendSummary.Size = new System.Drawing.Size(247, 156);
+            this.gbxAttendSummary.TabIndex = 157;
+            this.gbxAttendSummary.TabStop = false;
+            this.gbxAttendSummary.Text = "Summary";
+            // 
+            // dtpAttendSummary
+            // 
+            this.dtpAttendSummary.Location = new System.Drawing.Point(26, 38);
+            this.dtpAttendSummary.Name = "dtpAttendSummary";
+            this.dtpAttendSummary.Size = new System.Drawing.Size(200, 20);
+            this.dtpAttendSummary.TabIndex = 0;
+            // 
+            // btnAttedSummary
+            // 
+            this.btnAttedSummary.Location = new System.Drawing.Point(26, 87);
+            this.btnAttedSummary.Name = "btnAttedSummary";
+            this.btnAttedSummary.Size = new System.Drawing.Size(200, 36);
+            this.btnAttedSummary.TabIndex = 1;
+            this.btnAttedSummary.Text = "Attendance Summary";
+            this.btnAttedSummary.UseVisualStyleBackColor = true;
+            this.btnAttedSummary.Click += new System.EventHandler(this.btnAttedSummary_Click);
+            // 
             // frmReportPersonalInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -520,6 +553,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitRight)).EndInit();
             this.splitRight.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
+            this.gbxAttendSummary.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -563,5 +597,8 @@
         private System.Windows.Forms.Label lblExam;
         private System.Windows.Forms.Button btn_pdf_export;
         private System.Windows.Forms.Button btn_datagrid;
+        private System.Windows.Forms.GroupBox gbxAttendSummary;
+        private System.Windows.Forms.DateTimePicker dtpAttendSummary;
+        private System.Windows.Forms.Button btnAttedSummary;
     }
 }

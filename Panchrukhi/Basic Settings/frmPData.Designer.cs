@@ -34,36 +34,6 @@
             this.btnSaveAndUpdate = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.dataGridView = new System.Windows.Forms.DataGridView();
-            this.colVPERSONID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colVNAME = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colCATNAME = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colSLOT = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colTIME = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colDESIGNATION = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colSTATUS = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colADDRESS = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colMOBILE = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colFATHER = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colMOTHER = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colEMERGENCY = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colDOB = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colCLASS = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colSECTION = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colDOJ = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colNCATID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colNCLASSID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colNSECID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colNEMPID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colNDESIGID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colVEMAIL = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NSTATUS = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NSALARY = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colNSLOT = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colVGENDER = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NBASIC = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NHRENT = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NTRANSPORT = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NMEDICAL = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblPrsnSalary = new System.Windows.Forms.Label();
             this.txtPSalary = new System.Windows.Forms.TextBox();
             this.txtPEmail = new System.Windows.Forms.TextBox();
@@ -118,6 +88,38 @@
             this.cbxSearch = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.errorProviderPData = new System.Windows.Forms.ErrorProvider(this.components);
+            this.btnUp = new System.Windows.Forms.Button();
+            this.btnDown = new System.Windows.Forms.Button();
+            this.colNEMPID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colVPERSONID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colVNAME = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colVGENDER = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colADDRESS = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDOB = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colMOBILE = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colVEMAIL = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colSTATUS = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDOJ = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colCATNAME = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDESIGNATION = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colNBASIC = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colNHRENT = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colNTRANSPORT = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colNMEDICAL = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colNSALARY = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colCLASS = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colSECTION = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colSLOT = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colFATHER = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colMOTHER = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colEMERGENCY = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colTIME = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colNCATID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colNCLASSID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colNSECID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colNDESIGID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colNSTATUS = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colNSLOT = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.gbxPersonalData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitParent)).BeginInit();
@@ -174,36 +176,36 @@
             this.dataGridView.AllowUserToDeleteRows = false;
             this.dataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.colNEMPID,
             this.colVPERSONID,
             this.colVNAME,
-            this.colCATNAME,
-            this.colSLOT,
-            this.colTIME,
-            this.colDESIGNATION,
-            this.colSTATUS,
+            this.colVGENDER,
             this.colADDRESS,
+            this.colDOB,
             this.colMOBILE,
+            this.colVEMAIL,
+            this.colSTATUS,
+            this.colDOJ,
+            this.colCATNAME,
+            this.colDESIGNATION,
+            this.colNBASIC,
+            this.colNHRENT,
+            this.colNTRANSPORT,
+            this.colNMEDICAL,
+            this.colNSALARY,
+            this.colCLASS,
+            this.colSECTION,
+            this.colSLOT,
             this.colFATHER,
             this.colMOTHER,
             this.colEMERGENCY,
-            this.colDOB,
-            this.colCLASS,
-            this.colSECTION,
-            this.colDOJ,
+            this.colTIME,
             this.colNCATID,
             this.colNCLASSID,
             this.colNSECID,
-            this.colNEMPID,
             this.colNDESIGID,
-            this.colVEMAIL,
-            this.NSTATUS,
-            this.NSALARY,
-            this.colNSLOT,
-            this.colVGENDER,
-            this.NBASIC,
-            this.NHRENT,
-            this.NTRANSPORT,
-            this.NMEDICAL});
+            this.colNSTATUS,
+            this.colNSLOT});
             this.dataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dataGridView.Location = new System.Drawing.Point(0, 0);
@@ -214,256 +216,6 @@
             this.dataGridView.TabIndex = 22;
             this.dataGridView.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DataGridData_RowHeaderMouseClick);
             this.dataGridView.SelectionChanged += new System.EventHandler(this.DataGridData_SelectionChanged);
-            // 
-            // colVPERSONID
-            // 
-            this.colVPERSONID.DataPropertyName = "PERSONID";
-            this.colVPERSONID.FillWeight = 50F;
-            this.colVPERSONID.HeaderText = "ID";
-            this.colVPERSONID.MinimumWidth = 50;
-            this.colVPERSONID.Name = "colVPERSONID";
-            this.colVPERSONID.ReadOnly = true;
-            // 
-            // colVNAME
-            // 
-            this.colVNAME.DataPropertyName = "VNAME";
-            this.colVNAME.HeaderText = "NAME";
-            this.colVNAME.MinimumWidth = 100;
-            this.colVNAME.Name = "colVNAME";
-            this.colVNAME.ReadOnly = true;
-            // 
-            // colCATNAME
-            // 
-            this.colCATNAME.DataPropertyName = "CATEGORY";
-            this.colCATNAME.FillWeight = 80F;
-            this.colCATNAME.HeaderText = "CATEGORY";
-            this.colCATNAME.MinimumWidth = 80;
-            this.colCATNAME.Name = "colCATNAME";
-            this.colCATNAME.ReadOnly = true;
-            // 
-            // colSLOT
-            // 
-            this.colSLOT.DataPropertyName = "SLOT";
-            this.colSLOT.HeaderText = "SHIFT";
-            this.colSLOT.MinimumWidth = 100;
-            this.colSLOT.Name = "colSLOT";
-            this.colSLOT.ReadOnly = true;
-            // 
-            // colTIME
-            // 
-            this.colTIME.DataPropertyName = "IN_OUT_TIME";
-            this.colTIME.HeaderText = "IN OUT";
-            this.colTIME.Name = "colTIME";
-            this.colTIME.ReadOnly = true;
-            // 
-            // colDESIGNATION
-            // 
-            this.colDESIGNATION.DataPropertyName = "DESIGNATION";
-            this.colDESIGNATION.FillWeight = 90F;
-            this.colDESIGNATION.HeaderText = "DESIGNATION";
-            this.colDESIGNATION.MinimumWidth = 90;
-            this.colDESIGNATION.Name = "colDESIGNATION";
-            this.colDESIGNATION.ReadOnly = true;
-            // 
-            // colSTATUS
-            // 
-            this.colSTATUS.DataPropertyName = "STATUS";
-            this.colSTATUS.FillWeight = 50F;
-            this.colSTATUS.HeaderText = "STATUS";
-            this.colSTATUS.MinimumWidth = 50;
-            this.colSTATUS.Name = "colSTATUS";
-            this.colSTATUS.ReadOnly = true;
-            // 
-            // colADDRESS
-            // 
-            this.colADDRESS.DataPropertyName = "VADDRESS";
-            this.colADDRESS.HeaderText = "ADDRESS";
-            this.colADDRESS.MinimumWidth = 100;
-            this.colADDRESS.Name = "colADDRESS";
-            this.colADDRESS.ReadOnly = true;
-            // 
-            // colMOBILE
-            // 
-            this.colMOBILE.DataPropertyName = "VMOBLE";
-            this.colMOBILE.FillWeight = 50F;
-            this.colMOBILE.HeaderText = "MOBILE";
-            this.colMOBILE.MinimumWidth = 50;
-            this.colMOBILE.Name = "colMOBILE";
-            this.colMOBILE.ReadOnly = true;
-            // 
-            // colFATHER
-            // 
-            this.colFATHER.DataPropertyName = "VFATHER_NAME";
-            this.colFATHER.HeaderText = "FATHER";
-            this.colFATHER.MinimumWidth = 100;
-            this.colFATHER.Name = "colFATHER";
-            this.colFATHER.ReadOnly = true;
-            this.colFATHER.Visible = false;
-            // 
-            // colMOTHER
-            // 
-            this.colMOTHER.DataPropertyName = "VMOTHER_NAME";
-            this.colMOTHER.HeaderText = "MOTHER";
-            this.colMOTHER.MinimumWidth = 100;
-            this.colMOTHER.Name = "colMOTHER";
-            this.colMOTHER.ReadOnly = true;
-            this.colMOTHER.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.colMOTHER.Visible = false;
-            // 
-            // colEMERGENCY
-            // 
-            this.colEMERGENCY.DataPropertyName = "VEMERGENCY_CONTRACT";
-            this.colEMERGENCY.HeaderText = "EMERGENCY";
-            this.colEMERGENCY.MinimumWidth = 100;
-            this.colEMERGENCY.Name = "colEMERGENCY";
-            this.colEMERGENCY.ReadOnly = true;
-            // 
-            // colDOB
-            // 
-            this.colDOB.DataPropertyName = "DDOB";
-            this.colDOB.HeaderText = "DOB";
-            this.colDOB.Name = "colDOB";
-            this.colDOB.ReadOnly = true;
-            this.colDOB.Visible = false;
-            // 
-            // colCLASS
-            // 
-            this.colCLASS.DataPropertyName = "CLASS";
-            this.colCLASS.FillWeight = 50F;
-            this.colCLASS.HeaderText = "CLASS";
-            this.colCLASS.MinimumWidth = 50;
-            this.colCLASS.Name = "colCLASS";
-            this.colCLASS.ReadOnly = true;
-            this.colCLASS.Visible = false;
-            // 
-            // colSECTION
-            // 
-            this.colSECTION.DataPropertyName = "SECTION";
-            this.colSECTION.FillWeight = 70F;
-            this.colSECTION.HeaderText = "SECTION";
-            this.colSECTION.MinimumWidth = 70;
-            this.colSECTION.Name = "colSECTION";
-            this.colSECTION.ReadOnly = true;
-            // 
-            // colDOJ
-            // 
-            this.colDOJ.DataPropertyName = "DDOJ";
-            this.colDOJ.HeaderText = "DOJ";
-            this.colDOJ.Name = "colDOJ";
-            this.colDOJ.ReadOnly = true;
-            this.colDOJ.Visible = false;
-            // 
-            // colNCATID
-            // 
-            this.colNCATID.DataPropertyName = "NCATID";
-            this.colNCATID.HeaderText = "CATID";
-            this.colNCATID.Name = "colNCATID";
-            this.colNCATID.ReadOnly = true;
-            this.colNCATID.Visible = false;
-            // 
-            // colNCLASSID
-            // 
-            this.colNCLASSID.DataPropertyName = "NCLASSID";
-            this.colNCLASSID.HeaderText = "CLASSID";
-            this.colNCLASSID.Name = "colNCLASSID";
-            this.colNCLASSID.ReadOnly = true;
-            this.colNCLASSID.Visible = false;
-            // 
-            // colNSECID
-            // 
-            this.colNSECID.DataPropertyName = "NSECID";
-            this.colNSECID.HeaderText = "SECID";
-            this.colNSECID.Name = "colNSECID";
-            this.colNSECID.ReadOnly = true;
-            this.colNSECID.Visible = false;
-            // 
-            // colNEMPID
-            // 
-            this.colNEMPID.DataPropertyName = "NEMPID";
-            this.colNEMPID.HeaderText = "EMPID";
-            this.colNEMPID.Name = "colNEMPID";
-            this.colNEMPID.ReadOnly = true;
-            this.colNEMPID.Visible = false;
-            // 
-            // colNDESIGID
-            // 
-            this.colNDESIGID.DataPropertyName = "NDESIGID";
-            this.colNDESIGID.HeaderText = "NDESIGID";
-            this.colNDESIGID.Name = "colNDESIGID";
-            this.colNDESIGID.ReadOnly = true;
-            this.colNDESIGID.Visible = false;
-            // 
-            // colVEMAIL
-            // 
-            this.colVEMAIL.DataPropertyName = "VEMAIL";
-            this.colVEMAIL.HeaderText = "EMAIL";
-            this.colVEMAIL.Name = "colVEMAIL";
-            this.colVEMAIL.ReadOnly = true;
-            this.colVEMAIL.Visible = false;
-            // 
-            // NSTATUS
-            // 
-            this.NSTATUS.DataPropertyName = "NSTATUS";
-            this.NSTATUS.HeaderText = "NSTATUS";
-            this.NSTATUS.Name = "NSTATUS";
-            this.NSTATUS.ReadOnly = true;
-            this.NSTATUS.Visible = false;
-            // 
-            // NSALARY
-            // 
-            this.NSALARY.DataPropertyName = "NSALARY";
-            this.NSALARY.HeaderText = "SALARY";
-            this.NSALARY.Name = "NSALARY";
-            this.NSALARY.ReadOnly = true;
-            this.NSALARY.Visible = false;
-            // 
-            // colNSLOT
-            // 
-            this.colNSLOT.DataPropertyName = "NSLOTID";
-            this.colNSLOT.HeaderText = "NSLOT";
-            this.colNSLOT.Name = "colNSLOT";
-            this.colNSLOT.ReadOnly = true;
-            this.colNSLOT.Visible = false;
-            // 
-            // colVGENDER
-            // 
-            this.colVGENDER.DataPropertyName = "VGENDER";
-            this.colVGENDER.HeaderText = "GENDER";
-            this.colVGENDER.Name = "colVGENDER";
-            this.colVGENDER.ReadOnly = true;
-            this.colVGENDER.Visible = false;
-            // 
-            // NBASIC
-            // 
-            this.NBASIC.DataPropertyName = "NBASIC";
-            this.NBASIC.HeaderText = "BASIC";
-            this.NBASIC.Name = "NBASIC";
-            this.NBASIC.ReadOnly = true;
-            this.NBASIC.Visible = false;
-            // 
-            // NHRENT
-            // 
-            this.NHRENT.DataPropertyName = "NHRENT";
-            this.NHRENT.HeaderText = "H.RENT";
-            this.NHRENT.Name = "NHRENT";
-            this.NHRENT.ReadOnly = true;
-            this.NHRENT.Visible = false;
-            // 
-            // NTRANSPORT
-            // 
-            this.NTRANSPORT.DataPropertyName = "NTRANSPORT";
-            this.NTRANSPORT.HeaderText = "TRANSPORT";
-            this.NTRANSPORT.Name = "NTRANSPORT";
-            this.NTRANSPORT.ReadOnly = true;
-            this.NTRANSPORT.Visible = false;
-            // 
-            // NMEDICAL
-            // 
-            this.NMEDICAL.DataPropertyName = "NMEDICAL";
-            this.NMEDICAL.HeaderText = "MEDICAL";
-            this.NMEDICAL.Name = "NMEDICAL";
-            this.NMEDICAL.ReadOnly = true;
-            this.NMEDICAL.Visible = false;
             // 
             // lblPrsnSalary
             // 
@@ -758,7 +510,7 @@
             this.gbxPersonalData.Controls.Add(this.txtPName);
             this.gbxPersonalData.Controls.Add(this.txtPSalary);
             this.gbxPersonalData.Controls.Add(this.txtPEmail);
-            this.gbxPersonalData.Location = new System.Drawing.Point(13, 12);
+            this.gbxPersonalData.Location = new System.Drawing.Point(13, 11);
             this.gbxPersonalData.Name = "gbxPersonalData";
             this.gbxPersonalData.Size = new System.Drawing.Size(311, 656);
             this.gbxPersonalData.TabIndex = 137;
@@ -945,7 +697,9 @@
             // 
             // gbxSearch
             // 
+            this.gbxSearch.Controls.Add(this.btnDown);
             this.gbxSearch.Controls.Add(this.btnSearch);
+            this.gbxSearch.Controls.Add(this.btnUp);
             this.gbxSearch.Controls.Add(this.txtSearch);
             this.gbxSearch.Controls.Add(this.cbxSearch);
             this.gbxSearch.Controls.Add(this.label2);
@@ -958,7 +712,7 @@
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(186, 61);
+            this.btnSearch.Location = new System.Drawing.Point(161, 58);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(103, 23);
             this.btnSearch.TabIndex = 134;
@@ -968,7 +722,7 @@
             // 
             // txtSearch
             // 
-            this.txtSearch.Location = new System.Drawing.Point(186, 27);
+            this.txtSearch.Location = new System.Drawing.Point(161, 27);
             this.txtSearch.Name = "txtSearch";
             this.txtSearch.Size = new System.Drawing.Size(103, 20);
             this.txtSearch.TabIndex = 133;
@@ -979,15 +733,15 @@
             this.cbxSearch.Items.AddRange(new object[] {
             "ID",
             "Name"});
-            this.cbxSearch.Location = new System.Drawing.Point(77, 26);
+            this.cbxSearch.Location = new System.Drawing.Point(64, 26);
             this.cbxSearch.Name = "cbxSearch";
-            this.cbxSearch.Size = new System.Drawing.Size(103, 21);
+            this.cbxSearch.Size = new System.Drawing.Size(91, 21);
             this.cbxSearch.TabIndex = 132;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(9, 27);
+            this.label2.Location = new System.Drawing.Point(4, 27);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(56, 13);
             this.label2.TabIndex = 131;
@@ -996,6 +750,275 @@
             // errorProviderPData
             // 
             this.errorProviderPData.ContainerControl = this;
+            // 
+            // btnUp
+            // 
+            this.btnUp.Location = new System.Drawing.Point(274, 26);
+            this.btnUp.Name = "btnUp";
+            this.btnUp.Size = new System.Drawing.Size(29, 24);
+            this.btnUp.TabIndex = 23;
+            this.btnUp.Text = "▲";
+            this.btnUp.UseVisualStyleBackColor = true;
+            this.btnUp.Click += new System.EventHandler(this.btnUp_Click);
+            // 
+            // btnDown
+            // 
+            this.btnDown.Location = new System.Drawing.Point(274, 55);
+            this.btnDown.Name = "btnDown";
+            this.btnDown.Size = new System.Drawing.Size(29, 26);
+            this.btnDown.TabIndex = 24;
+            this.btnDown.Text = "▼";
+            this.btnDown.UseVisualStyleBackColor = true;
+            this.btnDown.Click += new System.EventHandler(this.btnDown_Click);
+            // 
+            // colNEMPID
+            // 
+            this.colNEMPID.DataPropertyName = "NEMPID";
+            this.colNEMPID.HeaderText = "EMPID";
+            this.colNEMPID.Name = "colNEMPID";
+            this.colNEMPID.ReadOnly = true;
+            this.colNEMPID.Visible = false;
+            // 
+            // colVPERSONID
+            // 
+            this.colVPERSONID.FillWeight = 50F;
+            this.colVPERSONID.HeaderText = "ID";
+            this.colVPERSONID.MinimumWidth = 50;
+            this.colVPERSONID.Name = "colVPERSONID";
+            this.colVPERSONID.ReadOnly = true;
+            // 
+            // colVNAME
+            // 
+            this.colVNAME.DataPropertyName = "VNAME";
+            this.colVNAME.HeaderText = "NAME";
+            this.colVNAME.MinimumWidth = 100;
+            this.colVNAME.Name = "colVNAME";
+            this.colVNAME.ReadOnly = true;
+            // 
+            // colVGENDER
+            // 
+            this.colVGENDER.DataPropertyName = "VGENDER";
+            this.colVGENDER.HeaderText = "GENDER";
+            this.colVGENDER.Name = "colVGENDER";
+            this.colVGENDER.ReadOnly = true;
+            this.colVGENDER.Visible = false;
+            // 
+            // colADDRESS
+            // 
+            this.colADDRESS.DataPropertyName = "VADDRESS";
+            this.colADDRESS.HeaderText = "ADDRESS";
+            this.colADDRESS.MinimumWidth = 100;
+            this.colADDRESS.Name = "colADDRESS";
+            this.colADDRESS.ReadOnly = true;
+            // 
+            // colDOB
+            // 
+            this.colDOB.DataPropertyName = "DDOB";
+            this.colDOB.HeaderText = "DOB";
+            this.colDOB.Name = "colDOB";
+            this.colDOB.ReadOnly = true;
+            this.colDOB.Visible = false;
+            // 
+            // colMOBILE
+            // 
+            this.colMOBILE.DataPropertyName = "VMOBLE";
+            this.colMOBILE.FillWeight = 50F;
+            this.colMOBILE.HeaderText = "MOBILE";
+            this.colMOBILE.MinimumWidth = 50;
+            this.colMOBILE.Name = "colMOBILE";
+            this.colMOBILE.ReadOnly = true;
+            // 
+            // colVEMAIL
+            // 
+            this.colVEMAIL.DataPropertyName = "VEMAIL";
+            this.colVEMAIL.HeaderText = "EMAIL";
+            this.colVEMAIL.Name = "colVEMAIL";
+            this.colVEMAIL.ReadOnly = true;
+            this.colVEMAIL.Visible = false;
+            // 
+            // colSTATUS
+            // 
+            this.colSTATUS.DataPropertyName = "STATUS";
+            this.colSTATUS.FillWeight = 50F;
+            this.colSTATUS.HeaderText = "STATUS";
+            this.colSTATUS.MinimumWidth = 50;
+            this.colSTATUS.Name = "colSTATUS";
+            this.colSTATUS.ReadOnly = true;
+            // 
+            // colDOJ
+            // 
+            this.colDOJ.DataPropertyName = "DDOJ";
+            this.colDOJ.HeaderText = "DOJ";
+            this.colDOJ.Name = "colDOJ";
+            this.colDOJ.ReadOnly = true;
+            this.colDOJ.Visible = false;
+            // 
+            // colCATNAME
+            // 
+            this.colCATNAME.DataPropertyName = "CATEGORY";
+            this.colCATNAME.FillWeight = 80F;
+            this.colCATNAME.HeaderText = "CATEGORY";
+            this.colCATNAME.MinimumWidth = 80;
+            this.colCATNAME.Name = "colCATNAME";
+            this.colCATNAME.ReadOnly = true;
+            this.colCATNAME.Visible = false;
+            // 
+            // colDESIGNATION
+            // 
+            this.colDESIGNATION.DataPropertyName = "DESIGNATION";
+            this.colDESIGNATION.FillWeight = 90F;
+            this.colDESIGNATION.HeaderText = "DESIGNATION";
+            this.colDESIGNATION.MinimumWidth = 90;
+            this.colDESIGNATION.Name = "colDESIGNATION";
+            this.colDESIGNATION.ReadOnly = true;
+            // 
+            // colNBASIC
+            // 
+            this.colNBASIC.DataPropertyName = "NBASIC";
+            this.colNBASIC.HeaderText = "BASIC";
+            this.colNBASIC.Name = "colNBASIC";
+            this.colNBASIC.ReadOnly = true;
+            this.colNBASIC.Visible = false;
+            // 
+            // colNHRENT
+            // 
+            this.colNHRENT.DataPropertyName = "NHRENT";
+            this.colNHRENT.HeaderText = "H.RENT";
+            this.colNHRENT.Name = "colNHRENT";
+            this.colNHRENT.ReadOnly = true;
+            this.colNHRENT.Visible = false;
+            // 
+            // colNTRANSPORT
+            // 
+            this.colNTRANSPORT.DataPropertyName = "NTRANSPORT";
+            this.colNTRANSPORT.HeaderText = "TRANSPORT";
+            this.colNTRANSPORT.Name = "colNTRANSPORT";
+            this.colNTRANSPORT.ReadOnly = true;
+            this.colNTRANSPORT.Visible = false;
+            // 
+            // colNMEDICAL
+            // 
+            this.colNMEDICAL.DataPropertyName = "NMEDICAL";
+            this.colNMEDICAL.HeaderText = "MEDICAL";
+            this.colNMEDICAL.Name = "colNMEDICAL";
+            this.colNMEDICAL.ReadOnly = true;
+            this.colNMEDICAL.Visible = false;
+            // 
+            // colNSALARY
+            // 
+            this.colNSALARY.DataPropertyName = "NSALARY";
+            this.colNSALARY.HeaderText = "SALARY";
+            this.colNSALARY.Name = "colNSALARY";
+            this.colNSALARY.ReadOnly = true;
+            this.colNSALARY.Visible = false;
+            // 
+            // colCLASS
+            // 
+            this.colCLASS.DataPropertyName = "CLASS";
+            this.colCLASS.FillWeight = 50F;
+            this.colCLASS.HeaderText = "DEPARTMENT";
+            this.colCLASS.MinimumWidth = 100;
+            this.colCLASS.Name = "colCLASS";
+            this.colCLASS.ReadOnly = true;
+            // 
+            // colSECTION
+            // 
+            this.colSECTION.DataPropertyName = "SECTION";
+            this.colSECTION.FillWeight = 70F;
+            this.colSECTION.HeaderText = "SECTION";
+            this.colSECTION.MinimumWidth = 70;
+            this.colSECTION.Name = "colSECTION";
+            this.colSECTION.ReadOnly = true;
+            // 
+            // colSLOT
+            // 
+            this.colSLOT.DataPropertyName = "SLOT";
+            this.colSLOT.HeaderText = "SHIFT";
+            this.colSLOT.MinimumWidth = 100;
+            this.colSLOT.Name = "colSLOT";
+            this.colSLOT.ReadOnly = true;
+            // 
+            // colFATHER
+            // 
+            this.colFATHER.DataPropertyName = "VFATHER_NAME";
+            this.colFATHER.HeaderText = "FATHER";
+            this.colFATHER.MinimumWidth = 100;
+            this.colFATHER.Name = "colFATHER";
+            this.colFATHER.ReadOnly = true;
+            this.colFATHER.Visible = false;
+            // 
+            // colMOTHER
+            // 
+            this.colMOTHER.DataPropertyName = "VMOTHER_NAME";
+            this.colMOTHER.HeaderText = "MOTHER";
+            this.colMOTHER.MinimumWidth = 100;
+            this.colMOTHER.Name = "colMOTHER";
+            this.colMOTHER.ReadOnly = true;
+            this.colMOTHER.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colMOTHER.Visible = false;
+            // 
+            // colEMERGENCY
+            // 
+            this.colEMERGENCY.DataPropertyName = "VEMERGENCY_CONTRACT";
+            this.colEMERGENCY.HeaderText = "EMERGENCY";
+            this.colEMERGENCY.MinimumWidth = 100;
+            this.colEMERGENCY.Name = "colEMERGENCY";
+            this.colEMERGENCY.ReadOnly = true;
+            // 
+            // colTIME
+            // 
+            this.colTIME.DataPropertyName = "IN_OUT_TIME";
+            this.colTIME.HeaderText = "IN OUT";
+            this.colTIME.Name = "colTIME";
+            this.colTIME.ReadOnly = true;
+            // 
+            // colNCATID
+            // 
+            this.colNCATID.DataPropertyName = "NCATID";
+            this.colNCATID.HeaderText = "CATID";
+            this.colNCATID.Name = "colNCATID";
+            this.colNCATID.ReadOnly = true;
+            this.colNCATID.Visible = false;
+            // 
+            // colNCLASSID
+            // 
+            this.colNCLASSID.DataPropertyName = "NCLASSID";
+            this.colNCLASSID.HeaderText = "CLASSID";
+            this.colNCLASSID.Name = "colNCLASSID";
+            this.colNCLASSID.ReadOnly = true;
+            this.colNCLASSID.Visible = false;
+            // 
+            // colNSECID
+            // 
+            this.colNSECID.DataPropertyName = "NSECID";
+            this.colNSECID.HeaderText = "SECID";
+            this.colNSECID.Name = "colNSECID";
+            this.colNSECID.ReadOnly = true;
+            this.colNSECID.Visible = false;
+            // 
+            // colNDESIGID
+            // 
+            this.colNDESIGID.DataPropertyName = "NDESIGID";
+            this.colNDESIGID.HeaderText = "NDESIGID";
+            this.colNDESIGID.Name = "colNDESIGID";
+            this.colNDESIGID.ReadOnly = true;
+            this.colNDESIGID.Visible = false;
+            // 
+            // colNSTATUS
+            // 
+            this.colNSTATUS.DataPropertyName = "NSTATUS";
+            this.colNSTATUS.HeaderText = "NSTATUS";
+            this.colNSTATUS.Name = "colNSTATUS";
+            this.colNSTATUS.ReadOnly = true;
+            this.colNSTATUS.Visible = false;
+            // 
+            // colNSLOT
+            // 
+            this.colNSLOT.DataPropertyName = "NSLOTID";
+            this.colNSLOT.HeaderText = "NSLOT";
+            this.colNSLOT.Name = "colNSLOT";
+            this.colNSLOT.ReadOnly = true;
+            this.colNSLOT.Visible = false;
             // 
             // frmPData
             // 
@@ -1083,35 +1106,37 @@
         private System.Windows.Forms.TextBox txtPTransport;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtPMedical;
+        private System.Windows.Forms.Button btnDown;
+        private System.Windows.Forms.Button btnUp;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colNEMPID;
         private System.Windows.Forms.DataGridViewTextBoxColumn colVPERSONID;
         private System.Windows.Forms.DataGridViewTextBoxColumn colVNAME;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colCATNAME;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colSLOT;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colTIME;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colDESIGNATION;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colSTATUS;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colVGENDER;
         private System.Windows.Forms.DataGridViewTextBoxColumn colADDRESS;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colDOB;
         private System.Windows.Forms.DataGridViewTextBoxColumn colMOBILE;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colVEMAIL;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colSTATUS;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colDOJ;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colCATNAME;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colDESIGNATION;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colNBASIC;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colNHRENT;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colNTRANSPORT;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colNMEDICAL;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colNSALARY;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colCLASS;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colSECTION;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colSLOT;
         private System.Windows.Forms.DataGridViewTextBoxColumn colFATHER;
         private System.Windows.Forms.DataGridViewTextBoxColumn colMOTHER;
         private System.Windows.Forms.DataGridViewTextBoxColumn colEMERGENCY;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colDOB;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colCLASS;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colSECTION;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colDOJ;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colTIME;
         private System.Windows.Forms.DataGridViewTextBoxColumn colNCATID;
         private System.Windows.Forms.DataGridViewTextBoxColumn colNCLASSID;
         private System.Windows.Forms.DataGridViewTextBoxColumn colNSECID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colNEMPID;
         private System.Windows.Forms.DataGridViewTextBoxColumn colNDESIGID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colVEMAIL;
-        private System.Windows.Forms.DataGridViewTextBoxColumn NSTATUS;
-        private System.Windows.Forms.DataGridViewTextBoxColumn NSALARY;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colNSTATUS;
         private System.Windows.Forms.DataGridViewTextBoxColumn colNSLOT;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colVGENDER;
-        private System.Windows.Forms.DataGridViewTextBoxColumn NBASIC;
-        private System.Windows.Forms.DataGridViewTextBoxColumn NHRENT;
-        private System.Windows.Forms.DataGridViewTextBoxColumn NTRANSPORT;
-        private System.Windows.Forms.DataGridViewTextBoxColumn NMEDICAL;
     }
 }

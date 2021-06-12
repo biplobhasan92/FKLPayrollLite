@@ -66,9 +66,9 @@ namespace Panchrukhi
 
             if (getEMPID == 0) // NEMPID
             {
-                if (txtPID.Text != "")
+                if (txtPID.Text.Trim() != "")
                 {
-                    if (DBConn.checkDataIfItUsedOtherTableStr("TBLPERSON", "PERSONID", txtPID.Text)) { MessageBox.Show("", "Duplicate ID Not Allowed !", MessageBoxButtons.OK, MessageBoxIcon.Error); return; }
+                    if (DBConn.checkDataIfItUsedOtherTableStr("TBLPERSON", "PERSONID", txtPID.Text.Trim())) { MessageBox.Show("", "Duplicate ID Not Allowed !", MessageBoxButtons.OK, MessageBoxIcon.Error); return; }
                     try
                     {                           
                         string cmdText =
@@ -154,15 +154,15 @@ namespace Panchrukhi
                     "UPDATE " +
                             " TBLPERSON " +
                     " set " +
-                            " PERSONID = '" + txtPID.Text + "',     " +
-                            " VNAME    = '" + txtPName.Text + "',   " +
+                            " PERSONID = '" + txtPID.Text.Trim() + "',     " +
+                            " VNAME    = '" + txtPName.Text.Trim() + "',   " +
                             " VGENDER  = IFNULL('" + cmbGender.SelectedItem + "', 'MALE'), " +
-                            " VADDRESS = '" + txtPAddress.Text + "', " +
+                            " VADDRESS = '" + txtPAddress.Text.Trim() + "', " +
                             " DDOB     = '" + txtPDOB.Text + "',     " +
-                            " VMOBLE   = '" + txtPMobile.Text + "',  " +
-                            " VEMAIL   = '" + txtPEmail.Text + "',   " +
+                            " VMOBLE   = '" + txtPMobile.Text.Trim() + "',  " +
+                            " VEMAIL   = '" + txtPEmail.Text.Trim() + "',   " +
                             " NSTATUS  = IFNULL(" + cmbStatus.SelectedIndex + ", 1), " +
-                            " DDOJ     = '" + txtPDOJ.Text + "',   " +
+                            " DDOJ     = '" + txtPDOJ.Text.Trim() + "',   " +
                             " NCATID   = IFNULL(" + (cmbCat.SelectedItem as dynamic).Value + ", 1),  " +
                             " NDESIGID = IFNULL(" + (cmbDesig.SelectedItem as dynamic).Value + ", 1)," +
                             " NBASIC   = " + txtPBasic.Text.Trim() + ", " +
@@ -173,9 +173,9 @@ namespace Panchrukhi
                             " NSLOTID  = IFNULL(" + (cmbSlot.SelectedItem as dynamic).Value + ",  1),  " +
                             " NCLASSID = IFNULL(" + (cmbClass.SelectedItem as dynamic).Value + ", 1),  " +
                             " NSECID   = IFNULL(" + (cmbSection.SelectedItem as dynamic).Value + ",1),  " +
-                            " VFATHER_NAME        = '" + txtFather.Text + "',   " +
-                            " VMOTHER_NAME        = '" + txtMother.Text + "',   " +
-                            " VEMERGENCY_CONTRACT = '" + txtEmergencyContact.Text + "'   " +
+                            " VFATHER_NAME        = '" + txtFather.Text.Trim() + "',   " +
+                            " VMOTHER_NAME        = '" + txtMother.Text.Trim() + "',   " +
+                            " VEMERGENCY_CONTRACT = '" + txtEmergencyContact.Text.Trim() + "'   " +
                     " where  " +
                             " NEMPID =" + getEMPID;// NEMPID
 
@@ -224,7 +224,7 @@ namespace Panchrukhi
         private void LoadData()
         {
             string CommandText = "";
-            try {
+            try{
               CommandText =
                   "  SELECT *, " +
                   "  (select VCATEGORY from TBLCATEGORY where TBLPERSON.NCATID = TBLCATEGORY.NCATID) as CATEGORY,   " +
@@ -235,20 +235,52 @@ namespace Panchrukhi
                   "  (SELECT VSECTION   FROM TBLSECTION TS WHERE TS.NSECID   = TBLPERSON.NSECID) as SECTION, " +
                   "  CASE TBLPERSON.NSTATUS WHEN 1 THEN 'ACTIVE' ELSE 'INACTIVE' END STATUS" +
                 " FROM TBLPERSON";
-
                 DBConn.ExecutionQuery(CommandText);
                 DB = new SQLiteDataAdapter(CommandText, DBConn.sql_conn);
                 DS.Reset();
                 DB.Fill(DS);
                 DT = DS.Tables[0];
-                dataGridView.DataSource = DT;
+                dataGridView.Rows.Clear();
+                foreach (DataRow dr in DT.Rows)
+                {
+                    dataGridView.Rows.Add();
+                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colVPERSONID.Index].Value = dr["PERSONID"].ToString();
+                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colVNAME.Index].Value   = dr["VNAME"].ToString();
+                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colCATNAME.Index].Value = dr["CATEGORY"].ToString();
+                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colCLASS.Index].Value   = dr["CLASS"].ToString();
+                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colSLOT.Index].Value    = dr["SLOT"].ToString();
+                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colTIME.Index].Value    = dr["IN_OUT_TIME"].ToString();
+                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colDESIGNATION.Index].Value = dr["DESIGNATION"].ToString();
+                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colSTATUS.Index].Value  = dr["STATUS"].ToString();
+                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colADDRESS.Index].Value = dr["VADDRESS"].ToString();
+                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colMOBILE.Index].Value  = dr["VMOBLE"].ToString();
+                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colFATHER.Index].Value  = dr["VFATHER_NAME"].ToString();
+                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colMOTHER.Index].Value  = dr["VMOTHER_NAME"].ToString();
+                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colEMERGENCY.Index].Value= dr["VEMERGENCY_CONTRACT"].ToString();
+                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colDOB.Index].Value = dr["DDOB"].ToString();
+                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colSECTION.Index].Value = dr["SECTION"].ToString();
+                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colDOJ.Index].Value = dr["DDOJ"].ToString();
+                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colNCATID.Index].Value  = dr["NCATID"].ToString();
+                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colNCLASSID.Index].Value= dr["NCLASSID"].ToString();
+                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colNSECID.Index].Value  = dr["NSECID"].ToString();
+                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colNEMPID.Index].Value  = dr["NEMPID"].ToString();
+                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colNDESIGID.Index].Value= dr["NDESIGID"].ToString();
+                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colVEMAIL.Index].Value  = dr["VEMAIL"].ToString();
+                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colNSTATUS.Index].Value = dr["NSTATUS"].ToString();
+                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colNSALARY.Index].Value = dr["NSALARY"].ToString();
+                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colNSLOT.Index].Value   = dr["NSLOTID"].ToString();
+                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colVGENDER.Index].Value = dr["VGENDER"].ToString();
+                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colNBASIC.Index].Value  = dr["NBASIC"].ToString();
+                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colNHRENT.Index].Value  = dr["NHRENT"].ToString();
+                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colNTRANSPORT.Index].Value = dr["NTRANSPORT"].ToString();
+                    dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colNMEDICAL.Index].Value= dr["NMEDICAL"].ToString();
+                }
                 btnExcelExporter.Enabled = true;
             }
             catch(Exception ex)
             {
                 MessageBox.Show("Exception to Update", ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            
         }
 
       
@@ -276,12 +308,13 @@ namespace Panchrukhi
             DT = dsSLOT.Tables[0];
             cmbCat.DisplayMember = "Text";
             cmbCat.ValueMember = "Value";
-
             foreach (DataRow dr in DT.Rows)
             {
                 cmbCat.Items.Add(new { Text = dr["VCATEGORY"].ToString(), Value = dr["NCATID"].ToString() });//NCATID
             }
         }
+
+
 
         private void LoadDefaultComboValue() {
             cmbGender.SelectedIndex  = cmbCat.MaxLength;
@@ -293,27 +326,29 @@ namespace Panchrukhi
         }
 
 
-            // To Load Designation Combo in Person Form. calling from Load Form.
-            private void LoadDesigCombo()
+
+        // To Load Designation Combo in Person Form. calling from Load Form.
+        private void LoadDesigCombo()
+        {
+            string CommandText = "SELECT * from TBLDESIGNATION";
+            DataSet dsSLOT = new DataSet();
+            DBConn.ExecutionQuery(CommandText);
+            DB = new SQLiteDataAdapter(CommandText, DBConn.sql_conn);
+            DB.Fill(dsSLOT);
+            DT = dsSLOT.Tables[0];
+            cmbDesig.DisplayMember = "Text";
+            cmbDesig.ValueMember = "Value";
+            foreach (DataRow dr in DT.Rows)
             {
-                string CommandText = "SELECT * from TBLDESIGNATION";
-                DataSet dsSLOT = new DataSet();
-                DBConn.ExecutionQuery(CommandText);
-                DB = new SQLiteDataAdapter(CommandText, DBConn.sql_conn);
-                DB.Fill(dsSLOT);
-                DT = dsSLOT.Tables[0];
-                cmbDesig.DisplayMember = "Text";
-                cmbDesig.ValueMember = "Value";
-                foreach (DataRow dr in DT.Rows)
-                {
-                    cmbDesig.Items.Add(new { Text = dr["VDESIGNATIONNAME"].ToString(), Value = dr["NDESIGID"].ToString() });
-                }
+                cmbDesig.Items.Add(new { Text = dr["VDESIGNATIONNAME"].ToString(), Value = dr["NDESIGID"].ToString() });
             }
+        }
+
+
 
 
         private void DataGridData_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-
             btnSaveAndUpdate.Text = "Update";
             getEMPID        = Convert.ToInt32(dataGridView.Rows[e.RowIndex].Cells[0].Value.ToString());
             txtPID.Text     = dataGridView.Rows[e.RowIndex].Cells[1].Value.ToString();
@@ -323,18 +358,18 @@ namespace Panchrukhi
             txtPDOB.Text    = dataGridView.Rows[e.RowIndex].Cells[5].Value.ToString().Trim();
             txtPMobile.Text = dataGridView.Rows[e.RowIndex].Cells[6].Value.ToString();
             txtPEmail.Text  = dataGridView.Rows[e.RowIndex].Cells[7].Value.ToString();
-            cmbStatus.Text  = dataGridView.Rows[e.RowIndex].Cells[29].Value.ToString();
+            cmbStatus.Text  = dataGridView.Rows[e.RowIndex].Cells[8].Value.ToString();
             txtPDOJ.Text    = dataGridView.Rows[e.RowIndex].Cells[9].Value.ToString().Trim();
-            cmbCat.Text     = dataGridView.Rows[e.RowIndex].Cells[23].Value.ToString();
-            cmbDesig.Text   = dataGridView.Rows[e.RowIndex].Cells[26].Value.ToString();
+            cmbCat.Text     = dataGridView.Rows[e.RowIndex].Cells[10].Value.ToString();
+            cmbDesig.Text   = dataGridView.Rows[e.RowIndex].Cells[11].Value.ToString();
             txtPBasic.Text  = dataGridView.Rows[e.RowIndex].Cells[12].Value.ToString();
             txtPHouseRent.Text = dataGridView.Rows[e.RowIndex].Cells[13].Value.ToString();
             txtPTransport.Text = dataGridView.Rows[e.RowIndex].Cells[14].Value.ToString();
             txtPMedical.Text= dataGridView.Rows[e.RowIndex].Cells[15].Value.ToString();
             txtPSalary.Text = dataGridView.Rows[e.RowIndex].Cells[16].Value.ToString();
-            cmbClass.Text   = dataGridView.Rows[e.RowIndex].Cells[27].Value.ToString();
-            cmbSection.Text = dataGridView.Rows[e.RowIndex].Cells[28].Value.ToString();
-            cmbSlot.Text    = dataGridView.Rows[e.RowIndex].Cells[24].Value.ToString();
+            cmbClass.Text   = dataGridView.Rows[e.RowIndex].Cells[17].Value.ToString();
+            cmbSection.Text = dataGridView.Rows[e.RowIndex].Cells[18].Value.ToString();
+            cmbSlot.Text    = dataGridView.Rows[e.RowIndex].Cells[19].Value.ToString();
             txtFather.Text  = dataGridView.Rows[e.RowIndex].Cells[20].Value.ToString().Trim();
             txtMother.Text  = dataGridView.Rows[e.RowIndex].Cells[21].Value.ToString().Trim();
             txtEmergencyContact.Text = dataGridView.Rows[e.RowIndex].Cells[22].Value.ToString().Trim();
@@ -348,23 +383,23 @@ namespace Panchrukhi
             getEMPID         = Convert.ToInt32(dataGridView[0, dataGridView.SelectedRows[0].Index].Value.ToString());
             txtPID.Text      = dataGridView[1, dataGridView.SelectedRows[0].Index].Value.ToString();
             txtPName.Text    = dataGridView[2, dataGridView.SelectedRows[0].Index].Value.ToString();
-            cmbGender.Text   = dataGridView[3, dataGridView.SelectedRows[0].Index].Value.ToString();
+            cmbGender.Text   = dataGridView[3, dataGridView.SelectedRows[0].Index].Value.ToString();            
             txtPAddress.Text = dataGridView[4, dataGridView.SelectedRows[0].Index].Value.ToString();
-            txtPDOB.Text     = dataGridView[5, dataGridView.SelectedRows[0].Index].Value.ToString().Trim();
+            txtPDOB.Text     = dataGridView[5, dataGridView.SelectedRows[0].Index].Value.ToString();
             txtPMobile.Text  = dataGridView[6, dataGridView.SelectedRows[0].Index].Value.ToString();
             txtPEmail.Text   = dataGridView[7, dataGridView.SelectedRows[0].Index].Value.ToString();
-            cmbStatus.Text   = dataGridView[29,dataGridView.SelectedRows[0].Index].Value.ToString();
-            txtPDOJ.Text     = dataGridView[9, dataGridView.SelectedRows[0].Index].Value.ToString().Trim();
-            cmbCat.Text      = dataGridView[23,dataGridView.SelectedRows[0].Index].Value.ToString();
-            cmbDesig.Text    = dataGridView[26,dataGridView.SelectedRows[0].Index].Value.ToString();
+            cmbStatus.Text   = dataGridView[8, dataGridView.SelectedRows[0].Index].Value.ToString();
+            txtPDOJ.Text     = dataGridView[9, dataGridView.SelectedRows[0].Index].Value.ToString();
+            cmbCat.Text      = dataGridView[10,dataGridView.SelectedRows[0].Index].Value.ToString();
+            cmbDesig.Text    = dataGridView[11,dataGridView.SelectedRows[0].Index].Value.ToString();
             txtPBasic.Text   = dataGridView[12, dataGridView.SelectedRows[0].Index].Value.ToString();
             txtPHouseRent.Text = dataGridView[13, dataGridView.SelectedRows[0].Index].Value.ToString();
             txtPTransport.Text = dataGridView[14, dataGridView.SelectedRows[0].Index].Value.ToString();
             txtPMedical.Text = dataGridView[15, dataGridView.SelectedRows[0].Index].Value.ToString();
             txtPSalary.Text  = dataGridView[16,dataGridView.SelectedRows[0].Index].Value.ToString();
-            cmbClass.Text    = dataGridView[27,dataGridView.SelectedRows[0].Index].Value.ToString();
-            cmbSection.Text  = dataGridView[28,dataGridView.SelectedRows[0].Index].Value.ToString();
-            cmbSlot.Text     = dataGridView[24,dataGridView.SelectedRows[0].Index].Value.ToString();
+            cmbClass.Text    = dataGridView[17,dataGridView.SelectedRows[0].Index].Value.ToString();
+            cmbSection.Text  = dataGridView[18,dataGridView.SelectedRows[0].Index].Value.ToString();
+            cmbSlot.Text     = dataGridView[19,dataGridView.SelectedRows[0].Index].Value.ToString();
             txtFather.Text   = dataGridView[20, dataGridView.SelectedRows[0].Index].Value.ToString();
             txtMother.Text   = dataGridView[21, dataGridView.SelectedRows[0].Index].Value.ToString();
             txtEmergencyContact.Text = dataGridView[22, dataGridView.SelectedRows[0].Index].Value.ToString();
@@ -411,10 +446,10 @@ namespace Panchrukhi
         }
 
 
+
         // To Load Slot Combo in Slot Form. calling from LoadForm().
         private void LoadSlotCombo()
         {
-
             string CommandText = "SELECT * from TBLATTENSLOT";
             DataSet dsSLOT = new DataSet();
             DBConn.ExecutionQuery(CommandText);
@@ -423,7 +458,6 @@ namespace Panchrukhi
             DT = dsSLOT.Tables[0];
             cmbSlot.DisplayMember = "Text";
             cmbSlot.ValueMember = "Value";
-
             foreach (DataRow dr in DT.Rows)
             {
                 cmbSlot.Items.Add(new { Text = dr["VSLOTNAME"].ToString(), Value = dr["NSLOTID"].ToString() });//NCATID
@@ -444,7 +478,6 @@ namespace Panchrukhi
             DT = dsSLOT.Tables[0];
             cmbSection.DisplayMember = "Text";
             cmbSection.ValueMember = "Value";
-
             foreach (DataRow dr in DT.Rows)
             {
                 cmbSection.Items.Add(new { Text = dr["VSECTION"].ToString(), Value = dr["NSECID"].ToString() }); //NCATID
@@ -669,6 +702,54 @@ namespace Panchrukhi
         private void txtPHouseRent_KeyPress(object sender, KeyPressEventArgs e)
         {
             validateNumber(e);
+        }
+
+        private void btnUp_Click(object sender, EventArgs e)
+        {
+            DataGridView dgv = dataGridView;
+            try
+            {
+                int totalRows = dgv.Rows.Count;
+                // get index of the row for the selected cell
+                int rowIndex = dgv.SelectedCells[0].OwningRow.Index;
+                if (rowIndex == 0)
+                    return;
+                // get index of the column for the selected cell
+                int colIndex = dgv.SelectedCells[0].OwningColumn.Index;
+                DataGridViewRow selectedRow = dgv.Rows[rowIndex];
+                dgv.Rows.Remove(selectedRow);
+                dgv.Rows.Insert(rowIndex - 1, selectedRow);
+                dgv.ClearSelection();
+                dgv.Rows[rowIndex - 1].Selected = true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(" Exception : "+ex.Message);
+            }
+        }
+
+        private void btnDown_Click(object sender, EventArgs e)
+        {
+            DataGridView dgv = dataGridView;
+            try
+            {
+                int totalRows = dgv.Rows.Count;
+                // get index of the row for the selected cell
+                int rowIndex = dgv.SelectedCells[0].OwningRow.Index;
+                if (rowIndex == totalRows - 1)
+                    return;
+                // get index of the column for the selected cell
+                int colIndex = dgv.SelectedCells[0].OwningColumn.Index;
+                DataGridViewRow selectedRow = dgv.Rows[rowIndex];
+                dgv.Rows.Remove(selectedRow);
+                dgv.Rows.Insert(rowIndex + 1, selectedRow);
+                dgv.ClearSelection();
+                dgv.Rows[rowIndex + 1].Selected = true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(" Exception : " + ex.Message);
+            }
         }
     }
 }

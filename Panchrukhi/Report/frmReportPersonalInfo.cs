@@ -27,7 +27,7 @@ namespace Panchrukhi
         private DataSet   DS;
         private DataTable DT;
         private SQLiteDataAdapter DA;
-
+        string pat = Application.StartupPath;
         int presents, absents,holidays;
 
 
@@ -43,8 +43,9 @@ namespace Panchrukhi
         public frmReportPersonalInfo()
         {
             InitializeComponent();
-            dtpFstDate.Format = dtpLstDate.Format = DateTimePickerFormat.Custom;
+            dtpAttendSummary.Format = dtpFstDate.Format = dtpLstDate.Format = DateTimePickerFormat.Custom;
             dtpFstDate.CustomFormat = dtpFstDate.CustomFormat = "dd/MM/yyyy";
+            dtpAttendSummary.CustomFormat = "MM/yyyy";
         }
 
 
@@ -72,17 +73,15 @@ namespace Panchrukhi
 
         private void frmReportPersonalInfo_Load(object sender, EventArgs e)
         {
-            //LoadData();
             LoadCatCombo();
             LoadDesigCombo();
             LoadClassCombo();
             LoadSectionCombo();
-            //this.Owner.Enabled = false;
             txtMultID.Enabled  = false;
         }
 
 
-        // Load Data From SQlite Database
+
         private void LoadData(bool isDataForPrint)
         {
             string CommandText = "";
@@ -95,11 +94,11 @@ namespace Panchrukhi
                 AddColumn += ", (select VCATEGORY from TBLCATEGORY where P.NCATID = TBLCATEGORY.NCATID) as CATEGORY" + 
                              ", P.VNAME NAME" +
                              ", (select VDESIGNATIONNAME from TBLDESIGNATION where TBLDESIGNATION.NDESIGID = P.NDESIGID ) as DESIGNATION" +
-                             ", (SELECT VSLOTNAME || \" (\" || VINTIME ||\" - \"||  VOUTTIME || \")\"  FROM TBLATTENSLOT where (TBLATTENSLOT.NSLOTID = P.NSLOTID))   as SHIFT" +
-                             ", P.VGENDER GENDER" +
+                             ", (SELECT VSLOTNAME || \" (\" || VINTIME ||\" - \"||  VOUTTIME || \")\"  FROM TBLATTENSLOT where (TBLATTENSLOT.NSLOTID = P.NSLOTID))   as SHIFT " +
+                             ", P.VGENDER GENDER " +
                              ", (SELECT VCLASSNAME FROM TBLCLASS TC WHERE TC.NCLASSID = P.NCLASSID) as CLASS " +
-                             ", (SELECT VSECTION   FROM TBLSECTION TS WHERE TS.NSECID = P.NSECID) as SECTION" +
-                             ", P.VEMERGENCY_CONTRACT as EMERGENCY";
+                             ", (SELECT VSECTION   FROM TBLSECTION TS WHERE TS.NSECID = P.NSECID) as SECTION " +
+                             ", P.VEMERGENCY_CONTRACT as EMERGENCY ";
             }
             else {
                 if (ckbxCategory.Checked) { AddColumn += ", (select VCATEGORY from TBLCATEGORY where P.NCATID = TBLCATEGORY.NCATID) as CATEGORY"; }
@@ -162,21 +161,25 @@ namespace Panchrukhi
                 }
             }
 
-
             // THIS IS THE QUERY TO UPDATE FOR OUT TIME
-            CommandText = " Select distinct P.PERSONID ID, TA.DATTENDATE DATE, IFNULL(IT.INTIME,'') INTIME, IFNULL(OT.OUTTIME,'') OUTTIME, 'STATUS' STATUS " + AddColumn+ " " +
-                          "   FROM "+ 
-                          " TBLPERSON P "+
-                          "   JOIN "+
-                          " TBLATTENDANCE_PROCESS_DATA TA "+
-                          " LEFT OUTER JOIN"+
-                          " (SELECT VEMPID, VINOUTTIME INTIME, DATTENDATE from TBLATTENDANCE_PROCESS_DATA WHERE NATTENTYPE = 1) IT "+
-                          " ON "+
-                          " (IT.VEMPID = P.PERSONID AND IT.DATTENDATE = TA.DATTENDATE)"+
+            CommandText = " Select " +
+                                " distinct P.PERSONID ID, " +
+                                " TA.DATTENDATE DATE, " +
+                                " IFNULL(IT.INTIME,'') INTIME, " +
+                                " IFNULL(OT.OUTTIME,'') OUTTIME, " +
+                                " 'STATUS' STATUS " + AddColumn+ " " +
+                          " FROM "+
+                                " TBLPERSON P "+
+                          " JOIN "+
+                                " TBLATTENDANCE_PROCESS_DATA TA "+
                           " LEFT OUTER JOIN "+
-                          " (SELECT VEMPID, VINOUTTIME OUTTIME, DATTENDATE from TBLATTENDANCE_PROCESS_DATA WHERE NATTENTYPE = 5) OT"+
-                          " ON"+
-                          " (OT.VEMPID = P.PERSONID AND OT.DATTENDATE = TA.DATTENDATE)";
+                              " (SELECT VEMPID, VINOUTTIME INTIME, DATTENDATE from TBLATTENDANCE_PROCESS_DATA WHERE NATTENTYPE = 1) IT "+
+                              " ON "+
+                              " (IT.VEMPID = P.PERSONID AND IT.DATTENDATE = TA.DATTENDATE)"+
+                          " LEFT OUTER JOIN "+
+                              " (SELECT VEMPID, VINOUTTIME OUTTIME, DATTENDATE from TBLATTENDANCE_PROCESS_DATA WHERE NATTENTYPE = 5) OT"+
+                              " ON"+
+                              " (OT.VEMPID = P.PERSONID AND OT.DATTENDATE = TA.DATTENDATE)";
             
             CommandText += " WHERE "+AndConditions+ " AND P.NSTATUS == 1  ORDER BY TA.DATTENDATE;";
             
@@ -276,7 +279,7 @@ namespace Panchrukhi
         // To Load Designation Combo in Person Form. calling from Load Form.
         private void LoadDesigCombo()
         {
-            string CommandText = "SELECT * from TBLDESIGNATION";
+            string CommandText = " SELECT * from TBLDESIGNATION ";
             DS = new DataSet();
             DT = new DataTable();
             DBConn.ExecutionQuery(CommandText);
@@ -392,7 +395,6 @@ namespace Panchrukhi
                 DBConn.ExecutionQuery(cmdText);
                 DA = new SQLiteDataAdapter(cmdText, DBConn.sql_conn);
                 DA.Fill(dsTemp);
-
                 if (dsTemp.Tables[0].Rows.Count > 0)
                     DS = dsTemp;
                 else
@@ -522,30 +524,6 @@ namespace Panchrukhi
         
         private void btn_datagrid_Click(object sender, EventArgs e)
         {
-            /*
-            
-                if (dataGridView.Rows.Count > 0)
-                {
-                    DataRow dr = DBConn.getCompanyNameAndAddress();
-                    if (dr == null) return;
-                    LoadData(true);
-                    Report.rptAttendanceData rptObj = new Report.rptAttendanceData();
-                    rptObj.SetDataSource(DS.Tables[0]);
-                    rptObj.SetParameterValue(0, presents);
-                    rptObj.SetParameterValue(1, absents);
-                    rptObj.SetParameterValue(4, holidays);
-                    rptObj.SetParameterValue(2, dr["VCOMPANY_NAME"]);
-                    rptObj.SetParameterValue(3, dr["VCOMPANY_ADDRESS"]);
-                    frmCrystalReportViewer crpt = new frmCrystalReportViewer();
-                    crpt.crptViewer.ReportSource = rptObj;
-                    crpt.Show();
-                }
-                else
-                    MessageBox.Show("", "Data Not Found !", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-
-            */
-
             DS = new DataSet();
             DT = new DataTable();
             string str = "";
@@ -589,13 +567,22 @@ namespace Panchrukhi
                 cr.SetParameterValue(4, holidays);
                 cr.SetParameterValue(2, dr["VCOMPANY_NAME"]);
                 cr.SetParameterValue(3, dr["VCOMPANY_ADDRESS"]);
+                cr.SetParameterValue(5, pat + "\\" + dr["VFILE_NAME"]);
                 frm.crptViewer.ReportSource = cr;
                 frm.crptViewer.Refresh();
                 frm.Show();
-            }            
+            }
+            else
+            {
+                MessageBox.Show("Please Load Data First.");
+            }
         }
 
-
+        private void btnAttedSummary_Click(object sender, EventArgs e)
+        {
+            string yearMonth = dtpAttendSummary.Value.ToString("MM/yyyy");
+            MessageBox.Show("Message Box: "+yearMonth);
+        }
 
         private void ExtractDataToCSV(DataGridView dgv)
         {
@@ -635,7 +622,7 @@ namespace Panchrukhi
             if (sfd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 // If they've selected a save location...
-                using (System.IO.StreamWriter sw = new System.IO.StreamWriter(sfd.FileName, false))
+                using (StreamWriter sw = new StreamWriter(sfd.FileName, false))
                 {
                     // Write the stringbuilder text to the the file.
                     sw.WriteLine(sb.ToString());

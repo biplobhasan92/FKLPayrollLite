@@ -114,17 +114,9 @@ namespace Panchrukhi.Report {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_pActiveCompanyLogo {
+        public CrystalDecisions.Shared.IParameterField Parameter_logoPath {
             get {
                 return this.DataDefinition.ParameterFields[3];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_GetOtSheetType {
-            get {
-                return this.DataDefinition.ParameterFields[4];
             }
         }
     }

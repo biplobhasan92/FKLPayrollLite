@@ -462,7 +462,6 @@ namespace Panchrukhi.Report
 
         private void btn_print_Click(object sender, EventArgs e) // MonthlySummaryReport.xml
         {
-            
                 string year = DateTime.Now.Year.ToString();
                 String Month = DateTime.Now.Month.ToString();            
                 DS = new DataSet();
@@ -496,11 +495,9 @@ namespace Panchrukhi.Report
                 DT.Columns.Add("Total Givent Sal", typeof(int));
                 DT.Columns.Add("Others Allowanc", typeof(int));
                 DT.Columns.Add("Total Givent Sal and Allow", typeof(int));
-            
 
-            
                 if (dataGridView.Rows.Count > 0)
-                {                
+                { 
                     foreach (DataGridViewRow dgv in dataGridView.Rows)
                     {
                             // DataRow drr = DBConn.getEmpInfo(dgv.Cells[0].Value.ToString());
@@ -550,9 +547,7 @@ namespace Panchrukhi.Report
                 frm.Show();                
             }else{
                 MessageBox.Show("Load Grid First");
-            }
-
-           
+            }           
         }
 
 
@@ -634,7 +629,7 @@ namespace Panchrukhi.Report
                 cr.SetParameterValue(0, dr["VCOMPANY_NAME"]);
                 cr.SetParameterValue(1, dr["VCOMPANY_ADDRESS"]);
                 cr.SetParameterValue(2, dateTimePicker1.Value.ToString("MMMM") + ", " + dateTimePicker1.Value.ToString("yyyy"));
-                cr.SetParameterValue(3, dr["VFILE_NAME"]);
+                cr.SetParameterValue(3, pat + "\\" + dr["VFILE_NAME"]);
                 frm.crptViewer.ReportSource = cr;
                 frm.crptViewer.Refresh();
                 frm.Show();
@@ -658,10 +653,9 @@ namespace Panchrukhi.Report
         private void btnSave_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(txtEmpID.Text)) { MessageBox.Show("Please select records"); return; }
-
-            bool isExecute = false;
+            bool isExecute= false;
             int absentCut = (Convert.ToInt32(txtBasickSal.Text.Trim()) / 30) * Convert.ToInt32(txtAbsent.Text.Trim());
-            int totalCut =  (absentCut + Convert.ToInt32(txtAvdSalCut.Text.Trim())+ Convert.ToInt32(txtMobileBill.Text.Trim()) + Convert.ToInt32(txtOthersSalCut.Text.Trim()) + Convert.ToInt32(txtTax.Text.Trim()) + Convert.ToInt32(txtRevTicket.Text.Trim()));
+            int totalCut  =  (absentCut + Convert.ToInt32(txtAvdSalCut.Text.Trim())+ Convert.ToInt32(txtMobileBill.Text.Trim()) + Convert.ToInt32(txtOthersSalCut.Text.Trim()) + Convert.ToInt32(txtTax.Text.Trim()) + Convert.ToInt32(txtRevTicket.Text.Trim()));
             int totalGivnSal = 0;
             if(Convert.ToInt32(txtTotalSal.Text.Trim()) > totalCut){totalGivnSal = (Convert.ToInt32(txtTotalSal.Text.Trim()) - totalCut);}
             else
@@ -670,7 +664,6 @@ namespace Panchrukhi.Report
                 return;
             }
             int totalGvnSalAndAllownc = (totalGivnSal+Convert.ToInt32(txtOthersAlnc.Text.Trim()));
-
             try
             {
                 string cmdText =
@@ -890,10 +883,12 @@ namespace Panchrukhi.Report
                 dgv.Rows.Remove(selectedRow);
                 dgv.Rows.Insert(rowIndex + 1, selectedRow);
                 dgv.ClearSelection();
-                dgv.Rows[rowIndex + 1].Cells[colIndex].Selected = true;
+                dgv.Rows[rowIndex + 1].Selected = true;
             }
             catch { }
         }
+
+
 
         private void btnUp_Click(object sender, EventArgs e)
         {
@@ -911,7 +906,7 @@ namespace Panchrukhi.Report
                 dgv.Rows.Remove(selectedRow);
                 dgv.Rows.Insert(rowIndex - 1, selectedRow);
                 dgv.ClearSelection();
-                dgv.Rows[rowIndex - 1].Cells[colIndex].Selected = true;
+                dgv.Rows[rowIndex - 1].Selected = true;                
             }
             catch { }
         }
@@ -933,12 +928,12 @@ namespace Panchrukhi.Report
             txtMedicalAllow.Text =
             txtTotalSal.Text = 
             txtAbsentSalCut.Text = 
-            txtAvdSalCut.Text = 
+            txtAvdSalCut.Text  = 
             txtMobileBill.Text = 
-            txtOthersSalCut.Text = 
-            txtTax.Text = 
-            txtRevTicket.Text = 
-            txtTotalCut.Text = 
+            txtOthersSalCut.Text =
+            txtTax.Text =
+            txtRevTicket.Text =
+            txtTotalCut.Text =
             txtTotalGivenSal.Text =
             txtOthersAlnc.Text=
             txtGivenSalAndAllow.Text = "";

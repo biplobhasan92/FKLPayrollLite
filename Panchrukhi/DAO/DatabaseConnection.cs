@@ -117,7 +117,7 @@ namespace Panchrukhi.DAO
 
 
         // Delete Function For All Form Int Val
-        public bool DeleteTableRowInt(String tableName, String whereConditionColName, int whereConditionValue) {
+        public bool DeleteTableRowInt(String tableName, String whereConditionColName, int whereConditionValue){
 
             bool returnVal = false;
             try
@@ -135,8 +135,7 @@ namespace Panchrukhi.DAO
                         returnVal = false;
                     }
                 }
-            }
-            catch (Exception exc) {
+            }catch(Exception exc){
                 MessageBox.Show(exc.Message + " - Problem in DeleteTableRowInt()");
             }
             return returnVal;
@@ -185,7 +184,7 @@ namespace Panchrukhi.DAO
                         returnVal = false;
                     }
                 }
-            } catch (Exception exc) {
+            }catch(Exception exc){
                 MessageBox.Show(exc.Message + " - Problem DeleteTableRowStr()");
             }
             return returnVal;

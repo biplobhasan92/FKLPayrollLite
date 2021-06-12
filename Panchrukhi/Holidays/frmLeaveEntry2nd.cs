@@ -188,7 +188,7 @@ namespace Panchrukhi
 
         private void FrmData_Load(object sender, EventArgs e)
         {
-            this.Owner.Enabled = false;
+            // this.Owner.Enabled = false;
             LoadHolyDayCatCombo();
             LoadData();
             gbxSerachOption.Enabled = false;
@@ -199,10 +199,10 @@ namespace Panchrukhi
 
         private void DataGridData_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            getHID             = Convert.ToInt32(dataGridView.Rows[e.RowIndex].Cells[5].Value.ToString());
-            txtEmpID.Text      = dataGridView.Rows[e.RowIndex].Cells[1].Value.ToString();
-            dtPkrFormDate.Text = dataGridView.Rows[e.RowIndex].Cells[2].Value.ToString();
-            cbxLeaveCat.Text   = dataGridView.Rows[e.RowIndex].Cells[3].Value.ToString();
+            getHID            = Convert.ToInt32(dataGridView.Rows[e.RowIndex].Cells[6].Value.ToString());
+            txtEmpID.Text     = dataGridView.Rows[e.RowIndex].Cells[1].Value.ToString();
+            cbxLeaveCat.Text  = dataGridView.Rows[e.RowIndex].Cells[4].Value.ToString();
+            dtPkrFormDate.Text= dataGridView.Rows[e.RowIndex].Cells[3].Value.ToString();
         }
 
 
@@ -302,7 +302,7 @@ namespace Panchrukhi
 
         private void frmSetHolyDay_FormClosed(object sender, FormClosedEventArgs e)
         {
-            this.Owner.Enabled = true;
+            //this.Owner.Enabled = true;
         }
 
 
