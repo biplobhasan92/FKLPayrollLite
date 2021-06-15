@@ -43,9 +43,8 @@ namespace Panchrukhi
         public frmReportPersonalInfo()
         {
             InitializeComponent();
-            dtpAttendSummary.Format = dtpFstDate.Format = dtpLstDate.Format = DateTimePickerFormat.Custom;
+             dtpFstDate.Format = dtpLstDate.Format = DateTimePickerFormat.Custom;
             dtpFstDate.CustomFormat = dtpFstDate.CustomFormat = "dd/MM/yyyy";
-            dtpAttendSummary.CustomFormat = "MM/yyyy";
         }
 
 
@@ -99,8 +98,7 @@ namespace Panchrukhi
                              ", (SELECT VCLASSNAME FROM TBLCLASS TC WHERE TC.NCLASSID = P.NCLASSID) as CLASS " +
                              ", (SELECT VSECTION   FROM TBLSECTION TS WHERE TS.NSECID = P.NSECID) as SECTION " +
                              ", P.VEMERGENCY_CONTRACT as EMERGENCY ";
-            }
-            else {
+            }else{
                 if (ckbxCategory.Checked) { AddColumn += ", (select VCATEGORY from TBLCATEGORY where P.NCATID = TBLCATEGORY.NCATID) as CATEGORY"; }
                 if (ckbxName.Checked) { AddColumn += ", P.VNAME NAME"; }
                 if (ckbxDesig.Checked) { AddColumn += ", (select VDESIGNATIONNAME from TBLDESIGNATION where TBLDESIGNATION.NDESIGID = P.NDESIGID ) as DESIGNATION"; }
@@ -151,7 +149,7 @@ namespace Panchrukhi
                 try
                 {
                     string TmpStr = "";
-                    foreach (string id in txtMultID.Text.Split(',')) TmpStr += "'" + id.ToString() + "',";// TmpStr += "'" + Convert.ToInt32(id).ToString() + "',";
+                    foreach (string id in txtMultID.Text.Split(',')) TmpStr += "'" + id.ToString() + "',";
                     TmpStr = TmpStr.Remove(TmpStr.LastIndexOf(','), 1);
                     AndConditions += " AND P.PERSONID IN (" + TmpStr + ") ";
                 }
@@ -175,10 +173,10 @@ namespace Panchrukhi
                           " LEFT OUTER JOIN "+
                               " (SELECT VEMPID, VINOUTTIME INTIME, DATTENDATE from TBLATTENDANCE_PROCESS_DATA WHERE NATTENTYPE = 1) IT "+
                               " ON "+
-                              " (IT.VEMPID = P.PERSONID AND IT.DATTENDATE = TA.DATTENDATE)"+
+                              " (IT.VEMPID = P.PERSONID AND IT.DATTENDATE = TA.DATTENDATE) "+
                           " LEFT OUTER JOIN "+
-                              " (SELECT VEMPID, VINOUTTIME OUTTIME, DATTENDATE from TBLATTENDANCE_PROCESS_DATA WHERE NATTENTYPE = 5) OT"+
-                              " ON"+
+                              " (SELECT VEMPID, VINOUTTIME OUTTIME, DATTENDATE from TBLATTENDANCE_PROCESS_DATA WHERE NATTENTYPE = 5) OT "+
+                              " ON "+
                               " (OT.VEMPID = P.PERSONID AND OT.DATTENDATE = TA.DATTENDATE)";
             
             CommandText += " WHERE "+AndConditions+ " AND P.NSTATUS == 1  ORDER BY TA.DATTENDATE;";
@@ -192,17 +190,15 @@ namespace Panchrukhi
             DT = DS.Tables[0];
             if (isDataForPrint) return;
             dataGridView.DataSource = DT;            
-            ConditionalRowBackgroundColor();
+            ConditionalRowBackgroundColor();            
         }
 
-
+        
 
         public void ConditionalRowBackgroundColor()
-        {            
-            //List<string> getIdList = new List<string>();
+        {
             for (int i = 0; i < dataGridView.Rows.Count; i++)
-            {
-                // dataGridView.Rows[i].Cells[5].Value = (i+1);
+            {            
                 bool absentCounted = false;                
                 string getID = dataGridView.Rows[i].Cells[0].Value.ToString();
                 string strIntime   = dataGridView.Rows[i].Cells[2].Value.ToString(); //Intime
@@ -237,16 +233,35 @@ namespace Panchrukhi
                     else if(getLvClSl!="")
                     {
                         dataGridView.Rows[i].Cells[4].Value = getLvClSl;
-                    }                    
+                    }
                     dataGridView.Rows[i].DefaultCellStyle.BackColor = Color.DarkGreen;
                     dataGridView.Rows[i].DefaultCellStyle.ForeColor = Color.WhiteSmoke;
                     if (absentCounted) absents--;
                     holidays++;
                 }
-            }
+            }           
         }
 
 
+
+        private Boolean dropAndCreateAttendView()
+        {
+            if (dataGridView.Rows.Count > 0)
+            {
+                DBConn.ExecutionQuery(" Delete from  ATTEND_SUM_REPORT ");
+                foreach (DataGridViewRow gr in dataGridView.Rows)
+                {
+                    string sql = " INSERT INTO ATTEND_SUM_REPORT VALUES('" + gr.Cells[0].Value + "', '" + gr.Cells[1].Value + "', '" + gr.Cells[2].Value + "', '" + gr.Cells[3].Value + "', '" + gr.Cells[4].Value + "') ";
+                    DBConn.ExecutionQuery(sql);
+                }
+                return true;
+            }
+            else
+            {
+                MessageBox.Show("Please Load Grid ");
+                return false;
+            }
+        }
 
 
 
@@ -568,6 +583,7 @@ namespace Panchrukhi
                 cr.SetParameterValue(2, dr["VCOMPANY_NAME"]);
                 cr.SetParameterValue(3, dr["VCOMPANY_ADDRESS"]);
                 cr.SetParameterValue(5, pat + "\\" + dr["VFILE_NAME"]);
+                frm.crptViewer.ReportSource = null;
                 frm.crptViewer.ReportSource = cr;
                 frm.crptViewer.Refresh();
                 frm.Show();
@@ -580,51 +596,80 @@ namespace Panchrukhi
 
         private void btnAttedSummary_Click(object sender, EventArgs e)
         {
-            string yearMonth = dtpAttendSummary.Value.ToString("MM/yyyy");
-            MessageBox.Show("Message Box: "+yearMonth);
+            if (!dropAndCreateAttendView())
+                    return;
+
+            string txtYear = dtpFstDate.Value.Year.ToString();
+            try
+            {
+                string query = @" select 
+                                     P.PERSONID,
+                                     P.VNAME,
+                                     (select count(T.STATUS) from ATTEND_SUM_REPORT T where T.ID=P.PERSONID AND T.STATUS = 'Present') AS PRESENT,
+                                     (select count(T.STATUS) from ATTEND_SUM_REPORT T where T.ID=P.PERSONID AND T.STATUS = 'Absent') AS ABSENT,
+                                     (select count(T.STATUS) from ATTEND_SUM_REPORT T where T.ID=P.PERSONID AND T.STATUS = 'Weekend') AS WEEKEND,
+                                     (select count(T.STATUS) from ATTEND_SUM_REPORT T where T.ID=P.PERSONID AND T.STATUS = 'Holiday') AS HOLIDAY, 
+                                     (select count(T.STATUS) from ATTEND_SUM_REPORT T where T.ID=P.PERSONID AND T.STATUS = 'CL') AS CL,
+                                     (select count(T.STATUS) from ATTEND_SUM_REPORT T where T.ID=P.PERSONID AND T.STATUS = 'SL') AS SL,
+                                     (select count(T.STATUS) from ATTEND_SUM_REPORT T where T.ID=P.PERSONID AND T.STATUS = 'AL') AS AL
+                                from 
+                                     TBLPERSON P; ";
+                DBConn.ExecutionQuery(query);
+                DS = new DataSet();
+                DT = new DataTable();
+                DA = new SQLiteDataAdapter(query, DBConn.sql_conn);
+                DA.Fill(DS);
+                rptAttendSummary cr = new rptAttendSummary();
+                frmCrystalReportViewer crpt = new frmCrystalReportViewer();
+                crpt.crptViewer.ReportSource = cr;
+                DataRow dr = DBConn.getCompanyNameAndAddress();
+                cr.SetDataSource(DS.Tables[0]);
+                cr.SetParameterValue(0, dr["VCOMPANY_NAME"]);
+                cr.SetParameterValue(1, dr["VCOMPANY_ADDRESS"]);
+                cr.SetParameterValue(2, " From "+dtpFstDate.Value.ToString("dd/MM/yy") + " To " + dtpLstDate.Value.ToString("dd/MM/yy"));
+                cr.SetParameterValue(3, pat + "\\" + dr["VFILE_NAME"]);
+                crpt.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(" Exception " + ex.Message);
+            }
         }
 
+
+
         private void ExtractDataToCSV(DataGridView dgv)
-        {
-            // Don't save if no data is returned
+        {        
             if (dgv.Rows.Count == 0)
             {
                 return;
             }
-            StringBuilder sb = new StringBuilder();
-            // Column headers
+            StringBuilder sb = new StringBuilder();         
             string columnsHeader = "";
             for (int i = 0; i < dgv.Columns.Count; i++)
             {
                 columnsHeader += dgv.Columns[i].HeaderText + ",";
             }
             sb.Append(columnsHeader + Environment.NewLine);
-            // Go through each cell in the datagridview
+
             foreach (DataGridViewRow dgvRow in dgv.Rows)
             {
-                // Make sure it's not an empty row.
                 if (!dgvRow.IsNewRow)
                 {
                     for (int c = 0; c < dgvRow.Cells.Count; c++)
                     {
-                        // Append the cells data followed by a comma to delimit.
                         sb.Append(dgvRow.Cells[c].Value + ",");
                     }
-                    // Add a new line in the text file.
                     sb.Append(Environment.NewLine);
                 }
             }
-            // Load up the save file dialog with the default option as saving as a .csv file.
             SaveFileDialog sfd = new SaveFileDialog();
             sfd.FileName = "SaveAttendanceData";
-            sfd.Filter = "CSV files (*.csv)|*.csv";
-            //sfd.Filter = "PDF files (*.pdf)|*.pdf";
-            if (sfd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            sfd.Filter = "CSV files (*.csv)|*.csv";            
+            if (sfd.ShowDialog() == DialogResult.OK)
             {
-                // If they've selected a save location...
                 using (StreamWriter sw = new StreamWriter(sfd.FileName, false))
                 {
-                    // Write the stringbuilder text to the the file.
                     sw.WriteLine(sb.ToString());
                 }
             }
@@ -634,25 +679,26 @@ namespace Panchrukhi
         private void btnPrint_Click(object sender, EventArgs e)
         {
             /*
-            if (dataGridView.Rows.Count > 0)
-            {
-                DataRow dr = DBConn.getCompanyNameAndAddress();
-                if (dr == null) return;
-                LoadData(true);
-                rptAttendanceData rptObj = new rptAttendanceData();
-                rptObj.SetDataSource(DS.Tables[0]);
-                rptObj.SetParameterValue(0, presents);
-                rptObj.SetParameterValue(1, absents);
-                rptObj.SetParameterValue(4, holidays);
-                rptObj.SetParameterValue(2, dr["VCOMPANY_NAME"]);
-                rptObj.SetParameterValue(3, dr["VCOMPANY_ADDRESS"]);
-                frmCrystalReportViewer crpt = new frmCrystalReportViewer();
-                crpt.crptViewer.ReportSource = rptObj;
-                crpt.Show();
-            }
-            else
-                MessageBox.Show("", "Data Not Found !", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            return; */
+                if (dataGridView.Rows.Count > 0)
+                {
+                    DataRow dr = DBConn.getCompanyNameAndAddress();
+                    if (dr == null) return;
+                    LoadData(true);
+                    rptAttendanceData rptObj = new rptAttendanceData();
+                    rptObj.SetDataSource(DS.Tables[0]);
+                    rptObj.SetParameterValue(0, presents);
+                    rptObj.SetParameterValue(1, absents);
+                    rptObj.SetParameterValue(4, holidays);
+                    rptObj.SetParameterValue(2, dr["VCOMPANY_NAME"]);
+                    rptObj.SetParameterValue(3, dr["VCOMPANY_ADDRESS"]);
+                    frmCrystalReportViewer crpt = new frmCrystalReportViewer();
+                    crpt.crptViewer.ReportSource = rptObj;
+                    crpt.Show();
+                }
+                else
+                    MessageBox.Show("", "Data Not Found !", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            */
         }
     }
 }

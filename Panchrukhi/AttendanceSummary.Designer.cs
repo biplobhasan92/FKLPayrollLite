@@ -20,17 +20,17 @@ namespace Panchrukhi {
     [global::System.ComponentModel.DesignerCategoryAttribute("code")]
     [global::System.ComponentModel.ToolboxItem(true)]
     [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedDataSetSchema")]
-    [global::System.Xml.Serialization.XmlRootAttribute("LeaveReport")]
+    [global::System.Xml.Serialization.XmlRootAttribute("AttendanceSummary")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")]
-    public partial class LeaveReport : global::System.Data.DataSet {
+    public partial class AttendanceSummary : global::System.Data.DataSet {
         
-        private LEAVE_REPORTDataTable tableLEAVE_REPORT;
+        private ATTENDANCE_SUMMARYDataTable tableATTENDANCE_SUMMARY;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public LeaveReport() {
+        public AttendanceSummary() {
             this.BeginInit();
             this.InitClass();
             global::System.ComponentModel.CollectionChangeEventHandler schemaChangedHandler = new global::System.ComponentModel.CollectionChangeEventHandler(this.SchemaChanged);
@@ -41,7 +41,7 @@ namespace Panchrukhi {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        protected LeaveReport(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+        protected AttendanceSummary(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                 base(info, context, false) {
             if ((this.IsBinarySerialized(info, context) == true)) {
                 this.InitVars(false);
@@ -54,8 +54,8 @@ namespace Panchrukhi {
             if ((this.DetermineSchemaSerializationMode(info, context) == global::System.Data.SchemaSerializationMode.IncludeSchema)) {
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXmlSchema(new global::System.Xml.XmlTextReader(new global::System.IO.StringReader(strSchema)));
-                if ((ds.Tables["LEAVE_REPORT"] != null)) {
-                    base.Tables.Add(new LEAVE_REPORTDataTable(ds.Tables["LEAVE_REPORT"]));
+                if ((ds.Tables["ATTENDANCE SUMMARY"] != null)) {
+                    base.Tables.Add(new ATTENDANCE_SUMMARYDataTable(ds.Tables["ATTENDANCE SUMMARY"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -79,9 +79,9 @@ namespace Panchrukhi {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public LEAVE_REPORTDataTable LEAVE_REPORT {
+        public ATTENDANCE_SUMMARYDataTable ATTENDANCE_SUMMARY {
             get {
-                return this.tableLEAVE_REPORT;
+                return this.tableATTENDANCE_SUMMARY;
             }
         }
         
@@ -127,7 +127,7 @@ namespace Panchrukhi {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         public override global::System.Data.DataSet Clone() {
-            LeaveReport cln = ((LeaveReport)(base.Clone()));
+            AttendanceSummary cln = ((AttendanceSummary)(base.Clone()));
             cln.InitVars();
             cln.SchemaSerializationMode = this.SchemaSerializationMode;
             return cln;
@@ -152,8 +152,8 @@ namespace Panchrukhi {
                 this.Reset();
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXml(reader);
-                if ((ds.Tables["LEAVE_REPORT"] != null)) {
-                    base.Tables.Add(new LEAVE_REPORTDataTable(ds.Tables["LEAVE_REPORT"]));
+                if ((ds.Tables["ATTENDANCE SUMMARY"] != null)) {
+                    base.Tables.Add(new ATTENDANCE_SUMMARYDataTable(ds.Tables["ATTENDANCE SUMMARY"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -188,10 +188,10 @@ namespace Panchrukhi {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         internal void InitVars(bool initTable) {
-            this.tableLEAVE_REPORT = ((LEAVE_REPORTDataTable)(base.Tables["LEAVE_REPORT"]));
+            this.tableATTENDANCE_SUMMARY = ((ATTENDANCE_SUMMARYDataTable)(base.Tables["ATTENDANCE SUMMARY"]));
             if ((initTable == true)) {
-                if ((this.tableLEAVE_REPORT != null)) {
-                    this.tableLEAVE_REPORT.InitVars();
+                if ((this.tableATTENDANCE_SUMMARY != null)) {
+                    this.tableATTENDANCE_SUMMARY.InitVars();
                 }
             }
         }
@@ -199,18 +199,18 @@ namespace Panchrukhi {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private void InitClass() {
-            this.DataSetName = "LeaveReport";
+            this.DataSetName = "AttendanceSummary";
             this.Prefix = "";
-            this.Namespace = "http://tempuri.org/LeaveReport.xsd";
+            this.Namespace = "http://tempuri.org/AttendanceSummary.xsd";
             this.EnforceConstraints = true;
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
-            this.tableLEAVE_REPORT = new LEAVE_REPORTDataTable();
-            base.Tables.Add(this.tableLEAVE_REPORT);
+            this.tableATTENDANCE_SUMMARY = new ATTENDANCE_SUMMARYDataTable();
+            base.Tables.Add(this.tableATTENDANCE_SUMMARY);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        private bool ShouldSerializeLEAVE_REPORT() {
+        private bool ShouldSerializeATTENDANCE_SUMMARY() {
             return false;
         }
         
@@ -225,7 +225,7 @@ namespace Panchrukhi {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedDataSetSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-            LeaveReport ds = new LeaveReport();
+            AttendanceSummary ds = new AttendanceSummary();
             global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
             global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
             global::System.Xml.Schema.XmlSchemaAny any = new global::System.Xml.Schema.XmlSchemaAny();
@@ -270,18 +270,26 @@ namespace Panchrukhi {
         }
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public delegate void LEAVE_REPORTRowChangeEventHandler(object sender, LEAVE_REPORTRowChangeEvent e);
+        public delegate void ATTENDANCE_SUMMARYRowChangeEventHandler(object sender, ATTENDANCE_SUMMARYRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class LEAVE_REPORTDataTable : global::System.Data.TypedTableBase<LEAVE_REPORTRow> {
+        public partial class ATTENDANCE_SUMMARYDataTable : global::System.Data.TypedTableBase<ATTENDANCE_SUMMARYRow> {
             
-            private global::System.Data.DataColumn columnID;
+            private global::System.Data.DataColumn columnPERSONID;
             
-            private global::System.Data.DataColumn columnNAME;
+            private global::System.Data.DataColumn columnVNAME;
+            
+            private global::System.Data.DataColumn columnPRESENT;
+            
+            private global::System.Data.DataColumn columnABSENT;
+            
+            private global::System.Data.DataColumn columnWEEKEND;
+            
+            private global::System.Data.DataColumn columnHOLIDAY;
             
             private global::System.Data.DataColumn columnCL;
             
@@ -289,12 +297,10 @@ namespace Panchrukhi {
             
             private global::System.Data.DataColumn columnAL;
             
-            private global::System.Data.DataColumn columnTOTAL;
-            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public LEAVE_REPORTDataTable() {
-                this.TableName = "LEAVE_REPORT";
+            public ATTENDANCE_SUMMARYDataTable() {
+                this.TableName = "ATTENDANCE SUMMARY";
                 this.BeginInit();
                 this.InitClass();
                 this.EndInit();
@@ -302,7 +308,7 @@ namespace Panchrukhi {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            internal LEAVE_REPORTDataTable(global::System.Data.DataTable table) {
+            internal ATTENDANCE_SUMMARYDataTable(global::System.Data.DataTable table) {
                 this.TableName = table.TableName;
                 if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
                     this.CaseSensitive = table.CaseSensitive;
@@ -319,24 +325,56 @@ namespace Panchrukhi {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            protected LEAVE_REPORTDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+            protected ATTENDANCE_SUMMARYDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn IDColumn {
+            public global::System.Data.DataColumn PERSONIDColumn {
                 get {
-                    return this.columnID;
+                    return this.columnPERSONID;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn NAMEColumn {
+            public global::System.Data.DataColumn VNAMEColumn {
                 get {
-                    return this.columnNAME;
+                    return this.columnVNAME;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn PRESENTColumn {
+                get {
+                    return this.columnPRESENT;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn ABSENTColumn {
+                get {
+                    return this.columnABSENT;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn WEEKENDColumn {
+                get {
+                    return this.columnWEEKEND;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn HOLIDAYColumn {
+                get {
+                    return this.columnHOLIDAY;
                 }
             }
             
@@ -366,14 +404,6 @@ namespace Panchrukhi {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn TOTALColumn {
-                get {
-                    return this.columnTOTAL;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -383,50 +413,53 @@ namespace Panchrukhi {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public LEAVE_REPORTRow this[int index] {
+            public ATTENDANCE_SUMMARYRow this[int index] {
                 get {
-                    return ((LEAVE_REPORTRow)(this.Rows[index]));
+                    return ((ATTENDANCE_SUMMARYRow)(this.Rows[index]));
                 }
             }
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event LEAVE_REPORTRowChangeEventHandler LEAVE_REPORTRowChanging;
+            public event ATTENDANCE_SUMMARYRowChangeEventHandler ATTENDANCE_SUMMARYRowChanging;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event LEAVE_REPORTRowChangeEventHandler LEAVE_REPORTRowChanged;
+            public event ATTENDANCE_SUMMARYRowChangeEventHandler ATTENDANCE_SUMMARYRowChanged;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event LEAVE_REPORTRowChangeEventHandler LEAVE_REPORTRowDeleting;
+            public event ATTENDANCE_SUMMARYRowChangeEventHandler ATTENDANCE_SUMMARYRowDeleting;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public event LEAVE_REPORTRowChangeEventHandler LEAVE_REPORTRowDeleted;
+            public event ATTENDANCE_SUMMARYRowChangeEventHandler ATTENDANCE_SUMMARYRowDeleted;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void AddLEAVE_REPORTRow(LEAVE_REPORTRow row) {
+            public void AddATTENDANCE_SUMMARYRow(ATTENDANCE_SUMMARYRow row) {
                 this.Rows.Add(row);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public LEAVE_REPORTRow AddLEAVE_REPORTRow(string ID, string NAME, string CL, string SL, string AL, string TOTAL) {
-                LEAVE_REPORTRow rowLEAVE_REPORTRow = ((LEAVE_REPORTRow)(this.NewRow()));
+            public ATTENDANCE_SUMMARYRow AddATTENDANCE_SUMMARYRow(string PERSONID, string VNAME, string PRESENT, string ABSENT, string WEEKEND, string HOLIDAY, string CL, string SL, string AL) {
+                ATTENDANCE_SUMMARYRow rowATTENDANCE_SUMMARYRow = ((ATTENDANCE_SUMMARYRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        ID,
-                        NAME,
+                        PERSONID,
+                        VNAME,
+                        PRESENT,
+                        ABSENT,
+                        WEEKEND,
+                        HOLIDAY,
                         CL,
                         SL,
-                        AL,
-                        TOTAL};
-                rowLEAVE_REPORTRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowLEAVE_REPORTRow);
-                return rowLEAVE_REPORTRow;
+                        AL};
+                rowATTENDANCE_SUMMARYRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowATTENDANCE_SUMMARYRow);
+                return rowATTENDANCE_SUMMARYRow;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                LEAVE_REPORTDataTable cln = ((LEAVE_REPORTDataTable)(base.Clone()));
+                ATTENDANCE_SUMMARYDataTable cln = ((ATTENDANCE_SUMMARYDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -434,61 +467,70 @@ namespace Panchrukhi {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override global::System.Data.DataTable CreateInstance() {
-                return new LEAVE_REPORTDataTable();
+                return new ATTENDANCE_SUMMARYDataTable();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             internal void InitVars() {
-                this.columnID = base.Columns["ID"];
-                this.columnNAME = base.Columns["NAME"];
+                this.columnPERSONID = base.Columns["PERSONID"];
+                this.columnVNAME = base.Columns["VNAME"];
+                this.columnPRESENT = base.Columns["PRESENT"];
+                this.columnABSENT = base.Columns["ABSENT"];
+                this.columnWEEKEND = base.Columns["WEEKEND"];
+                this.columnHOLIDAY = base.Columns["HOLIDAY"];
                 this.columnCL = base.Columns["CL"];
                 this.columnSL = base.Columns["SL"];
                 this.columnAL = base.Columns["AL"];
-                this.columnTOTAL = base.Columns["TOTAL"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             private void InitClass() {
-                this.columnID = new global::System.Data.DataColumn("ID", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnID);
-                this.columnNAME = new global::System.Data.DataColumn("NAME", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnNAME);
+                this.columnPERSONID = new global::System.Data.DataColumn("PERSONID", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPERSONID);
+                this.columnVNAME = new global::System.Data.DataColumn("VNAME", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnVNAME);
+                this.columnPRESENT = new global::System.Data.DataColumn("PRESENT", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPRESENT);
+                this.columnABSENT = new global::System.Data.DataColumn("ABSENT", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnABSENT);
+                this.columnWEEKEND = new global::System.Data.DataColumn("WEEKEND", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnWEEKEND);
+                this.columnHOLIDAY = new global::System.Data.DataColumn("HOLIDAY", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnHOLIDAY);
                 this.columnCL = new global::System.Data.DataColumn("CL", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCL);
                 this.columnSL = new global::System.Data.DataColumn("SL", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnSL);
                 this.columnAL = new global::System.Data.DataColumn("AL", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnAL);
-                this.columnTOTAL = new global::System.Data.DataColumn("TOTAL", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnTOTAL);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public LEAVE_REPORTRow NewLEAVE_REPORTRow() {
-                return ((LEAVE_REPORTRow)(this.NewRow()));
+            public ATTENDANCE_SUMMARYRow NewATTENDANCE_SUMMARYRow() {
+                return ((ATTENDANCE_SUMMARYRow)(this.NewRow()));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new LEAVE_REPORTRow(builder);
+                return new ATTENDANCE_SUMMARYRow(builder);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override global::System.Type GetRowType() {
-                return typeof(LEAVE_REPORTRow);
+                return typeof(ATTENDANCE_SUMMARYRow);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanged(e);
-                if ((this.LEAVE_REPORTRowChanged != null)) {
-                    this.LEAVE_REPORTRowChanged(this, new LEAVE_REPORTRowChangeEvent(((LEAVE_REPORTRow)(e.Row)), e.Action));
+                if ((this.ATTENDANCE_SUMMARYRowChanged != null)) {
+                    this.ATTENDANCE_SUMMARYRowChanged(this, new ATTENDANCE_SUMMARYRowChangeEvent(((ATTENDANCE_SUMMARYRow)(e.Row)), e.Action));
                 }
             }
             
@@ -496,8 +538,8 @@ namespace Panchrukhi {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanging(e);
-                if ((this.LEAVE_REPORTRowChanging != null)) {
-                    this.LEAVE_REPORTRowChanging(this, new LEAVE_REPORTRowChangeEvent(((LEAVE_REPORTRow)(e.Row)), e.Action));
+                if ((this.ATTENDANCE_SUMMARYRowChanging != null)) {
+                    this.ATTENDANCE_SUMMARYRowChanging(this, new ATTENDANCE_SUMMARYRowChangeEvent(((ATTENDANCE_SUMMARYRow)(e.Row)), e.Action));
                 }
             }
             
@@ -505,8 +547,8 @@ namespace Panchrukhi {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleted(e);
-                if ((this.LEAVE_REPORTRowDeleted != null)) {
-                    this.LEAVE_REPORTRowDeleted(this, new LEAVE_REPORTRowChangeEvent(((LEAVE_REPORTRow)(e.Row)), e.Action));
+                if ((this.ATTENDANCE_SUMMARYRowDeleted != null)) {
+                    this.ATTENDANCE_SUMMARYRowDeleted(this, new ATTENDANCE_SUMMARYRowChangeEvent(((ATTENDANCE_SUMMARYRow)(e.Row)), e.Action));
                 }
             }
             
@@ -514,14 +556,14 @@ namespace Panchrukhi {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleting(e);
-                if ((this.LEAVE_REPORTRowDeleting != null)) {
-                    this.LEAVE_REPORTRowDeleting(this, new LEAVE_REPORTRowChangeEvent(((LEAVE_REPORTRow)(e.Row)), e.Action));
+                if ((this.ATTENDANCE_SUMMARYRowDeleting != null)) {
+                    this.ATTENDANCE_SUMMARYRowDeleting(this, new ATTENDANCE_SUMMARYRowChangeEvent(((ATTENDANCE_SUMMARYRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void RemoveLEAVE_REPORTRow(LEAVE_REPORTRow row) {
+            public void RemoveATTENDANCE_SUMMARYRow(ATTENDANCE_SUMMARYRow row) {
                 this.Rows.Remove(row);
             }
             
@@ -530,7 +572,7 @@ namespace Panchrukhi {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                LeaveReport ds = new LeaveReport();
+                AttendanceSummary ds = new AttendanceSummary();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -548,7 +590,7 @@ namespace Panchrukhi {
                 type.Attributes.Add(attribute1);
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "LEAVE_REPORTDataTable";
+                attribute2.FixedValue = "ATTENDANCE_SUMMARYDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -592,46 +634,110 @@ namespace Panchrukhi {
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class LEAVE_REPORTRow : global::System.Data.DataRow {
+        public partial class ATTENDANCE_SUMMARYRow : global::System.Data.DataRow {
             
-            private LEAVE_REPORTDataTable tableLEAVE_REPORT;
+            private ATTENDANCE_SUMMARYDataTable tableATTENDANCE_SUMMARY;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            internal LEAVE_REPORTRow(global::System.Data.DataRowBuilder rb) : 
+            internal ATTENDANCE_SUMMARYRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
-                this.tableLEAVE_REPORT = ((LEAVE_REPORTDataTable)(this.Table));
+                this.tableATTENDANCE_SUMMARY = ((ATTENDANCE_SUMMARYDataTable)(this.Table));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string ID {
+            public string PERSONID {
                 get {
                     try {
-                        return ((string)(this[this.tableLEAVE_REPORT.IDColumn]));
+                        return ((string)(this[this.tableATTENDANCE_SUMMARY.PERSONIDColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'ID\' in table \'LEAVE_REPORT\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'PERSONID\' in table \'ATTENDANCE SUMMARY\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableLEAVE_REPORT.IDColumn] = value;
+                    this[this.tableATTENDANCE_SUMMARY.PERSONIDColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string NAME {
+            public string VNAME {
                 get {
                     try {
-                        return ((string)(this[this.tableLEAVE_REPORT.NAMEColumn]));
+                        return ((string)(this[this.tableATTENDANCE_SUMMARY.VNAMEColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'NAME\' in table \'LEAVE_REPORT\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'VNAME\' in table \'ATTENDANCE SUMMARY\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableLEAVE_REPORT.NAMEColumn] = value;
+                    this[this.tableATTENDANCE_SUMMARY.VNAMEColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string PRESENT {
+                get {
+                    try {
+                        return ((string)(this[this.tableATTENDANCE_SUMMARY.PRESENTColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'PRESENT\' in table \'ATTENDANCE SUMMARY\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableATTENDANCE_SUMMARY.PRESENTColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string ABSENT {
+                get {
+                    try {
+                        return ((string)(this[this.tableATTENDANCE_SUMMARY.ABSENTColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'ABSENT\' in table \'ATTENDANCE SUMMARY\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableATTENDANCE_SUMMARY.ABSENTColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string WEEKEND {
+                get {
+                    try {
+                        return ((string)(this[this.tableATTENDANCE_SUMMARY.WEEKENDColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'WEEKEND\' in table \'ATTENDANCE SUMMARY\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableATTENDANCE_SUMMARY.WEEKENDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string HOLIDAY {
+                get {
+                    try {
+                        return ((string)(this[this.tableATTENDANCE_SUMMARY.HOLIDAYColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'HOLIDAY\' in table \'ATTENDANCE SUMMARY\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableATTENDANCE_SUMMARY.HOLIDAYColumn] = value;
                 }
             }
             
@@ -640,14 +746,14 @@ namespace Panchrukhi {
             public string CL {
                 get {
                     try {
-                        return ((string)(this[this.tableLEAVE_REPORT.CLColumn]));
+                        return ((string)(this[this.tableATTENDANCE_SUMMARY.CLColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'CL\' in table \'LEAVE_REPORT\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'CL\' in table \'ATTENDANCE SUMMARY\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableLEAVE_REPORT.CLColumn] = value;
+                    this[this.tableATTENDANCE_SUMMARY.CLColumn] = value;
                 }
             }
             
@@ -656,14 +762,14 @@ namespace Panchrukhi {
             public string SL {
                 get {
                     try {
-                        return ((string)(this[this.tableLEAVE_REPORT.SLColumn]));
+                        return ((string)(this[this.tableATTENDANCE_SUMMARY.SLColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'SL\' in table \'LEAVE_REPORT\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'SL\' in table \'ATTENDANCE SUMMARY\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableLEAVE_REPORT.SLColumn] = value;
+                    this[this.tableATTENDANCE_SUMMARY.SLColumn] = value;
                 }
             }
             
@@ -672,103 +778,123 @@ namespace Panchrukhi {
             public string AL {
                 get {
                     try {
-                        return ((string)(this[this.tableLEAVE_REPORT.ALColumn]));
+                        return ((string)(this[this.tableATTENDANCE_SUMMARY.ALColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'AL\' in table \'LEAVE_REPORT\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'AL\' in table \'ATTENDANCE SUMMARY\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableLEAVE_REPORT.ALColumn] = value;
+                    this[this.tableATTENDANCE_SUMMARY.ALColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string TOTAL {
-                get {
-                    try {
-                        return ((string)(this[this.tableLEAVE_REPORT.TOTALColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'TOTAL\' in table \'LEAVE_REPORT\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableLEAVE_REPORT.TOTALColumn] = value;
-                }
+            public bool IsPERSONIDNull() {
+                return this.IsNull(this.tableATTENDANCE_SUMMARY.PERSONIDColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsIDNull() {
-                return this.IsNull(this.tableLEAVE_REPORT.IDColumn);
+            public void SetPERSONIDNull() {
+                this[this.tableATTENDANCE_SUMMARY.PERSONIDColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetIDNull() {
-                this[this.tableLEAVE_REPORT.IDColumn] = global::System.Convert.DBNull;
+            public bool IsVNAMENull() {
+                return this.IsNull(this.tableATTENDANCE_SUMMARY.VNAMEColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsNAMENull() {
-                return this.IsNull(this.tableLEAVE_REPORT.NAMEColumn);
+            public void SetVNAMENull() {
+                this[this.tableATTENDANCE_SUMMARY.VNAMEColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetNAMENull() {
-                this[this.tableLEAVE_REPORT.NAMEColumn] = global::System.Convert.DBNull;
+            public bool IsPRESENTNull() {
+                return this.IsNull(this.tableATTENDANCE_SUMMARY.PRESENTColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetPRESENTNull() {
+                this[this.tableATTENDANCE_SUMMARY.PRESENTColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsABSENTNull() {
+                return this.IsNull(this.tableATTENDANCE_SUMMARY.ABSENTColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetABSENTNull() {
+                this[this.tableATTENDANCE_SUMMARY.ABSENTColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsWEEKENDNull() {
+                return this.IsNull(this.tableATTENDANCE_SUMMARY.WEEKENDColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetWEEKENDNull() {
+                this[this.tableATTENDANCE_SUMMARY.WEEKENDColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsHOLIDAYNull() {
+                return this.IsNull(this.tableATTENDANCE_SUMMARY.HOLIDAYColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetHOLIDAYNull() {
+                this[this.tableATTENDANCE_SUMMARY.HOLIDAYColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsCLNull() {
-                return this.IsNull(this.tableLEAVE_REPORT.CLColumn);
+                return this.IsNull(this.tableATTENDANCE_SUMMARY.CLColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetCLNull() {
-                this[this.tableLEAVE_REPORT.CLColumn] = global::System.Convert.DBNull;
+                this[this.tableATTENDANCE_SUMMARY.CLColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsSLNull() {
-                return this.IsNull(this.tableLEAVE_REPORT.SLColumn);
+                return this.IsNull(this.tableATTENDANCE_SUMMARY.SLColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetSLNull() {
-                this[this.tableLEAVE_REPORT.SLColumn] = global::System.Convert.DBNull;
+                this[this.tableATTENDANCE_SUMMARY.SLColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsALNull() {
-                return this.IsNull(this.tableLEAVE_REPORT.ALColumn);
+                return this.IsNull(this.tableATTENDANCE_SUMMARY.ALColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetALNull() {
-                this[this.tableLEAVE_REPORT.ALColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsTOTALNull() {
-                return this.IsNull(this.tableLEAVE_REPORT.TOTALColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetTOTALNull() {
-                this[this.tableLEAVE_REPORT.TOTALColumn] = global::System.Convert.DBNull;
+                this[this.tableATTENDANCE_SUMMARY.ALColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -776,22 +902,22 @@ namespace Panchrukhi {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        public class LEAVE_REPORTRowChangeEvent : global::System.EventArgs {
+        public class ATTENDANCE_SUMMARYRowChangeEvent : global::System.EventArgs {
             
-            private LEAVE_REPORTRow eventRow;
+            private ATTENDANCE_SUMMARYRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public LEAVE_REPORTRowChangeEvent(LEAVE_REPORTRow row, global::System.Data.DataRowAction action) {
+            public ATTENDANCE_SUMMARYRowChangeEvent(ATTENDANCE_SUMMARYRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public LEAVE_REPORTRow Row {
+            public ATTENDANCE_SUMMARYRow Row {
                 get {
                     return this.eventRow;
                 }

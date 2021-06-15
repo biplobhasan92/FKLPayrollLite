@@ -108,6 +108,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AttendanceSummary.cs">
+      <DependentUpon>AttendanceSummary.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="AttendanceSummary.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AttendanceSummary.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Basic Settings\ApplicationInfo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -140,11 +148,6 @@
     </Compile>
     <Compile Include="Holidays\frmLeaveEntry2nd.designer.cs">
       <DependentUpon>frmLeaveEntry2nd.cs</DependentUpon>
-    </Compile>
-    <Compile Include="LeaveReport.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>LeaveReport.xsd</DependentUpon>
     </Compile>
     <Compile Include="Machine Info\frmAddNewMachine.cs">
       <SubType>Form</SubType>
@@ -339,10 +342,10 @@
       <DependentUpon>Rpt_salary_sheet_fkl_spinning.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Report\TestReport.cs">
+    <Compile Include="Report\rptAttendSummary.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>TestReport.rpt</DependentUpon>
+      <DependentUpon>rptAttendSummary.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="SalarySheet.cs">
@@ -473,10 +476,21 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>Rpt_salary_sheet_fkl_spinning.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Report\TestReport.rpt">
+    <EmbeddedResource Include="Report\rptAttendSummary.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>TestReport.cs</LastGenOutput>
+      <LastGenOutput>rptAttendSummary.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="AttendanceSummary.xsc">
+      <DependentUpon>AttendanceSummary.xsd</DependentUpon>
+    </None>
+    <None Include="AttendanceSummary.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>AttendanceSummary.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="AttendanceSummary.xss">
+      <DependentUpon>AttendanceSummary.xsd</DependentUpon>
+    </None>
     <None Include="dsTemp.xsc">
       <DependentUpon>dsTemp.xsd</DependentUpon>
     </None>
@@ -494,7 +508,6 @@
     <None Include="LeaveReport.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>LeaveReport.Designer.cs</LastGenOutput>
     </None>
     <None Include="LeaveReport.xss">
       <DependentUpon>LeaveReport.xsd</DependentUpon>

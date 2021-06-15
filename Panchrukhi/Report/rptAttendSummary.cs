@@ -16,14 +16,14 @@ namespace Panchrukhi.Report {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class TestReport : ReportClass {
+    public class rptAttendSummary : ReportClass {
         
-        public TestReport() {
+        public rptAttendSummary() {
         }
         
         public override string ResourceName {
             get {
-                return "TestReport.rpt";
+                return "rptAttendSummary.rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,7 @@ namespace Panchrukhi.Report {
         
         public override string FullResourceName {
             get {
-                return "Panchrukhi.Report.TestReport.rpt";
+                return "Panchrukhi.Report.rptAttendSummary.rpt";
             }
             set {
                 // Do nothing
@@ -90,17 +90,41 @@ namespace Panchrukhi.Report {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_basePath {
+        public CrystalDecisions.Shared.IParameterField Parameter_companyName {
             get {
                 return this.DataDefinition.ParameterFields[0];
+            }
+        }
+        
+        [Browsable(false)]
+        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public CrystalDecisions.Shared.IParameterField Parameter_companyAddress {
+            get {
+                return this.DataDefinition.ParameterFields[1];
+            }
+        }
+        
+        [Browsable(false)]
+        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public CrystalDecisions.Shared.IParameterField Parameter_monthYear {
+            get {
+                return this.DataDefinition.ParameterFields[2];
+            }
+        }
+        
+        [Browsable(false)]
+        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public CrystalDecisions.Shared.IParameterField Parameter_basePath {
+            get {
+                return this.DataDefinition.ParameterFields[3];
             }
         }
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class CachedTestReport : Component, ICachedReport {
+    public class CachedrptAttendSummary : Component, ICachedReport {
         
-        public CachedTestReport() {
+        public CachedrptAttendSummary() {
         }
         
         [Browsable(false)]
@@ -137,7 +161,7 @@ namespace Panchrukhi.Report {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            TestReport rpt = new TestReport();
+            rptAttendSummary rpt = new rptAttendSummary();
             rpt.Site = this.Site;
             return rpt;
         }

@@ -212,8 +212,8 @@ namespace Panchrukhi
             if (dataGridView.SelectedRows.Count == 0 || dataGridView.SelectedRows[0].Index == dataGridView.Rows.Count) return;
             getHID            = Convert.ToInt32(dataGridView[5, dataGridView.SelectedRows[0].Index].Value.ToString());
             txtEmpID.Text     = dataGridView[1, dataGridView.SelectedRows[0].Index].Value.ToString();
-            dtPkrFormDate.Text= dataGridView[2, dataGridView.SelectedRows[0].Index].Value.ToString();
-            cbxLeaveCat.Text  = dataGridView[3, dataGridView.SelectedRows[0].Index].Value.ToString();            
+            dtPkrFormDate.Text= dataGridView[3, dataGridView.SelectedRows[0].Index].Value.ToString();
+            cbxLeaveCat.Text  = dataGridView[2, dataGridView.SelectedRows[0].Index].Value.ToString();            
         }
 
 
@@ -387,6 +387,7 @@ namespace Panchrukhi
 
         private void btnLeaveReport_Click(object sender, EventArgs e)
         {
+
             string txtYear = dtpFstDate.Value.Year.ToString();
             try
             {

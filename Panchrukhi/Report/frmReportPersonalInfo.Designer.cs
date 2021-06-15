@@ -42,6 +42,8 @@
             this.ckbxCategory = new System.Windows.Forms.CheckBox();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.splitParent = new System.Windows.Forms.SplitContainer();
+            this.gbxAttendSummary = new System.Windows.Forms.GroupBox();
+            this.btnAttedSummary = new System.Windows.Forms.Button();
             this.btn_pdf_export = new System.Windows.Forms.Button();
             this.gbxSearchByID = new System.Windows.Forms.GroupBox();
             this.lblExam = new System.Windows.Forms.Label();
@@ -67,14 +69,12 @@
             this.lbl_emp_name = new System.Windows.Forms.Label();
             this.splitRight = new System.Windows.Forms.SplitContainer();
             this.dataGridView = new System.Windows.Forms.DataGridView();
-            this.gbxAttendSummary = new System.Windows.Forms.GroupBox();
-            this.dtpAttendSummary = new System.Windows.Forms.DateTimePicker();
-            this.btnAttedSummary = new System.Windows.Forms.Button();
             this.gbxAddColumn.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitParent)).BeginInit();
             this.splitParent.Panel1.SuspendLayout();
             this.splitParent.Panel2.SuspendLayout();
             this.splitParent.SuspendLayout();
+            this.gbxAttendSummary.SuspendLayout();
             this.gbxSearchByID.SuspendLayout();
             this.gbxSearchByDetails.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitRight)).BeginInit();
@@ -82,7 +82,6 @@
             this.splitRight.Panel2.SuspendLayout();
             this.splitRight.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
-            this.gbxAttendSummary.SuspendLayout();
             this.SuspendLayout();
             // 
             // gbxAddColumn
@@ -239,6 +238,26 @@
             this.splitParent.Size = new System.Drawing.Size(1008, 729);
             this.splitParent.SplitterDistance = 276;
             this.splitParent.TabIndex = 147;
+            // 
+            // gbxAttendSummary
+            // 
+            this.gbxAttendSummary.Controls.Add(this.btnAttedSummary);
+            this.gbxAttendSummary.Location = new System.Drawing.Point(15, 561);
+            this.gbxAttendSummary.Name = "gbxAttendSummary";
+            this.gbxAttendSummary.Size = new System.Drawing.Size(247, 156);
+            this.gbxAttendSummary.TabIndex = 157;
+            this.gbxAttendSummary.TabStop = false;
+            this.gbxAttendSummary.Text = "Summary";
+            // 
+            // btnAttedSummary
+            // 
+            this.btnAttedSummary.Location = new System.Drawing.Point(26, 49);
+            this.btnAttedSummary.Name = "btnAttedSummary";
+            this.btnAttedSummary.Size = new System.Drawing.Size(200, 74);
+            this.btnAttedSummary.TabIndex = 1;
+            this.btnAttedSummary.Text = "Attendance Summary";
+            this.btnAttedSummary.UseVisualStyleBackColor = true;
+            this.btnAttedSummary.Click += new System.EventHandler(this.btnAttedSummary_Click);
             // 
             // btn_pdf_export
             // 
@@ -497,34 +516,6 @@
             this.dataGridView.Size = new System.Drawing.Size(728, 632);
             this.dataGridView.TabIndex = 95;
             // 
-            // gbxAttendSummary
-            // 
-            this.gbxAttendSummary.Controls.Add(this.btnAttedSummary);
-            this.gbxAttendSummary.Controls.Add(this.dtpAttendSummary);
-            this.gbxAttendSummary.Location = new System.Drawing.Point(15, 561);
-            this.gbxAttendSummary.Name = "gbxAttendSummary";
-            this.gbxAttendSummary.Size = new System.Drawing.Size(247, 156);
-            this.gbxAttendSummary.TabIndex = 157;
-            this.gbxAttendSummary.TabStop = false;
-            this.gbxAttendSummary.Text = "Summary";
-            // 
-            // dtpAttendSummary
-            // 
-            this.dtpAttendSummary.Location = new System.Drawing.Point(26, 38);
-            this.dtpAttendSummary.Name = "dtpAttendSummary";
-            this.dtpAttendSummary.Size = new System.Drawing.Size(200, 20);
-            this.dtpAttendSummary.TabIndex = 0;
-            // 
-            // btnAttedSummary
-            // 
-            this.btnAttedSummary.Location = new System.Drawing.Point(26, 87);
-            this.btnAttedSummary.Name = "btnAttedSummary";
-            this.btnAttedSummary.Size = new System.Drawing.Size(200, 36);
-            this.btnAttedSummary.TabIndex = 1;
-            this.btnAttedSummary.Text = "Attendance Summary";
-            this.btnAttedSummary.UseVisualStyleBackColor = true;
-            this.btnAttedSummary.Click += new System.EventHandler(this.btnAttedSummary_Click);
-            // 
             // frmReportPersonalInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -544,6 +535,7 @@
             this.splitParent.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitParent)).EndInit();
             this.splitParent.ResumeLayout(false);
+            this.gbxAttendSummary.ResumeLayout(false);
             this.gbxSearchByID.ResumeLayout(false);
             this.gbxSearchByID.PerformLayout();
             this.gbxSearchByDetails.ResumeLayout(false);
@@ -553,7 +545,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitRight)).EndInit();
             this.splitRight.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
-            this.gbxAttendSummary.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -598,7 +589,6 @@
         private System.Windows.Forms.Button btn_pdf_export;
         private System.Windows.Forms.Button btn_datagrid;
         private System.Windows.Forms.GroupBox gbxAttendSummary;
-        private System.Windows.Forms.DateTimePicker dtpAttendSummary;
         private System.Windows.Forms.Button btnAttedSummary;
     }
 }

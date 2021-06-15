@@ -831,23 +831,7 @@ namespace Panchrukhi.Report
 
 
         string pat = Application.StartupPath;
-        private void btnPrintLogo_Click(object sender, EventArgs e)
-        {
-            var uAppDataPath = Application.UserAppDataPath;
-            var basDir = AppDomain.CurrentDomain.BaseDirectory;
-            string path = new DirectoryInfo(Environment.CurrentDirectory).Parent.Parent.FullName;
-            frmCrystalReportViewer frm = new frmCrystalReportViewer(); 
-            TestReport cr = new TestReport();
-            DS = new DataSet();
-            DT = new DataTable();
-            DS = DBConn.getCompanyNameWithLogo();
-            DT = DS.Tables[0];
-            cr.SetDataSource(DT);
-            cr.SetParameterValue(0, pat);
-            frm.crptViewer.ReportSource = cr;
-            frm.crptViewer.Refresh();
-            frm.Show();
-        }
+
 
 
 
@@ -866,6 +850,7 @@ namespace Panchrukhi.Report
                 = true;
             }
         }
+
 
         private void btnDown_Click(object sender, EventArgs e)
         {

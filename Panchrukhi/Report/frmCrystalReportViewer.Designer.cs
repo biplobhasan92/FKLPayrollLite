@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.crptViewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
-            this.TestReport1 = new Panchrukhi.Report.TestReport();
+            this.rptAttendSummary = new Panchrukhi.Report.rptAttendSummary();
             this.SuspendLayout();
             // 
             // crptViewer
@@ -40,7 +40,7 @@
             this.crptViewer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.crptViewer.Location = new System.Drawing.Point(0, 0);
             this.crptViewer.Name = "crptViewer";
-            this.crptViewer.ReportSource = this.TestReport1;
+            this.crptViewer.ReportSource = this.rptAttendSummary;
             this.crptViewer.ShowLogo = false;
             this.crptViewer.Size = new System.Drawing.Size(1065, 570);
             this.crptViewer.TabIndex = 0;
@@ -61,6 +61,6 @@
         #endregion
 
         public CrystalDecisions.Windows.Forms.CrystalReportViewer crptViewer;
-        private Report.TestReport TestReport1;
+        private Report.rptAttendSummary rptAttendSummary;
     }
 }
