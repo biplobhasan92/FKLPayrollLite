@@ -605,8 +605,8 @@ namespace Panchrukhi
                 string query = @" select 
                                      P.PERSONID,
                                      P.VNAME,
-                                     (select count(T.STATUS) from ATTEND_SUM_REPORT T where T.ID=P.PERSONID AND T.STATUS = 'Present') AS PRESENT,
                                      (select count(T.STATUS) from ATTEND_SUM_REPORT T where T.ID=P.PERSONID AND T.STATUS = 'Absent') AS ABSENT,
+                                     (select count(T.STATUS) from ATTEND_SUM_REPORT T where T.ID=P.PERSONID AND T.STATUS = 'Present') AS PRESENT,                                     
                                      (select count(T.STATUS) from ATTEND_SUM_REPORT T where T.ID=P.PERSONID AND T.STATUS = 'Weekend') AS WEEKEND,
                                      (select count(T.STATUS) from ATTEND_SUM_REPORT T where T.ID=P.PERSONID AND T.STATUS = 'Holiday') AS HOLIDAY, 
                                      (select count(T.STATUS) from ATTEND_SUM_REPORT T where T.ID=P.PERSONID AND T.STATUS = 'CL') AS CL,

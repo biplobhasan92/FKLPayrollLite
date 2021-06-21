@@ -500,40 +500,40 @@ namespace Panchrukhi.Report
                 { 
                     foreach (DataGridViewRow dgv in dataGridView.Rows)
                     {
-                            // DataRow drr = DBConn.getEmpInfo(dgv.Cells[0].Value.ToString());
-                            DT.Rows.Add(
-                                dgv.Cells[0].Value,
-                                dgv.Cells[1].Value,
-                                dgv.Cells[2].Value,
-                                dgv.Cells[3].Value,
-                                dgv.Cells[4].Value,
-                                dgv.Cells[5].Value,
-                                dgv.Cells[6].Value,
-                                dgv.Cells[7].Value,
-                                dgv.Cells[8].Value,
-                                dgv.Cells[9].Value,
-                                dgv.Cells[10].Value,
-                                dgv.Cells[11].Value,
-                                dgv.Cells[12].Value,
-                                dgv.Cells[13].Value,
-                                dgv.Cells[14].Value,
-                                dgv.Cells[15].Value,
-                                dgv.Cells[16].Value,
-                                dgv.Cells[17].Value,
-                                dgv.Cells[18].Value,
-                                dgv.Cells[19].Value,
-                                dgv.Cells[20].Value,
-                                dgv.Cells[21].Value,
-                                dgv.Cells[22].Value,
-                                dgv.Cells[23].Value,
-                                dgv.Cells[24].Value,
-                                dgv.Cells[25].Value,
-                                dgv.Cells[26].Value,
-                                dgv.Cells[27].Value
-                            );
-                         }
+                        // DataRow drr = DBConn.getEmpInfo(dgv.Cells[0].Value.ToString());
+                        DT.Rows.Add(
+                            dgv.Cells[0].Value,
+                            dgv.Cells[1].Value,
+                            dgv.Cells[2].Value,
+                            dgv.Cells[3].Value,
+                            dgv.Cells[4].Value,
+                            dgv.Cells[5].Value,
+                            dgv.Cells[6].Value,
+                            dgv.Cells[7].Value,
+                            dgv.Cells[8].Value,
+                            dgv.Cells[9].Value,
+                            dgv.Cells[10].Value,
+                            dgv.Cells[11].Value,
+                            dgv.Cells[12].Value,
+                            dgv.Cells[13].Value,
+                            dgv.Cells[14].Value,
+                            dgv.Cells[15].Value,
+                            dgv.Cells[16].Value,
+                            dgv.Cells[17].Value,
+                            dgv.Cells[18].Value,
+                            dgv.Cells[19].Value,
+                            dgv.Cells[20].Value,
+                            dgv.Cells[21].Value,
+                            dgv.Cells[22].Value,
+                            dgv.Cells[23].Value,
+                            dgv.Cells[24].Value,
+                            dgv.Cells[25].Value,
+                            dgv.Cells[26].Value,
+                            dgv.Cells[27].Value
+                        );
+                    }
                     DS.Tables.Add(DT);
-                    DS.WriteXmlSchema("MonthlySummaryReport.xml");                
+                    DS.WriteXmlSchema("MonthlySummaryReport.xml");
                 frmCrystalReportViewer frm = new frmCrystalReportViewer();
                 Rpt_SalarySheet_FKLSpinning_Bangla cr = new Rpt_SalarySheet_FKLSpinning_Bangla();
                 DataRow dr = DBConn.getCompanyNameAndAddress();
@@ -617,7 +617,7 @@ namespace Panchrukhi.Report
                         dgv.Cells[23].Value,
                         dgv.Cells[24].Value,
                         dgv.Cells[25].Value,
-                        dgv.Cells[26].Value
+                        dgv.Cells[26].Value 
                     );
                 }
                 DS.Tables.Add(DT);
@@ -651,8 +651,20 @@ namespace Panchrukhi.Report
 
 
         private void btnSave_Click(object sender, EventArgs e)
-        {
+        {            
             if (string.IsNullOrEmpty(txtEmpID.Text)) { MessageBox.Show("Please select records"); return; }
+            if (string.IsNullOrEmpty(txtWorkingDay.Text.Trim())) {errorProFrmSalary.SetError(txtWorkingDay, errorProFrmSalary.Icon.ToString()); return; } else {errorProFrmSalary.Clear();}
+            if (string.IsNullOrEmpty(txtHolidays.Text.Trim())) {errorProFrmSalary.SetError(txtHolidays, errorProFrmSalary.Icon.ToString()); return; } else {errorProFrmSalary.Clear();}
+            if (string.IsNullOrEmpty(txtHolidayWork.Text.Trim())) {errorProFrmSalary.SetError(txtHolidayWork, errorProFrmSalary.Icon.ToString()); return; } else {errorProFrmSalary.Clear();}
+            if (string.IsNullOrEmpty(txtPresent.Text.Trim())) {errorProFrmSalary.SetError(txtPresent, errorProFrmSalary.Icon.ToString()); return; } else {errorProFrmSalary.Clear();}
+            if (string.IsNullOrEmpty(txtAbsent.Text.Trim())) {errorProFrmSalary.SetError(txtAbsent, errorProFrmSalary.Icon.ToString()); return; } else {errorProFrmSalary.Clear();}
+            if (string.IsNullOrEmpty(txtAvdSalCut.Text.Trim())) {errorProFrmSalary.SetError(txtAvdSalCut, errorProFrmSalary.Icon.ToString()); return; } else { errorProFrmSalary.Clear();}
+            if (string.IsNullOrEmpty(txtMobileBill.Text.Trim())) { errorProFrmSalary.SetError(txtMobileBill, errorProFrmSalary.Icon.ToString()); return; } else { errorProFrmSalary.Clear();}
+            if (string.IsNullOrEmpty(txtOthersSalCut.Text.Trim())) { errorProFrmSalary.SetError(txtOthersSalCut, errorProFrmSalary.Icon.ToString()); return; } else { errorProFrmSalary.Clear();}
+            if (string.IsNullOrEmpty(txtTax.Text.Trim())) { errorProFrmSalary.SetError(txtTax, errorProFrmSalary.Icon.ToString()); return; } else { errorProFrmSalary.Clear();}
+            if (string.IsNullOrEmpty(txtRevTicket.Text.Trim())) { errorProFrmSalary.SetError(txtRevTicket, errorProFrmSalary.Icon.ToString()); return; } else { errorProFrmSalary.Clear();}
+            if (string.IsNullOrEmpty(txtOthersAlnc.Text.Trim())) { errorProFrmSalary.SetError(txtOthersAlnc, errorProFrmSalary.Icon.ToString()); return; } else { errorProFrmSalary.Clear();}
+
             bool isExecute= false;
             int absentCut = (Convert.ToInt32(txtBasickSal.Text.Trim()) / 30) * Convert.ToInt32(txtAbsent.Text.Trim());
             int totalCut  =  (absentCut + Convert.ToInt32(txtAvdSalCut.Text.Trim())+ Convert.ToInt32(txtMobileBill.Text.Trim()) + Convert.ToInt32(txtOthersSalCut.Text.Trim()) + Convert.ToInt32(txtTax.Text.Trim()) + Convert.ToInt32(txtRevTicket.Text.Trim()));
@@ -746,7 +758,7 @@ namespace Panchrukhi.Report
             if (isExecute)
             {
                 LoadGridData();
-                ClearData();                
+                ClearData();
             }
         }
 
@@ -894,6 +906,11 @@ namespace Panchrukhi.Report
                 dgv.Rows[rowIndex - 1].Selected = true;                
             }
             catch { }
+        }
+
+        private void txtAvdSalCut_TextChanged(object sender, EventArgs e)
+        {
+
         }
 
         private void ClearData()

@@ -34,7 +34,6 @@ namespace Panchrukhi.Basic_Settings
         private void ApplicationInfo_Load(object sender, EventArgs e)
         {
            LoadData();
-           // LoadGrid();
         }
 
         void LoadGrid()
@@ -98,6 +97,7 @@ namespace Panchrukhi.Basic_Settings
                 MessageBox.Show("Exception: "+ex.Message.ToString());
             }
         }
+
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
@@ -182,6 +182,7 @@ namespace Panchrukhi.Basic_Settings
             pbxLogo.ImageLocation = "";
         }
 
+
         private void btnResetDatabse_Click(object sender, EventArgs e)
         {
             try
@@ -210,21 +211,20 @@ namespace Panchrukhi.Basic_Settings
                     MessageBox.Show("Database is empty !");
                 }
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
                 MessageBox.Show(" Exception "+ex.Message.ToString());
             }
         }
 
 
+
         private void btnUpload_Click(object sender, EventArgs e)
-        {
-            
+        {            
             try
             {
                 OpenFileDialog dialog = new OpenFileDialog();
-                dialog.Filter = "Image Files(*.jpg; *.jpeg; *.gif; *.bmp)|*.jpg; *.jpeg; *.gif; *.bmp";
-
+                dialog.Filter = " Image Files(*.jpg; *.jpeg; *.gif; *.bmp)|*.jpg; *.jpeg; *.gif; *.bmp ";
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
                     imageLocation = dialog.FileName;
@@ -237,15 +237,6 @@ namespace Panchrukhi.Basic_Settings
             }
         }
 
-        private void dataGridView1_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
-        {
-            selectID = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[0].Value);
-            txtCompanyName.Text = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
-            txtAddress.Text = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
-            txtContact.Text = dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString();
-            byte[] byteBLOBData = (byte[])dataGridView1.Rows[e.RowIndex].Cells[4].Value;
-            MemoryStream stmBLOBData = new MemoryStream(byteBLOBData);
-            pbxLogo.Image = Image.FromStream(stmBLOBData);
-        }
+
     }
 }

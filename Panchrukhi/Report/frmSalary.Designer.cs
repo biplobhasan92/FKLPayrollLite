@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.btnSalProcess = new System.Windows.Forms.Button();
@@ -117,7 +118,9 @@
             this.cbxManual = new System.Windows.Forms.CheckBox();
             this.btnUp = new System.Windows.Forms.Button();
             this.btnDown = new System.Windows.Forms.Button();
+            this.errorProFrmSalary = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProFrmSalary)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -709,6 +712,7 @@
             this.txtAvdSalCut.Name = "txtAvdSalCut";
             this.txtAvdSalCut.Size = new System.Drawing.Size(116, 20);
             this.txtAvdSalCut.TabIndex = 16;
+            this.txtAvdSalCut.TextChanged += new System.EventHandler(this.txtAvdSalCut_TextChanged);
             // 
             // txtMobileBill
             // 
@@ -873,6 +877,10 @@
             this.btnDown.UseVisualStyleBackColor = true;
             this.btnDown.Click += new System.EventHandler(this.btnDown_Click);
             // 
+            // errorProFrmSalary
+            // 
+            this.errorProFrmSalary.ContainerControl = this;
+            // 
             // frmSalary
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -944,6 +952,7 @@
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmSalary_FormClosed);
             this.Load += new System.EventHandler(this.frmSalary_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProFrmSalary)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1040,5 +1049,6 @@
         private System.Windows.Forms.CheckBox cbxManual;
         private System.Windows.Forms.Button btnUp;
         private System.Windows.Forms.Button btnDown;
+        private System.Windows.Forms.ErrorProvider errorProFrmSalary;
     }
 }
