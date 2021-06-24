@@ -561,29 +561,29 @@ namespace Panchrukhi.Report
             DT.Columns.Add("Emp Name", typeof(string));
             DT.Columns.Add("Category", typeof(string));
             DT.Columns.Add("Designation", typeof(string));
-            DT.Columns.Add("Working Day", typeof(string));
-            DT.Columns.Add("Holidays", typeof(string));
+            DT.Columns.Add("Working Day", typeof(int));
+            DT.Columns.Add("Holidays", typeof(int));
             DT.Columns.Add("Holiday work", typeof(string));
-            DT.Columns.Add("Present", typeof(string));
-            DT.Columns.Add("CL", typeof(string));
-            DT.Columns.Add("SL", typeof(string));
-            DT.Columns.Add("AL", typeof(string));
-            DT.Columns.Add("absent", typeof(string));
-            DT.Columns.Add("Basic", typeof(string));
+            DT.Columns.Add("Present", typeof(int));
+            DT.Columns.Add("CL", typeof(int));
+            DT.Columns.Add("SL", typeof(int));
+            DT.Columns.Add("AL", typeof(int));
+            DT.Columns.Add("absent", typeof(int));
+            DT.Columns.Add("Basic", typeof(int));
             DT.Columns.Add("House Rent", typeof(int));
             DT.Columns.Add("Transport", typeof(int));
             DT.Columns.Add("Medical", typeof(int));
             DT.Columns.Add("Salary", typeof(int));
-            DT.Columns.Add("Absent Cut", typeof(string));
-            DT.Columns.Add("Advance Cut", typeof(string));
-            DT.Columns.Add("Mobile Bill", typeof(string));
-            DT.Columns.Add("Others Cut", typeof(string));
-            DT.Columns.Add("Tax", typeof(string));
-            DT.Columns.Add("Rev Ticket", typeof(string));
+            DT.Columns.Add("Absent Cut", typeof(int));
+            DT.Columns.Add("Advance Cut", typeof(int));
+            DT.Columns.Add("Mobile Bill", typeof(int));
+            DT.Columns.Add("Others Cut", typeof(int));
+            DT.Columns.Add("Tax", typeof(int));
+            DT.Columns.Add("Rev Ticket", typeof(int));
             DT.Columns.Add("Total Cut", typeof(int));
             DT.Columns.Add("Total Givent Sal", typeof(int));
             DT.Columns.Add("Others Allowanc", typeof(int));
-            DT.Columns.Add("Total Givent Sal and Allow", typeof(string));
+            DT.Columns.Add("Total Givent Sal and Allow", typeof(int));
             if (dataGridView.Rows.Count > 0)
             {
                 DataRow dr = DBConn.getCompanyNameAndAddress();
@@ -592,32 +592,33 @@ namespace Panchrukhi.Report
                     // DataRow drr = DBConn.getEmpInfo(dgv.Cells[0].Value.ToString());
                     DT.Rows.Add(
                         dgv.Cells[0].Value,
-                        dgv.Cells[1].Value,
-                        dgv.Cells[2].Value,
-                        dgv.Cells[3].Value,
-                        dgv.Cells[4].Value,
-                        dgv.Cells[5].Value,
-                        dgv.Cells[6].Value,
-                        dgv.Cells[7].Value,
-                        dgv.Cells[8].Value,
-                        dgv.Cells[9].Value,
-                        dgv.Cells[10].Value,
-                        dgv.Cells[11].Value,
-                        dgv.Cells[12].Value,
-                        dgv.Cells[13].Value,
-                        dgv.Cells[14].Value,
-                        dgv.Cells[15].Value,
-                        dgv.Cells[16].Value,
-                        dgv.Cells[17].Value,
-                        dgv.Cells[18].Value,
-                        dgv.Cells[19].Value,
-                        dgv.Cells[20].Value,
-                        dgv.Cells[21].Value,
-                        dgv.Cells[22].Value,
-                        dgv.Cells[23].Value,
-                        dgv.Cells[24].Value,
-                        dgv.Cells[25].Value,
-                        dgv.Cells[26].Value 
+                            dgv.Cells[1].Value,
+                            dgv.Cells[2].Value,
+                            dgv.Cells[3].Value,
+                            dgv.Cells[4].Value,
+                            dgv.Cells[5].Value,
+                            dgv.Cells[6].Value,
+                            dgv.Cells[7].Value,
+                            dgv.Cells[8].Value,
+                            dgv.Cells[9].Value,
+                            dgv.Cells[10].Value,
+                            dgv.Cells[11].Value,
+                            dgv.Cells[12].Value,
+                            dgv.Cells[13].Value,
+                            dgv.Cells[14].Value,
+                            dgv.Cells[15].Value,
+                            dgv.Cells[16].Value,
+                            dgv.Cells[17].Value,
+                            dgv.Cells[18].Value,
+                            dgv.Cells[19].Value,
+                            dgv.Cells[20].Value,
+                            dgv.Cells[21].Value,
+                            dgv.Cells[22].Value,
+                            dgv.Cells[23].Value,
+                            dgv.Cells[24].Value,
+                            dgv.Cells[25].Value,
+                            dgv.Cells[26].Value,
+                            dgv.Cells[27].Value
                     );
                 }
                 DS.Tables.Add(DT);
