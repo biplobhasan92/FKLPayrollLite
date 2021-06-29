@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using Panchrukhi.DAO;
 using System.Data.SQLite;
 using System.IO;
-using System.Drawing;
+
 
 namespace Panchrukhi.Basic_Settings
 {

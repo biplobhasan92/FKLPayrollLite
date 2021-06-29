@@ -15,7 +15,7 @@ namespace Panchrukhi.Report
     public partial class frmSalary : Form
     {
         public frmSalary()
-         {
+        {
             InitializeComponent();
             dateTimePicker1.Format = DateTimePickerFormat.Custom;
             dateTimePicker1.CustomFormat = "MM/yyyy";
@@ -106,9 +106,8 @@ namespace Panchrukhi.Report
         }
 
 
-        /*
-             
-        */
+
+
         private void InsertSalPorcessData(int days, string yearMonth)
         {
         
@@ -460,7 +459,7 @@ namespace Panchrukhi.Report
 
 
 
-        private void btn_print_Click(object sender, EventArgs e) // MonthlySummaryReport.xml
+        private void btn_print_Click(object sender, EventArgs e)
         {
                 string year = DateTime.Now.Year.ToString();
                 String Month = DateTime.Now.Month.ToString();            
@@ -544,10 +543,10 @@ namespace Panchrukhi.Report
                 cr.SetParameterValue(3, pat+"\\"+dr["VFILE_NAME"]);
                 frm.crptViewer.ReportSource = cr;
                 frm.crptViewer.Refresh();
-                frm.Show();                
+                frm.Show();
             }else{
                 MessageBox.Show("Load Grid First");
-            }           
+            }
         }
 
 

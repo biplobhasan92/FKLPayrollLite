@@ -77,7 +77,6 @@ namespace Panchrukhi
                 
                     DBConn.ExecutionQuery(cmdText);
                     MessageBox.Show("Slot Insert Succeed !");
-                    //BDConnectionClass.LoadDate("TBLPERSON", "PERSONID");
                     ClearData();
                     LoadData();
                 }

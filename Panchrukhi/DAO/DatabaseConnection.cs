@@ -491,9 +491,8 @@ namespace Panchrukhi.DAO
                 {
                     returnVal = true;
                 }
-
             }
-            catch (Exception exc)
+            catch(Exception exc)
             {
                 MessageBox.Show(exc.Message + " - Problem checkDataIfItUsedOtherTable()");
             }
@@ -513,9 +512,11 @@ namespace Panchrukhi.DAO
             int LoginType = 0;
             try
             {
-                string cmdText = "select LoginType from TBLUSERS where Username = '"+userName+ "' AND Password = '"+Password+ "' ";
-                ExecutionQuery(cmdText);
-                DA = new SQLiteDataAdapter(cmdText, sql_conn);
+                string cmdText = "select LoginType from TBLUSERS where Username = @userName AND Password = @Password ";
+                sql_cmd = new SQLiteCommand(cmdText, sql_conn);
+                sql_cmd.Parameters.AddWithValue("@userName", userName);
+                sql_cmd.Parameters.AddWithValue("@Password", Password);
+                DA = new SQLiteDataAdapter(sql_cmd);
                 DS = new DataSet();
                 DS.Reset();
                 DA.Fill(DS);
@@ -523,7 +524,6 @@ namespace Panchrukhi.DAO
                 {
                     for (int i = 0; i < DS.Tables[0].Rows.Count; i++)
                         LoginType = Convert.ToInt32(DS.Tables[0].Rows[i]["LoginType"]);
-                    //returnVal = true;
                 }
             }
             catch (Exception exc)
@@ -621,6 +621,5 @@ namespace Panchrukhi.DAO
             }
             return null;
         }
-
     }
 }

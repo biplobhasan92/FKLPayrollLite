@@ -17,14 +17,14 @@ namespace Panchrukhi
         DatabaseConnection DBConn = new DatabaseConnection();
         private DataSet DS = new DataSet();
         private DataTable DT = new DataTable();
-
+         
 
         public frmLogIn()
         {
             frmAppStarter st = new frmAppStarter();
             st.ShowDialog(this);
             InitializeComponent();
-            this.Left = (Screen.PrimaryScreen.WorkingArea.Width / 2) - (this.Width / 2);
+            this.Left= (Screen.PrimaryScreen.WorkingArea.Width / 2) - (this.Width / 2);
             this.Top = (Screen.PrimaryScreen.WorkingArea.Height / 2) - (this.Height / 2);
         }
 
@@ -54,7 +54,8 @@ namespace Panchrukhi
                 lblLogInError.Text = "User or password are not matched !!";
                 return;
             }
-            else {
+            else
+            {
                 this.Hide();
                 frmMainWindow fr = new frmMainWindow(loginType);
                 fr.ShowDialog();
