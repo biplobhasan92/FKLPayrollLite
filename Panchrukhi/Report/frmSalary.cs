@@ -138,7 +138,7 @@ namespace Panchrukhi.Report
                                          P.NMEDICAL,
                                          P.NTRANSPORT
                                     FROM 
-                                         TBLPERSON P ;";
+                                         TBLPERSON P order by P.NEMPID ;";
             DBConn.ExecutionQuery(CommandText);
             DB = new SQLiteDataAdapter(CommandText, DBConn.sql_conn);
             DBConn.ExecutionQuery(CommandText);

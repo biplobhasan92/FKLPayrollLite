@@ -234,7 +234,7 @@ namespace Panchrukhi
                   "  (SELECT VCLASSNAME FROM TBLCLASS   TC WHERE TC.NCLASSID = TBLPERSON.NCLASSID) as CLASS,  " +
                   "  (SELECT VSECTION   FROM TBLSECTION TS WHERE TS.NSECID   = TBLPERSON.NSECID) as SECTION, " +
                   "  CASE TBLPERSON.NSTATUS WHEN 1 THEN 'ACTIVE' ELSE 'INACTIVE' END STATUS" +
-                " FROM TBLPERSON";
+                " FROM TBLPERSON order by NEMPID ";
                 DBConn.ExecutionQuery(CommandText);
                 DB = new SQLiteDataAdapter(CommandText, DBConn.sql_conn);
                 DS.Reset();
@@ -651,7 +651,7 @@ namespace Panchrukhi
                     CommandText =
                     "  SELECT *, " +
                     "  (select VCATEGORY from TBLCATEGORY where TBLPERSON.NCATID = TBLCATEGORY.NCATID) as CATEGORY,   " +
-                    "  (SELECT VSLOTNAME FROM TBLATTENSLOT where (TBLATTENSLOT.NSLOTID = TBLPERSON.NSLOTID))   as SLOT, " +
+                    "  (SELECT VSLOTNAME FROM TBLATTENSLOT where (TBLATTENSLOT.NSLOTID = TBLPERSON.NSLOTID)) as SLOT, " +
                     "  (SELECT \"(\" || VINTIME ||\" - \"||  VOUTTIME || \")\"  FROM TBLATTENSLOT where (TBLATTENSLOT.NSLOTID = TBLPERSON.NSLOTID))   as IN_OUT_TIME, " +
                     "  (select VDESIGNATIONNAME from TBLDESIGNATION where TBLDESIGNATION.NDESIGID = TBLPERSON.NDESIGID ) as DESIGNATION, " +
                     "  (SELECT VCLASSNAME FROM TBLCLASS   TC WHERE TC.NCLASSID = TBLPERSON.NCLASSID) as CLASS,  " +
@@ -707,6 +707,9 @@ namespace Panchrukhi
         private void btnUp_Click(object sender, EventArgs e)
         {
             DataGridView dgv = dataGridView;
+
+            
+
             try
             {
                 int totalRows = dgv.Rows.Count;
@@ -714,6 +717,9 @@ namespace Panchrukhi
                 int rowIndex = dgv.SelectedCells[0].OwningRow.Index;
                 if (rowIndex == 0)
                     return;
+                string selectedPID = dataGridView.Rows[rowIndex].Cells[1].Value.ToString(); 
+                string selectedUpPID = dataGridView.Rows[rowIndex-1].Cells[1].Value.ToString();
+                DBConn.upsButtonDBSLUpdate(selectedPID, selectedUpPID);
                 // get index of the column for the selected cell
                 int colIndex = dgv.SelectedCells[0].OwningColumn.Index;
                 DataGridViewRow selectedRow = dgv.Rows[rowIndex];
@@ -738,6 +744,9 @@ namespace Panchrukhi
                 int rowIndex = dgv.SelectedCells[0].OwningRow.Index;
                 if (rowIndex == totalRows - 1)
                     return;
+                string selectedPID = dataGridView.Rows[rowIndex].Cells[1].Value.ToString();
+                string selectedDownPID = dataGridView.Rows[rowIndex + 1].Cells[1].Value.ToString();
+                DBConn.downButtonDBSLUpdate(selectedPID, selectedDownPID);
                 // get index of the column for the selected cell
                 int colIndex = dgv.SelectedCells[0].OwningColumn.Index;
                 DataGridViewRow selectedRow = dgv.Rows[rowIndex];

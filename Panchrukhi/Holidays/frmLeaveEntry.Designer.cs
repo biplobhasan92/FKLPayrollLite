@@ -38,14 +38,14 @@
             this.dtPkrFormDate = new System.Windows.Forms.DateTimePicker();
             this.lblDateForm = new System.Windows.Forms.Label();
             this.dataGridview = new System.Windows.Forms.DataGridView();
-            this.txtEmpID = new System.Windows.Forms.MaskedTextBox();
-            this.dtPkrToDate = new System.Windows.Forms.DateTimePicker();
-            this.lblDateTo = new System.Windows.Forms.Label();
             this.colSL = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colEmpID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colLEAVE_NAME = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colCombo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txtEmpID = new System.Windows.Forms.MaskedTextBox();
+            this.dtPkrToDate = new System.Windows.Forms.DateTimePicker();
+            this.lblDateTo = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridview)).BeginInit();
             this.SuspendLayout();
             // 
@@ -150,30 +150,6 @@
             this.dataGridview.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridview_RowHeaderMouseClick);
             this.dataGridview.SelectionChanged += new System.EventHandler(this.dataGridview_SelectionChanged);
             // 
-            // txtEmpID
-            // 
-            this.txtEmpID.Location = new System.Drawing.Point(70, 48);
-            this.txtEmpID.Mask = "000000";
-            this.txtEmpID.Name = "txtEmpID";
-            this.txtEmpID.Size = new System.Drawing.Size(176, 20);
-            this.txtEmpID.TabIndex = 118;
-            // 
-            // dtPkrToDate
-            // 
-            this.dtPkrToDate.Location = new System.Drawing.Point(200, 117);
-            this.dtPkrToDate.Name = "dtPkrToDate";
-            this.dtPkrToDate.Size = new System.Drawing.Size(95, 20);
-            this.dtPkrToDate.TabIndex = 119;
-            // 
-            // lblDateTo
-            // 
-            this.lblDateTo.AutoSize = true;
-            this.lblDateTo.Location = new System.Drawing.Point(173, 120);
-            this.lblDateTo.Name = "lblDateTo";
-            this.lblDateTo.Size = new System.Drawing.Size(20, 13);
-            this.lblDateTo.TabIndex = 120;
-            this.lblDateTo.Text = "To";
-            // 
             // colSL
             // 
             this.colSL.DataPropertyName = "SL_LEAVE";
@@ -206,11 +182,35 @@
             this.colCombo.HeaderText = "Combo";
             this.colCombo.Name = "colCombo";
             // 
+            // txtEmpID
+            // 
+            this.txtEmpID.Location = new System.Drawing.Point(70, 48);
+            this.txtEmpID.Mask = "000000";
+            this.txtEmpID.Name = "txtEmpID";
+            this.txtEmpID.Size = new System.Drawing.Size(176, 20);
+            this.txtEmpID.TabIndex = 118;
+            // 
+            // dtPkrToDate
+            // 
+            this.dtPkrToDate.Location = new System.Drawing.Point(200, 117);
+            this.dtPkrToDate.Name = "dtPkrToDate";
+            this.dtPkrToDate.Size = new System.Drawing.Size(95, 20);
+            this.dtPkrToDate.TabIndex = 119;
+            // 
+            // lblDateTo
+            // 
+            this.lblDateTo.AutoSize = true;
+            this.lblDateTo.Location = new System.Drawing.Point(173, 120);
+            this.lblDateTo.Name = "lblDateTo";
+            this.lblDateTo.Size = new System.Drawing.Size(20, 13);
+            this.lblDateTo.TabIndex = 120;
+            this.lblDateTo.Text = "To";
+            // 
             // frmLeaveEntry
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(989, 446);
+            this.ClientSize = new System.Drawing.Size(564, 446);
             this.Controls.Add(this.lblDateTo);
             this.Controls.Add(this.dtPkrToDate);
             this.Controls.Add(this.txtEmpID);

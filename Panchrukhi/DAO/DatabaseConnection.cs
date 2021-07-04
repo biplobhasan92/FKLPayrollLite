@@ -57,6 +57,42 @@ namespace Panchrukhi.DAO
 
 
 
+       public bool upsButtonDBSLUpdate(string selectedID, string selectedMinusID)
+       {
+            bool b = false;
+            try
+            {
+                string query =" update TBLPERSON set NEMPID = ((select NEMPID from TBLPERSON where PERSONID = '"+ selectedID + "')-1) where PERSONID = '" + selectedID + "' ; " +
+                              " update TBLPERSON set NEMPID = ((select NEMPID from TBLPERSON where PERSONID = '"+ selectedMinusID + "')+1) where PERSONID = '"+ selectedMinusID + "'; ";
+                b = ExecutionQuery(query);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            return b;
+       }
+
+
+
+
+        public bool downButtonDBSLUpdate(string selectedID, string selectedPlusID)
+        {
+            bool b = false;
+            try
+            {
+                string query =" update TBLPERSON set NEMPID = ((select NEMPID from TBLPERSON where PERSONID = '" + selectedID + "')+1) where PERSONID = '" + selectedID + "' ; " +
+                              " update TBLPERSON set NEMPID = ((select NEMPID from TBLPERSON where PERSONID = '" + selectedPlusID + "')-1) where PERSONID = '" + selectedPlusID + "'; ";
+                b = ExecutionQuery(query);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            return b;
+        }
+
+
 
         public bool ExecutionQuery(SortedList SLQuery)
         {

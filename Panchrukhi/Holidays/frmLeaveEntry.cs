@@ -50,6 +50,7 @@ namespace Panchrukhi.Holidays
             }
         }
 
+
         private void LoadLeavGridCombo()
         {
             string CommandText = "SELECT SL, LEAVE_NAME from TBL_LEAVE_SETTINGS ";
@@ -135,11 +136,11 @@ namespace Panchrukhi.Holidays
                 }
                 else
                 {
-                            cmdText = "  UPDATE TBL_LEAVE_ENTRY " +
-                                       "  set EMP_ID  = '" + getEmpID + "', " +
-                                       "   LEAVE_NAME =  " + leaveName + ",  " +
-                                       "   LEAVE_DATE =  '" + lvDate + "' " +
-                                     "  where SL_LEAVE=  " + getHID;
+                    cmdText = "  UPDATE TBL_LEAVE_ENTRY " +
+                                "  set EMP_ID  = '" + getEmpID + "', " +
+                                "   LEAVE_NAME =  " + leaveName + ",  " +
+                                "   LEAVE_DATE =  '" + lvDate + "' " +
+                                "  where SL_LEAVE=  " + getHID;
 
                     if (DBConn.ExecutionQuery(cmdText))
                     {
@@ -158,7 +159,7 @@ namespace Panchrukhi.Holidays
                 MessageBox.Show(ex.Message);
             }
         }
-
+        
         /*
             private void BtnSaveAndUpdate_Click(object sender, EventArgs e)
         {
