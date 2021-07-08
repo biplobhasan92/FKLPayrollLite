@@ -817,6 +817,7 @@
             // 
             this.txtOthersAlnc.Location = new System.Drawing.Point(923, 190);
             this.txtOthersAlnc.Name = "txtOthersAlnc";
+            this.txtOthersAlnc.ReadOnly = true;
             this.txtOthersAlnc.Size = new System.Drawing.Size(128, 20);
             this.txtOthersAlnc.TabIndex = 23;
             // 

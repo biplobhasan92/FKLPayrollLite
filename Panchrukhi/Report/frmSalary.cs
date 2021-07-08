@@ -665,24 +665,38 @@ namespace Panchrukhi.Report
             if (string.IsNullOrEmpty(txtRevTicket.Text.Trim())) { errorProFrmSalary.SetError(txtRevTicket, errorProFrmSalary.Icon.ToString()); return; } else { errorProFrmSalary.Clear();}
             if (string.IsNullOrEmpty(txtOthersAlnc.Text.Trim())) { errorProFrmSalary.SetError(txtOthersAlnc, errorProFrmSalary.Icon.ToString()); return; } else { errorProFrmSalary.Clear();}
 
+            
             bool isExecute= false;
             int absentCut = (Convert.ToInt32(txtBasickSal.Text.Trim()) / 30) * Convert.ToInt32(txtAbsent.Text.Trim());
             int totalCut  =  (absentCut + Convert.ToInt32(txtAvdSalCut.Text.Trim())+ Convert.ToInt32(txtMobileBill.Text.Trim()) + Convert.ToInt32(txtOthersSalCut.Text.Trim()) + Convert.ToInt32(txtTax.Text.Trim()) + Convert.ToInt32(txtRevTicket.Text.Trim()));
             int totalGivnSal = 0;
-            if(Convert.ToInt32(txtTotalSal.Text.Trim()) > totalCut){totalGivnSal = (Convert.ToInt32(txtTotalSal.Text.Trim()) - totalCut);}
+            double othersAllowance = 0;
+
+            if(Convert.ToInt32(txtTotalSal.Text.Trim()) > totalCut){totalGivnSal = (Convert.ToInt32(txtTotalSal.Text.Trim()) - totalCut);}            
             else
             {
                 MessageBox.Show(" Total cut must be less than Salary ");
                 return;
             }
+
             int totalGvnSalAndAllownc = (totalGivnSal+Convert.ToInt32(txtOthersAlnc.Text.Trim()));
+            double percentageOfHlidayWork = ((Math.Round(Convert.ToDouble(txtTotalSal.Text.Trim())) / 30) * 120) / 100;
+            if (Convert.ToInt32(txtHolidayWork.Text.Trim())>0)
+            {
+                othersAllowance = percentageOfHlidayWork * Convert.ToInt32(txtHolidayWork.Text.Trim());
+                if (othersAllowance > 1000)
+                {
+                    othersAllowance = 1000;
+                }
+            }
+
             try
             {
                 string cmdText =
-                "UPDATE " +
+                " UPDATE " +
                         " TBL_PROCESSED_SALARY " +
                 " SET " +
-                        " EMP_WORKING_DAYS  = " + txtWorkingDay.Text.Trim() + ",     " +
+                        " EMP_WORKING_DAYS  = " + txtWorkingDay.Text.Trim() + ", " +
                         " EMP_HOLIDAYS      = " + txtHolidays.Text.Trim() + ",   " +
                         " EMP_PRESENT  = IFNULL(" + txtPresent.Text.Trim() + ", 0), " +
                         " EMP_CASUAL_LEAVE  = " + txtCasualLeave.Text.Trim() + ", " +
@@ -703,7 +717,7 @@ namespace Panchrukhi.Report
                         " EMP_TOTAL_CUT     = " + totalCut + ",   "+
                         " EMP_TOTAL_GIVEN_SALARY = " + totalGivnSal + ", "+
                         " EMP_HOLIDAY_WORK  = " + txtHolidayWork.Text.Trim()+", "+
-                        " EMP_OTHERS_ALLOW  = " + txtOthersAlnc.Text.Trim() + ", "+ 
+                        " EMP_OTHERS_ALLOW  = " + othersAllowance + ", "+ 
                         " EMP_TOTAL_GIVEN_SALARY_AND_ALLOW = " + totalGvnSalAndAllownc + " "+
                 " WHERE " +
                         " EMP_ID = '"+ txtEmpID.Text + "' AND "+
@@ -854,11 +868,11 @@ namespace Panchrukhi.Report
             if(b)
             {
                 txtCasualLeave.ReadOnly = txtSickLeave.ReadOnly = txtAnnualLeave.ReadOnly =  txtAbsentSalCut.ReadOnly = txtAvdSalCut.ReadOnly = txtTotalCut.ReadOnly = txtTotalGivenSal.ReadOnly =
-                txtGivenSalAndAllow.ReadOnly
+                txtGivenSalAndAllow.ReadOnly = txtOthersAlnc.ReadOnly
                 = false;
             }else{
                 txtCasualLeave.ReadOnly = txtSickLeave.ReadOnly = txtAnnualLeave.ReadOnly = txtAbsentSalCut.ReadOnly = txtAvdSalCut.ReadOnly = txtTotalCut.ReadOnly = txtTotalGivenSal.ReadOnly =
-                txtGivenSalAndAllow.ReadOnly
+                txtGivenSalAndAllow.ReadOnly = txtOthersAlnc.ReadOnly
                 = true;
             }
         }
