@@ -69,7 +69,6 @@ namespace Panchrukhi.Basic_Settings
 
         void LoadData()
         {
-
             try
             {
                 db.SetConnection();
@@ -204,7 +203,7 @@ namespace Panchrukhi.Basic_Settings
                              delete from TBL_PROMOTION_LOG;
                              delete from TBL_SALARY_DEDUCTION;
                              delete from TBL_WEEKEND;";
-                 var v = MessageBox.Show("Data of All Table will be empty", "Are you Sure ? do you want to reset Database ?", MessageBoxButtons.YesNo, MessageBoxIcon.Error);
+                var v = MessageBox.Show("Data of All Table will be empty", "Are you Sure ? do you want to reset Database ?", MessageBoxButtons.YesNo, MessageBoxIcon.Error);
                 if (v==DialogResult.Yes)
                 {
                     db.ExecutionQuery(s);

@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Net.NetworkInformation;
-//using ERP.ModuleManagement;
+//using ERP.ModuleManagement; 
 using System.Net;
 using Panchrukhi.DAO;
 using System.Data.SQLite;
@@ -31,7 +31,6 @@ namespace Panchrukhi
         public IPStatusCheck()
         {
             InitializeComponent();
-
             backgroundWorker1 = new BackgroundWorker();
             backgroundWorker1.DoWork += new DoWorkEventHandler(backgroundWorker1_DoWork);
             backgroundWorker1.ProgressChanged +=new ProgressChangedEventHandler(backgroundWorker1_ProgressChanged);
@@ -52,11 +51,6 @@ namespace Panchrukhi
          * 
          * 
          * */
-
-
-
-
-
 
         private void LoadMachineInfo()
         {
@@ -92,12 +86,15 @@ namespace Panchrukhi
             }
         }
 
+
+
         private void btnCheck_Click(object sender, EventArgs e)
         {
             btnCheck.Enabled = false;
             btnCancel.Enabled = true;
             backgroundWorker1.RunWorkerAsync();       
         }
+
 
         private void btnClose_Click(object sender, EventArgs e)
         {
@@ -120,7 +117,6 @@ namespace Panchrukhi
 
             foreach (DataGridViewRow dRow in dgvfrmMachines.Rows)
             {
-
                 var ipAddress = dRow.Cells["ColIPAddress"].Value;
                 if (ZKorLocal == "LOCAL")
                     pcName = GetPCName(ipAddress.ToString());
@@ -139,51 +135,45 @@ namespace Panchrukhi
                     dRow.Cells[ColStatus.Index].Value = status.ToString();
                     //dRow.DefaultCellStyle.BackColor = Color.LightBlue;
                     dRow.DefaultCellStyle.ForeColor = Color.Blue;
-
                     //dataGridView1.Columns[ColStatus.Index].DefaultCellStyle.BackColor = Color.Green;
-                }
-                else
-                {
+                }else{
                     dRow.Cells[ColStatus.Index].Value = status.ToString();
                     dRow.DefaultCellStyle.ForeColor = Color.Red;
                     //dataGridView1.Columns[ColStatus.Index].DefaultCellStyle.BackColor = Color.Red;
                 }
                 dRow.Cells[ColRoundTripTimes.Index].Value = roundTripTimes.ToString() + " ms ";
                 backgroundWorker1.ReportProgress(i);
-
                 i++;
 
-                if (backgroundWorker1.CancellationPending)
+                if(backgroundWorker1.CancellationPending)
                 {
                     e.Cancel = true;
                     backgroundWorker1.ReportProgress(0);
                     return;
                 }
             }
-
             backgroundWorker1.ReportProgress(100);
         }
+
+
         private string GetPCName(string _IP)
         {
-
             string _PCName = "NA";
             try
             {
                 IPHostEntry ip = Dns.GetHostByAddress(_IP);
                 _PCName = ip.HostName.ToString();
             }
-            catch (Exception a)
+            catch(Exception a)
             {
                 return _PCName;
-             //   _PCName = "NA";
             }
-
             return _PCName;
         }
 
-
-
-
+        /*
+         *
+         */
         private void backgroundWorker1_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             progressBar1.Value = e.ProgressPercentage;
@@ -193,14 +183,12 @@ namespace Panchrukhi
         private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             try {
-
                 if (e.Cancelled)
                 {
                     lblStatus.Text = "Task cancelled";
                 }
                 else if (e.Error != null)
                 {
-                    //lblStatus.Text = "Error while performing background operation. Message: "+e.Error.Message;
                     lblStatus.Text = "Error while performing Network Connection. Message: "+e.Error.Message;
                 }
                 else
@@ -227,6 +215,8 @@ namespace Panchrukhi
             ZKorLocal = "LOCAL";
             LoadLocalIP();
         }
+
+        // Load Local IP from Add Machine grid
         private void LoadLocalIP()
         {
             dgvfrmMachines.Rows.Clear();
@@ -236,9 +226,8 @@ namespace Panchrukhi
             {
                 fid = Convert.ToInt32(this.txtfrom.Text);
                 lid = Convert.ToInt32(this.txtTo.Text);
- 
             }
-            for (int ip = fid; ip <=lid; ip++)
+            for(int ip = fid; ip <=lid; ip++)
             {
                 dgvfrmMachines.Rows.Add();
                 dgvfrmMachines.Rows[dgvfrmMachines.Rows.Count - 1].Cells[ColSL.Index].Value = dgvfrmMachines.Rows.Count;
@@ -247,11 +236,14 @@ namespace Panchrukhi
             }
         }
 
+
         private void btnReset_Click(object sender, EventArgs e)
         {
             dgvfrmMachines.Rows.Clear();
             progressBar1.Value = 0;
         }
+
+
 
         private void chkRange_CheckedChanged(object sender, EventArgs e)
         {
@@ -264,9 +256,9 @@ namespace Panchrukhi
             {
                 this.txtTo.Enabled = false;
                 this.txtfrom.Enabled = false;
- 
             }
         }
+
 
         private void IPStatusCheck_FormClosed(object sender, FormClosedEventArgs e)
         {

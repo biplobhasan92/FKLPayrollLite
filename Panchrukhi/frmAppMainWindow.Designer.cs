@@ -56,7 +56,6 @@
             this.promotionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reportingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tstripPersonalInfo = new System.Windows.Forms.ToolStripMenuItem();
-            this.salaryDeductionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.salaryReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.superAdminToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -94,7 +93,7 @@
             this.mnuMain.Size = new System.Drawing.Size(1110, 24);
             this.mnuMain.TabIndex = 1;
             this.mnuMain.Text = "menuStrip1";
-            this.mnuMain.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.mnuMain_ItemClicked);
+            // this.mnuMain.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.mnuMain_ItemClicked);
             // 
             // personalDataToolStripMenuItem
             // 
@@ -263,7 +262,6 @@
             // 
             this.reportingToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tstripPersonalInfo,
-            this.salaryDeductionToolStripMenuItem,
             this.salaryReportToolStripMenuItem});
             this.reportingToolStripMenuItem.Name = "reportingToolStripMenuItem";
             this.reportingToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
@@ -272,21 +270,14 @@
             // tstripPersonalInfo
             // 
             this.tstripPersonalInfo.Name = "tstripPersonalInfo";
-            this.tstripPersonalInfo.Size = new System.Drawing.Size(161, 22);
+            this.tstripPersonalInfo.Size = new System.Drawing.Size(152, 22);
             this.tstripPersonalInfo.Text = "Person Info";
             this.tstripPersonalInfo.Click += new System.EventHandler(this.tstripPersonalInfo_Click);
-            // 
-            // salaryDeductionToolStripMenuItem
-            // 
-            this.salaryDeductionToolStripMenuItem.Name = "salaryDeductionToolStripMenuItem";
-            this.salaryDeductionToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
-            this.salaryDeductionToolStripMenuItem.Text = "salary deduction";
-            this.salaryDeductionToolStripMenuItem.Click += new System.EventHandler(this.salaryDeductionToolStripMenuItem_Click);
             // 
             // salaryReportToolStripMenuItem
             // 
             this.salaryReportToolStripMenuItem.Name = "salaryReportToolStripMenuItem";
-            this.salaryReportToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
+            this.salaryReportToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.salaryReportToolStripMenuItem.Text = "Salary Report";
             this.salaryReportToolStripMenuItem.Click += new System.EventHandler(this.salaryReportToolStripMenuItem_Click);
             // 
@@ -386,7 +377,6 @@
         private System.Windows.Forms.ToolStripMenuItem cLSLToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem leaveSettingsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem salaryReportToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem salaryDeductionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem superAdminToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;

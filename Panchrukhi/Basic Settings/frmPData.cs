@@ -21,8 +21,9 @@ namespace Panchrukhi
             InitializeComponent();
             txtPDOJ.Format = txtPDOB.Format = DateTimePickerFormat.Custom;
             txtPDOJ.CustomFormat = txtPDOB.CustomFormat = "dd/MM/yyyy";
-            
         }
+
+        
 
         DatabaseConnection DBConn = new DatabaseConnection();
         private DataSet    DS     = new DataSet();
@@ -31,8 +32,7 @@ namespace Panchrukhi
         private SQLiteDataAdapter DB;
         int getEMPID        = 0;
 
-
-
+        
         // Slot Form Close Button
         private void BtnFrmClose_Click(object sender, EventArgs e)
         {
@@ -40,11 +40,14 @@ namespace Panchrukhi
         }
         
 
+        /*
+            Employee data Save and Update operation.
+        */
 
         private void BtnSaveAndUpdate_Click(object sender, EventArgs e)
         {
-            
-            // Regular
+
+            // Regular exprassion
             Regex regex = new Regex(@"^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$");
             
             // First time if any combo box table is null .
@@ -54,23 +57,27 @@ namespace Panchrukhi
             if (!DBConn.checkIfTableIsReturnNull("TBLSECTION"))     { MessageBox.Show("SECTION NOT FOUND", "Add some SECTION and first add N/A ", MessageBoxButtons.OK, MessageBoxIcon.Error); return; }
             if (!DBConn.checkIfTableIsReturnNull("TBLATTENSLOT"))   { MessageBox.Show("SHIFT NOT FOUND", "Add SHIFT and first add N/A ", MessageBoxButtons.OK, MessageBoxIcon.Error); return; }
 
+            // if text field is null then then error icon is displayed.
             if (string.IsNullOrEmpty(txtPID.Text))     { errorProviderPData.SetError(txtPID, errorProviderPData.Icon.ToString()); return; } else { errorProviderPData.Clear();  }
             if (string.IsNullOrEmpty(txtPName.Text))   { errorProviderPData.SetError(txtPName, errorProviderPData.Icon.ToString()); return; } else { errorProviderPData.Clear();}
             if (!string.IsNullOrEmpty(txtPEmail.Text)) { if (!regex.IsMatch(txtPEmail.Text.Trim())) { errorProviderPData.SetError(txtPEmail, errorProviderPData.Icon.ToString()); return;}}
-
             if (string.IsNullOrEmpty(txtPBasic.Text.Trim())) { errorProviderPData.SetError(txtPBasic, errorProviderPData.Icon.ToString()); return; } else { errorProviderPData.Clear(); }
             if (string.IsNullOrEmpty(txtPHouseRent.Text.Trim())) { errorProviderPData.SetError(txtPHouseRent, errorProviderPData.Icon.ToString()); return; } else { errorProviderPData.Clear(); }
             if (string.IsNullOrEmpty(txtPMedical.Text.Trim())) { errorProviderPData.SetError(txtPMedical, errorProviderPData.Icon.ToString()); return; } else { errorProviderPData.Clear(); }
             if (string.IsNullOrEmpty(txtPTransport.Text.Trim())) { errorProviderPData.SetError(txtPTransport, errorProviderPData.Icon.ToString()); return; } else { errorProviderPData.Clear(); }
             if (string.IsNullOrEmpty(txtPSalary.Text.Trim())) { errorProviderPData.SetError(txtPSalary, errorProviderPData.Icon.ToString()); return; } else { errorProviderPData.Clear(); }
 
-            if (getEMPID == 0) // NEMPID
+            /* 
+                if any row is not selected then getEMPID is 0 and insert operation is occured.
+                if getEMPID is more than zero then update operation is occured.
+            */
+            if (getEMPID == 0)
             {
                 if (txtPID.Text.Trim() != "")
                 {
                     if (DBConn.checkDataIfItUsedOtherTableStr("TBLPERSON", "PERSONID", txtPID.Text.Trim())) { MessageBox.Show("", "Duplicate ID Not Allowed !", MessageBoxButtons.OK, MessageBoxIcon.Error); return; }
                     try
-                    {                           
+                    {
                         string cmdText =
                             "INSERT INTO TBLPERSON " +
                             "  (          " +
@@ -177,8 +184,7 @@ namespace Panchrukhi
                             " VMOTHER_NAME        = '" + txtMother.Text.Trim() + "',   " +
                             " VEMERGENCY_CONTRACT = '" + txtEmergencyContact.Text.Trim() + "'   " +
                     " where  " +
-                            " NEMPID =" + getEMPID;// NEMPID
-
+                            " NEMPID =" + getEMPID;
                     isExecute = DBConn.ExecutionQuery(cmdText);
                 }
                 catch (Exception ex){
@@ -209,10 +215,10 @@ namespace Panchrukhi
 
 
 
-        // Form Clear Method
+        // Form Clear Method Using form text field
         void ClearData()
         {
-            txtFather.Text= txtMother.Text = txtEmergencyContact.Text  = txtPID.Text = txtPName.Text = cmbGender.Text = txtPAddress.Text = txtPDOB.Text = txtPMobile.Text = 
+            txtFather.Text = txtMother.Text = txtEmergencyContact.Text  = txtPID.Text = txtPName.Text = cmbGender.Text = txtPAddress.Text = txtPDOB.Text = txtPMobile.Text = 
             txtPEmail.Text = cmbStatus.Text = txtPDOJ.Text = cmbCat.Text = cmbDesig.Text = txtPSalary.Text = cmbSection.Text = cmbClass.Text = cmbSlot.Text = "";
             getEMPID = 0; btnSaveAndUpdate.Text = "Save";
             txtPBasic.Text = txtPTransport.Text = txtPMedical.Text = txtPHouseRent.Text = txtPSalary.Text = "0";
@@ -220,11 +226,15 @@ namespace Panchrukhi
         }
 
 
-        // Load Data From SQlite Database
+        /*
+            Load Data From SQlite Database,
+            To display data in grid view
+        */
         private void LoadData()
         {
             string CommandText = "";
-            try{
+            try
+            {
               CommandText =
                   "  SELECT *, " +
                   "  (select VCATEGORY from TBLCATEGORY where TBLPERSON.NCATID = TBLCATEGORY.NCATID) as CATEGORY,   " +
@@ -293,7 +303,7 @@ namespace Panchrukhi
             LoadDesigCombo();
             LoadCatCombo();
             LoadData();
-           // this.Owner.Enabled = false;
+            // this.Owner.Enabled = false;
             LoadDefaultComboValue();
         }
 
@@ -316,7 +326,7 @@ namespace Panchrukhi
 
 
 
-        private void LoadDefaultComboValue() {
+        private void LoadDefaultComboValue(){
             cmbGender.SelectedIndex  = cmbCat.MaxLength;
             cmbCat.SelectedIndex     = cmbCat.MaxLength;
             cmbClass.SelectedIndex   = cmbClass.MaxLength;
@@ -346,7 +356,7 @@ namespace Panchrukhi
 
 
 
-
+        
         private void DataGridData_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             btnSaveAndUpdate.Text = "Update";
@@ -375,7 +385,8 @@ namespace Panchrukhi
             txtEmergencyContact.Text = dataGridView.Rows[e.RowIndex].Cells[22].Value.ToString().Trim();
         }
 
-
+        
+        // this function called when row ups and down after select one row.
         private void DataGridData_SelectionChanged(object sender, EventArgs e)
         {
             if (dataGridView.SelectedRows.Count == 0 || dataGridView.SelectedRows[0].Index == dataGridView.Rows.Count) return;            
@@ -484,17 +495,23 @@ namespace Panchrukhi
             }
         }
 
+
+
         private void frmPData_FormClosed(object sender, FormClosedEventArgs e)
         {
             //this.Owner.Enabled = true;
         }
-        string pat = Application.StartupPath;
 
+        string pat = Application.StartupPath;
         private void btnSaveAndUpdate_Validating(object sender, CancelEventArgs e)
         {
-           
+          
         }
 
+
+        /*
+            button use to print employee data from grid.    
+        */
         private void btnPrintReport_Click(object sender, EventArgs e)
         {
             if (dataGridView.Rows.Count > 0)
@@ -564,10 +581,9 @@ namespace Panchrukhi
 
 
 
-
+        // Function use to
         private void ExtractDataToCSV(DataGridView dgv)
         {
-
             // Don't save if no data is returned
             if (dgv.Rows.Count == 0)
             {
@@ -578,7 +594,6 @@ namespace Panchrukhi
             string columnsHeader = "";
             for (int i = 0; i < dgv.Columns.Count; i++)
             {
-
                 columnsHeader += dgv.Columns[i].HeaderText + ",";
             }
             sb.Append(columnsHeader + Environment.NewLine);
@@ -617,7 +632,7 @@ namespace Panchrukhi
 
 
 
-
+        // 0 is not allowd as first digit of Emp ID
         private void txtPID_KeyPress(object sender, KeyPressEventArgs e)
         {            
             string txt = txtPID.Text;
@@ -629,18 +644,17 @@ namespace Panchrukhi
                     MessageBox.Show("Invalid Input", "0 is not allowed as first digit", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     txtPID.Clear();
                 }
-            }            
+            }
         }
 
 
 
-
+        // Search Employee using ID or Employee Name
         private void btnSearch_Click(object sender, EventArgs e)
         {
             string CommandText = "";
             string getSearchItem  = "";
             string getSearchValue = txtSearch.Text;
-
             if (cbxSearch.Text=="ID"){ getSearchItem = "PERSONID"; }
             if (cbxSearch.Text == "Name") { getSearchItem = "VNAME"; }
 
@@ -679,6 +693,8 @@ namespace Panchrukhi
             }
         }
 
+
+
         private void txtPBasic_KeyPress(object sender, KeyPressEventArgs e)
         {
             validateNumber(e);
@@ -707,9 +723,6 @@ namespace Panchrukhi
         private void btnUp_Click(object sender, EventArgs e)
         {
             DataGridView dgv = dataGridView;
-
-            
-
             try
             {
                 int totalRows = dgv.Rows.Count;
@@ -734,6 +747,8 @@ namespace Panchrukhi
             }
         }
 
+
+        // Function is userd for ordering the row parmanently
         private void btnDown_Click(object sender, EventArgs e)
         {
             DataGridView dgv = dataGridView;

@@ -12,6 +12,11 @@ using System.Data.SQLite;
 
 namespace Panchrukhi
 {
+    /*
+     * This form is one of settings form.
+     * user insert section Like Section A, B etc.
+     * Specially used for school.
+     */
     public partial class frmSectionData : Form
     {
         public frmSectionData()
@@ -23,7 +28,6 @@ namespace Panchrukhi
             this.MinimumSize = this.Size;
             ClearData();
             LoadData();
-            
         }
 
         DatabaseConnection DBConn = new DatabaseConnection();
@@ -38,8 +42,6 @@ namespace Panchrukhi
 
 
 
-
-
         // Slot Form Close Button
         private void btnFrmSlotClose_Click(object sender, EventArgs e)
         {
@@ -51,10 +53,8 @@ namespace Panchrukhi
 
         private void BtnSaveAndUpdate_Click(object sender, EventArgs e)
         {
-
             if (getSecID == 0)
             {
-
                 string cmdText = " insert into TBLSECTION (" +
                                      "NSECID,  " +
                                      "VSECTION " +
@@ -63,7 +63,6 @@ namespace Panchrukhi
                                      "(select CASE WHEN max(NSECID) >= 0 THEN max(NSECID) +1 ELSE 1 END FROM TBLSECTION), '" +
                                      txtSectionName.Text +
                                  "') ";
-
                 if (txtSectionName.Text != "")
                 {
                     DBConn.ExecutionQuery(cmdText);
@@ -75,7 +74,6 @@ namespace Panchrukhi
                 {
                     MessageBox.Show("Something is wrong ??? !");
                 }
-
             }
             else
             {
@@ -112,7 +110,8 @@ namespace Panchrukhi
         // Form Clear Method
         void ClearData()
         {
-            txtSectionName.Text = ""; btnSaveAndUpdate.Text = "Save";
+            txtSectionName.Text = "";
+            btnSaveAndUpdate.Text = "Save";
             getSecID = 0;
         }
 
@@ -141,7 +140,6 @@ namespace Panchrukhi
         private void FrmData_Load(object sender, EventArgs e)
         {
             this.Owner.Enabled = false;
-
         }
 
 
@@ -151,16 +149,17 @@ namespace Panchrukhi
         {
             btnSaveAndUpdate.Text = "Update";
             getSecID           = Convert.ToInt32(dataGridData.Rows[e.RowIndex].Cells[0].Value.ToString());
-            txtSectionName.Text    = dataGridData.Rows[e.RowIndex].Cells[1].Value.ToString();
+            txtSectionName.Text= dataGridData.Rows[e.RowIndex].Cells[1].Value.ToString();
         }
 
-        
+
+
         private void DataGridData_SelectionChanged(object sender, EventArgs e)
         {
             if (dataGridData.SelectedRows.Count == 0 || dataGridData.SelectedRows[0].Index == dataGridData.Rows.Count) return;
             btnSaveAndUpdate.Text = "Update";
-            getSecID           = Convert.ToInt32(dataGridData[0, dataGridData.SelectedRows[0].Index].Value.ToString());
-            txtSectionName.Text    = dataGridData[1, dataGridData.SelectedRows[0].Index].Value.ToString();
+            getSecID            = Convert.ToInt32(dataGridData[0, dataGridData.SelectedRows[0].Index].Value.ToString());
+            txtSectionName.Text = dataGridData[1, dataGridData.SelectedRows[0].Index].Value.ToString();
         }
 
 
@@ -182,10 +181,13 @@ namespace Panchrukhi
             }
         }
 
+
+
         private void frmSectionData_FormClosed(object sender, FormClosedEventArgs e)
         {
             this.Owner.Enabled = true;
         }
+
 
         private void txtSectionName_TextChanged(object sender, EventArgs e)
         {
@@ -198,5 +200,6 @@ namespace Panchrukhi
                 txtSectionName.Enabled = true;
             }
         }
+
     }
 }

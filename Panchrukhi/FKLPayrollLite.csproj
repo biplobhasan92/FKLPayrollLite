@@ -140,7 +140,7 @@
     <Compile Include="Holidays\frmLeaveEntry.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Holidays\frmLeaveEntry.Designer.cs">
+    <Compile Include="Holidays\frmLeaveEntry.designer.cs">
       <DependentUpon>frmLeaveEntry.cs</DependentUpon>
     </Compile>
     <Compile Include="Holidays\frmLeaveEntry2nd.cs">
