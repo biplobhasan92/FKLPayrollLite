@@ -76,9 +76,12 @@ namespace Panchrukhi.Report
             }
         }
 
-        
 
 
+        /*
+            it's some time disturbing that salary process button remove 
+            all update data for user mistake.
+        */
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
             bool b = checkBox1.Checked;
@@ -165,6 +168,11 @@ namespace Panchrukhi.Report
 
 
 
+
+
+        /*
+            Save Process Salary Dummy Data from Employee Table. 
+        */
         public void SaveDataOfProcessedSalary(string empID, int workingDay, int holidays, int cl, int sl, string YEAR_MONTH, int sal, int basic, int hrnt, int trnsprt, int mdcl)
         {
 

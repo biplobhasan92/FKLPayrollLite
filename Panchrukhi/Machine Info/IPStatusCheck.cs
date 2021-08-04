@@ -171,14 +171,15 @@ namespace Panchrukhi
             return _PCName;
         }
 
-        /*
-         *
-         */
+
+
         private void backgroundWorker1_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             progressBar1.Value = e.ProgressPercentage;
             lblStatus.Text = "Processing......" + progressBar1.Value.ToString() + "%";
         }
+
+
 
         private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
@@ -216,7 +217,8 @@ namespace Panchrukhi
             LoadLocalIP();
         }
 
-        // Load Local IP from Add Machine grid
+
+
         private void LoadLocalIP()
         {
             dgvfrmMachines.Rows.Clear();
