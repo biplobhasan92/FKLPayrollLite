@@ -765,8 +765,6 @@ namespace Panchrukhi {
             
             private global::System.Data.DataColumn columnVADDRESS;
             
-            private global::System.Data.DataColumn columnDataColumn1;
-            
             private global::System.Data.DataColumn columnDDOB;
             
             private global::System.Data.DataColumn columnVMOBLE;
@@ -869,14 +867,6 @@ namespace Panchrukhi {
             public global::System.Data.DataColumn VADDRESSColumn {
                 get {
                     return this.columnVADDRESS;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public global::System.Data.DataColumn DataColumn1Column {
-                get {
-                    return this.columnDataColumn1;
                 }
             }
             
@@ -1082,7 +1072,6 @@ namespace Panchrukhi {
                         string VNAME, 
                         string VGENDER, 
                         string VADDRESS, 
-                        string DataColumn1, 
                         string DDOB, 
                         string VMOBLE, 
                         string VEMAIL, 
@@ -1109,7 +1098,6 @@ namespace Panchrukhi {
                         VNAME,
                         VGENDER,
                         VADDRESS,
-                        DataColumn1,
                         DDOB,
                         VMOBLE,
                         VEMAIL,
@@ -1156,7 +1144,6 @@ namespace Panchrukhi {
                 this.columnVNAME = base.Columns["VNAME"];
                 this.columnVGENDER = base.Columns["VGENDER"];
                 this.columnVADDRESS = base.Columns["VADDRESS"];
-                this.columnDataColumn1 = base.Columns["DataColumn1"];
                 this.columnDDOB = base.Columns["DDOB"];
                 this.columnVMOBLE = base.Columns["VMOBLE"];
                 this.columnVEMAIL = base.Columns["VEMAIL"];
@@ -1190,8 +1177,6 @@ namespace Panchrukhi {
                 base.Columns.Add(this.columnVGENDER);
                 this.columnVADDRESS = new global::System.Data.DataColumn("VADDRESS", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnVADDRESS);
-                this.columnDataColumn1 = new global::System.Data.DataColumn("DataColumn1", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDataColumn1);
                 this.columnDDOB = new global::System.Data.DataColumn("DDOB", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnDDOB);
                 this.columnVMOBLE = new global::System.Data.DataColumn("VMOBLE", typeof(string), null, global::System.Data.MappingType.Element);
@@ -1873,22 +1858,6 @@ namespace Panchrukhi {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public string DataColumn1 {
-                get {
-                    try {
-                        return ((string)(this[this.tableTBLPERSON.DataColumn1Column]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'DataColumn1\' in table \'TBLPERSON\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableTBLPERSON.DataColumn1Column] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public string DDOB {
                 get {
                     try {
@@ -2253,18 +2222,6 @@ namespace Panchrukhi {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetVADDRESSNull() {
                 this[this.tableTBLPERSON.VADDRESSColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public bool IsDataColumn1Null() {
-                return this.IsNull(this.tableTBLPERSON.DataColumn1Column);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public void SetDataColumn1Null() {
-                this[this.tableTBLPERSON.DataColumn1Column] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

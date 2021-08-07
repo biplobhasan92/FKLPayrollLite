@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SQLite;
 using Panchrukhi.DAO;
+using Panchrukhi.Report;
+using CrystalDecisions.CrystalReports.Engine;
 
 namespace Panchrukhi.Report
 {
@@ -467,6 +469,56 @@ namespace Panchrukhi.Report
 
 
 
+        private void btnBankPay_Click(object sender, EventArgs e)
+        {
+            string year = DateTime.Now.Year.ToString();
+            String Month = DateTime.Now.Month.ToString();
+            DataSet ds1 = DBConn.getBankPayData();
+            DS = new DataSet();
+            DT = new DataTable();
+
+            DT.Columns.Add("ID", typeof(string));
+            DT.Columns.Add("Name", typeof(string));
+            DT.Columns.Add("DESIG", typeof(string));
+            DT.Columns.Add("ACCNO", typeof(string));
+            DT.Columns.Add("BANKPAY", typeof(int));
+            if (ds1.Tables[0].Rows.Count > 0)
+            {
+                foreach (DataRow dr1 in ds1.Tables[0].Rows)
+                {
+                    DT.Rows.Add(
+                        dr1["ID"],
+                        dr1["Name"],
+                        dr1["DESIG"],
+                        dr1["ACCNO"],
+                        dr1["BANKPAY"]
+                    );
+                }
+            }
+            DS.Tables.Add(DT);
+            frmCrystalReportViewer frm = new frmCrystalReportViewer();
+            Rpt_BankPaymentSheetAccount2ndPart cr = new Rpt_BankPaymentSheetAccount2ndPart();
+            DataRow dr = DBConn.getCompanyNameAndAddress();
+            cr.SetDataSource(DT);
+            cr.SetParameterValue(0, dr["VCOMPANY_NAME"]);
+            cr.SetParameterValue(1, dr["VCOMPANY_ADDRESS"]);
+            cr.SetParameterValue(2, dateTimePicker1.Value.ToString("MMMM") + ", " + dateTimePicker1.Value.ToString("yyyy"));
+            cr.SetParameterValue(3, pat + "\\" + dr["VFILE_NAME"]);
+            frm.crptViewer.ReportSource = cr;
+            frm.crptViewer.Refresh();
+            frm.Show();
+        }
+
+        /*
+            adp = new SqlDataAdapter("select * from tbl_student", con);
+            adp.Fill(ds);
+            ReportDocument rd = new ReportDocument();
+            rd.Load(@"~\CrystalReport1.rpt");
+            rd.SetDataSource(ds.Tables[0]);
+            crystalReportViewer1.ReportSource = rd;    
+             
+        */
+
         private void btn_print_Click(object sender, EventArgs e)
         {
                 string year = DateTime.Now.Year.ToString();
@@ -544,11 +596,11 @@ namespace Panchrukhi.Report
                 frmCrystalReportViewer frm = new frmCrystalReportViewer();
                 Rpt_SalarySheet_FKLSpinning_Bangla cr = new Rpt_SalarySheet_FKLSpinning_Bangla();
                 DataRow dr = DBConn.getCompanyNameAndAddress();
-                cr.SetDataSource(DS);
+                cr.SetDataSource(DS);                
                 cr.SetParameterValue(0, dr["VCOMPANY_NAME"]);
                 cr.SetParameterValue(1, dr["VCOMPANY_ADDRESS"]);
                 cr.SetParameterValue(2, dateTimePicker1.Value.ToString("MMMM") + ", " + dateTimePicker1.Value.ToString("yyyy"));
-                cr.SetParameterValue(3, pat+"\\"+dr["VFILE_NAME"]);
+                cr.SetParameterValue(3, pat + "\\" + dr["VFILE_NAME"]);
                 frm.crptViewer.ReportSource = cr;
                 frm.crptViewer.Refresh();
                 frm.Show();
@@ -934,6 +986,8 @@ namespace Panchrukhi.Report
         {
 
         }
+
+        
 
         private void ClearData()
         {

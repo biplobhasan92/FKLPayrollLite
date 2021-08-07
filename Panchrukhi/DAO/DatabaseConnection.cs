@@ -573,7 +573,7 @@ namespace Panchrukhi.DAO
 
 
         // GET Company name 
-        public DataRow getCompanyNameAndAddress() {
+        public DataRow getCompanyNameAndAddress(){
 
             try
             {
@@ -585,6 +585,42 @@ namespace Panchrukhi.DAO
                 DA.Fill(DS);
                 if (DS.Tables[0].Rows.Count > 0)
                     return DS.Tables[0].Rows[0];
+                else
+                {
+                    MessageBox.Show("Company Name was not set properly. Please contact your system administrator.");
+                }
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show("Company Name was not set properly. Please contact your system administrator.");
+            }
+            return null;
+        }
+
+
+
+        public DataSet getBankPayData()
+        {
+            try
+            {
+                string bankPayQuery
+                        = @" select
+                                s.EMP_ID as ID,
+                                s.EMP_NAME as NAME,
+                                s.EMP_DESIG as DESIG,
+                                (select VEMERGENCY_CONTRACT from TBLPERSON where PERSONID = s.EMP_ID) as ACCNO,
+                                s.EMP_TOTAL_GIVEN_SALARY_AND_ALLOW as BANKPAY
+                             from
+                                TBL_PROCESSED_SALARY s
+                             where
+                                s.YEAR_MONTH = '2021/04' ";
+                ExecutionQuery(bankPayQuery);
+                DA = new SQLiteDataAdapter(bankPayQuery, sql_conn);
+                DS = new DataSet();
+                DS.Reset();
+                DA.Fill(DS);
+                if (DS.Tables[0].Rows.Count > 0)
+                    return DS;
                 else
                 {
                     MessageBox.Show("Company Name was not set properly. Please contact your system administrator.");

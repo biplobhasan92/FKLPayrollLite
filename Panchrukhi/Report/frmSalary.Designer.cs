@@ -119,6 +119,7 @@
             this.btnUp = new System.Windows.Forms.Button();
             this.btnDown = new System.Windows.Forms.Button();
             this.errorProFrmSalary = new System.Windows.Forms.ErrorProvider(this.components);
+            this.btnBankPay = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProFrmSalary)).BeginInit();
             this.SuspendLayout();
@@ -882,11 +883,22 @@
             // 
             this.errorProFrmSalary.ContainerControl = this;
             // 
+            // btnBankPay
+            // 
+            this.btnBankPay.Location = new System.Drawing.Point(1153, 234);
+            this.btnBankPay.Name = "btnBankPay";
+            this.btnBankPay.Size = new System.Drawing.Size(85, 23);
+            this.btnBankPay.TabIndex = 64;
+            this.btnBankPay.Text = "BankPayment";
+            this.btnBankPay.UseVisualStyleBackColor = true;
+            this.btnBankPay.Click += new System.EventHandler(this.btnBankPay_Click);
+            // 
             // frmSalary
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1467, 635);
+            this.Controls.Add(this.btnBankPay);
             this.Controls.Add(this.btnDown);
             this.Controls.Add(this.btnUp);
             this.Controls.Add(this.cbxManual);
@@ -1051,5 +1063,6 @@
         private System.Windows.Forms.Button btnUp;
         private System.Windows.Forms.Button btnDown;
         private System.Windows.Forms.ErrorProvider errorProFrmSalary;
+        private System.Windows.Forms.Button btnBankPay;
     }
 }

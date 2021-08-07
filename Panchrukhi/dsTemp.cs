@@ -8,7 +8,7 @@ namespace Panchrukhi
 
     public partial class dsTemp
     {
-      
-      
+
+
     }
 }

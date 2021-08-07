@@ -65,6 +65,12 @@
     <Reference Include="CrystalDecisions.ReportSource, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="CrystalDecisions.Shared, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="Devart.Data, Version=5.0.2736.0, Culture=neutral, PublicKeyToken=09af7300eec23701, processorArchitecture=MSIL">
+      <HintPath>..\packages\dotConnect.Express.for.SQLite.5.17.1944\lib\Devart.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Devart.Data.SQLite, Version=5.17.1944.0, Culture=neutral, PublicKeyToken=09af7300eec23701, processorArchitecture=MSIL">
+      <HintPath>..\packages\dotConnect.Express.for.SQLite.5.17.1944\lib\Devart.Data.SQLite.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.3.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -129,6 +135,11 @@
       <DependentUpon>frmLeaveSettings.cs</DependentUpon>
     </Compile>
     <Compile Include="DAO\DatabaseConnection.cs" />
+    <Compile Include="DataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </Compile>
     <Compile Include="dsTemp.cs">
       <DependentUpon>dsTemp.xsd</DependentUpon>
     </Compile>
@@ -172,6 +183,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>crptToken_Report.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Report\Rpt_BankPaymentSheetAccount2ndPart.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Rpt_BankPaymentSheetAccount2ndPart.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Report\Rpt_Leave_Summary.cs">
@@ -376,6 +393,10 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>crptToken_Report.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Report\Rpt_BankPaymentSheetAccount2ndPart.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Rpt_BankPaymentSheetAccount2ndPart.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Report\Rpt_Leave_Summary.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>Rpt_Leave_Summary.cs</LastGenOutput>
@@ -490,6 +511,17 @@
     </None>
     <None Include="AttendanceSummary.xss">
       <DependentUpon>AttendanceSummary.xsd</DependentUpon>
+    </None>
+    <None Include="DataSet1.xsc">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="DataSet1.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSet1.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DataSet1.xss">
+      <DependentUpon>DataSet1.xsd</DependentUpon>
     </None>
     <None Include="dsTemp.xsc">
       <DependentUpon>dsTemp.xsd</DependentUpon>
