@@ -223,7 +223,7 @@ namespace Panchrukhi.Basic_Settings
             try
             {
                 OpenFileDialog dialog = new OpenFileDialog();
-                dialog.Filter = " Image Files(*.jpg; *.jpeg; *.gif; *.bmp)|*.jpg; *.jpeg; *.gif; *.bmp ";
+                dialog.Filter = " Image Files(*.jpg; *.jpeg; *.gif; *.bmp; *.png;)|*.jpg; *.jpeg; *.gif; *.bmp; *.png; ";
                 if (dialog.ShowDialog() == DialogResult.OK)
                 {
                     imageLocation = dialog.FileName;

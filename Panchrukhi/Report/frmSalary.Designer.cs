@@ -120,6 +120,8 @@
             this.btnDown = new System.Windows.Forms.Button();
             this.errorProFrmSalary = new System.Windows.Forms.ErrorProvider(this.components);
             this.btnBankPay = new System.Windows.Forms.Button();
+            this.cbxForCash = new System.Windows.Forms.CheckBox();
+            this.btnTopSheet = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProFrmSalary)).BeginInit();
             this.SuspendLayout();
@@ -400,7 +402,7 @@
             // 
             // btn_print
             // 
-            this.btn_print.Location = new System.Drawing.Point(1253, 234);
+            this.btn_print.Location = new System.Drawing.Point(1077, 240);
             this.btn_print.Name = "btn_print";
             this.btn_print.Size = new System.Drawing.Size(75, 23);
             this.btn_print.TabIndex = 27;
@@ -410,7 +412,7 @@
             // 
             // btn_payslip
             // 
-            this.btn_payslip.Location = new System.Drawing.Point(1345, 234);
+            this.btn_payslip.Location = new System.Drawing.Point(1155, 240);
             this.btn_payslip.Name = "btn_payslip";
             this.btn_payslip.Size = new System.Drawing.Size(75, 23);
             this.btn_payslip.TabIndex = 28;
@@ -885,19 +887,41 @@
             // 
             // btnBankPay
             // 
-            this.btnBankPay.Location = new System.Drawing.Point(1153, 234);
+            this.btnBankPay.Location = new System.Drawing.Point(1310, 240);
             this.btnBankPay.Name = "btnBankPay";
-            this.btnBankPay.Size = new System.Drawing.Size(85, 23);
+            this.btnBankPay.Size = new System.Drawing.Size(114, 23);
             this.btnBankPay.TabIndex = 64;
-            this.btnBankPay.Text = "BankPayment";
+            this.btnBankPay.Text = "Bank/Cash Payment";
             this.btnBankPay.UseVisualStyleBackColor = true;
             this.btnBankPay.Click += new System.EventHandler(this.btnBankPay_Click);
+            // 
+            // cbxForCash
+            // 
+            this.cbxForCash.AutoSize = true;
+            this.cbxForCash.Location = new System.Drawing.Point(1314, 221);
+            this.cbxForCash.Name = "cbxForCash";
+            this.cbxForCash.Size = new System.Drawing.Size(67, 17);
+            this.cbxForCash.TabIndex = 65;
+            this.cbxForCash.Text = "For cash";
+            this.cbxForCash.UseVisualStyleBackColor = true;
+            // 
+            // btnTopSheet
+            // 
+            this.btnTopSheet.Location = new System.Drawing.Point(1233, 240);
+            this.btnTopSheet.Name = "btnTopSheet";
+            this.btnTopSheet.Size = new System.Drawing.Size(75, 23);
+            this.btnTopSheet.TabIndex = 66;
+            this.btnTopSheet.Text = "Top Sheet";
+            this.btnTopSheet.UseVisualStyleBackColor = true;
+            this.btnTopSheet.Click += new System.EventHandler(this.btnTopSheet_Click);
             // 
             // frmSalary
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1467, 635);
+            this.Controls.Add(this.btnTopSheet);
+            this.Controls.Add(this.cbxForCash);
             this.Controls.Add(this.btnBankPay);
             this.Controls.Add(this.btnDown);
             this.Controls.Add(this.btnUp);
@@ -1064,5 +1088,7 @@
         private System.Windows.Forms.Button btnDown;
         private System.Windows.Forms.ErrorProvider errorProFrmSalary;
         private System.Windows.Forms.Button btnBankPay;
+        private System.Windows.Forms.CheckBox cbxForCash;
+        private System.Windows.Forms.Button btnTopSheet;
     }
 }

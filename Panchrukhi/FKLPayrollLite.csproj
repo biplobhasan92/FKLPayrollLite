@@ -185,6 +185,24 @@
       <DependentUpon>crptToken_Report.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Report\Rep_TopSheetSummary.cs">
+      <DependentUpon>Rep_TopSheetSummary.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Report\Rpt_CashPaymentSheetAccount2ndPart.cs">
+      <DependentUpon>Rpt_CashPaymentSheetAccount2ndPart.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Report\Rpt_SalarySheet_Summary.cs">
+      <DependentUpon>Rpt_SalarySheet_Summary.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Report\Rpt_BankPaymentSheetAccount2ndPart.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -368,6 +386,11 @@
     <Compile Include="SalarySheet.cs">
       <DependentUpon>SalarySheet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="TopSheetSummaty.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TopSheetSummaty.xsd</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Basic Settings\ApplicationInfo.resx">
       <DependentUpon>ApplicationInfo.cs</DependentUpon>
     </EmbeddedResource>
@@ -392,6 +415,18 @@
     <EmbeddedResource Include="Report\crptToken_Report.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>crptToken_Report.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\Rep_TopSheetSummary.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Rep_TopSheetSummary.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\Rpt_CashPaymentSheetAccount2ndPart.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Rpt_CashPaymentSheetAccount2ndPart.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Report\Rpt_SalarySheet_Summary.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Rpt_SalarySheet_Summary.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Report\Rpt_BankPaymentSheetAccount2ndPart.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -563,6 +598,17 @@
     </None>
     <None Include="SalarySheet.xss">
       <DependentUpon>SalarySheet.xsd</DependentUpon>
+    </None>
+    <None Include="TopSheetSummaty.xsc">
+      <DependentUpon>TopSheetSummaty.xsd</DependentUpon>
+    </None>
+    <None Include="TopSheetSummaty.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>TopSheetSummaty.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="TopSheetSummaty.xss">
+      <DependentUpon>TopSheetSummaty.xsd</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>

@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="TopSheetSummaty" targetNamespace="http://tempuri.org/TopSheetSummaty.xsd" xmlns:mstns="http://tempuri.org/TopSheetSummaty.xsd" xmlns="http://tempuri.org/TopSheetSummaty.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="TopSheetSummaty" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="TopSheetSummaty" msprop:Generator_UserDSName="TopSheetSummaty">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="TOP_SHEET_SUMMARY" msprop:Generator_TableClassName="TOP_SHEET_SUMMARYDataTable" msprop:Generator_TableVarName="tableTOP_SHEET_SUMMARY" msprop:Generator_TablePropName="TOP_SHEET_SUMMARY" msprop:Generator_RowDeletingName="TOP_SHEET_SUMMARYRowDeleting" msprop:Generator_RowChangingName="TOP_SHEET_SUMMARYRowChanging" msprop:Generator_RowEvHandlerName="TOP_SHEET_SUMMARYRowChangeEventHandler" msprop:Generator_RowDeletedName="TOP_SHEET_SUMMARYRowDeleted" msprop:Generator_UserTableName="TOP_SHEET_SUMMARY" msprop:Generator_RowChangedName="TOP_SHEET_SUMMARYRowChanged" msprop:Generator_RowEvArgName="TOP_SHEET_SUMMARYRowChangeEvent" msprop:Generator_RowClassName="TOP_SHEET_SUMMARYRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="PARTICULARS" msprop:Generator_ColumnVarNameInTable="columnPARTICULARS" msprop:Generator_ColumnPropNameInRow="PARTICULARS" msprop:Generator_ColumnPropNameInTable="PARTICULARSColumn" msprop:Generator_UserColumnName="PARTICULARS" type="xs:string" minOccurs="0" />
+              <xs:element name="PERSONS" msprop:Generator_ColumnVarNameInTable="columnPERSONS" msprop:Generator_ColumnPropNameInRow="PERSONS" msprop:Generator_ColumnPropNameInTable="PERSONSColumn" msprop:Generator_UserColumnName="PERSONS" type="xs:string" minOccurs="0" />
+              <xs:element name="GROSS" msprop:Generator_ColumnVarNameInTable="columnGROSS" msprop:Generator_ColumnPropNameInRow="GROSS" msprop:Generator_ColumnPropNameInTable="GROSSColumn" msprop:Generator_UserColumnName="GROSS" type="xs:string" minOccurs="0" />
+              <xs:element name="PAID" msprop:Generator_ColumnVarNameInTable="columnPAID" msprop:Generator_ColumnPropNameInRow="PAID" msprop:Generator_ColumnPropNameInTable="PAIDColumn" msprop:Generator_UserColumnName="PAID" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

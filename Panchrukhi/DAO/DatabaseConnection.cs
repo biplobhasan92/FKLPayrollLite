@@ -599,7 +599,7 @@ namespace Panchrukhi.DAO
 
 
 
-        public DataSet getBankPayData()
+        public DataSet getBankPayData(string yearMonth)
         {
             try
             {
@@ -613,7 +613,7 @@ namespace Panchrukhi.DAO
                              from
                                 TBL_PROCESSED_SALARY s
                              where
-                                s.YEAR_MONTH = '2021/04' ";
+                                s.YEAR_MONTH = '" + yearMonth + "' ";
                 ExecutionQuery(bankPayQuery);
                 DA = new SQLiteDataAdapter(bankPayQuery, sql_conn);
                 DS = new DataSet();
@@ -623,16 +623,102 @@ namespace Panchrukhi.DAO
                     return DS;
                 else
                 {
-                    MessageBox.Show("Company Name was not set properly. Please contact your system administrator.");
+                    MessageBox.Show("Data not found. Please contact your system administrator.");
+                    return null;
                 }
             }
             catch (Exception exc)
             {
-                MessageBox.Show("Company Name was not set properly. Please contact your system administrator.");
+                MessageBox.Show("Data not found. Please contact your system administrator.");
+                return null;
             }
-            return null;
         }
 
+
+
+
+        public DataSet getCashPayData(string yearMonth)
+        {
+            try
+            {
+                string bankPayQuery
+                        = @" select
+                                s.EMP_ID as ID,
+                                s.EMP_NAME as NAME,
+                                s.EMP_DESIG as DESIG,
+                                'Cash Pay' as ACCNO,
+                                s.EMP_TOTAL_GIVEN_SALARY_AND_ALLOW as BANKPAY
+                             from
+                                TBL_PROCESSED_SALARY s
+                             where
+                                s.YEAR_MONTH = '" + yearMonth +"' and (select VEMERGENCY_CONTRACT from TBLPERSON where PERSONID = s.EMP_ID) ='' ";
+                ExecutionQuery(bankPayQuery);
+                DA = new SQLiteDataAdapter(bankPayQuery, sql_conn);
+                DS = new DataSet();
+                DS.Reset();
+                DA.Fill(DS);
+                if (DS.Tables[0].Rows.Count > 0)
+                    return DS;
+                else
+                {
+                    MessageBox.Show("Data not found. Please select right month.");
+                    return null;
+                }
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show("Data not found. Please select right month.");
+                return null;
+            }
+        }
+
+
+        public DataSet getSalaryTopSheet(string yearMonth)
+        {
+            try
+            {
+                string topSheetQuery
+                        = @" select 
+                               PARTICULARS, 
+                               count(PARTICULARS) AS PERSONS, 
+                               sum(GROSS) AS GROSS, 
+                               sum(BANKPAY) AS PAID 
+                            from
+                                (select
+                                   case when ACCNO = '' then 'REGULAR CASH' else 'GENERAL BANKING' END PARTICULARS, 
+                                   GROSS,
+                                   BANKPAY
+                                 from 
+                                    (select
+                                       s.EMP_TOTAL_SAL as GROSS,
+                                       (select VEMERGENCY_CONTRACT from TBLPERSON where PERSONID = s.EMP_ID) as ACCNO,
+                                       s.EMP_TOTAL_GIVEN_SALARY_AND_ALLOW as BANKPAY
+                                     from
+                                       TBL_PROCESSED_SALARY s
+                                     where
+                                       s.YEAR_MONTH = '2021/04')
+                                   )
+                            group by 
+                                  PARTICULARS; ";
+                ExecutionQuery(topSheetQuery);
+                DA = new SQLiteDataAdapter(topSheetQuery, sql_conn);
+                DS = new DataSet();
+                DS.Reset();
+                DA.Fill(DS);
+                if (DS.Tables[0].Rows.Count > 0)
+                    return DS;
+                else
+                {
+                    MessageBox.Show("Data not found. Please select right month.");
+                    return null;
+                }
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show("Data not found. Please select right month.");
+                return null;
+            }
+        }
 
 
         // GET Company name 
@@ -659,6 +745,8 @@ namespace Panchrukhi.DAO
             }
             return null;
         }
+
+
 
 
 
@@ -693,5 +781,8 @@ namespace Panchrukhi.DAO
             }
             return null;
         }
+
+
+
     }
 }
