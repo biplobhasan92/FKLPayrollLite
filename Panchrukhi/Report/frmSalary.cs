@@ -87,11 +87,11 @@ namespace Panchrukhi.Report
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
             bool b = checkBox1.Checked;
-            if (b){                
-                dateTimePicker1.Enabled = false;
+            if (!b){                
+                //dateTimePicker1.Enabled = false;
                 btnSalProcess.Enabled = false;
             }else{
-                dateTimePicker1.Enabled = true;
+                //dateTimePicker1.Enabled = true;
                 btnSalProcess.Enabled = true;
             }
         }
@@ -129,11 +129,11 @@ namespace Panchrukhi.Report
 
             DT = new DataTable();
             DS = new DataSet();
-            string CommandText = @"SELECT 
+            string CommandText = @"SELECT
                                          P.PERSONID,
-                                         P.VNAME,  
+                                         P.VNAME,
                                          (select VCATEGORY from TBLCATEGORY where P.NCATID = TBLCATEGORY.NCATID) as CATEGORY,
-                                         (select VDESIGNATIONNAME from TBLDESIGNATION d where d.NDESIGID = P.NDESIGID ) as Designation, 
+                                         (select VDESIGNATIONNAME from TBLDESIGNATION d where d.NDESIGID = P.NDESIGID ) as Designation,
                                          (SELECT VCLASSNAME FROM TBLCLASS TC WHERE TC.NCLASSID = P.NCLASSID) as CLASS,
                                          (SELECT VSECTION   FROM TBLSECTION TS WHERE TS.NSECID = P.NSECID) as SECTION,
                                          (SELECT VSLOTNAME ||  '(' || VINTIME || '-' ||  VOUTTIME || ')'  FROM TBLATTENSLOT where (TBLATTENSLOT.NSLOTID = P.NSLOTID)) as SHIFT,
@@ -142,7 +142,7 @@ namespace Panchrukhi.Report
                                          P.NHRENT,
                                          P.NMEDICAL,
                                          P.NTRANSPORT
-                                    FROM 
+                                    FROM
                                          TBLPERSON P order by P.NEMPID ;";
             DBConn.ExecutionQuery(CommandText);
             DB = new SQLiteDataAdapter(CommandText, DBConn.sql_conn);
@@ -178,7 +178,18 @@ namespace Panchrukhi.Report
         public void SaveDataOfProcessedSalary(string empID, int workingDay, int holidays, int cl, int sl, string YEAR_MONTH, int sal, int basic, int hrnt, int trnsprt, int mdcl)
         {
 
-            // int getAdvCut = getCatWiseAdvSalCut(empID, YEAR_MONTH, 1);
+            int presentDay = 0;
+            if (cbxAttenEntry.Checked)
+            {
+                workingDay = Convert.ToInt32(txtMnulWorkingDay.Text.Trim());
+                holidays = Convert.ToInt32(txtMnulHoliday.Text.Trim());
+                presentDay = Convert.ToInt32(txtMnulPresentDay.Text.Trim());
+            }
+            else
+            {
+                presentDay = workingDay;
+            }
+
             try
             {
                 string cmdText = " insert into TBL_PROCESSED_SALARY(" +
@@ -220,7 +231,7 @@ namespace Panchrukhi.Report
                          "  " + holidays + ", " +
                          "  " + cl + ", "+
                          "  " + sl + ", "+
-                         "  " + 0 + ", " +
+                         "  " + presentDay + ", " +
                          "  " + getCountOfALInMnthUsingID(YEAR_MONTH, empID) + ", " +
                          "  " + 0 + ", " +
                          "  " + basic + ", "+
@@ -234,10 +245,10 @@ namespace Panchrukhi.Report
                          "  " + 0 + ", " +
                          "  " + 0 + ", " +
                          "  " + 10 + "," +
+                         "  " + 10 + "," +
+                         "  " + (sal - 10) + ", " +
                          "  " + 0 + ", " +
-                         "  " + 0 + ", " +
-                         "  " + 0 + ", " +
-                         "  " + 0 + ", " +
+                         "  " + (sal - 10) + ", " +
                          "  " + 0 + ", " +
                          "  '" + YEAR_MONTH + "' " +
                      " ) ";
@@ -265,10 +276,9 @@ namespace Panchrukhi.Report
             DT = DS.Tables[0];
             dataGridView.Rows.Clear();
             if (DS.Tables[0].Rows.Count > 0)
-            {                
+            {
                 foreach (DataRow dr in DS.Tables[0].Rows)
                 {
-                    
                     dataGridView.Rows.Add();
                     dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colSL.Index].Value = Convert.ToInt32(dr["SL"].ToString());
                     dataGridView.Rows[dataGridView.Rows.Count - 1].Cells[colEmpID.Index].Value   = dr["EMP_ID"].ToString();
@@ -373,6 +383,8 @@ namespace Panchrukhi.Report
         {
             // this.Owner.Enabled = false;
             // this.dataGridView.Columns["salary"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            btnSalProcess.Enabled = false;
+            this.txtMnulWorkingDay.Enabled = this.txtMnulHoliday.Enabled = this.txtMnulPresentDay.Enabled = false;
         }
 
 
@@ -1057,11 +1069,24 @@ namespace Panchrukhi.Report
             frm.Show();
         }
 
-
-
+        private void cbxAttenEntry_Click(object sender, EventArgs e)
+        {
+            if (cbxAttenEntry.Checked)
+            {
+                this.txtMnulWorkingDay.Enabled = this.txtMnulHoliday.Enabled = this.txtMnulPresentDay.Enabled = true;
+            }
+            else
+            {
+                this.txtMnulWorkingDay.Enabled = this.txtMnulHoliday.Enabled = this.txtMnulPresentDay.Enabled = false;
+                this.txtMnulWorkingDay.Text = this.txtMnulHoliday.Text = this.txtMnulPresentDay.Text = "";
+            }
+        }
 
         private void ClearData()
         {
+            txtMnulPresentDay.Text =
+            txtMnulHoliday.Text =
+            txtMnulWorkingDay.Text =
             txtEmpID.Text =
             txtWorkingDay.Text = 
             txtHolidayWork.Text=

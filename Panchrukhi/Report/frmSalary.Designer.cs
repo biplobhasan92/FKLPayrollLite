@@ -122,6 +122,13 @@
             this.btnBankPay = new System.Windows.Forms.Button();
             this.cbxForCash = new System.Windows.Forms.CheckBox();
             this.btnTopSheet = new System.Windows.Forms.Button();
+            this.cbxAttenEntry = new System.Windows.Forms.CheckBox();
+            this.txtMnulHoliday = new System.Windows.Forms.TextBox();
+            this.txtMnulPresentDay = new System.Windows.Forms.TextBox();
+            this.txtMnulWorkingDay = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label26 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProFrmSalary)).BeginInit();
             this.SuspendLayout();
@@ -144,7 +151,7 @@
             // 
             // btnSalProcess
             // 
-            this.btnSalProcess.Location = new System.Drawing.Point(32, 103);
+            this.btnSalProcess.Location = new System.Drawing.Point(32, 160);
             this.btnSalProcess.Name = "btnSalProcess";
             this.btnSalProcess.Size = new System.Drawing.Size(188, 37);
             this.btnSalProcess.TabIndex = 5;
@@ -392,7 +399,7 @@
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(104, 43);
+            this.checkBox1.Location = new System.Drawing.Point(31, 43);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(103, 17);
             this.checkBox1.TabIndex = 7;
@@ -808,7 +815,7 @@
             // 
             // btnLoadGrid
             // 
-            this.btnLoadGrid.Location = new System.Drawing.Point(32, 216);
+            this.btnLoadGrid.Location = new System.Drawing.Point(32, 232);
             this.btnLoadGrid.Name = "btnLoadGrid";
             this.btnLoadGrid.Size = new System.Drawing.Size(188, 27);
             this.btnLoadGrid.TabIndex = 56;
@@ -852,7 +859,7 @@
             // cbxManual
             // 
             this.cbxManual.AutoSize = true;
-            this.cbxManual.Location = new System.Drawing.Point(105, 67);
+            this.cbxManual.Location = new System.Drawing.Point(32, 67);
             this.cbxManual.Name = "cbxManual";
             this.cbxManual.Size = new System.Drawing.Size(88, 17);
             this.cbxManual.TabIndex = 61;
@@ -915,11 +922,77 @@
             this.btnTopSheet.UseVisualStyleBackColor = true;
             this.btnTopSheet.Click += new System.EventHandler(this.btnTopSheet_Click);
             // 
+            // cbxAttenEntry
+            // 
+            this.cbxAttenEntry.AutoSize = true;
+            this.cbxAttenEntry.Location = new System.Drawing.Point(31, 90);
+            this.cbxAttenEntry.Name = "cbxAttenEntry";
+            this.cbxAttenEntry.Size = new System.Drawing.Size(146, 17);
+            this.cbxAttenEntry.TabIndex = 67;
+            this.cbxAttenEntry.Text = "Manual Attendance Entry";
+            this.cbxAttenEntry.UseVisualStyleBackColor = true;
+            this.cbxAttenEntry.Click += new System.EventHandler(this.cbxAttenEntry_Click);
+            // 
+            // txtMnulHoliday
+            // 
+            this.txtMnulHoliday.Location = new System.Drawing.Point(287, 69);
+            this.txtMnulHoliday.Name = "txtMnulHoliday";
+            this.txtMnulHoliday.Size = new System.Drawing.Size(52, 20);
+            this.txtMnulHoliday.TabIndex = 68;
+            // 
+            // txtMnulPresentDay
+            // 
+            this.txtMnulPresentDay.Location = new System.Drawing.Point(287, 94);
+            this.txtMnulPresentDay.Name = "txtMnulPresentDay";
+            this.txtMnulPresentDay.Size = new System.Drawing.Size(52, 20);
+            this.txtMnulPresentDay.TabIndex = 69;
+            // 
+            // txtMnulWorkingDay
+            // 
+            this.txtMnulWorkingDay.Location = new System.Drawing.Point(287, 42);
+            this.txtMnulWorkingDay.Name = "txtMnulWorkingDay";
+            this.txtMnulWorkingDay.Size = new System.Drawing.Size(52, 20);
+            this.txtMnulWorkingDay.TabIndex = 70;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(207, 42);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(74, 13);
+            this.label2.TabIndex = 71;
+            this.label2.Text = "Working Days";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(234, 71);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(47, 13);
+            this.label3.TabIndex = 72;
+            this.label3.Text = "Holidays";
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(234, 97);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(43, 13);
+            this.label26.TabIndex = 73;
+            this.label26.Text = "Present";
+            // 
             // frmSalary
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1467, 635);
+            this.Controls.Add(this.label26);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.txtMnulWorkingDay);
+            this.Controls.Add(this.txtMnulPresentDay);
+            this.Controls.Add(this.txtMnulHoliday);
+            this.Controls.Add(this.cbxAttenEntry);
             this.Controls.Add(this.btnTopSheet);
             this.Controls.Add(this.cbxForCash);
             this.Controls.Add(this.btnBankPay);
@@ -1090,5 +1163,12 @@
         private System.Windows.Forms.Button btnBankPay;
         private System.Windows.Forms.CheckBox cbxForCash;
         private System.Windows.Forms.Button btnTopSheet;
+        private System.Windows.Forms.CheckBox cbxAttenEntry;
+        private System.Windows.Forms.TextBox txtMnulWorkingDay;
+        private System.Windows.Forms.TextBox txtMnulPresentDay;
+        private System.Windows.Forms.TextBox txtMnulHoliday;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
     }
 }
